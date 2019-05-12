@@ -1,7 +1,7 @@
-﻿/*
+/*
  *  This file is part of Poedit (https://poedit.net)
  *
- *  Copyright (C) 2014-2016 Vaclav Slavik
+ *  Copyright (C) 2014-2019 Vaclav Slavik
  *
  *  Permission is hereby granted, free of charge, to any person obtaining a
  *  copy of this software and associated documentation files (the "Software"),
@@ -27,8 +27,10 @@
 
 #include "catalog.h"
 #include "customcontrols.h"
+#include "colorscheme.h"
 #include "commentdlg.h"
 #include "concurrency.h"
+#include "configuration.h"
 #include "errors.h"
 #include "hidpi.h"
 #include "utility.h"
@@ -39,8 +41,8 @@
 
 #include <wx/app.h>
 #include <wx/button.h>
-#include <wx/config.h>
 #include <wx/dcclient.h>
+#include <wx/graphics.h>
 #include <wx/menu.h>
 #include <wx/sizer.h>
 #include <wx/statbmp.h>
@@ -48,11 +50,11 @@
 #include <wx/time.h>
 #include <wx/wupdlock.h>
 
-#include <algorithm>
+#if !wxCHECK_VERSION(3,1,0)
+    #define CenterVertical() Center()
+#endif
 
-#define SIDEBAR_BACKGROUND      wxColour("#EDF0F4")
-#define GRAY_LINES_COLOR        wxColour(220,220,220)
-#define GRAY_LINES_COLOR_DARK   wxColour(180,180,180)
+#include <algorithm>
 
 
 class SidebarSeparator : public wxWindow
@@ -60,24 +62,35 @@ class SidebarSeparator : public wxWindow
 public:
     SidebarSeparator(wxWindow *parent)
         : wxWindow(parent, wxID_ANY),
-          m_sides(SIDEBAR_BACKGROUND),
-          m_center(GRAY_LINES_COLOR_DARK)
+          m_sides(ColorScheme::Get(Color::SidebarBackground)),
+          m_center(ColorScheme::Get(Color::EditingSubtleSeparator))
     {
         Bind(wxEVT_PAINT, &SidebarSeparator::OnPaint, this);
     }
 
     wxSize DoGetBestSize() const override
     {
-        return wxSize(-1, 1);
+        return wxSize(-1, PX(1));
     }
+
+    bool AcceptsFocus() const override { return false; }
 
 private:
     void OnPaint(wxPaintEvent&)
     {
         wxPaintDC dc(this);
         auto w = dc.GetSize().x;
-        dc.GradientFillLinear(wxRect(0,0,PX(15),PX(1)), m_sides, m_center);
-        dc.GradientFillLinear(wxRect(PX(15),0,w,PX(1)), m_center, m_sides);
+        if (ColorScheme::GetWindowMode(this) == ColorScheme::Light)
+        {
+            dc.GradientFillLinear(wxRect(0,0,PX(20),PX(1)), m_sides, m_center);
+            dc.GradientFillLinear(wxRect(PX(20),0,w,PX(1)), m_center, m_sides);
+        }
+        else
+        {
+            dc.SetBrush(m_center);
+            dc.SetPen(m_center);
+            dc.DrawRectangle(PX(2), 0, w - PX(4), PX(1));
+        }
     }
 
     wxColour m_sides, m_center;
@@ -98,7 +111,7 @@ SidebarBlock::SidebarBlock(Sidebar *parent, const wxString& label, int flags)
                          wxSizerFlags().Expand().Border(wxBOTTOM|wxLEFT, PX(2)));
         }
         m_headerSizer = new wxBoxSizer(wxHORIZONTAL);
-        m_headerSizer->Add(new HeadingLabel(parent, label), wxSizerFlags().Expand());
+        m_headerSizer->Add(new HeadingLabel(parent, label), wxSizerFlags().Center());
         m_sizer->Add(m_headerSizer, wxSizerFlags().Expand().PXDoubleBorder(wxLEFT|wxRIGHT));
     }
     m_innerSizer = new wxBoxSizer(wxVERTICAL);
@@ -133,7 +146,7 @@ public:
         : SidebarBlock(parent, _("Previous source text:"))
     {
         m_innerSizer->AddSpacer(PX(2));
-        m_innerSizer->Add(new ExplanationLabel(parent, _("The old source text (before it changed during an update) that the fuzzy translation corresponds to.")),
+        m_innerSizer->Add(new ExplanationLabel(parent, _("The old source text (before it changed during an update) that the now-inaccurate translation corresponds to.")),
                      wxSizerFlags().Expand());
         m_innerSizer->AddSpacer(PX(5));
         m_text = new SelectableAutoWrappingText(parent, "");
@@ -257,42 +270,66 @@ private:
 
 wxDEFINE_EVENT(EVT_SUGGESTION_SELECTED, wxCommandEvent);
 
-class SuggestionWidget : public wxPanel
+class SuggestionWidget : public wxWindow
 {
 public:
-    SuggestionWidget(wxWindow *parent) : wxPanel(parent, wxID_ANY)
+    SuggestionWidget(Sidebar *parent, SuggestionsSidebarBlock *block, bool isFirst) : wxWindow(parent, wxID_ANY)
     {
-        m_icon = new wxStaticBitmap(this, wxID_ANY, wxNullBitmap);
+        m_sidebar = parent;
+        m_parentBlock = block;
+        m_isHighlighted = false;
+        m_icon = new wxStaticBitmap(this, wxID_ANY, wxArtProvider::GetBitmap("SuggestionTMTemplate"));
         m_text = new AutoWrappingText(this, "TEXT");
         m_info = new InfoStaticText(this);
+        m_moreActions = new ImageButton(this, wxArtProvider::GetBitmap("DownvoteTemplate"));
+
+        m_isPerfect = isFirst
+                      ? new wxStaticBitmap(this, wxID_ANY, wxArtProvider::GetBitmap("SuggestionPerfectMatch"))
+                      : nullptr;
 
         auto top = new wxBoxSizer(wxHORIZONTAL);
         auto right = new wxBoxSizer(wxVERTICAL);
         top->AddSpacer(PX(2));
-        top->Add(m_icon, wxSizerFlags().Top().PXBorder(wxTOP|wxBOTTOM));
+        top->Add(m_icon, wxSizerFlags().Top().Border(wxTOP|wxBOTTOM, PX(6)));
         top->Add(right, wxSizerFlags(1).Expand().PXBorder(wxLEFT));
         right->Add(m_text, wxSizerFlags().Expand().Border(wxTOP, PX(4)));
-        right->Add(m_info, wxSizerFlags().Expand().Border(wxTOP|wxBOTTOM, PX(2)));
+        auto infoSizer = new wxBoxSizer(wxHORIZONTAL);
+        infoSizer->Add(m_info);
+        if (m_isPerfect)
+            infoSizer->Add(m_isPerfect, wxSizerFlags().Center().Border(wxLEFT, PX(2)));
+        right->Add(infoSizer, wxSizerFlags().Expand().Border(wxTOP|wxBOTTOM, PX(2)));
+
+        infoSizer->AddStretchSpacer();
+        infoSizer->Add(m_moreActions, wxSizerFlags().ReserveSpaceEvenIfHidden().CenterVertical().Border(wxRIGHT, MSW_OR_OTHER(PX(4), PX(2))));
+        m_moreActions->Hide();
+
         SetSizerAndFit(top);
 
         // setup mouse hover highlighting:
         m_bg = parent->GetBackgroundColour();
-        m_bgHighlight = m_bg.ChangeLightness(160);
+        m_bgHighlight = ColorScheme::GetWindowMode(parent) == ColorScheme::Dark
+                        ? m_bg.ChangeLightness(110)
+                        : m_bg.ChangeLightness(95);
 
-        wxWindow* parts [] = { this, m_icon, m_text, m_info };
+        wxWindow* parts [] = { this, m_icon, m_text, m_info, m_moreActions };
         for (auto w : parts)
         {
             w->Bind(wxEVT_MOTION,       &SuggestionWidget::OnMouseMove, this);
             w->Bind(wxEVT_LEAVE_WINDOW, &SuggestionWidget::OnMouseMove, this);
-            w->Bind(wxEVT_LEFT_UP,      &SuggestionWidget::OnMouseClick, this);
+            if (w != m_moreActions)
+                w->Bind(wxEVT_LEFT_UP,  &SuggestionWidget::OnMouseClick, this);
+            w->Bind(wxEVT_CONTEXT_MENU, &SuggestionWidget::OnMoreActions, this);
         }
+        m_moreActions->Bind(wxEVT_BUTTON, &SuggestionWidget::OnMoreActions, this);
+        Bind(wxEVT_PAINT, &SuggestionWidget::OnPaint, this);
     }
 
     void SetValue(int index, const Suggestion& s, Language lang, const wxBitmap& icon, const wxString& tooltip)
     {
         m_value = s;
 
-        auto percent = wxString::Format("%d%%", int(100 * s.score));
+        int percent = int(100 * s.score);
+        auto percentStr = wxString::Format("%d%%", percent);
 
         index++;
         if (index < 10)
@@ -303,14 +340,17 @@ public:
             // TRANSLATORS: This is the key shortcut used in menus on Windows, some languages call them differently
             auto shortcut = wxString::Format("%s%d", _("Ctrl+"), index);
         #endif
-            m_info->SetLabel(wxString::Format(L"%s • %s", shortcut, percent));
+            m_info->SetLabel(wxString::Format(L"%s • %s", shortcut, percentStr));
         }
         else
         {
-            m_info->SetLabel(percent);
+            m_info->SetLabel(percentStr);
         }
 
         m_icon->SetBitmap(icon);
+
+        if (m_isPerfect)
+            m_isPerfect->GetContainingSizer()->Show(m_isPerfect, percent == 100);
 
         auto text = wxControl::EscapeMnemonics(bidi::mark_direction(s.text, lang));
 
@@ -318,7 +358,7 @@ public:
         m_text->SetAndWrapLabel(text);
 
 #ifndef __WXOSX__
-        // FIXME: Causes weird issues on OS X: tooltips appearing on the main list control,
+        // FIXME: Causes weird issues on macOS: tooltips appearing on the main list control,
         //        over toolbar, where the mouse just was etc.
         m_icon->SetToolTip(tooltip);
         m_text->SetToolTip(tooltip);
@@ -326,10 +366,14 @@ public:
         (void)tooltip;
 
         SetBackgroundColour(m_bg);
+
+        Layout();
         InvalidateBestSize();
         SetMinSize(wxDefaultSize);
         SetMinSize(GetBestSize());
     }
+    
+    bool AcceptsFocus() const override { return false; }
 
 private:
     class InfoStaticText : public wxStaticText
@@ -339,7 +383,7 @@ private:
         {
             SetForegroundColour(ExplanationLabel::GetTextColor());
         #ifdef __WXMSW__
-            SetFont(GetFont().Smaller());
+            SetFont(SmallerFont(GetFont()));
         #else
             SetWindowVariant(wxWINDOW_VARIANT_SMALL);
         #endif
@@ -348,17 +392,36 @@ private:
         void DoEnable(bool) override {} // wxOSX's disabling would break color
     };
 
+    void OnPaint(wxPaintEvent&)
+    {
+        wxPaintDC dc(this);
+        if (m_isHighlighted)
+        {
+            std::unique_ptr<wxGraphicsContext> gc(wxGraphicsContext::Create(dc));
+            gc->SetBrush(m_bgHighlight);
+            gc->SetPen(*wxTRANSPARENT_PEN);
+
+            auto rect = GetClientRect();
+            if (!rect.IsEmpty())
+            {
+#if wxCHECK_VERSION(3,1,1)
+                gc->DrawRoundedRectangle(rect.x, rect.y, rect.width, rect.height, PX(2));
+#else
+                gc->DrawRectangle(rect.x, rect.y, rect.width, rect.height);
+#endif
+            }
+        }
+    }
+
     void OnMouseMove(wxMouseEvent& e)
     {
         auto rectWin = GetClientRect();
-        rectWin.Deflate(1); // work around off-by-one issue on OS X
+        rectWin.Deflate(1); // work around off-by-one issue on macOS
         auto evtWin = static_cast<wxWindow*>(e.GetEventObject());
         auto mpos = e.GetPosition();
         if (evtWin != this)
             mpos += evtWin->GetPosition();
-        bool highlighted = rectWin.Contains(mpos);
-        SetBackgroundColour(highlighted ? m_bgHighlight : m_bg);
-        Refresh();
+        Highlight(rectWin.Contains(mpos));
     }
 
     void OnMouseClick(wxMouseEvent&)
@@ -369,10 +432,66 @@ private:
         ProcessWindowEvent(event);
     }
 
+    void OnMoreActions(wxCommandEvent& e)
+    {
+        if (!ShouldShowActions())
+        {
+            e.Skip();
+            return;
+        }
+
+        auto sidebar = m_sidebar;
+        auto suggestion = m_value;
+        static const auto idDelete = wxNewId();
+
+        wxMenu *menu = new wxMenu();
+#ifdef __WXOSX__
+        [menu->GetHMenu() setFont:[NSFont systemFontOfSize:13]];
+#endif
+        menu->Append(idDelete, MSW_OR_OTHER(_("Delete from translation memory"), _("Delete From Translation Memory")));
+        menu->Bind(wxEVT_MENU, [sidebar,suggestion](wxCommandEvent&)
+        {
+            SuggestionsProvider::Delete(suggestion);
+            sidebar->RefreshContent();
+        }, idDelete);
+
+        PopupMenu(menu);
+    }
+
+    void Highlight(bool highlight)
+    {
+        m_isHighlighted = highlight;
+#ifndef __WXOSX__
+        for (auto c: GetChildren())
+            c->SetBackgroundColour(highlight ? m_bgHighlight : m_bg);
+#endif
+        m_moreActions->Show(highlight && ShouldShowActions());
+        Refresh();
+
+        if (highlight)
+        {
+            for (auto widget: m_parentBlock->m_suggestionsWidgets)
+            {
+                if (widget != this)
+                    widget->Highlight(false);
+            }
+        }
+    }
+
+    bool ShouldShowActions() const
+    {
+        return m_isHighlighted && !m_value.id.empty();
+    }
+
+    Sidebar *m_sidebar;
+    SuggestionsSidebarBlock *m_parentBlock;
     Suggestion m_value;
+    bool m_isHighlighted;
     wxStaticBitmap *m_icon;
     AutoWrappingText *m_text;
     wxStaticText *m_info;
+    wxStaticBitmap *m_isPerfect;
+    ImageButton *m_moreActions;
     wxColour m_bg, m_bgHighlight;
 };
 
@@ -406,7 +525,7 @@ SuggestionsSidebarBlock::SuggestionsSidebarBlock(Sidebar *parent, wxMenu *menu)
                                      // TRANSLATORS: This is shown when no translation suggestions can be found in the TM (Windows).
                                      _("No matches found")
                                 #else
-                                     // TRANSLATORS: This is shown when no translation suggestions can be found in the TM (OS X, Linux).
+                                     // TRANSLATORS: This is shown when no translation suggestions can be found in the TM (macOS, Linux).
                                      _("No Matches Found")
                                 #endif
                                      );
@@ -427,11 +546,14 @@ SuggestionsSidebarBlock::SuggestionsSidebarBlock(Sidebar *parent, wxMenu *menu)
 
 SuggestionsSidebarBlock::~SuggestionsSidebarBlock()
 {
+    ClearSuggestionsMenu();
+    for (auto i : m_suggestionMenuItems)
+        delete i;
 }
 
 wxBitmap SuggestionsSidebarBlock::GetIconForSuggestion(const Suggestion&) const
 {
-    return wxArtProvider::GetBitmap("SuggestionTM");
+    return wxArtProvider::GetBitmap("SuggestionTMTemplate");
 }
 
 wxString SuggestionsSidebarBlock::GetTooltipForSuggestion(const Suggestion&) const
@@ -456,9 +578,9 @@ void SuggestionsSidebarBlock::SetMessage(const wxString& icon, const wxString& t
     m_parent->Layout();
 }
 
-void SuggestionsSidebarBlock::ReportError(SuggestionsBackend*, std::exception_ptr e)
+void SuggestionsSidebarBlock::ReportError(SuggestionsBackend*, dispatch::exception_ptr e)
 {
-    SetMessage("SuggestionError", DescribeException(e));
+    SetMessage("SuggestionErrorTemplate", DescribeException(e));
 }
 
 void SuggestionsSidebarBlock::ClearSuggestions()
@@ -484,7 +606,7 @@ void SuggestionsSidebarBlock::UpdateSuggestions(const SuggestionsList& hits)
     // create any necessary controls:
     while (m_suggestions.size() > m_suggestionsWidgets.size())
     {
-        auto w = new SuggestionWidget(m_parent);
+        auto w = new SuggestionWidget(m_parent, this, /*isFirst=*/m_suggestionsWidgets.empty());
         m_suggestionsSizer->Add(w, wxSizerFlags().Expand());
         m_suggestionsWidgets.push_back(w);
     }
@@ -513,7 +635,7 @@ void SuggestionsSidebarBlock::BuildSuggestionsMenu(int count)
     {
         auto text = wxString::Format("(empty)\t%s%d", _("Ctrl+"), i+1);
         auto item = new wxMenuItem(menu, wxID_ANY, text);
-        item->SetBitmap(wxArtProvider::GetBitmap("SuggestionTM"));
+        item->SetBitmap(wxArtProvider::GetBitmap("SuggestionTMTemplate"));
 
         m_suggestionMenuItems.push_back(item);
         menu->Append(item);
@@ -546,12 +668,17 @@ void SuggestionsSidebarBlock::UpdateSuggestionsMenu()
         if (index >= SUGGESTIONS_MENU_ENTRIES)
             break;
 
-        auto text = wxString::Format(formatMask, s.text, index+1);
+        wxString text = s.text;
+        text.Replace("\t", " ");
+        text.Replace("\n", " ");
+        if (text.length() > 100)
+            text = text.substr(0, 100) + L"…";
 
         auto item = m_suggestionMenuItems[index];
         m_suggestionsMenu->Append(item);
 
-        item->SetItemLabel(text);
+        auto label = wxControl::EscapeMnemonics(wxString::Format(formatMask, text, index+1));
+        item->SetItemLabel(label);
         item->SetBitmap(GetIconForSuggestion(s));
 
         index++;
@@ -590,7 +717,8 @@ void SuggestionsSidebarBlock::UpdateVisibility()
     for (w = 0; w < m_suggestions.size(); w++)
     {
         heightRemaining -= m_suggestionsWidgets[w]->GetSize().y;
-        if (heightRemaining < 20)
+        // don't show suggestions that don't fit in the space, but always try to show at least 2
+        if (heightRemaining < 20 && w > 2)
             break;
         m_suggestionsSizer->Show(m_suggestionsWidgets[w]);
     }
@@ -616,7 +744,7 @@ void SuggestionsSidebarBlock::Show(bool show)
 bool SuggestionsSidebarBlock::ShouldShowForItem(const CatalogItemPtr&) const
 {
     return m_parent->FileHasCapability(Catalog::Cap::Translations) &&
-           wxConfig::Get()->ReadBool("use_tm", true);
+           Config::UseTM();
 }
 
 void SuggestionsSidebarBlock::Update(const CatalogItemPtr& item)
@@ -681,13 +809,13 @@ void SuggestionsSidebarBlock::QueryProvider(SuggestionsBackend& backend, const C
     auto backendPtr = &backend;
     std::weak_ptr<SuggestionsSidebarBlock> weakSelf = std::dynamic_pointer_cast<SuggestionsSidebarBlock>(shared_from_this());
 
-    m_provider->SuggestTranslation
-    (
-        backend,
+    SuggestionQuery query {
         m_parent->GetCurrentSourceLanguage(),
         m_parent->GetCurrentLanguage(),
         item->GetString().ToStdWstring()
-    )
+    };
+
+    m_provider->SuggestTranslation(backend, std::move(query))
     .then_on_main([weakSelf,queryId](SuggestionsList hits)
     {
         auto self = weakSelf.lock();
@@ -698,7 +826,7 @@ void SuggestionsSidebarBlock::QueryProvider(SuggestionsBackend& backend, const C
         if (--self->m_pendingQueries == 0)
             self->OnQueriesFinished();
     })
-    .catch_all([weakSelf,queryId,backendPtr](std::exception_ptr e)
+    .catch_all([weakSelf,queryId,backendPtr](dispatch::exception_ptr e)
     {
         auto self = weakSelf.lock();
         // maybe this call is already out of date:
@@ -713,11 +841,11 @@ void SuggestionsSidebarBlock::QueryProvider(SuggestionsBackend& backend, const C
 
 
 Sidebar::Sidebar(wxWindow *parent, wxMenu *suggestionsMenu)
-    : wxPanel(parent, wxID_ANY, wxDefaultPosition, wxDefaultSize, wxTAB_TRAVERSAL | wxNO_BORDER | wxFULL_REPAINT_ON_RESIZE),
+    : wxWindow(parent, wxID_ANY, wxDefaultPosition, wxDefaultSize, wxTAB_TRAVERSAL | wxNO_BORDER | wxFULL_REPAINT_ON_RESIZE),
       m_catalog(nullptr),
       m_selectedItem(nullptr)
 {
-    SetBackgroundColour(SIDEBAR_BACKGROUND);
+    SetBackgroundColour(ColorScheme::Get(Color::SidebarBackground));
 #ifdef __WXMSW__
     SetDoubleBuffered(true);
 #endif
@@ -731,7 +859,8 @@ Sidebar::Sidebar(wxWindow *parent, wxMenu *suggestionsMenu)
     topSizer->SetMinSize(wxSize(PX(300), -1));
 
     m_blocksSizer = new wxBoxSizer(wxVERTICAL);
-    topSizer->Add(m_blocksSizer, wxSizerFlags(1).Expand().PXDoubleBorder(wxTOP|wxBOTTOM));
+    topSizer->Add(m_blocksSizer, wxSizerFlags(1).Expand().PXBorder(wxTOP|wxBOTTOM));
+    topSizer->AddSpacer(PXDefaultBorder);
 
     m_topBlocksSizer = new wxBoxSizer(wxVERTICAL);
     m_bottomBlocksSizer = new wxBoxSizer(wxVERTICAL);
@@ -739,6 +868,7 @@ Sidebar::Sidebar(wxWindow *parent, wxMenu *suggestionsMenu)
     m_blocksSizer->Add(m_topBlocksSizer, wxSizerFlags(1).Expand().ReserveSpaceEvenIfHidden());
     m_blocksSizer->Add(m_bottomBlocksSizer, wxSizerFlags().Expand());
 
+    m_topBlocksSizer->AddSpacer(PXDefaultBorder);
     AddBlock(new SuggestionsSidebarBlock(this, suggestionsMenu), Top);
     AddBlock(new OldMsgidSidebarBlock(this), Bottom);
     AddBlock(new ExtractedCommentSidebarBlock(this), Bottom);
@@ -817,11 +947,18 @@ void Sidebar::SetUpperHeight(int size)
     wxWindowUpdateLocker lock(this);
 
     int pos = GetSize().y - size;
-#ifdef __WXOSX__
-    pos += 4;
-#else
-    pos += 6;
-#endif
+
+    if (size < PX(400) || pos > size)
+    {
+        // Too little space for suggestions (either absolute size small or
+        // bottom area larger than top). If that happens, align the top/bottom
+        // separator with the Translation: field in editing area instead of
+        // with its top.
+        pos = pos / 2 - PX(1);
+    }
+
+    pos += PX(5);
+
     m_bottomBlocksSizer->SetMinSize(wxSize(-1, pos));
     Layout();
 }
@@ -835,11 +972,8 @@ void Sidebar::OnPaint(wxPaintEvent&)
 {
     wxPaintDC dc(this);
 
-    dc.SetPen(wxPen(GRAY_LINES_COLOR));
-#ifndef __WXMSW__
-    dc.DrawLine(0, 0, 0, dc.GetSize().y-1);
-#endif
-#ifndef __WXOSX__
+#ifdef __WXOSX__
+    dc.SetPen(ColorScheme::Get(Color::ToolbarSeparator));
     dc.DrawLine(0, 0, dc.GetSize().x - 1, 0);
 #endif
 }

@@ -1,8 +1,8 @@
-﻿/*
+/*
  *  This file is part of Poedit (https://poedit.net)
  *
  *  Copyright (C) 2003 Christophe Hermier
- *  Copyright (C) 2013-2016 Vaclav Slavik
+ *  Copyright (C) 2013-2019 Vaclav Slavik
  *
  *  Permission is hereby granted, free of charge, to any person obtaining a
  *  copy of this software and associated documentation files (the "Software"),
@@ -162,6 +162,8 @@ void Catalog::ExportToHTML(std::ostream& f)
 
         // Source string:
         f << "<td class='src' " << lang_src << ">\n";
+        if (item->HasContext())
+            f << " <span class='msgctxt'>" << fmt_trans(item->GetContext()) << "</span>";
         if (item->HasPlural())
         {
             f << "<ol class='plurals'>\n"
@@ -173,8 +175,6 @@ void Catalog::ExportToHTML(std::ostream& f)
         {
             f << fmt_trans(item->GetString());
         }
-        if (item->HasContext())
-            f << " <span class='msgctxt'>[" << fmt_trans(item->GetContext()) << "]</span>";
         f << "</td>\n";
 
         // Translation:
@@ -244,7 +244,7 @@ Based on Minimal CSS (minimalcss.com) under the MIT license.
 * { margin: 0; padding: 0; -webkit-box-sizing: border-box; -moz-box-sizing: border-box; box-sizing: border-box; }
 
 /* Layout */
-body { background-color: #fff; color: #333;	font: 14px/20px "HelveticaNeue", "Helvetica Neue", Helvetica, Arial, sans-serif; }
+body { background-color: #fff; color: #333;	font: 14px/20px -apple-system, "HelveticaNeue", "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif; }
 
 header { width: 100%; margin: 0 auto; position: relative; padding: 20px 0; margin-bottom: 20px; }
 
@@ -327,8 +327,8 @@ table.metadata td {
 .graph div { float: left; }
 .graph div:first-child { border-top-left-radius: 3px; border-bottom-left-radius: 3px; }
 .graph div:last-child { border-top-right-radius: 3px; border-bottom-right-radius: 3px; }
-.percent-done    { background-color: #71DD46; height: 10px; }
-.percent-fuzzy   { background-color: #FFD300; height: 10px; }
+.percent-done    { background-color: rgb(90, 228, 140); height: 10px; }
+.percent-fuzzy   { background-color: rgb(255, 167, 52); height: 10px; }
 .percent-untrans { background-color: #F1F1F1; height: 10px; }
 .legend {
   font-size: smaller;
@@ -357,20 +357,25 @@ table.translations th:last-child, table.translations td:last-child { padding-rig
   border-bottom: none !important;
 }
 tr.comments div {
-  float: right;
-  max-width: 75%;
+  float: left;
+  max-width: 90%;
   font-size: smaller;
   color: #aaa;
 }
 tr.comments div p:last-child { margin-bottom: 0; }
+tr.comments td { padding-top: 0; }
 
 .fuzzy .tra {
-  color: #a9861b;
+  color: rgb(218, 123, 0);
 }
 
 .msgctxt {
+  color: rgb(70, 109, 137);
   font-size: smaller;
-  color: #6d8e13;
+  background-color: rgb(217, 232, 242);
+  border-radius: 2px;
+  padding: 2px 4px;
+  margin-right: 4px;
 }
 
 )";

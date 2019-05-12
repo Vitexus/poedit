@@ -1,5 +1,14 @@
 #!/bin/sh
 
+set -e
+
+if [ -f /usr/local/bin/gsed ] ; then
+    SED=/usr/local/bin/gsed
+else
+    SED=sed
+fi
+
+
 if [ -z "$1" ] ; then
     echo "Usage: $0 \"version\"" >&2
     exit 1
@@ -13,34 +22,29 @@ fi
 replace_ver()
 {
     echo "replacing in $1..."
-    sed -e "s@$2@$3@g" -i $1
+    $SED -e "s@$2@$3@g" --in-place $1
 }
 
-VER_FULL=$1
-VER_SHORT="`echo $VER_FULL | sed -e 's/\(pre\|beta\|rc\)[0-9]//g'`"
-VER_WIN="`echo $VER_SHORT | tr '.' ','`"
+VERSION=$1
+VER_WIN="`echo $VERSION | tr '.' ','`"
 if [ `echo $VER_WIN | awk 'BEGIN{FS=","} {print NF}'` = 2 ] ; then
     VER_WIN="$VER_WIN,0"
 fi
 
 replace_ver win32/poedit.iss \
-            '\(#define VERSION_FULL *"\).*\("\)' "\1$VER_FULL\2"
-replace_ver win32/poedit.iss \
-            '\(#define VERSION *"\).*\("\)' "\1$VER_SHORT\2"
+            '\(#define VERSION *"\).*\("\)' "\1$VERSION\2"
 replace_ver win32/version.props \
-            '\(<PoeditVersion>\).*\(</PoeditVersion>\)' "\1$VER_SHORT\2"
+            '\(<PoeditVersion>\).*\(</PoeditVersion>\)' "\1$VERSION\2"
 replace_ver configure.ac \
-            '\(AC_INIT(\[poedit\], \[\)[^]]*\(\],.*\)' "\1$VER_FULL\2"
-replace_ver configure.ac \
-            '\(PACKAGE_SHORT_VERSION=\).*' "\1$VER_SHORT"
-replace_ver scripts/refresh-pot.sh \
-            '\(PACKAGE_SHORT_VERSION=\).*' "\1$VER_SHORT"
+            '\(AC_INIT(\[poedit\], \[\)[^]]*\(\],.*\)' "\1$VERSION\2"
 replace_ver src/version.h \
-            '\(POEDIT_VERSION.*"\).*\("\)' "\1$VER_FULL\2"
+            '\(POEDIT_VERSION *"\).*\("\)' "\1$VERSION\2"
 replace_ver src/version.h \
             '\(POEDIT_VERSION_WIN *\).*' "\1$VER_WIN"
 replace_ver .travis.yml \
-            '\(file: poedit-\).*\(.tar.gz\)' "\1$VER_FULL\2"
+            '\(file: poedit-\).*\(.tar.gz\)' "\1$VERSION\2"
 replace_ver Poedit.xcodeproj/project.pbxproj \
-            '\(POEDIT_VERSION = \).*\(;\)' "\1$VER_FULL\2"
-touch macosx/Poedit-Info.plist
+            '\(POEDIT_VERSION = \).*\(;\)' "\1$VERSION\2"
+replace_ver snap/snapcraft.yaml \
+            '\(version: \).*' "\1$VERSION"
+touch macos/Poedit-Info.plist

@@ -1,7 +1,7 @@
-﻿/*
+/*
  *  This file is part of Poedit (https://poedit.net)
  *
- *  Copyright (C) 2003-2016 Vaclav Slavik
+ *  Copyright (C) 2003-2019 Vaclav Slavik
  *
  *  Permission is hereby granted, free of charge, to any person obtaining a
  *  copy of this software and associated documentation files (the "Software"),
@@ -58,6 +58,8 @@ static bool ChooseLanguage(wxString *value)
     {
         wxBusyCursor bcur;
         langs = wxTranslations::Get()->GetAvailableTranslations("poedit");
+        langs.insert(langs.begin(), "en");
+        langs.Sort();
 
         arr.push_back(_("(Use default language)"));
         for (auto i : langs)
@@ -66,10 +68,11 @@ static bool ChooseLanguage(wxString *value)
             arr.push_back(lang.DisplayNameInItself() + L"  —  " + lang.DisplayName());
         }
     }
-    int choice = wxGetSingleChoiceIndex(
-            _("Select your preferred language"),
-            _("Language selection"),
-            arr);
+
+    auto current = GetUILanguage();
+    int choice = current.empty() ? 0 : langs.Index(current) + 1;
+
+    choice = wxGetSingleChoiceIndex(_("Select your preferred language"), _("Language selection"), arr, choice);
     if ( choice == -1 )
         return false;
 

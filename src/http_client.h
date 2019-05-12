@@ -1,7 +1,7 @@
 /*
  *  This file is part of Poedit (https://poedit.net)
  *
- *  Copyright (C) 2014-2016 Vaclav Slavik
+ *  Copyright (C) 2014-2019 Vaclav Slavik
  *
  *  Permission is hereby granted, free of charge, to any person obtaining a
  *  copy of this software and associated documentation files (the "Software"),
@@ -124,6 +124,11 @@ public:
     http_client(const std::string& url_prefix, int flags = default_flags);
     virtual ~http_client();
 
+#ifndef __DARWIN__
+    /// Sets Accept-Language to use (language tag; managed automatically on macOS)
+    static void set_ui_language(const std::string& lang);
+#endif
+
     /// Return true if the server is reachable, i.e. client is online
     bool is_reachable() const;
 
@@ -147,8 +152,15 @@ public:
 
 
     // Helper for encoding text as URL-encoded UTF-8
-    static std::string url_encode(const std::string& s);
-    static std::string url_encode(const std::wstring& s);
+
+    enum encode_flags
+    {
+        encode_no_plus = 1,     // don't encode spaces as +
+        encode_keep_slash = 2,  // don't encode / as %2f
+    };
+
+    static std::string url_encode(const std::string& s, int flags = 0);
+    static std::string url_encode(const std::wstring& s, int flags = 0);
 
 protected:
     /**

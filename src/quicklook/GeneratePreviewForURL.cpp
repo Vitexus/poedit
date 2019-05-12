@@ -1,7 +1,7 @@
 /*
  *  This file is part of Poedit (https://poedit.net)
  *
- *  Copyright (C) 2015-2016 Vaclav Slavik
+ *  Copyright (C) 2015-2019 Vaclav Slavik
  *
  *  Permission is hereby granted, free of charge, to any person obtaining a
  *  copy of this software and associated documentation files (the "Software"),
@@ -55,12 +55,12 @@ CFDataRef CreateHTMLDataForURL(CFURLRef url, CFStringRef contentTypeUTI)
     if (!path)
         return NULL;
 
-    Catalog cat(path.AsString());
-    if (!cat.IsOk())
+    auto cat = Catalog::Create(path.AsString());
+    if (!cat || !cat->IsOk())
         return NULL;
 
     std::ostringstream s;
-    cat.ExportToHTML(s);
+    cat->ExportToHTML(s);
     std::string data = s.str();
     return CFDataCreate(NULL, (const UInt8*)data.data(), data.length());
 }
@@ -70,7 +70,7 @@ CFDataRef CreateHTMLDataForURL(CFURLRef url, CFStringRef contentTypeUTI)
 extern "C"
 {
 
-void Initialize_plugin()
+void Initialize_plugin(void)
 {
     wxInitialize();
 
@@ -97,7 +97,7 @@ void Initialize_plugin()
     }
 }
 
-void Uninitialize_plugin()
+void Uninitialize_plugin(void)
 {
     u_cleanup();
 

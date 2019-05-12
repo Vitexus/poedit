@@ -1,7 +1,7 @@
-﻿/*
+/*
  *  This file is part of Poedit (https://poedit.net)
  *
- *  Copyright (C) 2015-2016 Vaclav Slavik
+ *  Copyright (C) 2015-2019 Vaclav Slavik
  *
  *  Permission is hereby granted, free of charge, to any person obtaining a
  *  copy of this software and associated documentation files (the "Software"),
@@ -29,6 +29,7 @@
 #include "crowdin_client.h"
 
 #include "catalog.h"
+#include "cloud_sync.h"
 #include "concurrency.h"
 #include "customcontrols.h"
 #include "errors.h"
@@ -65,7 +66,7 @@ CrowdinLoginPanel::CrowdinLoginPanel(wxWindow *parent, int flags)
     SetSizer(sizer);
 
     sizer->AddSpacer(PX(10));
-    auto logo = new wxStaticBitmap(this, wxID_ANY, wxArtProvider::GetBitmap("CrowdinLogo"));
+    auto logo = new wxStaticBitmap(this, wxID_ANY, wxArtProvider::GetBitmap("CrowdinLogoTemplate"));
     logo->SetCursor(wxCURSOR_HAND);
     logo->Bind(wxEVT_LEFT_UP, [](wxMouseEvent&){ wxLaunchDefaultBrowser(CrowdinClient::WrapLink("/")); });
     sizer->Add(logo, wxSizerFlags().PXDoubleBorder(wxBOTTOM));
@@ -166,10 +167,18 @@ void CrowdinLoginPanel::CreateLoginInfoControls(State state)
             auto account = new wxStaticText(this, wxID_ANY, _("Signed in as:"));
             account->SetForegroundColour(SecondaryLabel::GetTextColor());
             auto name = new wxStaticText(this, wxID_ANY, m_userName);
+#ifdef __WXGTK3__
+            // This is needed to avoid missizing text with bold font. See
+            // https://github.com/vslavik/poedit/pull/411 and https://trac.wxwidgets.org/ticket/16088
+            name->SetLabelMarkup("<b>" + EscapeMarkup(m_userName) + "</b>");
+#else
             name->SetFont(name->GetFont().Bold());
+#endif
+
             auto username = new SecondaryLabel(this, m_userLogin);
 
-            sizer->Add(account, wxSizerFlags().PXBorder(wxRIGHT));
+            sizer->Add(account, wxSizerFlags().BORDER_MACOS(wxTOP, PX(3)));
+            sizer->AddSpacer(PX(2));
             auto box = new wxBoxSizer(wxVERTICAL);
             box->Add(name, wxSizerFlags().Left());
             box->Add(username, wxSizerFlags().Left());
@@ -191,7 +200,7 @@ void CrowdinLoginPanel::UpdateUserInfo()
             m_userLogin = u.login;
             ChangeState(State::SignedIn);
         })
-        .catch_all([](std::exception_ptr){});
+        .catch_all([](dispatch::exception_ptr){});
 }
 
 void CrowdinLoginPanel::OnSignIn(wxCommandEvent&)
@@ -275,12 +284,12 @@ public:
         topsizer->Add(pickers, wxSizerFlags().Expand().PXDoubleBorderAll());
 
         pickers->Add(new wxStaticText(this, wxID_ANY, _("Project:")),
-                     wxSizerFlags().CenterVertical().Right().BORDER_OSX(wxTOP, 1));
+                     wxSizerFlags().CenterVertical().Right().BORDER_MACOS(wxTOP, 1));
         m_project = new wxChoice(this, wxID_ANY);
         pickers->Add(m_project, wxSizerFlags().Expand().CenterVertical());
 
         pickers->Add(new wxStaticText(this, wxID_ANY, _("Language:")),
-                     wxSizerFlags().CenterVertical().Right().BORDER_OSX(wxTOP, 1));
+                     wxSizerFlags().CenterVertical().Right().BORDER_MACOS(wxTOP, 1));
         m_language = new wxChoice(this, wxID_ANY);
         pickers->Add(m_language, wxSizerFlags().Expand().CenterVertical());
 
@@ -288,7 +297,7 @@ public:
         pickers->AddSpacer(PX(5));
 
         pickers->Add(new wxStaticText(this, wxID_ANY, _("File:")),
-                     wxSizerFlags().CenterVertical().Right().BORDER_OSX(wxTOP, 1));
+                     wxSizerFlags().CenterVertical().Right().BORDER_MACOS(wxTOP, 1));
         m_file = new wxChoice(this, wxID_ANY);
         pickers->Add(m_file, wxSizerFlags().Expand().CenterVertical());
 
@@ -526,27 +535,6 @@ private:
     int m_supportedFilesCount;
 };
 
-
-class SyncProgressDialog : public wxDialog
-{
-public:
-    SyncProgressDialog(wxWindow *parent)
-        : wxDialog(parent, wxID_ANY, _("Syncing with Crowdin"), wxDefaultPosition, wxDefaultSize, wxCAPTION | wxSYSTEM_MENU)
-    {
-        auto sizer = new wxBoxSizer(wxVERTICAL);
-        sizer->SetMinSize(PX(300), -1);
-        Activity = new ActivityIndicator(this);
-        sizer->AddStretchSpacer();
-        sizer->Add(Activity, wxSizerFlags().Expand().Border(wxALL, PX(25)));
-        sizer->AddStretchSpacer();
-        SetSizerAndFit(sizer);
-        CenterOnParent();
-    }
-
-    ActivityIndicator *Activity;
-};
-
-
 } // anonymous namespace
 
 
@@ -592,9 +580,9 @@ void CrowdinSyncFile(wxWindow *parent, std::shared_ptr<Catalog> catalog,
                         ? Language::TryParse(header.GetHeader("X-Crowdin-Language").ToStdWstring())
                         : catalog->GetLanguage();
 
-    wxWindowPtr<SyncProgressDialog> dlg(new SyncProgressDialog(parent));
+    wxWindowPtr<CloudSyncProgressWindow> dlg(new CloudSyncProgressWindow(parent));
 
-    auto handle_error = [=](std::exception_ptr e){
+    auto handle_error = [=](dispatch::exception_ptr e){
         dispatch::on_main([=]{
             dlg->EndModal(wxID_CANCEL);
             wxWindowPtr<wxMessageDialog> err(new wxMessageDialog
@@ -632,7 +620,7 @@ void CrowdinSyncFile(wxWindow *parent, std::shared_ptr<Catalog> catalog,
                     )
                     .then_on_main([=]
                     {
-                        CatalogPtr newcat = std::make_shared<Catalog>(outfile);
+                        auto newcat = Catalog::Create(outfile);
                         newcat->SetFileName(catalog->GetFileName());
 
                         tmpdir->Clear();
@@ -646,4 +634,20 @@ void CrowdinSyncFile(wxWindow *parent, std::shared_ptr<Catalog> catalog,
     });
 
     dlg->ShowWindowModal();
+}
+
+
+dispatch::future<void> CrowdinSyncDestination::Upload(CatalogPtr file)
+{
+    const auto& header = file->Header();
+    auto crowdin_prj = header.GetHeader("X-Crowdin-Project");
+    auto crowdin_file = header.GetHeader("X-Crowdin-File");
+    auto crowdin_lang = header.HasHeader("X-Crowdin-Language")
+                        ? Language::TryParse(header.GetHeader("X-Crowdin-Language").ToStdWstring())
+                        : file->GetLanguage();
+
+    return CrowdinClient::Get().UploadFile(
+                str::to_utf8(crowdin_prj), str::to_wstring(crowdin_file), crowdin_lang,
+                file->SaveToBuffer()
+            );
 }

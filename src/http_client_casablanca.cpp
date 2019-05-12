@@ -1,7 +1,7 @@
 /*
  *  This file is part of Poedit (https://poedit.net)
  *
- *  Copyright (C) 2014-2016 Vaclav Slavik
+ *  Copyright (C) 2014-2019 Vaclav Slavik
  *
  *  Permission is hereby granted, free of charge, to any person obtaining a
  *  copy of this software and associated documentation files (the "Software"),
@@ -36,6 +36,8 @@
 #include <boost/iostreams/filter/gzip.hpp>
 #include <boost/iostreams/filtering_stream.hpp>
 
+#include <boost/throw_exception.hpp>
+
 #include <cpprest/asyncrt_utils.h>
 #include <cpprest/http_client.h>
 #include <cpprest/http_msg.h>
@@ -50,6 +52,13 @@
     // can't include both winhttp.h and wininet.h, so put a declaration here
     //#include <wininet.h>
     EXTERN_C DECLSPEC_IMPORT BOOL STDAPICALLTYPE InternetGetConnectedState(__out LPDWORD lpdwFlags, __reserved DWORD dwReserved);
+
+    #ifndef WINHTTP_OPTION_ENABLE_HTTP_PROTOCOL
+        #define WINHTTP_OPTION_ENABLE_HTTP_PROTOCOL 133
+    #endif
+    #ifndef WINHTTP_PROTOCOL_FLAG_HTTP2
+        #define WINHTTP_PROTOCOL_FLAG_HTTP2 0x1
+    #endif
 #endif
 
 namespace
@@ -107,7 +116,14 @@ class http_client::impl
 {
 public:
     impl(http_client& owner, const std::string& url_prefix, int flags)
-        : m_owner(owner), m_native(sanitize_url(url_prefix, flags), get_client_config())
+        : m_owner(owner),
+          m_native
+          (
+              sanitize_url(url_prefix, flags)
+            #ifdef _WIN32
+              , get_client_config()
+            #endif
+          )
     {
         #define make_wide_str(x) make_wide_str_(x)
         #define make_wide_str_(x) L ## x
@@ -138,6 +154,8 @@ public:
     #endif
     }
 
+    static string_t ui_language;
+
     bool is_reachable() const
     {
     #ifdef _WIN32
@@ -166,6 +184,7 @@ public:
         http::http_request req(http::methods::GET);
         req.headers().add(http::header_names::accept,     L"application/json");
         req.headers().add(http::header_names::user_agent, m_userAgent);
+        req.headers().add(http::header_names::accept_language, ui_language);
         if (!m_auth.empty())
             req.headers().add(http::header_names::authorization, m_auth);
         req.set_request_uri(to_string_t(url));
@@ -190,6 +209,7 @@ public:
             *fileStream = outFile;
             http::http_request req(http::methods::GET);
             req.headers().add(http::header_names::user_agent, m_userAgent);
+            req.headers().add(http::header_names::accept_language, ui_language);
             if (!m_auth.empty())
                 req.headers().add(http::header_names::authorization, m_auth);
             req.set_request_uri(to_string_t(url));
@@ -211,6 +231,7 @@ public:
         http::http_request req(http::methods::POST);
         req.headers().add(http::header_names::accept,     L"application/json");
         req.headers().add(http::header_names::user_agent, m_userAgent);
+        req.headers().add(http::header_names::accept_language, ui_language);
         if (!m_auth.empty())
             req.headers().add(http::header_names::authorization, m_auth);
         req.set_request_uri(to_string_t(url));
@@ -232,7 +253,7 @@ private:
     // handle non-OK responses:
     void handle_error(http::http_response r)
     {
-        if (r.status_code() == http::status_codes::OK)
+        if (r.status_code() >= 200 && r.status_code() < 300)
             return; // not an error
 
         int status_code = r.status_code();
@@ -249,7 +270,7 @@ private:
         if (msg.empty())
             msg = str::to_utf8(r.reason_phrase());
         m_owner.on_error_response(status_code, msg);
-        throw http::http_exception(status_code, msg);
+        BOOST_THROW_EXCEPTION(http::http_exception(status_code, msg));
     }
 
     // convert to wstring
@@ -258,36 +279,20 @@ private:
         return to_string_t(url);
     }
 
+#ifdef _WIN32
     // prepare WinHttp configuration
     static http::client::http_client_config get_client_config()
     {
         http::client::http_client_config c;
-    #ifdef _WIN32
-        // WinHttp doesn't share WinInet/MSIE's proxy settings and has its own,
-        // but many users don't have properly configured both. Adopting proxy
-        // settings like this in desktop software is recommended behavior, see
-        // https ://blogs.msdn.microsoft.com/ieinternals/2013/10/11/understanding-web-proxy-configuration/
-        WINHTTP_CURRENT_USER_IE_PROXY_CONFIG ieConfig = { 0 };
-        if (WinHttpGetIEProxyConfigForCurrentUser(&ieConfig))
-        {
-            if (ieConfig.fAutoDetect)
-            {
-                c.set_proxy(web_proxy::use_auto_discovery);
-            }
-            if (ieConfig.lpszProxy)
-            {
-                // Explicitly add // to the URL to work around a bug in C++ REST SDK's
-                // parsing of proxies with port number in their address
-                // (see https://github.com/Microsoft/cpprestsdk/issues/57)
-                c.set_proxy(uri(L"//" + std::wstring(ieConfig.lpszProxy)));
-            }
-        }
-    #endif
+   
+        c.set_nativesessionhandle_options([](http::client::native_handle handle){
+            DWORD dwOption = WINHTTP_PROTOCOL_FLAG_HTTP2;
+            WinHttpSetOption(handle, WINHTTP_OPTION_ENABLE_HTTP_PROTOCOL, &dwOption, sizeof(dwOption));
+        });
+
         return c;
     }
 
-private:
-#ifdef _WIN32
     static std::wstring windows_version()
     {
         OSVERSIONINFOEX info = { 0 };
@@ -311,6 +316,8 @@ private:
 };
 
 
+string_t http_client::impl::ui_language;
+
 
 http_client::http_client(const std::string& url_prefix, int flags)
     : m_impl(new impl(*this, url_prefix, flags))
@@ -319,6 +326,11 @@ http_client::http_client(const std::string& url_prefix, int flags)
 
 http_client::~http_client()
 {
+}
+
+void http_client::set_ui_language(const std::string& lang)
+{
+    impl::ui_language = to_string_t(lang);
 }
 
 bool http_client::is_reachable() const

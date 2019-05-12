@@ -1,7 +1,7 @@
 /*
  *  This file is part of Poedit (https://poedit.net)
  *
- *  Copyright (C) 2004-2016 Vaclav Slavik
+ *  Copyright (C) 2004-2019 Vaclav Slavik
  *
  *  Permission is hereby granted, free of charge, to any person obtaining a
  *  copy of this software and associated documentation files (the "Software"),
@@ -35,7 +35,12 @@
 #ifndef __WXOSX__
 class PoeditArtProvider : public wxArtProvider
 {
+public:
+    PoeditArtProvider();
+
 protected:
+    static wxString GetIconsDir();
+
     virtual wxBitmap CreateBitmap(const wxArtID& id,
                                   const wxArtClient& client,
                                   const wxSize& size);

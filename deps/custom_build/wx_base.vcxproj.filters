@@ -75,9 +75,6 @@
     <ClCompile Include="..\wx\src\common\dummy.cpp">
       <Filter>Common Sources</Filter>
     </ClCompile>
-    <ClCompile Include="..\wx\src\common\dynarray.cpp">
-      <Filter>Common Sources</Filter>
-    </ClCompile>
     <ClCompile Include="..\wx\src\common\dynlib.cpp">
       <Filter>Common Sources</Filter>
     </ClCompile>
@@ -126,16 +123,10 @@
     <ClCompile Include="..\wx\src\common\fmapbase.cpp">
       <Filter>Common Sources</Filter>
     </ClCompile>
-    <ClCompile Include="..\wx\src\common\fs_arc.cpp">
-      <Filter>Common Sources</Filter>
-    </ClCompile>
     <ClCompile Include="..\wx\src\common\fs_filter.cpp">
       <Filter>Common Sources</Filter>
     </ClCompile>
     <ClCompile Include="..\wx\src\common\fs_mem.cpp">
-      <Filter>Common Sources</Filter>
-    </ClCompile>
-    <ClCompile Include="..\wx\src\common\fswatchercmn.cpp">
       <Filter>Common Sources</Filter>
     </ClCompile>
     <ClCompile Include="..\wx\src\common\hash.cpp">
@@ -297,9 +288,6 @@
     <ClCompile Include="..\wx\src\msw\evtloopconsole.cpp">
       <Filter>MSW Sources</Filter>
     </ClCompile>
-    <ClCompile Include="..\wx\src\msw\fswatcher.cpp">
-      <Filter>MSW Sources</Filter>
-    </ClCompile>
     <ClCompile Include="..\wx\src\msw\main.cpp">
       <Filter>MSW Sources</Filter>
     </ClCompile>
@@ -343,6 +331,10 @@
       <Filter>Generic Sources</Filter>
     </ClCompile>
     <ClCompile Include="..\wx\src\common\threadinfo.cpp">
+      <Filter>Common Sources</Filter>
+    </ClCompile>
+    <ClCompile Include="..\wx\src\common\tarstrm.cpp" />
+    <ClCompile Include="..\wx\src\common\stringops.cpp">
       <Filter>Common Sources</Filter>
     </ClCompile>
   </ItemGroup>

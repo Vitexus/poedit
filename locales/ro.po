@@ -2,8 +2,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: poedit\n"
 "Report-Msgid-Bugs-To: help@poedit.net\n"
-"POT-Creation-Date: 2016-08-26 19:02+0200\n"
-"PO-Revision-Date: 2016-08-01 14:11-0400\n"
+"POT-Creation-Date: 2018-10-07 13:14+0200\n"
+"PO-Revision-Date: 2019-01-14 16:30\n"
 "Last-Translator: vslavik <vaclav@slavik.io>\n"
 "Language-Team: Romanian\n"
 "Language: ro_RO\n"
@@ -20,26 +20,65 @@ msgstr ""
 msgid "Hide this notification message"
 msgstr "Ascunde acest mesaj de informare"
 
-msgid "Don't Show Again"
+msgid "Don’t Show Again"
 msgstr "Nu mai afișa"
 
-msgid "Don't show again"
-msgstr "Nu arăta din nou"
+msgid "Don’t show again"
+msgstr "Nu mai afișa"
 
 #, c-format
-msgid "%i line of file '%s' was not loaded correctly."
-msgid_plural "%i lines of file '%s' were not loaded correctly."
-msgstr[0] ""
-msgstr[1] ""
-msgstr[2] "%i linii de fişier '%s' nu au fost încărcate corect."
+msgid "(New: %i, obsolete: %i)"
+msgstr "(Noi: %i, vechi: %i)"
+
+msgid "Updating catalog"
+msgstr "Actualizare catalog"
+
+msgid "Collecting source files…"
+msgstr "Colectare fișierele sursă…"
+
+msgid "Extracting translatable strings…"
+msgstr "Extrag șirurile de tradus…"
+
+msgid "Failed to load extracted catalog."
+msgstr "Încărcarea catalogului extras a eșuat."
+
+msgid "Merging differences…"
+msgstr "Fuzionarea diferențelor…"
 
 #, c-format
-msgid "Line %d of file '%s' is corrupted (not valid %s data)."
-msgstr "Linia %d din fişierul \"%s\" este corupt (nu este valabil %s de date)."
+msgid "“%s” is not a valid POT file."
+msgstr "„%s” nu este un fișier POT valid."
 
 #, c-format
-msgid "Malformed header: '%s'"
-msgstr "Antet malformat: '%s'"
+msgid "Malformed header: “%s”"
+msgstr "Antet malformat: „%s”"
+
+msgid "PO Translation Files"
+msgstr "Fișiere de traducere PO"
+
+msgid "POT Translation Templates"
+msgstr "Şabloane de traducere POT"
+
+msgid "XLIFF Translation Files"
+msgstr "Fișiere de traducere XLIFF"
+
+msgid "All Translation Files"
+msgstr "Toate fișierele pentru traducere"
+
+#, c-format
+msgid "File “%s” is in unsupported format."
+msgstr "Fișierul “%s” se încadrează într-un format nesuportat."
+
+#, c-format
+msgid "%i line of file “%s” was not loaded correctly."
+msgid_plural "%i lines of file “%s” were not loaded correctly."
+msgstr[0] "%i linia de fișier „%s” nu a fost încărcată corect."
+msgstr[1] "%i liniile de fișier „%s” nu a fost încărcată corect."
+msgstr[2] "%i liniile de fișier „%s” nu au fost încărcate corect."
+
+#, c-format
+msgid "Line %d of file “%s” is corrupted (not valid %s data)."
+msgstr "Linia %d de fișier „%s” este coruptă (data %s invalida)."
 
 msgid ""
 "Broken catalog file: singular form msgstr used together with msgid_plural"
@@ -57,23 +96,23 @@ msgid ""
 "corrupted as the result."
 msgstr ""
 "Au apărut unele erori la încărcarea catalogului. E posibil ca unele date să "
-"lipseasca sau să fie deteriorate."
+"lipsească sau să fie deteriorate."
 
 #, c-format
-msgid "Couldn't load file %s, it is probably corrupted."
-msgstr "Nu se poate încărca fișierul %s, probabil că este deteriorat."
+msgid "Couldn’t load file %s, it is probably corrupted."
+msgstr "Nu se poate încărca fișierul %s, probabil este corupt."
 
 #, c-format
 msgid ""
-"File '%s' is read-only and cannot be saved.\n"
+"File “%s” is read-only and cannot be saved.\n"
 "Please save it under different name."
 msgstr ""
-"Fișierul '%s' poate fi doar citit și nu poate fi salvat.\n"
-"Salvați-l sub un alt nume."
+"Fișierul „%s” este doar citire și nu poate fi salvat.\n"
+"Vă rugăm să îl salvați cu alt nume."
 
 #, c-format
-msgid "Couldn't save file %s."
-msgstr "Nu se poate salva fișierul %s."
+msgid "Couldn’t save file %s."
+msgstr "Nu sa putut salva fișierul %s."
 
 msgid ""
 "There was a problem formatting the file nicely (but it was saved all right)."
@@ -82,34 +121,31 @@ msgstr ""
 
 #, c-format
 msgid ""
-"The catalog couldn't be saved in '%s' charset as specified in catalog "
+"The catalog couldn’t be saved in “%s” charset as specified in catalog "
 "settings.\n"
 "\n"
 "It was saved in UTF-8 instead and the setting was modified accordingly."
 msgstr ""
-"Catalogul nu a putut fi salvat în '%s' set de caractere specificat în "
-"catalogul setari.\n"
+"Catalogul nu a putut fi salvat cu setul de caractere „%s”, specificat în "
+"setările de catalog.\n"
 "\n"
-" El a fost salvat în UTF-8, şi setarea a fost modificat în consecință."
+"Acesta a fost salvat în UTF-8 și această schimbare a fost actualizată în mod "
+"corespunzător în setările de catalog."
 
 msgid "Error saving catalog"
 msgstr "Eroare la salvarea catalogului"
 
-msgid "PO Translation Files"
-msgstr "Dosar de traducere PO"
-
-msgid "POT Translation Templates"
-msgstr "Şabloane de traducere"
-
-msgid "All Translation Files"
-msgstr "Toate fișierele pentru traducere"
-
-msgid "Merging differences..."
-msgstr "Unesc diferențele..."
+#, c-format
+msgid "Error loading file “%s”: %s."
+msgstr "Eroare la încărcarea fișierului “%s”: %s."
 
 #, c-format
-msgid "'%s' is not a valid POT file."
-msgstr "'%s' nu este un fișier POT valid."
+msgid "unsupported XLIFF version (%s)"
+msgstr "versiune XLIFF nesuportată (%s)"
+
+#. TRANSLATORS: Shown as error if a translation of XLIFF markup is not valid XML
+msgid "Broken markup in translation string."
+msgstr "Marcaj afectat în șirul de traducere."
 
 msgid "(Use default language)"
 msgstr "(Folosește limba implicită)"
@@ -121,7 +157,23 @@ msgid "Language selection"
 msgstr "Selectare limbă"
 
 msgid "You must restart Poedit for this change to take effect."
-msgstr "Trebuie să reporniți Poedit pentru ca această schimbare să aibă efect."
+msgstr "Redeschideți Poedit pentru ca această schimbare să intre în vigoare."
+
+msgid "Syncing"
+msgstr "Sincronizare"
+
+#. TRANSLATORS: %s is a cloud destination, e.g. "Crowdin" or ftp.wordpress.com etc.
+#, c-format
+msgid "Syncing with %s…"
+msgstr "Sincronizare cu %s…"
+
+#. TRANSLATORS: %s is a cloud destination, e.g. "Crowdin" or ftp.wordpress.com etc.
+#, c-format
+msgid "Syncing with %s failed."
+msgstr "Sincronizarea cu %s a eșuat."
+
+msgid "Syncing error"
+msgstr "Eroare sincronizare"
 
 msgid "Downloading translations is disabled in this project."
 msgstr "Descărcare traduceri este dezactivată în acest proiect."
@@ -133,8 +185,9 @@ msgid ""
 "Crowdin is an online localization management platform and collaborative "
 "translation tool. Poedit can seamlessly sync PO files managed at Crowdin."
 msgstr ""
-"Crowdin este o platforma de management online şi instrument de traducere. "
-"Poedit perfect se sincronizează cu fişiere PO  la Crowdin."
+"Crowdin este o platformă online de management a localizării şi un instrument "
+"de traducere colaborativ. Poedit se poate sincroniza perfect cu fişierele PO "
+"gestionate de Crowdin."
 
 msgid "Sign In"
 msgstr "Autentificare"
@@ -149,28 +202,28 @@ msgid "Sign out"
 msgstr "Deconectare"
 
 msgid "Waiting for authentication…"
-msgstr "Aşteptati pentru autentificare..."
+msgstr "Autentificare în așteptare…"
 
 msgid "Updating user information…"
-msgstr "Actualizarea informaţiilor de utilizator..."
+msgstr "Actualizarea informațiilor utilizatorului…"
 
 msgid "Signed in as:"
 msgstr "Autentificat ca:"
 
 msgid "Learn More About Crowdin"
-msgstr "Aflaţi mai multe despre Crowdin"
+msgstr "Află mai multe despre Crowdin"
 
 msgid "Learn more about Crowdin"
-msgstr "Aflaţi mai multe despre Crowdin"
+msgstr "Află mai multe despre Crowdin"
 
 msgid "Sign in to Crowdin"
-msgstr "Conectaţi-vă la Crowdin"
+msgstr "Autentificare pe Crowdin"
 
 msgid "Open Crowdin translation"
 msgstr "Deschide traducere Crowdin"
 
 msgid "Project:"
-msgstr "Proiect: :"
+msgstr "Proiect:"
 
 msgid "Language:"
 msgstr "Limba:"
@@ -179,19 +232,16 @@ msgid "File:"
 msgstr "Fişier:"
 
 msgid "No translation projects listed in your Crowdin account."
-msgstr "Nu sunt proiecte de traducere în contul tau Crowdin."
+msgstr "Nu sunt proiecte de traducere în contul tău Crowdin."
 
 msgid "This project has no files that can be translated in Poedit."
-msgstr "Acest proiect nu are dosare care pot fi traduse în Poedit."
+msgstr "Acest proiect nu are fișiere care pot fi traduse în Poedit."
 
 msgid "This file can only be edited in Crowdin’s web interface."
 msgstr "Acest fișier poate fi editat doar în interfața web Crowdin."
 
 msgid "Downloading latest translations…"
-msgstr "Descărcare ultimele traduceri..."
-
-msgid "Syncing with Crowdin"
-msgstr "Sincronizarea cu Crowdin"
+msgstr "Se descarcă ultimele traduceri…"
 
 msgid "Syncing with Crowdin failed."
 msgstr "Sincronizarea cu Crowdin nu a reușit."
@@ -200,34 +250,16 @@ msgid "Crowdin error"
 msgstr "Crowdin eroare"
 
 msgid "Uploading translations…"
-msgstr "Încărcarea traduceri..."
+msgstr "Se încarcă traducerile…"
 
 msgid "&Copy"
-msgstr "& Copie"
+msgstr "&Copiază"
 
 msgid "Learn more"
-msgstr "Învățați mai mult"
+msgstr "Află mai multe"
 
 msgid "Learn More"
 msgstr "Află mai multe"
-
-#, c-format
-msgid "Failed command: %s"
-msgstr "Comandă eșuată: %s"
-
-msgid "Failed to merge gettext catalogs."
-msgstr "Unirea cataloagelor gettext a eșuat."
-
-msgid "Scanning files..."
-msgstr "Se scanează fișierele..."
-
-#. TRANSLATORS: '%s' is replaced with the kind of the files (e.g. C++, PHP, ...)
-#, c-format
-msgid "Parsing %s files..."
-msgstr "Parsez %s fișiere..."
-
-msgid "Failed to load extracted catalog."
-msgstr "Încărcarea catalogului extras a eșuat."
 
 msgid "&Help"
 msgstr "&Ajutor"
@@ -245,65 +277,28 @@ msgstr ""
 "Vă rugăm să deschideţi şi editaţi fişierul PO corespunzător. Atunci când îl "
 "salvaţi, fişierul MO va fi actualizat, de asemenea."
 
-msgid "don't delete temporary files (for debugging)"
+msgid "don’t delete temporary files (for debugging)"
 msgstr "nu șterge fișierele temporare (pentru depanare)"
 
 msgid "handle a poedit:// URI"
-msgstr ""
+msgstr "folosiți un poedit:// URI"
+
+msgid "go to item at given line number"
+msgstr "sari la elementul de pe linia cu numărul specificat"
 
 msgid "Failed to communicate with Poedit process."
-msgstr ""
+msgstr "Am eșuat în a comunica cu procesul Poedit."
 
 #, c-format
 msgid "Unhandled exception occurred: %s"
 msgstr "Excepție netratată s-a produs: %s"
 
-msgid "Unhandled exception occurred."
-msgstr "Sa produs o excepție netratată."
-
 msgid "Open catalog"
 msgstr "Deschide catalog"
 
 #, c-format
-msgid "File '%s' doesn't exist."
-msgstr "Fișierul '%s' nu există."
-
-#. TRANSLATORS: This is titlebar of about dialog, "%s" is application name
-#. ("Poedit" here, but please use "%s")
-#, c-format
-msgid "About %s"
-msgstr "Despre %s"
-
-#. TRANSLATORS: This is version information in about dialog, "%s" will be
-#. version number when used
-#, c-format
-msgid "Version %s"
-msgstr "Versiune %s"
-
-#. TRANSLATORS: OS X item in app menu
-msgid "Services"
-msgstr ""
-
-#. TRANSLATORS: OS X item in app menu, %s is replaced with "Poedit"
-#, c-format
-msgid "Hide %s"
-msgstr ""
-
-#. TRANSLATORS: OS X item in app menu
-msgid "Hide Others"
-msgstr ""
-
-#. TRANSLATORS: OS X item in app menu
-msgid "Show All"
-msgstr ""
-
-#. TRANSLATORS: OS X item in app menu, %s is replaced with "Poedit"
-#, c-format
-msgid "Quit %s"
-msgstr ""
-
-msgid "Preferences..."
-msgstr ""
+msgid "File “%s” doesn’t exist."
+msgstr "Fișierul „%s” nu există."
 
 msgid "Poedit is an easy to use translations editor."
 msgstr "Podit este un editor de traduceri ușor de folosit."
@@ -311,8 +306,8 @@ msgstr "Podit este un editor de traduceri ușor de folosit."
 msgid "Catalogs Manager"
 msgstr "Manager de cataloage"
 
-msgid "Check for Updates..."
-msgstr "Verific pentru actualizări..."
+msgid "Check for Updates…"
+msgstr "Verificare actualizări…"
 
 msgid "&Edit"
 msgstr "&Editare"
@@ -407,6 +402,7 @@ msgstr "Zoom"
 msgid "Bring All to Front"
 msgstr "Aduce tot in fata"
 
+#. TRANSLATORS:File kind displayed in Finder/Explorer
 msgid "PO Translation"
 msgstr "Traducere PO"
 
@@ -421,80 +417,12 @@ msgid ""
 msgstr ""
 "Fişierul poate sa fie corupt sau într-un format nerecunoscut de Poedit."
 
-msgid "&Undo"
-msgstr "&Inapoi"
-
-msgid "&Redo"
-msgstr "& Refacere"
-
-msgid "Cu&t"
-msgstr "&Decupează"
-
-msgid "Cut"
-msgstr "Decupează"
-
-msgid "Copy"
-msgstr "Copiaţi"
-
-msgid "&Paste"
-msgstr "& Lipește"
-
-msgid "Paste"
-msgstr "Lipire / adaugare"
-
-msgid "&Delete"
-msgstr "&Sterge"
-
-msgid "Select &All"
-msgstr "Selectează &Tot"
-
-msgid "Select All"
-msgstr "Selectează tot"
-
-#. TRANSLATORS: Keyboard shortcut for display in Windows menus
-#. TRANSLATORS: This is the key shortcut used in menus on Windows, some languages call them differently
-msgid "Ctrl+"
-msgstr "Ctrl+"
-
-#. TRANSLATORS: Keyboard shortcut for display in Windows menus
-#. TRANSLATORS: This is the key shortcut used in menus on Windows, some languages call them differently
-msgid "Alt+"
-msgstr "Alt+"
-
-#. TRANSLATORS: Keyboard shortcut for display in Windows menus
-msgid "Shift+"
-msgstr "Shift+"
-
-#. TRANSLATORS: Keyboard shortcut for display in Windows menus
-msgid "Enter"
-msgstr "Enter"
-
-#. TRANSLATORS: Keyboard shortcut for display in Windows menus
-msgid "Up"
-msgstr "Sus"
-
-#. TRANSLATORS: Keyboard shortcut for display in Windows menus
-msgid "Down"
-msgstr "Jos"
-
-#. TRANSLATORS: Keyboard shortcut, must correspond to translation of "Ctrl+"
-msgid "ctrl"
-msgstr "ctrl"
-
-#. TRANSLATORS: Keyboard shortcut, must correspond to translation of "Alt+"
-msgid "alt"
-msgstr "alt"
-
-#. TRANSLATORS: Keyboard shortcut, must correspond to translation of "Shift+"
-msgid "shift"
-msgstr "shift"
-
-msgid "You can't drop more than one file on Poedit window."
-msgstr "Nu puteți să depuneți mai mult de un fișier în fereastra Poedit."
+msgid "You can’t drop more than one file on Poedit window."
+msgstr "Nu puteți să lăsați mai mult de un fișier în fereastra Poedit."
 
 #, c-format
-msgid "File '%s' is not a message catalog."
-msgstr "Fișierul '%s' nu este un catalog de mesaje."
+msgid "File “%s” is not a translation file."
+msgstr "Fișierul “%s” nu este un fișier de traducere."
 
 msgid "Poedit"
 msgstr "Poedit"
@@ -503,30 +431,7 @@ msgid "&File"
 msgstr "&Fișier"
 
 msgid "&Go"
-msgstr "& Du-te"
-
-msgid "Source text:"
-msgstr "Text sursă:"
-
-msgid "Singular:"
-msgstr "Singular:"
-
-msgid "Plural:"
-msgstr "Plural:"
-
-msgid "Translation:"
-msgstr "Traducere:"
-
-msgid ""
-"POT files are only templates and don’t contain any translations themselves.\n"
-"To make a translation, create a new PO file based on the template."
-msgstr ""
-
-msgid "Create New Translation"
-msgstr ""
-
-msgid "Create new translation"
-msgstr ""
+msgstr "&Du-te"
 
 #. TRANSLATORS: %s is language name in its basic form (as you
 #. would see e.g. in a list of supported languages). You may need
@@ -547,38 +452,35 @@ msgstr "Catalog modificat. Doriți să salvați schimbările?"
 msgid "Save changes"
 msgstr "Salvează modificările"
 
-msgid "Your changes will be lost if you don't save them."
-msgstr "Schimbările vor fi pierdute dacă nu le salvați."
+msgid "Your changes will be lost if you don’t save them."
+msgstr "Modificările vor fi pierdute dacă nu le salvați."
 
 msgid "Save"
 msgstr "Salvează"
 
-msgid "Don't save"
-msgstr "Nu salva"
+msgid "Do&n’t save"
+msgstr "N&u salva"
 
-msgid "Don't Save"
-msgstr "Nu salva"
+msgid "Don’t Save"
+msgstr "Nu Salva"
 
-msgid "Save as..."
-msgstr "Salvează ca..."
+msgid "Save as…"
+msgstr "Salvare ca…"
 
-msgid "Compile to..."
-msgstr "Compila pentru..."
+msgid "Compile to…"
+msgstr "Compila pentru…"
 
 msgid "Compiled Translation Files"
 msgstr "Compilate traducere fişiere"
 
-msgid "Export as..."
-msgstr "Exportă ca..."
+msgid "Export as…"
+msgstr "Export ca…"
 
 msgid "HTML Files"
 msgstr "Fişierele HTML"
 
 msgid "Open catalog template"
 msgstr "Deschide model catalog"
-
-msgid "Updating catalog"
-msgstr "Actualizare catalog"
 
 msgid "Source code not available."
 msgstr "Codul sursă nu este disponibil."
@@ -652,27 +554,42 @@ msgid "The translation is ready for use, but %d entry is not translated yet."
 msgid_plural ""
 "The translation is ready for use, but %d entries are not translated yet."
 msgstr[0] ""
+"Traducerea este gata pentru utilizare, dar %d intrare nu este tradus încă."
 msgstr[1] ""
+"Traducerea este gata pentru utilizare, dar %d intrările nu sunt traduse încă."
 msgstr[2] ""
+"Traducerea este gata pentru utilizare, dar %d intrările nu sunt traduse încă."
 
 msgid "The translation is ready for use."
 msgstr "Traducerea este gata de folosit."
 
-msgid "Context:"
-msgstr "Context:"
+msgid "Warnings have been disabled."
+msgstr "Avertismente au fost dezactivate."
+
+msgid ""
+"If you disabled the warnings because of excessive false positives, please "
+"consider sending a sample file to help@poedit.net to help improve them."
+msgstr ""
+"Dacă aţi dezactivat aceste notificari din cauza pozitive false excesive, vă "
+"rugăm să ia în considerare trimiterea un exemplu de fişier pentru a "
+"help@poedit.net pentru a ajuta la îmbunătăţirea ei."
 
 #, c-format
 msgid "Poedit automatically fixed invalid content in the file “%s”."
-msgstr ""
+msgstr "Poedit corectează automat conținutul invalid în fișierul „%s”."
 
 msgid ""
 "The file contained duplicate items, which is not allowed in PO files and "
 "would prevent the file from being used. Poedit fixed the issue, but you "
-"should review translations of any items marked as fuzzy and correct them if "
-"necessary."
+"should review translations of any items marked as needing work and correct "
+"them if necessary."
 msgstr ""
+"Fișierul conținea elemente duplicate, care nu este permis în fișiere PO și "
+"ar împiedica utilizarea fișierului. Poedit a rezolvat problema, dar ar "
+"trebui să revizuiești traducerile din orice elemente marcat ca necesită "
+"muncă și corecteazale dacă este necesar."
 
-msgid "Language of the translation isn't set."
+msgid "Language of the translation isn’t set."
 msgstr "Limba de traducere nu este setată."
 
 msgid "Set Language"
@@ -691,27 +608,27 @@ msgstr ""
 "afectate."
 
 msgid "Language of the translation is the same as source language."
-msgstr ""
+msgstr "Limbaj traducerii este la fel ca limba sursă."
 
 msgid "Fix Language"
-msgstr ""
+msgstr "Repara Limba"
 
 msgid "Fix language"
-msgstr ""
+msgstr "Repara limba"
 
 msgid ""
-"This catalog has entries with plural forms, but doesn't have Plural-Forms "
+"This catalog has entries with plural forms, but doesn’t have Plural-Forms "
 "header configured."
 msgstr ""
-"Acest catalog are intrări cu forme de plural, dar nu are cadrul formelor de "
-"plural configurat."
+"Acest catalog are intrări cu forme de plural, dar nu are antetul Plural-"
+"Forms configurat."
 
 msgid ""
 "Entries in this catalog have different plural forms count from what "
-"catalog's Plural-Forms header says"
+"catalog’s Plural-Forms header says"
 msgstr ""
-"Intrările în acest catalog au diferite forme de plural calculate din ceea ce "
-"spune catalogul cadru formelor de plural"
+"Intrările din acest catalog au diferite forme de plural conta din ce catalog "
+"forme de Plural antet spune"
 
 msgid "Required header Plural-Forms is missing."
 msgstr "Lipsește antetul formelor de plural solicitat."
@@ -721,7 +638,7 @@ msgid "Syntax error in Plural-Forms header (\"%s\")."
 msgstr "Eroare de sintaxă în cadrul formelor de plural (\"%s\")."
 
 msgid "Fix the Header"
-msgstr ""
+msgstr "Repară antetul"
 
 msgid "Fix the header"
 msgstr "Repară antetul"
@@ -732,49 +649,47 @@ msgstr "Repară antetul"
 #, c-format
 msgid "Plural forms expression used by the catalog is unusual for %s."
 msgstr ""
+"Expresia formelor de plural folosită de catalog este neobișnuit pentru %s."
 
 #. TRANSLATORS: A verb, shown as action button with ""Plural forms expression used by the catalog is unusual for %s.")"
 msgid "Review"
-msgstr ""
+msgstr "Revizuire"
 
 #, c-format
-msgid "Error loading message catalog file '%s'."
-msgstr "Eroare la încărcarea fișierului catalogului cu mesaje '%s'."
+msgid "Error loading message catalog file “%s”."
+msgstr "Eroare la încărcarea mesaj catalog fișier „%s”."
 
 #, c-format
 msgid "Translated: %d of %d (%d %%)"
-msgstr ""
+msgstr "Tradus: %d în %d (%d %%)"
 
 #, c-format
 msgid "Remaining: %d"
-msgstr ""
+msgstr "Rămase: %d"
 
 #, c-format
 msgid "%d error"
 msgid_plural "%d errors"
-msgstr[0] ""
-msgstr[1] ""
-msgstr[2] ""
+msgstr[0] "%d eroare"
+msgstr[1] "%d erori"
+msgstr[2] "%d erori"
 
 #, c-format
 msgid "%d entry"
 msgid_plural "%d entries"
-msgstr[0] ""
-msgstr[1] ""
-msgstr[2] ""
+msgstr[0] "intrarea %d"
+msgstr[1] "%d intrări"
+msgstr[2] "%d intrări"
 
 msgid " (unsaved)"
-msgstr ""
+msgstr " (nesalvat)"
 
 msgid " (modified)"
 msgstr " (modificat)"
 
-msgid "Go"
-msgstr ""
-
 #, c-format
 msgid "Failed to update translation memory: %s"
-msgstr ""
+msgstr "Imposibil de actualizat memorie de traducere: %s"
 
 msgid "Purge deleted translations"
 msgstr "Curăță traducerile șterse"
@@ -797,67 +712,16 @@ msgstr "Păstrează"
 msgid "Purge"
 msgstr "Curăță"
 
-msgid "Fill missing translations from TM"
-msgstr ""
-
-msgid "Only fill in exact matches"
-msgstr ""
-
-msgid ""
-"By default, inaccurate results are filled in as well and marked as fuzzy. "
-"Check this option to only include accurate matches."
-msgstr ""
-
-msgid "Don’t mark exact matches as fuzzy"
-msgstr ""
-
-msgid ""
-"Only enable if you trust the quality of your TM. By default, all matches "
-"from the TM are marked as fuzzy and should be reviewed."
-msgstr ""
-
-msgid "Fill"
-msgstr ""
-
-#, c-format
-msgid "%d entry was filled from the translation memory."
-msgid_plural "%d entries were filled from the translation memory."
-msgstr[0] ""
-msgstr[1] ""
-msgstr[2] ""
-
-msgid ""
-"The translations were marked as fuzzy, because they may be inaccurate. You "
-"should review them for correctness."
-msgstr ""
-
-msgid "No entries could be filled from the translation memory."
-msgstr ""
-
-msgid ""
-"The TM doesn’t contain any strings similar to the content of this file. It "
-"is only effective for semi-automatic translations after Poedit learns enough "
-"from files that you translated manually."
-msgstr ""
-
-msgid "Translating"
-msgstr ""
-
-msgid "Filling missing translations from TM..."
-msgstr ""
-
-#, c-format
-msgid "Translated %u string"
-msgid_plural "Translated %u strings"
-msgstr[0] ""
-msgstr[1] ""
-msgstr[2] ""
-
 msgid "Copy from source text"
 msgstr "Copiază din textul sursă"
 
 msgid "Copy from Source Text"
 msgstr "Copiază din textul sursă"
+
+#. TRANSLATORS: This is the key shortcut used in menus on Windows, some languages call them differently
+#. TRANSLATORS: Keyboard shortcut for display in Windows menus
+msgid "Ctrl+"
+msgstr "Ctrl+"
 
 msgid "Clear translation"
 msgstr "Curăță traducerea"
@@ -874,84 +738,145 @@ msgstr "Editare comentariu"
 msgid "References:"
 msgstr "Referințe:"
 
-msgid "Everything"
+msgid "&Bookmarks"
+msgstr "&Semne de carte"
+
+#. TRANSLATORS: This is the key shortcut used in menus on Windows, some languages call them differently
+#. TRANSLATORS: Keyboard shortcut for display in Windows menus
+msgid "Alt+"
+msgstr "Alt+"
+
+#, c-format
+msgid "Set bookmark %i"
+msgstr "Setare marcaj %i"
+
+#, c-format
+msgid "Go to bookmark %i"
+msgstr "Mergi la marcaj %i"
+
+#, c-format
+msgid "Set Bookmark %i"
+msgstr "Setează marcaj %i"
+
+#, c-format
+msgid "Go to Bookmark %i"
+msgstr "Mergi la Marcaj %i"
+
+msgid "Hide Sidebar"
+msgstr "Ascunde Bara Laterală"
+
+msgid "Show Sidebar"
+msgstr "Arată Bara Laterală"
+
+msgid "Hide Status Bar"
+msgstr "Ascundere Bară de Stare"
+
+msgid "Show Status Bar"
+msgstr "Arată Bara de Stare"
+
+msgid "Source text:"
+msgstr "Text sursă:"
+
+msgid "Singular:"
+msgstr "Singular:"
+
+msgid "Plural:"
+msgstr "Plural:"
+
+msgid "Translation:"
+msgstr "Traducere:"
+
+msgid "Pre-translated"
+msgstr "Pre-tradus"
+
+msgid "Needs Work"
+msgstr "Necesita lucru"
+
+#. TRANSLATORS: This indicates that the string's translation isn't final
+#. and has known problems.  For example, it might be machine translated or
+#. fuzzy matched from an older string. The translation should be short and
+#. convey this. If it's problematic to translate it, "Needs review" is
+#. acceptable substitute, but note that the meaning is subtly different:
+#. "needs review" implies that somebody else should review the string after
+#. I am done with it (i.e. consider it good), while "needs work" implies I
+#. need to return to it and finish the translation.
+msgid "Needs work"
+msgstr "Necesita lucru"
+
+msgid ""
+"POT files are only templates and don’t contain any translations themselves.\n"
+"To make a translation, create a new PO file based on the template."
 msgstr ""
+"Dosarele POT sunt doar template-uri și nu conțin traduceri. \n"
+"To fa o traducere, crează un fișier PO nou bazat pe șablon."
+
+msgid "Create New Translation"
+msgstr "Creați Traducere Nouă"
+
+msgid "Create new translation"
+msgstr "Creați traducere nouă"
+
+msgid "Everything"
+msgstr "Totul"
 
 #, c-format
 msgid "Form %i"
 msgstr "Forma %i"
 
+#, c-format
+msgid "Form %i (unused)"
+msgstr "Forma %i (neutilizata)"
+
 msgid "Singular"
-msgstr ""
+msgstr "Singular"
 
 msgid "Zero"
-msgstr ""
+msgstr "Zero"
 
 msgid "One"
-msgstr ""
+msgstr "Unu"
 
 msgid "Two"
-msgstr ""
+msgstr "Doi"
 
 msgid "Plural"
-msgstr ""
+msgstr "Plural"
 
 msgid "Other"
-msgstr ""
-
-msgid "&Bookmarks"
-msgstr "&Semne de carte"
+msgstr "Altul"
 
 #, c-format
-msgid "Set bookmark %i"
-msgstr ""
+msgid "%s Format"
+msgstr "%s Format"
 
+#. TRANSLATORS: %s is replaced with language name, e.g. "PHP" or "C", so "PHP Format" etc."
 #, c-format
-msgid "Go to bookmark %i"
-msgstr ""
-
-#, c-format
-msgid "Set Bookmark %i"
-msgstr ""
-
-#, c-format
-msgid "Go to Bookmark %i"
-msgstr ""
-
-msgid "Hide Sidebar"
-msgstr ""
-
-msgid "Show Sidebar"
-msgstr ""
-
-msgid "Hide Status Bar"
-msgstr ""
-
-msgid "Show Status Bar"
-msgstr ""
+msgid "%s format"
+msgstr "%s format"
 
 msgid "Source text"
 msgstr "Text sursă"
 
-msgid "Translation"
-msgstr "raducere"
+#, c-format
+msgid "Translation — %s"
+msgstr "Traducere-%s"
 
 msgid "ID"
-msgstr ""
+msgstr "ID"
 
 #, c-format
 msgid "Source text — %s"
-msgstr ""
+msgstr "Sursa text — %s"
 
 msgid "unknown language"
-msgstr ""
+msgstr "limbă necunoscută"
 
 #, c-format
-msgid "Translation — %s"
-msgstr ""
+msgid "Failed command: %s"
+msgstr "Comandă eșuată: %s"
 
-msgid "Error:"
-msgstr "Eroare:"
+msgid "Failed to merge gettext catalogs."
+msgstr "Unirea cataloagelor gettext a eșuat."
 
 msgid "Source file"
 msgstr "Fișier sursă"
@@ -960,42 +885,42 @@ msgid "Source file occurrence:"
 msgstr "Apariția fișierului sursă:"
 
 msgid "Open in Editor"
-msgstr ""
+msgstr "Deschide în Editor"
 
 msgid "Open in editor"
-msgstr ""
+msgstr "Deschide în editor"
 
 msgid "No references for the selected item."
-msgstr ""
+msgstr "Nici o referință pentru elementul selectat."
 
 #, c-format
 msgid "Error opening file %s!"
 msgstr "Eroare la deschiderea fișierului %s!"
 
 msgid "Find"
-msgstr ""
+msgstr "Caută"
 
 msgid "Replace"
-msgstr ""
+msgstr "Înlocuiește"
 
 #. TRANSLATORS: Expander in Find window for additional options (case sensitive etc.)
 msgid "Options"
-msgstr ""
+msgstr "Opţiuni"
 
 msgid "Ignore case"
-msgstr ""
+msgstr "Ignoră caseta"
 
 msgid "Wrap around"
-msgstr ""
+msgstr "Căutare similară"
 
 msgid "Whole words only"
 msgstr "Doar cuvinte întregi"
 
 msgid "Find in source texts"
-msgstr ""
+msgstr "Găsește în textele sursă"
 
 msgid "Find in translations"
-msgstr ""
+msgstr "Găseşte în traduceri"
 
 msgid "Find in comments"
 msgstr "Găsește în comentarii"
@@ -1003,36 +928,39 @@ msgstr "Găsește în comentarii"
 msgid "Close"
 msgstr "Închide"
 
-msgid "Replace All"
-msgstr ""
+msgid "Replace &All"
+msgstr "Înlocuire &Tot"
 
-msgid "Replace all"
-msgstr ""
+msgid "Replace &all"
+msgstr "Înlocuire &tot"
+
+msgid "&Replace"
+msgstr "&Înlocuiește"
 
 msgid "< &Previous"
-msgstr ""
+msgstr "< &Anterior"
 
 msgid "&Next >"
-msgstr ""
+msgstr "&Următoarea >"
 
 msgid "String to find"
-msgstr ""
+msgstr "Șir de găsit"
 
 msgid "Replacement string"
-msgstr ""
+msgstr "Şir de înlocuit"
 
 #, c-format
 msgid "Cannot execute program: %s"
 msgstr "Nu se poate executa programul: %s"
 
 msgid "Language Code or Name (e.g. en_GB)"
-msgstr ""
+msgstr "Cod limbă sau nume (ex. en_GB)"
 
 msgid "Translation Language"
-msgstr ""
+msgstr "Limba Traducere"
 
 msgid "Language of the translation:"
-msgstr ""
+msgstr "Limba traducerii:"
 
 msgid "Poedit - Catalogs manager"
 msgstr "Poedit - Administrator de cataloage"
@@ -1046,11 +974,8 @@ msgstr "Total"
 msgid "Untrans"
 msgstr "Netrad"
 
-msgid "Fuzzy"
-msgstr "Aproximativ"
-
-msgid "Bad Tokens"
-msgstr "Jetoane invalide"
+msgid "Errors"
+msgstr "Erori"
 
 msgid "Last modified"
 msgstr "Ultima modificare"
@@ -1078,36 +1003,38 @@ msgstr ""
 "toate cataloagele din acest proiect?"
 
 msgid "Information about the translator"
-msgstr ""
+msgstr "Informații despre traducător"
 
 msgid "Name:"
-msgstr ""
+msgstr "Nume:"
 
 msgid "Your Name"
-msgstr ""
+msgstr "Numele tău"
 
 msgid "Email:"
-msgstr ""
+msgstr "E-mail:"
 
 msgid "your_email@example.com"
-msgstr ""
+msgstr "e-mailul_tau@exemplu.com"
 
 msgid ""
 "Your name and email address are only used to set the Last-Translator header "
 "of GNU gettext files."
 msgstr ""
+"Numele și adresa de e-mail sunt folosite doar pentru a configura antetul "
+"Last-Translator din fișierele GNU gettext."
 
 msgid "Editing"
-msgstr ""
+msgstr "In editare"
 
 msgid "Automatically compile MO file when saving"
-msgstr ""
+msgstr "Compilează automat fișierul MO la salvare"
 
 msgid "Show summary after catalog update"
 msgstr "Arată rezumatul după actualizarea catalogului"
 
 msgid "Check spelling"
-msgstr ""
+msgstr "Verificarea ortografică"
 
 msgid "Always change focus to text input field"
 msgstr "Pune mereu focalizarea pe cîmpul de introducere a textului"
@@ -1123,130 +1050,202 @@ msgstr ""
 "schimba focalizarea."
 
 msgid "Appearance"
-msgstr ""
+msgstr "Aspect"
 
 msgid "Use custom list font:"
-msgstr ""
+msgstr "Utilizare listă de font particularizată:"
 
 msgid "Use custom text fields font:"
-msgstr ""
+msgstr "Utilizați fontul câmpurilor text personalizate:"
 
 msgid "Change UI language"
 msgstr "Schimbă limba Interfeței"
 
 #. TRANSLATORS: This is a note appended to "Check spelling" when running on older Windows versions
 msgid "(requires Windows 8 or newer)"
-msgstr ""
+msgstr "(necesită Windows 8 sau mai nou)"
 
 msgid "General"
-msgstr ""
+msgstr "General"
 
 msgid "Use translation memory"
-msgstr ""
+msgstr "Memorie de traducere"
 
-msgid "Learn From Files..."
-msgstr ""
+msgid "Manage…"
+msgstr "Gestionează…"
 
-msgid "Learn from files..."
+#. TRANSLATORS: Followed by "match translations within the file" or "pre-translate from TM"
+msgid "When updating from sources"
+msgstr "Atunci când se actualizeaza din surse"
+
+#. TRANSLATORS: Preceded by "When updating from sources"
+msgid "fuzzy match within the file"
+msgstr "potrivirea în cadrul fișierului"
+
+#. TRANSLATORS: Preceded by "When updating from sources"
+msgid "pre-translate from TM"
+msgstr "pre-traduce din MT"
+
+msgid ""
+"Poedit can attempt to fill in new entries from only previous translations in "
+"the file or from your entire translation memory. Using the TM won’t be very "
+"effective if it’s near-empty, but it will get better as you add more "
+"translations to it."
 msgstr ""
+"Poedit poate încerca să completeze intrări noi doar de la traducerile "
+"anterioare din fișier sau din întreaga ta memorie de traducere. Folosind MT "
+"nu va fi foarte eficienta în cazul în care este aproape goala, dar acesta va "
+"fi mai buna pe măsură adaugi mai multe traduceri."
+
+msgid "Stored translations:"
+msgstr "Traduceri stocate:"
+
+msgid "Database size on disk:"
+msgstr "Baza de date pe disk:"
+
+msgid "Import Translation Files…"
+msgstr "Importă fișierele de tradus…"
+
+msgid "Import translation files…"
+msgstr "Importă fișierele de tradus…"
+
+msgid "Import From TMX…"
+msgstr "Importă din TMX…"
+
+msgid "Import from TMX…"
+msgstr "Importă din TMX…"
+
+msgid "Export To TMX…"
+msgstr "Exportă către TMX…"
+
+msgid "Export to TMX…"
+msgstr "Exportă către TM…"
 
 #. TRANSLATORS: This is a button that deletes everything in the translation memory (i.e. clears/resets it).
 msgid "Reset"
-msgstr ""
-
-msgid "Consult TM when updating from sources"
-msgstr ""
-
-msgid ""
-"If enabled, Poedit will try to fill in new entries using your previous\n"
-"translations stored in the translation memory. If the TM is\n"
-"near-empty, it will not be very effective. The more translations\n"
-"you edit and the larger the TM grows, the better it gets."
-msgstr ""
-
-msgid "Stored translations:"
-msgstr ""
-
-msgid "Database size on disk:"
-msgstr ""
+msgstr "Resetare"
 
 msgid "Select translation files to import"
-msgstr ""
+msgstr "Selectați fișierele de traducere pentru a le importa"
 
 msgid "Translation Memory"
 msgstr "Memorie de traducere"
 
-msgid "Importing translations..."
-msgstr ""
+msgid "Importing translations…"
+msgstr "Importare traduceri…"
 
-msgid "Finalizing..."
-msgstr ""
+msgid "Finalizing…"
+msgstr "Finalizare…"
+
+msgid "Select TMX files to import"
+msgstr "Selectaţi fișierele TMX pentru import"
+
+msgid "TMX Files"
+msgstr "Fişiere TMX"
+
+#, c-format
+msgid "Importing translation memory from “%s” failed."
+msgstr "Importarea memorie de traducere pentru „%s” nu a reușit."
+
+msgid "Import error"
+msgstr "Eroare de import"
+
+msgid "Exporting translations…"
+msgstr "Exportul de traduceri…"
+
+#, c-format
+msgid "Exporting translation memory to “%s” failed."
+msgstr "Memorie de traducere a \"%s\"-exportator nu a reuşit."
+
+msgid "Export error"
+msgstr "Eroare de export"
 
 msgid "Reset translation memory"
-msgstr ""
+msgstr "Resetare memorie de traducere"
 
 msgid "Are you sure you want to reset the translation memory?"
-msgstr ""
+msgstr "Ești sigur că vrei să resetezi memoria de traducere?"
 
 msgid ""
 "Resetting the translation memory will irrevocably delete all stored "
 "translations from it. You can’t undo this operation."
 msgstr ""
+"Resetarea memoriei de traducere va șterge definitiv toate traducerile "
+"stocate în ea. Nu poți anula operația."
 
 msgid "Cancel"
 msgstr "Anulează"
 
-#. TRANSLATORS: This is abbreviation of "Translation Memory" used in Preferences on OS X.
+#. TRANSLATORS: This is abbreviation of "Translation Memory" used in Preferences on macOS.
 #. Long text looks weird there, too short (like TM) too, but less so. "General" is about ideal
 #. length there.
 msgid "TM"
-msgstr ""
+msgstr "MT"
 
 msgid ""
 "Source code extractors are used to find translatable strings in the source "
 "code files and extract them so that they can be translated."
 msgstr ""
+"Extractoarele de cod sursa sunt folosite sa găsească șiruri de cod sursa și "
+"le extrag ca sa poate fi traduse."
 
-msgid "New"
-msgstr "Nou"
+msgid "Custom Extractors:"
+msgstr "Extractoare personalizate:"
 
-msgid "Edit"
-msgstr "Editare"
+msgid "Custom extractors:"
+msgstr "Extractoare personalizate:"
+
+msgid "Edit…"
+msgstr "Editare…"
+
+msgid "GNU gettext"
+msgstr "GNU gettext"
+
+msgid ""
+"Supports all programming languages recognized by GNU gettext tools (PHP, C/C+"
+"+, C#, Perl, Python, Java, JavaScript and others)."
+msgstr ""
+"Suportă toate limbajele de programare, recunoscut de instrumentele de GNU "
+"gettext (PHP, C/C++, C#, Perl, Python, Java, JavaScript și altele)."
 
 msgid "Delete extractor"
-msgstr ""
+msgstr "Ştergeţi extractor"
 
 #, c-format
 msgid "Are you sure you want to delete the “%s” extractor?"
-msgstr ""
+msgstr "Ești sigur că dorești să ștergi extractor „%s”?"
 
 msgid "Extractors"
-msgstr ""
+msgstr "Extractori"
 
 msgid "Accounts"
-msgstr ""
+msgstr "Conturi"
 
 msgid "Automatically check for updates"
-msgstr ""
+msgstr "Căutare automata de actualizări"
 
 msgid "Include beta versions"
-msgstr ""
+msgstr "Include versiunile beta"
 
 msgid ""
 "Beta versions contain the latest new features and improvements, but may be a "
 "bit less stable."
 msgstr ""
+"Versiunile beta conține ultimele noi caracteristici și îmbunatățiri, dar "
+"poate fi putin mai instabil."
 
 msgid "Updates"
-msgstr ""
+msgstr "Actualizări"
 
 msgid ""
 "These settings affect internal formatting of PO files. Adjust them if you "
 "have specific requirements e.g. because of version control."
 msgstr ""
+"Aceste setări afectează formatarea interne de fișiere PO. Ajusteazale dacă "
+"ai cerințe specifice ex. din cauza controlului versiunilor."
 
 msgid "Line endings:"
-msgstr ""
+msgstr "Sfârșit de linii:"
 
 msgid "Unix (recommended)"
 msgstr "Unix (recomandat)"
@@ -1256,69 +1255,204 @@ msgstr "Windows"
 
 #. TRANSLATORS: Followed by text control for entering number; wraps text at given width
 msgid "Wrap at:"
-msgstr ""
+msgstr "Încadrare la:"
 
 msgid "Preserve formatting of existing files"
-msgstr ""
+msgstr "Păstrează formatarea fișierelor existente"
 
 msgid "Advanced"
-msgstr ""
+msgstr "Avansat"
 
-#. TRANSLATORS: Title of the preferences window on Windows and Linux. "%s" is replaced with "Poedit" when running.
+msgid "Pre-translating…"
+msgstr "Pre-traducere…"
+
 #, c-format
-msgid "%s Preferences"
+msgid "Pre-translated %u string"
+msgid_plural "Pre-translated %u strings"
+msgstr[0] "Pre-tras %u sir"
+msgstr[1] "Pre-tradus %u siruri"
+msgstr[2] "Pre-tradus %u siruri"
+
+#. TRANSLATORS: This is a somewhat common term describing the action where
+#. you apply the translation memory and/or machine translation to all of the
+#. strings you're translating as the first step, followed by correcting,
+#. improving etc., i.e. actually translating the strings. This may be tricky
+#. to express in other languages as simply as in English, but please try to
+#. keep it similarly concise. Please try to avoid, if possible, describing it
+#. as "auto-translation" and similar, because such terminology would mislead
+#. some users into thinking it's all that needs to be done (spoken from
+#. experience). "Pre-translate" nicely expresses that it's only the step done
+#. *before* actual translation.
+msgid "Pre-translate"
+msgstr "Pre-traducere"
+
+msgid "Only fill in exact matches"
+msgstr "Completați doar potriviri exacte"
+
+msgid ""
+"By default, inaccurate results are filled in as well and marked as needing "
+"work. Check this option to only include accurate matches."
 msgstr ""
+"În mod implicit, rezultate inexacte sunt completate, precum și marcate ca "
+"necesitând munca. Bifează aceasta opțiune pentru a include numai potriviri "
+"exacte."
+
+msgid "Don’t mark exact matches as needing work"
+msgstr "Nu marca potriviri exacte ca nevoie de muncă"
+
+msgid ""
+"Only enable if you trust the quality of your TM. By default, all matches "
+"from the TM are marked as needing work and should be reviewed before use."
+msgstr ""
+"Permite numai dacă ai încredere în MT. Implicit, toate potrivirile din MT "
+"sunt marcate ca necesita munca și ar trebui reexaminată înainte de utilizare."
+
+msgid ""
+"Pre-translation automatically finds exact or fuzzy matches for untranslated "
+"strings in the translation memory and fills in their translations."
+msgstr ""
+"Pre-traducerea găsește automat potrivirile exacte sau neclare pentru șiruri "
+"netraduse de caractere din memoria de traducere completându-le automat."
+
+#, c-format
+msgid "%d entry was pre-translated."
+msgid_plural "%d entries were pre-translated."
+msgstr[0] "%d intrarea a fost pre-tradusa."
+msgstr[1] "%d intrările au fost pre-traduse."
+msgstr[2] "%d intrările au fost pre-traduse."
+
+msgid ""
+"The translations were marked as needing work, because they may be "
+"inaccurate. You should review them for correctness."
+msgstr ""
+"Traducerile au fost marcate ca necesita munca, deoarece acestea pot fi "
+"inexacte. Ar trebui revizuite pentru corectitudine."
+
+msgid "No entries could be pre-translated."
+msgstr "Nici o intrare nu a putut fi pre-tradusa."
+
+msgid ""
+"The TM doesn’t contain any strings similar to the content of this file. It "
+"is only effective for semi-automatic translations after Poedit learns enough "
+"from files that you translated manually."
+msgstr ""
+"MT nu conține niciun sir de caractere similare cu conținutul acestui acest "
+"fișier. Este eficient doar pentru traducerile semi-automat pe care Poedit le-"
+"a învățat din fișierele traduse manual."
 
 msgid ""
 "<big>Drag and Drop Folders Here</big>\n"
 "\n"
 "or use the + button"
 msgstr ""
+"<big>Adu și pune dosar aici </big>\n"
+"\n"
+"sau folosește butonul +"
 
 msgid ""
 "<big>Drag and drop folders here</big>\n"
 "\n"
 "or use the + button"
 msgstr ""
+"<big>Adu și pune dosar aici </big>\n"
+"\n"
+"sau folosește butonul +"
 
-msgid "Add Folders..."
-msgstr ""
+msgid "Add Folders…"
+msgstr "Adaugă Dosare…"
 
-msgid "Add folders..."
-msgstr ""
+msgid "Add folders…"
+msgstr "Adaugă dosare…"
 
-msgid "Add Files..."
-msgstr ""
+msgid "Add Files…"
+msgstr "Adaugă Fișiere…"
 
-msgid "Add files..."
-msgstr ""
+msgid "Add files…"
+msgstr "Adaugă fișiere…"
 
-msgid "Add Wildcard..."
-msgstr ""
+msgid "Add Wildcard…"
+msgstr "Adaugă Wildcard…"
 
-msgid "Add wildcard..."
-msgstr ""
+msgid "Add wildcard…"
+msgstr "Adauga wildcard…"
 
 msgid "Paths"
 msgstr "Căi"
 
 msgid "Excluded paths"
-msgstr ""
+msgstr "Căi excluse"
+
+msgid "Advanced extraction settings"
+msgstr "Setări avansate de extragere"
+
+msgid "Extract notes for translators from:"
+msgstr "Extrage comentarii de la traducători:"
+
+msgid "Comments prefixed with:"
+msgstr "Comentarii începute cu:"
+
+msgid "All comments"
+msgstr "Toate comentariile"
+
+msgid "Additional xgettext flags:"
+msgstr "Flaguri xgettext adiționale:"
 
 msgid "Additional keywords"
-msgstr ""
+msgstr "Cuvinte cheie suplimentare"
 
 msgid "Name of the project the translation is for"
-msgstr ""
+msgstr "Numele proiectului de unde vine traducerea"
+
+msgid "Team name and email address or URL"
+msgstr "Numele echipei și adresa de E-mail sau url"
 
 msgid "e.g. nplurals=2; plural=(n > 1);"
-msgstr ""
+msgstr "e.g. nplurals=2; plural=(n > 1);"
 
 msgid "UTF-8 (recommended)"
 msgstr "UTF-8 (recomandat)"
 
 msgid "Please save the file first. This section cannot be edited until then."
-msgstr ""
+msgstr "Salvează fișierul. Această secțiune nu poate fi editată până atunci."
+
+msgid "Not all plural forms are translated."
+msgstr "Nu toate formele de plural sunt traduse."
+
+msgid "The translation should start as a sentence."
+msgstr "Traducerea ar trebui să înceapă ca o propoziție."
+
+msgid "The translation should start with a lowercase character."
+msgstr "Traducerea ar trebui să înceapă cu un caracter mic."
+
+msgid "The translation doesn’t start with a space."
+msgstr "Traducerea nu începe cu un spațiu."
+
+msgid "The translation starts with a space, but the source text doesn’t."
+msgstr "Traducerea începe cu un spațiu, dar nu și textul sursă."
+
+msgid "The translation is missing a newline at the end."
+msgstr "Traducerea îi lipsește un newline la sfârșit."
+
+msgid "The translation ends with a newline, but the source text doesn’t."
+msgstr "Traducerea începe cu un newline, dar nu și textul sursă."
+
+msgid "The translation is missing a space at the end."
+msgstr "Traducerii îi lipsește un spațiu la final."
+
+msgid "The translation ends with a space, but the source text doesn’t."
+msgstr "Traducerea se termină cu un spațiu, dar nu și textul sursă."
+
+#, c-format
+msgid "The translation should end with “%s”."
+msgstr "Traducerea trebuie să se termine cu „%s”."
+
+#, c-format
+msgid "The translation should not end with “%s”."
+msgstr "Traducerea nu trebuie să se termine cu „%s”."
+
+#, c-format
+msgid "The translation ends with “%s”, but the source text ends with “%s”."
+msgstr "Traducerea se termină cu „%s”, dar textul-sursă se termină cu „%s”."
 
 msgid "Comment:"
 msgstr "Comentariu:"
@@ -1332,8 +1466,14 @@ msgstr "Curăță"
 msgid "Clear the comment"
 msgstr "Curăță comentariul"
 
+msgid "New"
+msgstr "Nou"
+
 msgid "Create new translations project"
 msgstr "Creează un nou proiect de traduceri"
+
+msgid "Edit"
+msgstr "Editare"
 
 msgid "Edit the project"
 msgstr "Editează proiectul"
@@ -1359,26 +1499,26 @@ msgstr "Răscolește"
 msgid "Add directory to the list"
 msgstr "Adaugă directorul la listă"
 
-msgid "&New..."
-msgstr ""
+msgid "&New…"
+msgstr "&Nou…"
 
-msgid "New from &POT/PO file..."
-msgstr ""
+msgid "New from &POT/PO file…"
+msgstr "Nou din &POT/PO fișier…"
 
-msgid "New From &POT/PO File..."
-msgstr ""
+msgid "New From &POT/PO File…"
+msgstr "Nou Din &POT/PO Fișier…"
 
-msgid "&Open..."
-msgstr "&Deschide..."
+msgid "&Open…"
+msgstr "&Deschide…"
 
 msgid "Open Recent"
-msgstr ""
+msgstr "Deschide Recent"
 
-msgid "Open from Crowdin..."
-msgstr ""
+msgid "Open from Crowdin…"
+msgstr "Deschide din Crowdin…"
 
-msgid "Open From Crowdin..."
-msgstr ""
+msgid "Open From Crowdin…"
+msgstr "Deschide Din Crowdin…"
 
 msgid "&Close"
 msgstr "&Închide"
@@ -1386,23 +1526,23 @@ msgstr "&Închide"
 msgid "&Save"
 msgstr "&Salvează"
 
-msgid "Save &as..."
-msgstr "Salvează &ca..."
+msgid "Save &as…"
+msgstr "Salvare &ca…"
 
-msgid "Save &As..."
-msgstr "Salvează &ca..."
+msgid "Save &As…"
+msgstr "Salvare &Ca…"
 
-msgid "Compile to MO..."
-msgstr ""
+msgid "Compile to MO…"
+msgstr "Compila pentru MO…"
 
-msgid "E&xport as HTML..."
-msgstr ""
+msgid "E&xport as HTML…"
+msgstr "E&xport ca HTML…"
 
-msgid "Check for updates..."
-msgstr ""
+msgid "Check for updates…"
+msgstr "Verifica actualizări…"
 
-msgid "&Preferences..."
-msgstr "&Preferințe..."
+msgid "&Preferences…"
+msgstr "&Preferințe…"
 
 msgid "Catalogs &manager"
 msgstr "Administrator &cataloage"
@@ -1417,16 +1557,16 @@ msgid "Quit"
 msgstr "Termină"
 
 msgid "Copy from singular"
-msgstr ""
+msgstr "Copie la singular"
 
 msgid "Copy From Singular"
-msgstr ""
+msgstr "Copie la singular"
 
-msgid "Translation is &fuzzy"
-msgstr "Traducerea este &aproximativă"
+msgid "Translation needs &work"
+msgstr "Traducere necesita &muncă"
 
-msgid "Translation Is &Fuzzy"
-msgstr "Traducerea este &aproximativă"
+msgid "Translation Needs &Work"
+msgstr "Traducere necesita &muncă"
 
 msgid "Edit &comment"
 msgstr "Editare &comentariu"
@@ -1435,43 +1575,43 @@ msgid "Edit &Comment"
 msgstr "Editare &comentariu"
 
 msgid "Suggestions"
-msgstr ""
+msgstr "Sugestii"
 
-msgid "&Show references"
-msgstr "&Arată referințe"
+msgid "&Find…"
+msgstr "&Găsește…"
 
-msgid "&Show References"
-msgstr "&Arată referințe"
-
-msgid "&Find..."
-msgstr "&Găsește..."
-
-msgid "Replace..."
-msgstr ""
+msgid "Replace…"
+msgstr "Înlocuiește…"
 
 msgid "Find next"
-msgstr ""
+msgstr "Găsește următorul"
 
 msgid "Find previous"
-msgstr ""
+msgstr "Găsește anterior"
 
-msgid "Find and Replace..."
-msgstr ""
+msgid "Find and Replace…"
+msgstr "Caută și Înlocuiește…"
 
 msgid "Find Next"
-msgstr ""
+msgstr "Găsește următorul"
 
 msgid "Find Previous"
-msgstr ""
+msgstr "Găsește anteriorul"
 
 msgid "&Preferences"
 msgstr "&Preferințe"
 
-msgid "Display entry &IDs"
-msgstr ""
+msgid "Show string &ID"
+msgstr "Arată şir & ID"
 
-msgid "Display Entry &IDs"
-msgstr ""
+msgid "Show String &ID"
+msgstr "Arată şir & ID"
+
+msgid "Show warnings"
+msgstr "Arată avertismente"
+
+msgid "Show Warnings"
+msgstr "Arată avertismente"
 
 msgid "Sort by &file order"
 msgstr "Sortează după &ordine fișier"
@@ -1492,16 +1632,16 @@ msgid "Sort by &Translation"
 msgstr "Sortează după &traducere"
 
 msgid "&Group by context"
-msgstr ""
+msgstr "&Grupează după context"
 
 msgid "&Group By Context"
-msgstr ""
+msgstr "&Grupează după context"
 
 msgid "Entries with errors first"
-msgstr ""
+msgstr "Mai întâi intrările cu erori"
 
 msgid "Entries with Errors First"
-msgstr ""
+msgstr "Mai întâi intrările cu erori"
 
 msgid "&Untranslated entries first"
 msgstr "&Întâi intrările netraduse"
@@ -1509,35 +1649,38 @@ msgstr "&Întâi intrările netraduse"
 msgid "&Untranslated Entries First"
 msgstr "&Întâi intrările netraduse"
 
+msgid "&Show references"
+msgstr "&Arată referințe"
+
+msgid "&Show References"
+msgstr "&Arată referințe"
+
 msgid "Show sidebar"
-msgstr ""
+msgstr "Arată bara laterală"
 
 msgid "Show status bar"
-msgstr ""
+msgstr "Arată bara de stare"
 
 msgid "C&atalog"
 msgstr "C&atalog"
 
-msgid "&Update from sources"
+msgid "&Update from source code"
 msgstr "&Actualizare din surse"
 
-msgid "&Update from Sources"
-msgstr "&Actualizare din surse"
+msgid "&Update from Source Code"
+msgstr "&Update de la codul sursă"
 
-msgid "Update from &POT file..."
-msgstr "Actualizează din fișier &POT..."
+msgid "Update from &POT file…"
+msgstr "Actualizează din fișier &POT…"
 
-msgid "Update from &POT File..."
-msgstr "Actualizează din fișier &POT..."
+msgid "Update from &POT File…"
+msgstr "Actualizează din Fișier &POT…"
 
 msgid "Sync with Crowdin"
-msgstr ""
+msgstr "Sincronizare cu Crowdin"
 
-msgid "Fill missing translations from &TM..."
-msgstr ""
-
-msgid "Fill Missing Translations from &TM..."
-msgstr ""
+msgid "Pre-&translate…"
+msgstr "Pre-&traduce…"
 
 msgid "&Purge deleted translations"
 msgstr "&Curăță traducerile șterse"
@@ -1551,8 +1694,8 @@ msgstr "&Validează traducerile"
 msgid "&Validate Translations"
 msgstr "&Validează traducerile"
 
-msgid "&Properties..."
-msgstr "&Propietăți..."
+msgid "&Properties…"
+msgstr "&Proprietăți…"
 
 msgid "&Done and next"
 msgstr "&Gata și următorul"
@@ -1561,16 +1704,16 @@ msgid "&Done and Next"
 msgstr "&Gata și următorul"
 
 msgid "&Previous translation"
-msgstr ""
+msgstr "&Traducerea anterioară"
 
 msgid "&Previous Translation"
-msgstr ""
+msgstr "&Traducerea anterioară"
 
 msgid "&Next translation"
-msgstr ""
+msgstr "&Următoarea traducere"
 
 msgid "&Next Translation"
-msgstr ""
+msgstr "&Următoarea traducere"
 
 msgid "P&revious unfinished"
 msgstr "Anteriorul neterminat"
@@ -1585,16 +1728,16 @@ msgid "Ne&xt Unfinished"
 msgstr "Următorul neterminat"
 
 msgid "Previous plural form"
-msgstr ""
+msgstr "Forma de plural anterioara"
 
 msgid "Previous Plural Form"
-msgstr ""
+msgstr "Forma de plural anterioara"
 
 msgid "Next plural form"
-msgstr ""
+msgstr "Forma de plural viitoare"
 
 msgid "Next Plural Form"
-msgstr ""
+msgstr "Forma de plural viitoare"
 
 msgid "&Online help"
 msgstr "&Ajutor online"
@@ -1603,10 +1746,10 @@ msgid "&Online Help"
 msgstr "&Ajutor online"
 
 msgid "&GNU gettext manual"
-msgstr ""
+msgstr "Documentație &GNU gettext"
 
 msgid "&GNU gettext Manual"
-msgstr ""
+msgstr "Documentație &GNU gettext"
 
 msgid "&About Poedit"
 msgstr "&Despre Poedit"
@@ -1615,7 +1758,7 @@ msgid "&About"
 msgstr "&Despre"
 
 msgid "Extractor setup"
-msgstr ""
+msgstr "Configurare extractor"
 
 msgid "List of extensions separated by semicolons (e.g. *.cpp;*.h):"
 msgstr "Lista de extensii separate cu punct și virgulă (ex. *.cpp;*.h):"
@@ -1624,7 +1767,7 @@ msgid "Invocation:"
 msgstr "Invocare:"
 
 msgid "Command to extract translations:"
-msgstr ""
+msgstr "Comanda de extras traduceri:"
 
 msgid ""
 "This is the command used to launch the extractor.\n"
@@ -1632,6 +1775,10 @@ msgid ""
 "of keywords, %F to list of input files,\n"
 "%C to charset flag (see below)."
 msgstr ""
+"Aceasta este comanda folosită pentru a lansa extractorul.\n"
+"%o se extinde la numele fișierului de ieșire, %K la lista\n"
+"de cuvinte-cheie, %F la lista de fișiere de intrare,\n"
+"%C la setul de caractere (vezi mai jos)."
 
 msgid "An item in keywords list:"
 msgstr "Un element în lista de cuvinte-cheie:"
@@ -1672,14 +1819,17 @@ msgstr "Propietăți catalog"
 msgid "Project name and version:"
 msgstr "Nume și versiune proiect:"
 
-msgid "Plural Forms:"
-msgstr "Forme plural:"
+msgid "Language team:"
+msgstr "Echipa de traducere:"
+
+msgid "Plural forms:"
+msgstr "Forme de plural:"
 
 msgid "Use default rules for this language"
-msgstr ""
+msgstr "Utilizaţi regulile implicit pentru această limbă"
 
 msgid "Use custom expression"
-msgstr ""
+msgstr "Utilizarea expresiei personalizate"
 
 msgid "Learn about plural forms"
 msgstr "Învățați despre formele de plural"
@@ -1687,14 +1837,20 @@ msgstr "Învățați despre formele de plural"
 msgid "Charset:"
 msgstr "Set de caractere:"
 
-msgid "Team:"
-msgstr "Echipa:"
+msgid "Advanced Extraction Settings…"
+msgstr "Setări Avansate de Extragere…"
 
-msgid "Team's email address:"
-msgstr "Adresa de E-mail a echipei:"
+msgid "Advanced extraction settings…"
+msgstr "Setări avansate de extragere…"
+
+msgid "Translation Properties"
+msgstr "Proprietăți traducere"
 
 msgid "Translation properties"
-msgstr ""
+msgstr "Proprietăți traducere"
+
+msgid "Sources Paths"
+msgstr "Căile Surselor"
 
 msgid "Sources paths"
 msgstr "Căile surselor"
@@ -1704,6 +1860,9 @@ msgstr "Extrage textul din fișierele sursă în următoarele directoare:"
 
 msgid "Base path:"
 msgstr "Cale de bază:"
+
+msgid "Sources Keywords"
+msgstr "Sursele cuvintelor cheie"
 
 msgid "Sources keywords"
 msgstr "Surse cuvinte-cheie"
@@ -1716,8 +1875,14 @@ msgstr ""
 "șirurile traductibile\n"
 "în fișiere sursă:"
 
+msgid "Also use default keywords for supported languages"
+msgstr "Utiliza cuvinte cheie implicite pentru limbile suportate"
+
+msgid "Learn About Gettext Keywords"
+msgstr "Învățați despre cuvintele cheie gettext"
+
 msgid "Learn about gettext keywords"
-msgstr ""
+msgstr "Învățați despre cuvintele cheie gettext"
 
 msgid "Update summary"
 msgstr "Actualizare rezumat"
@@ -1755,154 +1920,344 @@ msgid "Validate"
 msgstr "Validează"
 
 msgid "Check for errors in the translation"
-msgstr "Verificați după erori în traducere"
+msgstr "Căutați erori în traducere"
 
-msgid "Update"
-msgstr "Actualizare"
+msgid "Update from code"
+msgstr "Actualizare din surse"
+
+msgid "Update from Code"
+msgstr "Actualizare din surse"
 
 msgid "Update catalog - synchronize it with sources"
 msgstr "Actualizare catalog - sincronizează-l cu sursele"
 
-msgid "Toggled if selected string has fuzzy translation"
-msgstr "Comută starea traducerii șirului selectat între aproximativă și exactă"
+msgid "Sidebar"
+msgstr "Bară laterală"
 
 msgid "Show or hide the sidebar"
-msgstr ""
+msgstr "Afișați sau ascundeți bara laterală"
 
 #. TRANSLATORS: "Previous" as in used in the past, now replaced with newer.
 msgid "Previous source text:"
-msgstr ""
+msgstr "Textul sursă anterior:"
 
 msgid ""
-"The old source text (before it changed during an update) that the fuzzy "
-"translation corresponds to."
+"The old source text (before it changed during an update) that the now-"
+"inaccurate translation corresponds to."
 msgstr ""
+"Vechiul text sursă (înainte de a fi schimbat în timpul unei actualizări) "
+"care acum corespunde unei traduceri inexacte."
 
 msgid "Notes for translators:"
 msgstr "Note pentru traducători:"
 
 msgid "Add comment"
-msgstr ""
+msgstr "Adaugă comentariu"
 
 msgid "Add Comment"
-msgstr ""
+msgstr "Adaugă comentariu"
+
+msgid "Delete From Translation Memory"
+msgstr "Şterge din memorie de traducere"
+
+msgid "Delete from translation memory"
+msgstr "Şterge din memorie de traducere"
 
 msgid "Translation suggestions:"
-msgstr ""
+msgstr "Sugestii traducere:"
 
 #. TRANSLATORS: This is shown when no translation suggestions can be found in the TM (Windows).
 msgid "No matches found"
-msgstr ""
+msgstr "Nici o potrivire găsită"
 
-#. TRANSLATORS: This is shown when no translation suggestions can be found in the TM (OS X, Linux).
+#. TRANSLATORS: This is shown when no translation suggestions can be found in the TM (macOS, Linux).
 msgid "No Matches Found"
-msgstr ""
+msgstr "Nici o potrivire găsită"
 
 msgid "This string was found in Poedit’s translation memory."
-msgstr ""
+msgstr "Acest şir s-a găsit în memoria de traducere Poedit."
+
+msgid "The TMX file is malformed."
+msgstr "Fişierului TMX are un format incorect."
+
+msgid "No translations were found in the TMX file."
+msgstr "Traducerile nu au fost găsite în fişierul TMX."
 
 #, c-format
-msgid "(New: %i, obsolete: %i)"
-msgstr ""
+msgid "Translation memory database is corrupted: %s (%d)."
+msgstr "Memoria bazei de date a traducerilor este deteriorată: %s (%d)."
 
 #, c-format
-msgid "Importing translations: %d"
-msgstr ""
-
-msgid "Poedit Update"
-msgstr ""
-
-msgid "Preparing migration..."
-msgstr ""
-
-#, c-format
-msgid "Migration exit status: %d"
-msgstr ""
-
-msgid "Poedit needs to convert your translation memory to a new format."
-msgstr ""
-
-msgid ""
-"This must be done before Poedit can start. It may take a few minutes if you "
-"have lots of translations stored, but should normally be much faster."
-msgstr ""
-
-msgid "Proceed"
-msgstr "Continuă"
-
-msgid "Translation memory migration failed."
-msgstr ""
-
-#, c-format
-msgid ""
-"Your translation memory data couldn't be migrated. The error was:\n"
-"\n"
-"%s\n"
-"Please email help@poedit.net and we’ll get it fixed."
-msgstr ""
+msgid "Translation memory error: %s (%d)."
+msgstr "Eroare de memorie traducere: %s (%d)."
 
 msgid "Cannot create temporary directory."
 msgstr "Nu se poate crea directorul temporar."
 
 msgid "Welcome to Poedit"
-msgstr ""
+msgstr "Bine ai venit la Poedit"
+
+#. TRANSLATORS: This is version information in about dialog, "%s" will be
+#. version number when used
+#, c-format
+msgid "Version %s"
+msgstr "Versiunea %s"
+
+msgid "Edit a Translation"
+msgstr "Editează o traducere"
 
 msgid "Edit a translation"
-msgstr ""
+msgstr "Editează o traducere"
 
 msgid "Open an existing PO file and edit the translation."
-msgstr ""
+msgstr "Deschide un fişier existent PO şi editează traducerea."
 
 msgid ""
 "Take an existing PO file or POT template and create a new translation from "
 "it."
 msgstr ""
+"Ia un fișier existent PO sau șablon POT și crează o nouă traducere din el."
 
-msgid "Collaborate on a translation with Crowdin"
-msgstr ""
+msgid "Collaborate on a Translation with Others"
+msgstr "Colaborează la o traducere cu alții"
+
+msgid "Collaborate on a translation with others"
+msgstr "Colaborează la o traducere cu alții"
 
 msgid ""
 "Download a file from Crowdin project, translate and sync your changes back."
 msgstr ""
+"Descarcă un fișier din proiectul Crowdin, tradu și sincronizează schimbările "
+"efectuate."
 
 msgid "What is Crowdin?"
-msgstr ""
+msgstr "Ce este Crowdin?"
 
 msgid "There are no translations. That’s unusual."
-msgstr ""
+msgstr "Nu există traduceri. Este neobișnuit."
 
 msgid ""
-"Translatable entries aren't added manually in the Gettext system, but are "
+"Translatable entries aren’t added manually in the Gettext system, but are "
 "automatically extracted\n"
 "from source code. This way, they stay up to date and accurate.\n"
 "Translators typically use PO template files (POTs) prepared for them by the "
 "developer."
 msgstr ""
+"Înregistrările traductibile nu sunt adăugate manual în sistemul gettext, ci "
+"sunt extrase în mod automat\n"
+"din codul sursă. În acest mod, acestea rămân actualizate și exacte.\n"
+"Traducătorii folosesc de regulă fișiere șablon PO (POT-uri), pregătite "
+"pentru acest scop de către dezvoltator."
 
 msgid "(Learn more about GNU gettext)"
-msgstr ""
+msgstr "(Afla mai multe despre GNU gettext)"
 
 msgid "The simplest way to fill this catalog is to update it from a POT:"
 msgstr ""
+"Cel mai simplu mod pentru a umple acest catalog este de al actualiza dintr-"
+"un fișier POT:"
 
 msgid "Update from POT"
-msgstr ""
+msgstr "Actualizare din POT"
 
 msgid "Take translatable strings from an existing POT template."
-msgstr ""
+msgstr "Ia șirurile traductibile de pe un șablon POT existent."
 
 msgid ""
 "You can also extract translatable strings directly from the source code:"
-msgstr ""
+msgstr "De asemenea, poți extrage șiruri traductibile direct din codul sursă:"
 
 msgid "Extract from sources"
-msgstr ""
+msgstr "Extrage din surse"
 
 msgid "Configure source code extraction in Properties."
-msgstr ""
+msgstr "Configurează extragerea codului sursa în Proprietăți."
 
 msgid "Sync"
-msgstr ""
+msgstr "Sincronizare"
 
 msgid "Synchronize the translation with Crowdin"
-msgstr ""
+msgstr "Sincronizare traducere cu Crowdin"
+
+#. TRANSLATORS: This is titlebar of about dialog, "%s" is application name
+#. ("Poedit" here, but please use "%s")
+#, c-format
+msgid "About %s"
+msgstr "Despre %s"
+
+#. TRANSLATORS: Title of the preferences window on Windows and Linux. "%s" is replaced with "Poedit" when running.
+#, c-format
+msgid "%s Preferences"
+msgstr "%s Preferințe"
+
+#. TRANSLATORS: macOS item in app menu
+msgid "Services"
+msgstr "Servicii"
+
+#. TRANSLATORS: macOS item in app menu, %s is replaced with "Poedit"
+#, c-format
+msgid "Hide %s"
+msgstr "Ascunde %s"
+
+#. TRANSLATORS: macOS item in app menu
+msgid "Hide Others"
+msgstr "Ascunde altele"
+
+#. TRANSLATORS: macOS item in app menu
+msgid "Show All"
+msgstr "Arată tot"
+
+#. TRANSLATORS: macOS item in app menu, %s is replaced with "Poedit"
+#, c-format
+msgid "Quit %s"
+msgstr "Renunță %s"
+
+#. TRANSLATORS: macOS item in app menu
+msgid "Preferences…"
+msgstr "Preferințe…"
+
+msgid "Preferences..."
+msgstr "Preferințe..."
+
+#. TRANSLATORS: Title of a category in Windows task menu (right-click icon in taskbar)
+msgid "Recent"
+msgstr "Recent"
+
+#. TRANSLATORS: Title of a category in Windows task menu (right-click icon in taskbar)
+msgid "Frequent"
+msgstr "Frecvent"
+
+msgid "&Apply"
+msgstr "&Aplică"
+
+msgid "Apply"
+msgstr "Aplică"
+
+msgid "&Back"
+msgstr "&Înapoi"
+
+msgid "Back"
+msgstr "Înapoi"
+
+msgid "&Cancel"
+msgstr "&Anulează"
+
+msgid "&Clear"
+msgstr "&Curăță"
+
+msgid "Clear"
+msgstr "Curăță"
+
+msgid "Copy"
+msgstr "Copiaţi"
+
+msgid "Cu&t"
+msgstr "&Decupează"
+
+msgid "Cut"
+msgstr "Decupează"
+
+msgid "&Delete"
+msgstr "&Șterge"
+
+msgid "&Quit"
+msgstr "&Renunță"
+
+msgid "File"
+msgstr "Fișier"
+
+msgid "Help"
+msgstr "Ajutor"
+
+msgid "&New"
+msgstr "&Nou"
+
+msgid "&No"
+msgstr "&No"
+
+msgid "No"
+msgstr "Nu"
+
+msgid "&OK"
+msgstr "&OK"
+
+msgid "Open…"
+msgstr "Deschide…"
+
+msgid "&Open..."
+msgstr "&Deschide..."
+
+msgid "Open..."
+msgstr "Deschide..."
+
+msgid "&Paste"
+msgstr "&Lipește"
+
+msgid "Paste"
+msgstr "Lipire / adăugare"
+
+msgid "Preferences"
+msgstr "Preferințe"
+
+msgid "&Redo"
+msgstr "&Refacere"
+
+msgid "Refresh"
+msgstr "Reîmprospătare"
+
+msgid "&Save as"
+msgstr "&Salvare ca"
+
+msgid "Save as"
+msgstr "Salvează ca"
+
+msgid "Select &All"
+msgstr "Selectează &Tot"
+
+msgid "Select All"
+msgstr "Selectează tot"
+
+msgid "&Undo"
+msgstr "&Înapoi"
+
+msgid "&Yes"
+msgstr "&Da"
+
+msgid "Yes"
+msgstr "Da"
+
+#. TRANSLATORS: Keyboard shortcut for display in Windows menus
+msgid "Shift+"
+msgstr "Shift+"
+
+#. TRANSLATORS: Keyboard shortcut for display in Windows menus
+msgid "Enter"
+msgstr "Enter"
+
+#. TRANSLATORS: Keyboard shortcut for display in Windows menus
+msgid "Up"
+msgstr "Sus"
+
+#. TRANSLATORS: Keyboard shortcut for display in Windows menus
+msgid "Down"
+msgstr "Jos"
+
+#. TRANSLATORS: Keyboard shortcut for display in Windows menus
+msgid "Left"
+msgstr "Stânga"
+
+#. TRANSLATORS: Keyboard shortcut for display in Windows menus
+msgid "Right"
+msgstr "Dreapta"
+
+#. TRANSLATORS: Keyboard shortcut, must correspond to translation of "Ctrl+"
+msgid "ctrl"
+msgstr "ctrl"
+
+#. TRANSLATORS: Keyboard shortcut, must correspond to translation of "Alt+"
+msgid "alt"
+msgstr "alt"
+
+#. TRANSLATORS: Keyboard shortcut, must correspond to translation of "Shift+"
+msgid "shift"
+msgstr "shift"

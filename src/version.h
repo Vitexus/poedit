@@ -1,7 +1,7 @@
 /*
  *  This file is part of Poedit (https://poedit.net)
  *
- *  Copyright (C) 2010-2016 Vaclav Slavik
+ *  Copyright (C) 2010-2019 Vaclav Slavik
  *
  *  Permission is hereby granted, free of charge, to any person obtaining a
  *  copy of this software and associated documentation files (the "Software"),
@@ -23,10 +23,10 @@
  *
  */
 
-#ifndef _VERSION_H_
-#define _VERSION_H_
+#ifndef Poedit_version_h
+#define Poedit_version_h
 
-#define POEDIT_VERSION           "2.0beta1"
-#define POEDIT_VERSION_WIN        2,0,0
+#define POEDIT_VERSION           "2.2.1"
+#define POEDIT_VERSION_WIN        2,2,1
 
-#endif // _VERSION_H_
+#endif // Poedit_version_h

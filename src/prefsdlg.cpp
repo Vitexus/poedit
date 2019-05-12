@@ -1,7 +1,7 @@
-﻿/*
+/*
  *  This file is part of Poedit (https://poedit.net)
  *
- *  Copyright (C) 2000-2016 Vaclav Slavik
+ *  Copyright (C) 2000-2019 Vaclav Slavik
  *
  *  Permission is hereby granted, free of charge, to any person obtaining a
  *  copy of this software and associated documentation files (the "Software"),
@@ -23,6 +23,9 @@
  *
  */
 
+#include "prefsdlg.h"
+
+#include <fstream>
 #include <memory>
 
 #include <wx/editlbox.h>
@@ -53,16 +56,17 @@
     #define CenterVertical() Center()
 #endif
 
-#include "prefsdlg.h"
 #include "edapp.h"
 #include "edframe.h"
 #include "catalog.h"
+#include "configuration.h"
 #include "crowdin_gui.h"
 #include "hidpi.h"
 #include "tm/transmem.h"
+#include "tm/tmx_io.h"
 #include "chooselang.h"
 #include "errors.h"
-#include "extractor.h"
+#include "extractors/extractor_legacy.h"
 #include "spellchecking.h"
 #include "utility.h"
 #include "customcontrols.h"
@@ -73,7 +77,7 @@
 #endif
 
 #ifdef USE_SPARKLE
-#include "osx_helpers.h"
+#include "macos_helpers.h"
 #endif // USE_SPARKLE
 
 #if defined(USE_SPARKLE) || defined(__WXMSW__)
@@ -169,12 +173,12 @@ public:
         sizer->Add(translator, wxSizerFlags().Expand());
 
         auto nameLabel = new wxStaticText(this, wxID_ANY, _("Name:"));
-        translator->Add(nameLabel, wxSizerFlags().CenterVertical().Right().BORDER_OSX(wxTOP, 1));
+        translator->Add(nameLabel, wxSizerFlags().CenterVertical().Right().BORDER_MACOS(wxTOP, 1));
         m_userName = new wxTextCtrl(this, wxID_ANY);
         m_userName->SetHint(_("Your Name"));
         translator->Add(m_userName, wxSizerFlags(1).Expand().CenterVertical());
         auto emailLabel = new wxStaticText(this, wxID_ANY, _("Email:"));
-        translator->Add(emailLabel, wxSizerFlags().CenterVertical().Right().BORDER_OSX(wxTOP, 1));
+        translator->Add(emailLabel, wxSizerFlags().CenterVertical().Right().BORDER_MACOS(wxTOP, 1));
         m_userEmail = new wxTextCtrl(this, wxID_ANY);
         m_userEmail->SetHint(_("your_email@example.com"));
         translator->Add(m_userEmail, wxSizerFlags(1).Expand().CenterVertical());
@@ -345,7 +349,7 @@ private:
 class GeneralPage : public wxPreferencesPage
 {
 public:
-    wxString GetName() const override { return PXNotebookTab(_("General")); }
+    wxString GetName() const override { return _("General"); }
     wxBitmap GetLargeIcon() const override { return wxArtProvider::GetBitmap("Prefs-General"); }
     wxWindow *CreateWindow(wxWindow *parent) override { return new GeneralPageWindow(parent); }
 };
@@ -359,7 +363,7 @@ public:
     {
         wxSizer *topsizer = new wxBoxSizer(wxVERTICAL);
 #ifdef __WXOSX__
-        topsizer->SetMinSize(PX(430), -1); // for OS X look
+        topsizer->SetMinSize(PX(430), -1); // for macOS look
 #endif
 
         wxSizer *sizer = new wxBoxSizer(wxVERTICAL);
@@ -377,65 +381,81 @@ public:
 
         auto buttonsSizer = new wxBoxSizer(wxHORIZONTAL);
 
-        auto import = new wxButton(this, wxID_ANY,
-                                   MSW_OR_OTHER(_("Learn from files..."), _("Learn From Files...")));
-        buttonsSizer->Add(import, wxSizerFlags());
-        // TRANSLATORS: This is a button that deletes everything in the translation memory (i.e. clears/resets it).
-        auto clear = new wxButton(this, wxID_ANY, _("Reset"));
-        buttonsSizer->Add(clear, wxSizerFlags().Border(wxLEFT, 5));
+        auto manage = new wxButton(this, wxID_ANY, _(L"Manage…"));
+        buttonsSizer->Add(manage, wxSizerFlags());
 
         sizer->Add(buttonsSizer, wxSizerFlags().Expand().Border(wxLEFT|wxRIGHT, PX(30)));
         sizer->AddSpacer(PX(10));
 
-        m_useTMWhenUpdating = new wxCheckBox(this, wxID_ANY, _("Consult TM when updating from sources"));
-        sizer->Add(m_useTMWhenUpdating, wxSizerFlags().Expand().PXBorder(wxTOP|wxBOTTOM));
+        // TRANSLATORS: Followed by "match translations within the file" or "pre-translate from TM"
+        m_mergeUse = new wxCheckBox(this, wxID_ANY, _("When updating from sources"));
+        wxString mergeValues[] = {
+            // TRANSLATORS: Preceded by "When updating from sources"
+            _("fuzzy match within the file"),
+            // TRANSLATORS: Preceded by "When updating from sources"
+            _("pre-translate from TM")
+        };
+        m_mergeBehavior = new wxChoice(this, wxID_ANY, wxDefaultPosition, wxDefaultSize, WXSIZEOF(mergeValues), mergeValues);
 
-        auto explainTxt = _("If enabled, Poedit will try to fill in new entries using your previous\n"
-                            "translations stored in the translation memory. If the TM is\n"
-                            "near-empty, it will not be very effective. The more translations\n"
-                            "you edit and the larger the TM grows, the better it gets.");
+        auto mergeSizer = new wxBoxSizer(wxHORIZONTAL);
+        mergeSizer->Add(m_mergeUse, wxSizerFlags().Center());
+        mergeSizer->AddSpacer(PX(5));
+        mergeSizer->Add(m_mergeBehavior, wxSizerFlags().Center().BORDER_MACOS(wxTOP, PX(1)).BORDER_WIN(wxBOTTOM, 1));
+        sizer->Add(mergeSizer, wxSizerFlags().PXBorder(wxTOP|wxBOTTOM));
+
+        auto explainTxt = _(L"Poedit can attempt to fill in new entries from only previous translations in "
+                            L"the file or from your entire translation memory. Using the TM won’t be very effective if "
+                            L"it’s near-empty, but it will get better as you add more translations to it.");
         auto explain = new ExplanationLabel(this, explainTxt);
         sizer->Add(explain, wxSizerFlags().Expand().Border(wxLEFT, PX(ExplanationLabel::CHECKBOX_INDENT)));
 
         auto learnMore = new LearnMoreLink(this, "https://poedit.net/trac/wiki/Doc/TranslationMemory");
-        sizer->AddSpacer(PX(5));
+        sizer->AddSpacer(PX(3));
         sizer->Add(learnMore, wxSizerFlags().Border(wxLEFT, PX(ExplanationLabel::CHECKBOX_INDENT + LearnMoreLink::EXTRA_INDENT)));
         sizer->AddSpacer(PX(10));
 
 #ifdef __WXOSX__
         m_stats->SetWindowVariant(wxWINDOW_VARIANT_SMALL);
-        import->SetWindowVariant(wxWINDOW_VARIANT_SMALL);
-        clear->SetWindowVariant(wxWINDOW_VARIANT_SMALL);
+        manage->SetWindowVariant(wxWINDOW_VARIANT_SMALL);
 #endif
 
-        m_useTMWhenUpdating->Bind(wxEVT_UPDATE_UI, &TMPageWindow::OnUpdateUI, this);
-        m_stats->Bind(wxEVT_UPDATE_UI, &TMPageWindow::OnUpdateUI, this);
-        import->Bind(wxEVT_UPDATE_UI, &TMPageWindow::OnUpdateUI, this);
-        clear->Bind(wxEVT_UPDATE_UI, &TMPageWindow::OnUpdateUI, this);
+        m_mergeBehavior->Bind(wxEVT_UPDATE_UI, [=](wxUpdateUIEvent& e){ e.Enable(m_mergeUse->GetValue() == true); });
 
-        import->Bind(wxEVT_BUTTON, &TMPageWindow::OnImportIntoTM, this);
-        clear->Bind(wxEVT_BUTTON, &TMPageWindow::OnResetTM, this);
+        m_stats->Bind(wxEVT_UPDATE_UI, &TMPageWindow::OnUpdateUI, this);
+        manage->Bind(wxEVT_UPDATE_UI, &TMPageWindow::OnUpdateUI, this);
+
+        manage->Bind(wxEVT_BUTTON, &TMPageWindow::OnManageTM, this);
 
         UpdateStats();
 
         if (wxPreferencesEditor::ShouldApplyChangesImmediately())
         {
-            m_useTMWhenUpdating->Bind(wxEVT_CHECKBOX, [=](wxCommandEvent&){ TransferDataFromWindow(); });
+            m_mergeUse->Bind(wxEVT_CHECKBOX, [=](wxCommandEvent&){ TransferDataFromWindow(); });
+            m_mergeBehavior->Bind(wxEVT_CHOICE, [=](wxCommandEvent&){ TransferDataFromWindow(); });
             // Some settings directly affect the UI, so need a more expensive handler:
             m_useTM->Bind(wxEVT_CHECKBOX, &TMPageWindow::TransferDataFromWindowAndUpdateUI, this);
         }
     }
 
-    void InitValues(const wxConfigBase& cfg) override
+    void InitValues(const wxConfigBase&) override
     {
-        m_useTM->SetValue(cfg.ReadBool("use_tm", true));
-        m_useTMWhenUpdating->SetValue(cfg.ReadBool("use_tm_when_updating", false));
+        m_useTM->SetValue(Config::UseTM());
+        auto merge = Config::MergeBehavior();
+        m_mergeUse->SetValue(merge != Merge_None);
+        m_mergeBehavior->SetSelection(merge == Merge_UseTM ? 1 : 0);
     }
 
-    void SaveValues(wxConfigBase& cfg) override
+    void SaveValues(wxConfigBase&) override
     {
-        cfg.Write("use_tm", m_useTM->GetValue());
-        cfg.Write("use_tm_when_updating", m_useTMWhenUpdating->GetValue());
+        Config::UseTM(m_useTM->GetValue());
+        if (m_mergeUse->GetValue() == true)
+        {
+            Config::MergeBehavior(m_mergeBehavior->GetSelection() == 1 ? Merge_UseTM : Merge_FuzzyMatch);
+        }
+        else
+        {
+            Config::MergeBehavior(Merge_None);
+        }
     }
 
 private:
@@ -443,7 +463,7 @@ private:
     {
         wxString sDocs("--");
         wxString sFileSize("--");
-        if (wxConfig::Get()->ReadBool("use_tm", true))
+        if (Config::UseTM())
         {
             try
             {
@@ -465,6 +485,38 @@ private:
         ));
     }
 
+    void OnManageTM(wxCommandEvent& e)
+    {
+        static const auto idLearn = wxNewId();
+        static const auto idImportTMX = wxNewId();
+        static const auto idExportTMX = wxNewId();
+        static const auto idReset = wxNewId();
+
+        wxMenu *menu = new wxMenu();
+#ifdef __WXOSX__
+        [menu->GetHMenu() setFont:[NSFont systemFontOfSize:13]];
+#endif
+        menu->Append(idLearn, MSW_OR_OTHER(_(L"Import translation files…"), _(L"Import Translation Files…")));
+        menu->AppendSeparator();
+        menu->Append(idImportTMX, MSW_OR_OTHER(_(L"Import from TMX…"), _(L"Import From TMX…")));
+        menu->Append(idExportTMX, MSW_OR_OTHER(_(L"Export to TMX…"), _(L"Export To TMX…")));
+        menu->AppendSeparator();
+        // TRANSLATORS: This is a button that deletes everything in the translation memory (i.e. clears/resets it).
+        menu->Append(idReset, _("Reset"));
+
+        menu->Bind(wxEVT_MENU, &TMPageWindow::OnImportIntoTM, this, idLearn);
+        menu->Bind(wxEVT_MENU, &TMPageWindow::OnImportTMX, this, idImportTMX);
+        menu->Bind(wxEVT_MENU, &TMPageWindow::OnExportTMX, this, idExportTMX);
+        menu->Bind(wxEVT_MENU, &TMPageWindow::OnResetTM, this, idReset);
+
+        auto win = dynamic_cast<wxButton*>(e.GetEventObject());
+#ifdef __WXOSX__
+        win->PopupMenu(menu, 5, 26);
+#else
+        win->PopupMenu(menu, 0, win->GetSize().y);
+#endif
+    }
+
     void OnImportIntoTM(wxCommandEvent&)
     {
         wxWindowPtr<wxFileDialog> dlg(new wxFileDialog(
@@ -472,8 +524,8 @@ private:
             _("Select translation files to import"),
             wxEmptyString,
             wxEmptyString,
-			Catalog::GetTypesFileMask({Catalog::Type::PO}),
-			wxFD_OPEN | wxFD_FILE_MUST_EXIST | wxFD_MULTIPLE));
+            Catalog::GetAllTypesFileMask(),
+            wxFD_OPEN | wxFD_FILE_MUST_EXIST | wxFD_MULTIPLE));
 
         dlg->ShowWindowModalThenDo([=](int retcode){
             if (retcode != wxID_OK)
@@ -483,7 +535,7 @@ private:
             dlg->GetPaths(paths);
 
             wxProgressDialog progress(_("Translation Memory"),
-                                      _("Importing translations..."),
+                                      _(L"Importing translations…"),
                                       (int)paths.size() * 2 + 1,
                                       this,
                                       wxPD_APP_MODAL|wxPD_AUTO_HIDE|wxPD_CAN_ABORT);
@@ -491,17 +543,118 @@ private:
             int step = 0;
             for (size_t i = 0; i < paths.size(); i++)
             {
-                CatalogPtr cat = std::make_shared<Catalog>(paths[i]);
+                auto cat = Catalog::Create(paths[i]);
                 if (!progress.Update(++step))
                     break;
-                if (cat->IsOk())
+                if (cat && cat->IsOk())
                     tm->Insert(cat);
                 if (!progress.Update(++step))
                     break;
             }
-            progress.Pulse(_("Finalizing..."));
+            progress.Pulse(_(L"Finalizing…"));
             tm->Commit();
             UpdateStats();
+        });
+    }
+
+    void OnImportTMX(wxCommandEvent&)
+    {
+        wxWindowPtr<wxFileDialog> dlg(new wxFileDialog
+        (
+            this,
+            MACOS_OR_OTHER("", _("Select TMX files to import")),
+            "",
+            "",
+            MaskForType("*.tmx", _("TMX Files")),
+            wxFD_OPEN | wxFD_FILE_MUST_EXIST | wxFD_MULTIPLE)
+        );
+
+        dlg->ShowWindowModalThenDo([=](int retcode){
+            if (retcode != wxID_OK)
+                return;
+
+            wxArrayString paths;
+            dlg->GetPaths(paths);
+
+            wxProgressDialog progress(_("Translation Memory"),
+                                      _(L"Importing translations…"),
+                                      (int)paths.size() + 1,
+                                      this,
+                                      wxPD_APP_MODAL|wxPD_AUTO_HIDE|wxPD_CAN_ABORT);
+            progress.Pulse();
+            for (auto p: paths)
+            {
+                try
+                {
+                    std::ifstream f;
+                    f.open(p.fn_str());
+                    TMX::ImportFromFile(f, TranslationMemory::Get());
+                    f.close();
+
+                    if (!progress.Pulse())
+                        break;
+                }
+                catch (...)
+                {
+                    wxWindowPtr<wxMessageDialog> err(new wxMessageDialog
+                    (
+                            this,
+                            wxString::Format(_(L"Importing translation memory from “%s” failed."), p),
+                            _("Import error"),
+                            wxOK | wxICON_ERROR
+                        ));
+                    err->SetExtendedMessage(DescribeCurrentException());
+                    err->ShowWindowModalThenDo([err](int){});
+                    break;
+                }
+            }
+            UpdateStats();
+        });
+    }
+
+    void OnExportTMX(wxCommandEvent&)
+    {
+        wxWindowPtr<wxFileDialog> dlg(new wxFileDialog
+        (
+            this,
+            MACOS_OR_OTHER("", _(L"Export as…")),
+            "",
+            "",
+            MaskForType("*.tmx", _("TMX Files")),
+            wxFD_SAVE | wxFD_OVERWRITE_PROMPT)
+        );
+
+        dlg->ShowWindowModalThenDo([=](int retcode){
+            if (retcode != wxID_OK)
+                return;
+
+            auto p = dlg->GetPath();
+            wxProgressDialog progress(_("Translation Memory"),
+                                      _(L"Exporting translations…"),
+                                      1,
+                                      this,
+                                      wxPD_APP_MODAL|wxPD_AUTO_HIDE|wxPD_CAN_ABORT);
+            progress.Pulse();
+
+            try
+            {
+                std::ofstream f;
+                f.open(p.fn_str());
+                TMX::ExportToFile(TranslationMemory::Get(), f);
+                f.close();
+            }
+            catch (...)
+            {
+                wxWindowPtr<wxMessageDialog> err(new wxMessageDialog
+                (
+                        this,
+                        wxString::Format(_(L"Exporting translation memory to “%s” failed."), p),
+                        _("Export error"),
+                        wxOK | wxICON_ERROR
+                    ));
+                err->SetExtendedMessage(DescribeCurrentException());
+                err->ShowWindowModalThenDo([err](int){});
+            }
         });
     }
 
@@ -518,9 +671,7 @@ private:
         dlg->ShowWindowModalThenDo([this,dlg](int retcode){
             if (retcode == wxID_YES) {
                 wxBusyCursor bcur;
-                auto tm = TranslationMemory::Get().GetWriter();
-                tm->DeleteAll();
-                tm->Commit();
+                TranslationMemory::Get().DeleteAllAndReset();
                 UpdateStats();
             }
         });
@@ -531,7 +682,9 @@ private:
         e.Enable(m_useTM->GetValue());
     }
 
-    wxCheckBox *m_useTM, *m_useTMWhenUpdating;
+    wxCheckBox *m_useTM;
+    wxCheckBox *m_mergeUse;
+    wxChoice *m_mergeBehavior;
     wxStaticText *m_stats;
 };
 
@@ -541,12 +694,12 @@ public:
     wxString GetName() const override
     {
 #if defined(__WXOSX__) || defined(__WXGTK__)
-        // TRANSLATORS: This is abbreviation of "Translation Memory" used in Preferences on OS X.
+        // TRANSLATORS: This is abbreviation of "Translation Memory" used in Preferences on macOS.
         // Long text looks weird there, too short (like TM) too, but less so. "General" is about ideal
         // length there.
         return _("TM");
 #else
-        return PXNotebookTab(_("Translation Memory"));
+        return _("Translation Memory");
 #endif
     }
     wxBitmap GetLargeIcon() const override { return wxArtProvider::GetBitmap("Prefs-TM"); }
@@ -567,37 +720,102 @@ public:
         SetSizer(topsizer);
 
         sizer->Add(new ExplanationLabel(this, _("Source code extractors are used to find translatable strings in the source code files and extract them so that they can be translated.")),
-                   wxSizerFlags().Expand().PXBorder(wxTOP|wxBOTTOM));
-        sizer->AddSpacer(PX(10));
+                   wxSizerFlags().Expand().PXDoubleBorder(wxBOTTOM));
 
-        auto horizontal = new wxBoxSizer(wxHORIZONTAL);
-        sizer->Add(horizontal, wxSizerFlags(1).Expand());
+        // FIXME: Neither wxBORDER_ flag produces correct results on macOS or Windows, would need to paint manually
+        auto listPanel = new wxPanel(this, wxID_ANY, wxDefaultPosition, wxDefaultSize, wxTAB_TRAVERSAL | MSW_OR_OTHER(wxBORDER_SIMPLE, wxBORDER_SUNKEN));
+#ifdef __WXOSX__
+        // FIXME: In dark mode, listbox color is special and requires NSBox to be rendered correctly
+        if (ColorScheme::GetWindowMode(this) != ColorScheme::Dark)
+#endif
+        {
+            listPanel->SetBackgroundColour(wxSystemSettings::GetColour(wxSYS_COLOUR_LISTBOX));
+        }
+        auto listSizer = new wxBoxSizer(wxVERTICAL);
+        listPanel->SetSizer(listSizer);
 
-        m_list = new wxCheckListBox(this, wxID_ANY);
-        m_list->SetMinSize(wxSize(PX(300),PX(300)));
+        CreateBuiltinExtractorsUI(listPanel, listSizer);
+
+        auto customExLabel = new wxStaticText(listPanel, wxID_ANY, MSW_OR_OTHER(_("Custom extractors:"), _("Custom Extractors:")));
+        customExLabel->SetForegroundColour(ExplanationLabel::GetTextColor());
+#ifdef __WXOSX__
+        customExLabel->SetWindowVariant(wxWINDOW_VARIANT_SMALL);
+#endif
+        customExLabel->SetFont(customExLabel->GetFont().Bold());
+
+        listSizer->AddSpacer(PX(5));
+        listSizer->Add(customExLabel, wxSizerFlags().ReserveSpaceEvenIfHidden().Border(wxLEFT|wxRIGHT, PX(5)));
+        listSizer->AddSpacer(PX(5));
+
+        m_list = new wxCheckListBox(listPanel, wxID_ANY, wxDefaultPosition, wxDefaultSize, 0, nullptr, wxBORDER_NONE);
+        m_list->SetMinSize(wxSize(PX(400),PX(200)));
 #ifdef __WXOSX__
         m_list->SetWindowVariant(wxWINDOW_VARIANT_SMALL);
 #endif
-        horizontal->Add(m_list, wxSizerFlags(1).Expand().PXBorder(wxRIGHT));
+        listSizer->Add(m_list, wxSizerFlags(1).Expand().Border(wxLEFT|wxRIGHT, PX(5)));
 
-        auto buttons = new wxBoxSizer(wxVERTICAL);
-        horizontal->Add(buttons, wxSizerFlags().Expand());
+        sizer->Add(listPanel, wxSizerFlags(1).Expand().BORDER_WIN(wxLEFT, 1));
 
-        m_new = new wxButton(this, wxID_ANY, _("New"));
-        m_edit = new wxButton(this, wxID_ANY, _("Edit"));
-        m_delete = new wxButton(this, wxID_ANY, _("Delete"));
-        buttons->Add(m_new, wxSizerFlags().PXBorder(wxBOTTOM));
-        buttons->Add(m_edit, wxSizerFlags().PXBorder(wxBOTTOM));
-        buttons->Add(m_delete, wxSizerFlags().PXBorder(wxBOTTOM));
+#if defined(__WXOSX__)
+        m_new = new wxBitmapButton(this, wxID_ANY, wxArtProvider::GetBitmap("NSAddTemplate"), wxDefaultPosition, wxSize(18, 18), wxBORDER_SUNKEN);
+        m_delete = new wxBitmapButton(this, wxID_ANY, wxArtProvider::GetBitmap("NSRemoveTemplate"), wxDefaultPosition, wxSize(18,18), wxBORDER_SUNKEN);
+        int editButtonStyle = wxBU_EXACTFIT | wxBORDER_SIMPLE;
+#elif defined(__WXMSW__)
+        m_new = new wxBitmapButton(this, wxID_ANY, wxArtProvider::GetBitmap("list-add"), wxDefaultPosition, wxSize(PX(19),PX(19)));
+        m_delete = new wxBitmapButton(this, wxID_ANY, wxArtProvider::GetBitmap("list-remove"), wxDefaultPosition, wxSize(PX(19),PX(19)));
+        int editButtonStyle = wxBU_EXACTFIT;
+#elif defined(__WXGTK__)
+        m_new = new wxBitmapButton(this, wxID_ANY, wxArtProvider::GetBitmap("list-add"), wxDefaultPosition, wxDefaultSize, wxNO_BORDER);
+        m_delete = new wxBitmapButton(this, wxID_ANY, wxArtProvider::GetBitmap("list-remove"), wxDefaultPosition, wxDefaultSize, wxNO_BORDER);
+        int editButtonStyle = wxBU_EXACTFIT | wxBORDER_NONE;
+#endif
+        m_edit = new wxButton(this, wxID_ANY, _(L"Edit…"), wxDefaultPosition, wxSize(-1, MSW_OR_OTHER(PX(19), -1)), editButtonStyle);
+#ifndef __WXGTK__
+        m_edit->SetWindowVariant(wxWINDOW_VARIANT_SMALL);
+#endif
+
+        auto buttonSizer = new wxBoxSizer(wxHORIZONTAL);
+        buttonSizer->Add(m_new);
+#ifdef __WXOSX__
+        buttonSizer->AddSpacer(PX(1));
+#endif
+        buttonSizer->Add(m_delete);
+#ifdef __WXOSX__
+        buttonSizer->AddSpacer(PX(1));
+#endif
+        buttonSizer->Add(m_edit);
+
+        sizer->AddSpacer(PX(1));
+        sizer->Add(buttonSizer, wxSizerFlags().BORDER_MACOS(wxLEFT, PX(1)));
 
         m_new->Bind(wxEVT_BUTTON, &ExtractorsPageWindow::OnNewExtractor, this);
         m_edit->Bind(wxEVT_BUTTON, &ExtractorsPageWindow::OnEditExtractor, this);
         m_delete->Bind(wxEVT_BUTTON, &ExtractorsPageWindow::OnDeleteExtractor, this);
 
+        m_list->Bind(wxEVT_CHECKLISTBOX, &ExtractorsPageWindow::OnEnableExtractor, this);
+
         m_edit->Bind(wxEVT_UPDATE_UI, [=](wxUpdateUIEvent& e) { e.Enable(m_list->GetSelection() != wxNOT_FOUND); });
         m_delete->Bind(wxEVT_UPDATE_UI, [=](wxUpdateUIEvent& e) { e.Enable(m_list->GetSelection() != wxNOT_FOUND); });
+        customExLabel->Bind(wxEVT_UPDATE_UI, [=](wxUpdateUIEvent& e) { e.Show(m_list->GetCount() > 0); });
+    }
 
-        m_list->Bind(wxEVT_CHECKLISTBOX, &ExtractorsPageWindow::OnEnableExtractor, this);
+    void CreateBuiltinExtractorsUI(wxWindow *panel, wxSizer *topsizer)
+    {
+        auto sizer = new wxBoxSizer(wxHORIZONTAL);
+        topsizer->Add(sizer, wxSizerFlags().Expand().Border(wxALL, PX(5)));
+
+        sizer->Add(new wxStaticBitmap(panel, wxID_ANY, wxArtProvider::GetBitmap("ExtractorsGNUgettext")), wxSizerFlags().Top().Border(wxRIGHT, PX(5)));
+        auto textSizer = new wxBoxSizer(wxVERTICAL);
+        sizer->Add(textSizer, wxSizerFlags(1).Top());
+        auto heading = new wxStaticText(panel, wxID_ANY, _("GNU gettext"));
+#ifdef __WXOSX__
+        heading->SetWindowVariant(wxWINDOW_VARIANT_SMALL);
+#endif
+        heading->SetFont(heading->GetFont().Bold());
+        textSizer->Add(heading, wxSizerFlags().Border(wxBOTTOM, PX(2)));
+        auto desc = new ExplanationLabel(panel, _("Supports all programming languages recognized by GNU gettext tools (PHP, C/C++, C#, Perl, Python, Java, JavaScript and others)."));
+        textSizer->Add(desc, wxSizerFlags(1).Expand());
+        textSizer->Layout();
     }
 
     void InitValues(const wxConfigBase& cfg) override
@@ -639,7 +857,7 @@ private:
         auto extractor_charset = XRCCTRL(*dlg, "extractor_charset", wxTextCtrl);
 
         {
-            const Extractor& nfo = m_extractors.Data[num];
+            const LegacyExtractorSpec& nfo = m_extractors.Data[num];
             extractor_language->SetValue(bidi::platform_mark_direction(nfo.Name));
             extractor_extensions->SetValue(bidi::mark_direction(nfo.Extensions, TextDirection::LTR));
             extractor_command->SetValue(bidi::mark_direction(nfo.Command, TextDirection::LTR));
@@ -667,7 +885,7 @@ private:
             (void)dlg; // force use
             if (retcode == wxID_OK)
             {
-                Extractor& nfo = m_extractors.Data[num];
+                LegacyExtractorSpec& nfo = m_extractors.Data[num];
                 nfo.Name = bidi::strip_control_chars(extractor_language->GetValue().Strip(wxString::both));
                 nfo.Extensions = bidi::strip_control_chars(extractor_extensions->GetValue().Strip(wxString::both));
                 nfo.Command = bidi::strip_control_chars(extractor_command->GetValue().Strip(wxString::both));
@@ -684,7 +902,7 @@ private:
     {
         m_suppressDataTransfer++;
 
-        Extractor info;
+        LegacyExtractorSpec info;
         m_extractors.Data.push_back(info);
         auto index = m_list->Append(wxEmptyString);
         m_list->Check(index);
@@ -719,7 +937,7 @@ private:
     {
         int index = m_list->GetSelection();
 
-        auto title = _("Delete extractor");
+        auto title = MSW_OR_OTHER(_("Delete extractor"), "");
         auto main = wxString::Format(_(L"Are you sure you want to delete the “%s” extractor?"), m_extractors.Data[index].Name);
 
         wxWindowPtr<wxMessageDialog> dlg(new wxMessageDialog(this, main, title, wxYES_NO | wxNO_DEFAULT | wxICON_QUESTION));
@@ -749,7 +967,7 @@ private:
             TransferDataFromWindow();
     }
 
-    ExtractorsDB m_extractors;
+    LegacyExtractorsDB m_extractors;
 
     wxCheckListBox *m_list;
     wxButton *m_new, *m_edit, *m_delete;
@@ -758,7 +976,7 @@ private:
 class ExtractorsPage : public wxPreferencesPage
 {
 public:
-    wxString GetName() const override { return PXNotebookTab(_("Extractors")); }
+    wxString GetName() const override { return _("Extractors"); }
     wxBitmap GetLargeIcon() const override { return wxArtProvider::GetBitmap("Prefs-Extractors"); }
     wxWindow *CreateWindow(wxWindow *parent) override { return new ExtractorsPageWindow(parent); }
 };
@@ -811,7 +1029,7 @@ private:
 class AccountsPage : public wxPreferencesPage
 {
 public:
-    wxString GetName() const override { return PXNotebookTab(_("Accounts")); }
+    wxString GetName() const override { return _("Accounts"); }
     wxBitmap GetLargeIcon() const override { return wxArtProvider::GetBitmap("Prefs-Accounts"); }
     wxWindow *CreateWindow(wxWindow *parent) override { return new AccountsPageWindow(parent); }
 };
@@ -825,7 +1043,7 @@ public:
     UpdatesPageWindow(wxWindow *parent) : PrefsPanel(parent)
     {
         wxSizer *topsizer = new wxBoxSizer(wxVERTICAL);
-        topsizer->SetMinSize(PX(400), -1); // for OS X look, wouldn't fit the toolbar otherwise
+        topsizer->SetMinSize(PX(400), -1); // for macOS look, wouldn't fit the toolbar otherwise
 
         wxSizer *sizer = new wxBoxSizer(wxVERTICAL);
         topsizer->Add(sizer, wxSizerFlags().Expand().PXDoubleBorderAll());
@@ -869,7 +1087,6 @@ public:
         }
 #ifdef USE_SPARKLE
         UserDefaults_SetBoolValue("SUEnableAutomaticChecks", m_updates->GetValue());
-        Sparkle_Initialize(wxGetApp().CheckForBetaUpdates());
 #endif
     }
 
@@ -880,7 +1097,7 @@ private:
 class UpdatesPage : public wxPreferencesPage
 {
 public:
-    wxString GetName() const override { return PXNotebookTab(_("Updates")); }
+    wxString GetName() const override { return _("Updates"); }
     wxBitmap GetLargeIcon() const override { return wxArtProvider::GetBitmap("Prefs-Updates"); }
     wxWindow *CreateWindow(wxWindow *parent) override { return new UpdatesPageWindow(parent); }
 };
@@ -906,19 +1123,19 @@ public:
         m_crlf = new wxChoice(this, wxID_ANY);
         m_crlf->Append(_("Unix (recommended)"));
         m_crlf->Append(_("Windows"));
-        crlfbox->Add(m_crlf, wxSizerFlags(1).Center().BORDER_OSX(wxLEFT, PX(3)).BORDER_WIN(wxLEFT, PX(5)));
+        crlfbox->Add(m_crlf, wxSizerFlags(1).Center().BORDER_MACOS(wxLEFT, PX(3)).BORDER_WIN(wxLEFT, PX(5)));
 
         /// TRANSLATORS: Followed by text control for entering number; wraps text at given width
         m_wrap = new wxCheckBox(this, wxID_ANY, _("Wrap at:"));
         crlfbox->AddSpacer(PX(10));
         crlfbox->Add(m_wrap, wxSizerFlags().Center().BORDER_WIN(wxTOP, PX(1)));
     #ifdef __WXGTK3__
-        m_wrapWidth = new wxSpinCtrl(this, wxID_ANY, "", wxDefaultPosition, wxSize(PX(100),-1));
+        m_wrapWidth = new wxSpinCtrl(this, wxID_ANY, "", wxDefaultPosition, wxSize(PX(110),-1));
     #else
         m_wrapWidth = new wxSpinCtrl(this, wxID_ANY, "", wxDefaultPosition, wxSize(PX(50),-1));
     #endif
-        m_wrapWidth->SetRange(10, 1000);
-        crlfbox->Add(m_wrapWidth, wxSizerFlags().Center().BORDER_OSX(wxLEFT, PX(3)));
+        m_wrapWidth->SetRange(10, 999);
+        crlfbox->Add(m_wrapWidth, wxSizerFlags().Center().BORDER_MACOS(wxLEFT, PX(3)));
 
         m_keepFmt = new wxCheckBox(this, wxID_ANY, _("Preserve formatting of existing files"));
         sizer->Add(m_keepFmt, wxSizerFlags().PXBorder(wxTOP));
@@ -972,7 +1189,7 @@ class AdvancedPage : public wxStockPreferencesPage
 {
 public:
     AdvancedPage() : wxStockPreferencesPage(Kind_Advanced) {}
-    wxString GetName() const override { return PXNotebookTab(_("Advanced")); }
+    wxString GetName() const override { return _("Advanced"); }
     wxWindow *CreateWindow(wxWindow *parent) override { return new AdvancedPageWindow(parent); }
 };
 
@@ -983,11 +1200,6 @@ public:
 
 std::unique_ptr<PoeditPreferencesEditor> PoeditPreferencesEditor::Create()
 {
-#if 0
-    // TRANSLATORS: Title of the preferences window on Windows and Linux. "%s" is replaced with "Poedit" when running.
-    _("%s Preferences");
-#endif
-
     std::unique_ptr<PoeditPreferencesEditor> p(new PoeditPreferencesEditor);
     p->AddPage(new GeneralPage);
     p->AddPage(new TMPage);

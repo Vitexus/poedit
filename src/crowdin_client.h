@@ -1,7 +1,7 @@
 /*
  *  This file is part of Poedit (https://poedit.net)
  *
- *  Copyright (C) 2015-2016 Vaclav Slavik
+ *  Copyright (C) 2015-2019 Vaclav Slavik
  *
  *  Permission is hereby granted, free of charge, to any person obtaining a
  *  copy of this software and associated documentation files (the "Software"),
@@ -43,7 +43,7 @@ public:
     /// Return singleton instance of the client.
     static CrowdinClient& Get();
 
-    /// Destroys the singleton, must be called (omly) on app shutdown.
+    /// Destroys the singleton, must be called (only) on app shutdown.
     static void CleanUp();
 
     /// Is the user currently signed into Crowdin?

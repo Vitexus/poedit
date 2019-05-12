@@ -1,0 +1,11 @@
+/* File kind displayed in Finder */
+"PO Translation" = "Файл с превод PO";
+
+/* File kind displayed in Finder */
+"Compiled Translation" = "Компилиран превод";
+
+/* File kind displayed in Finder */
+"Translation Template" = "Шаблон за преводи";
+
+/* File kind displayed in Finder */
+"XLIFF Translation" = "Файл с превод XLIFF";

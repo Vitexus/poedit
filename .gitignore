@@ -12,12 +12,13 @@
 *.opensdf
 *.VC.opendb
 *.VC.db
+/.vs
 /ipch/
 Makefile
 Makefile.in
 admin/config.guess
 admin/config.sub
-admin/compile
+admin/*compile
 admin/depcomp
 admin/install-sh
 admin/missing
@@ -25,7 +26,6 @@ autom4te.cache
 configure
 aclocal.m4
 macosx/dsa_priv.pem
-docs/poedit.1
 Release/
 Debug/
 
@@ -47,9 +47,19 @@ Debug/
 /deps/icu4c/source/test/testdata/out/
 /deps/pro/
 
+__pycache__
+/src/python/venv/
+
 xcuserdata
 *.xccheckout
 *.xcscmblueprint
 
 /packages/
 /win32/distrib-*
+
+/*.snap
+/poedit_source.tar.bz2
+/parts/
+/prime/
+/stage/
+/snap/.snapcraft/

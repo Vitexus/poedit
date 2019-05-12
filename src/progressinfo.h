@@ -1,7 +1,7 @@
 /*
  *  This file is part of Poedit (https://poedit.net)
  *
- *  Copyright (C) 2000-2016 Vaclav Slavik
+ *  Copyright (C) 2000-2019 Vaclav Slavik
  *
  *  Permission is hereby granted, free of charge, to any person obtaining a
  *  copy of this software and associated documentation files (the "Software"),
@@ -39,6 +39,15 @@ class ProgressInfo
             ProgressInfo(wxWindow *parent, const wxString& title);
             ~ProgressInfo();
 
+            /// Hides temporarily
+            void Hide();
+
+            /// Shows again after having been hidden with Hide()
+            void Show();
+
+            /// Hides for good, called when all is done
+            void Done();
+
             /// Sets gauge's values interval to <0..limit).
             void SetGaugeMax(int limit);
 
@@ -50,6 +59,9 @@ class ProgressInfo
 
             /// Resets the gauge to given \a value.
             void ResetGauge(int value = 0);
+
+            /// Indicate indeterminate progress
+            void PulseGauge();
 
             /// Updates informative message.
             void UpdateMessage(const wxString& text);

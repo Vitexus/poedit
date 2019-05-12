@@ -1,7 +1,7 @@
 /*
  *  This file is part of Poedit (https://poedit.net)
  *
- *  Copyright (C) 2014-2016 Vaclav Slavik
+ *  Copyright (C) 2014-2019 Vaclav Slavik
  *
  *  Permission is hereby granted, free of charge, to any person obtaining a
  *  copy of this software and associated documentation files (the "Software"),
@@ -81,8 +81,6 @@ protected:
     Sidebar *m_parent;
     wxSizer *m_headerSizer;
     wxSizer *m_innerSizer;
-
-private:
     wxSizer *m_sizer;
 };
 
@@ -113,7 +111,7 @@ protected:
     void ClearMessage();
     void SetMessage(const wxString& icon, const wxString& text);
 
-    virtual void ReportError(SuggestionsBackend *backend, std::exception_ptr e);
+    virtual void ReportError(SuggestionsBackend *backend, dispatch::exception_ptr e);
     virtual void ClearSuggestions();
     virtual void UpdateSuggestions(const SuggestionsList& hits);
     virtual void OnQueriesFinished();
@@ -153,6 +151,8 @@ protected:
     // delayed showing of suggestions:
     long long m_lastUpdateTime;
     wxTimer m_suggestionsTimer;
+
+    friend class SuggestionWidget;
 };
 
 /**
@@ -160,7 +160,7 @@ protected:
     
     Contains TM suggestions, comments and possibly other auxiliary stuff.
  */
-class Sidebar : public wxPanel
+class Sidebar : public wxWindow
 {
 public:
     Sidebar(wxWindow *parent, wxMenu *suggestionsMenu);
@@ -186,6 +186,8 @@ public:
 
     /// Set max height of the upper (not input-aligned) part.
     void SetUpperHeight(int size);
+
+    bool AcceptsFocus() const override { return false; }
 
 protected:
     void DoEnable(bool enable) override;

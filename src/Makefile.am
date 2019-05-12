@@ -16,55 +16,80 @@ CROWDIN_SUPPORT_SRC = \
                  crowdin_client.h crowdin_client.cpp \
                  crowdin_gui.h crowdin_gui.cpp \
                  keychain/keytar_posix.cc keychain/keytar.h \
-                 json.h json/src/json.hpp
+                 json.h
 CROWDIN_SUPPORT_LIBS = $(CPPREST_LIBS) $(LIBSECRET_LIBS)
 endif
 
-poedit_SOURCES = attentionbar.cpp attentionbar.h \
-                 errorbar.cpp errorbar.h \
-                 catalog.cpp catalog.h edapp.cpp edapp.h edframe.cpp \
-                 edframe.h fileviewer.cpp fileviewer.h extractor.cpp extractor.h \
-                 prefsdlg.cpp prefsdlg.h \
-                 propertiesdlg.cpp propertiesdlg.h progressinfo.h \
-                 progressinfo.cpp digger.h digger.cpp gexecute.h \
-                 gexecute.cpp summarydlg.h summarydlg.cpp \
-                 spellchecking.h spellchecking.cpp \
-                 findframe.cpp findframe.h commentdlg.h commentdlg.cpp \
-                 tm/suggestions.cpp tm/suggestions.h tm/transmem.cpp tm/transmem.h \
-                 manager.h manager.cpp chooselang.cpp chooselang.h \
-                 export_html.cpp icons.h icons.cpp \
-                 pluralforms/pl_evaluate.cpp pluralforms/pl_evaluate.h \
-                 edlistctrl.cpp edlistctrl.h \
+poedit_SOURCES = \
+                 attentionbar.cpp attentionbar.h \
+                 cat_update.h cat_update.cpp \
                  cat_sorting.cpp cat_sorting.h \
-                 utility.cpp utility.h concurrency.cpp concurrency.h \
-                 version.h errors.h \
-                 str_helpers.h logcapture.h \
-                 unicode_helpers.h unicode_helpers.cpp \
-                 language.cpp language.h language_impl_legacy.h language_impl_plurals.h \
-                 languagectrl.cpp languagectrl.h \
-                 welcomescreen.cpp welcomescreen.h \
-                 syntaxhighlighter.cpp syntaxhighlighter.h \
-                 sidebar.cpp sidebar.h \
-                 text_control.h text_control.cpp \
+                 catalog.cpp catalog.h \
+                 catalog_po.cpp catalog_po.h \
+                 catalog_xliff.cpp catalog_xliff.h \
+                 chooselang.cpp chooselang.h \
+                 cloud_sync.h \
+                 colorscheme.h colorscheme.cpp \
+                 commentdlg.h commentdlg.cpp \
+                 concurrency.cpp concurrency.h \
+                 configuration.cpp configuration.h \
+                 custom_buttons.cpp custom_buttons.h \
                  customcontrols.cpp customcontrols.h \
+                 edapp.cpp edapp.h \
+                 edframe.cpp edframe.h \
+                 editing_area.cpp editing_area.h \
+                 edlistctrl.cpp edlistctrl.h \
+                 errors.h \
+                 export_html.cpp \
+                 extractors/extractor.cpp extractors/extractor.h \
+                 extractors/extractor_gettext.cpp \
+                 extractors/extractor_legacy.cpp extractors/extractor_legacy.h \
+                 fileviewer.cpp fileviewer.h \
+                 findframe.cpp findframe.h \
+                 gexecute.h gexecute.cpp \
                  hidpi.cpp hidpi.h \
+                 icons.h icons.cpp \
+                 language.cpp language.h \
+                 language_impl_legacy.h language_impl_plurals.h \
+                 languagectrl.cpp languagectrl.h \
+                 logcapture.h \
                  main_toolbar.h wx/main_toolbar.cpp \
+                 manager.h manager.cpp \
+                 pluralforms/pl_evaluate.cpp pluralforms/pl_evaluate.h \
+                 prefsdlg.cpp prefsdlg.h \
+                 pretranslate.cpp pretranslate.h \
+                 progressinfo.h progressinfo.cpp \
+                 propertiesdlg.cpp propertiesdlg.h \
+                 qa_checks.cpp qa_checks.h \
+                 sidebar.cpp sidebar.h \
+                 spellchecking.h spellchecking.cpp \
+                 str_helpers.h \
+                 syntaxhighlighter.cpp syntaxhighlighter.h \
+                 text_control.h text_control.cpp \
+                 tm/suggestions.cpp tm/suggestions.h \
+                 tm/transmem.cpp tm/transmem.h \
+                 tm/tmx_io.cpp tm/tmx_io.h \
+                 unicode_helpers.h unicode_helpers.cpp \
+                 utility.cpp utility.h \
+                 version.h \
+                 welcomescreen.cpp welcomescreen.h \
+                 pugixml.h \
                  $(CROWDIN_SUPPORT_SRC) \
                  $(WX_BACKPORT_SRC)
 nodist_poedit_SOURCES = compiled_xrc.cpp
 
-poedit_LDADD = $(WX_LIBS) $(LUCENE_LIBS) $(CLD2_LIBS) $(CROWDIN_SUPPORT_LIBS) \
+poedit_LDADD = $(WX_LIBS) $(LUCENE_LIBS) $(CLD2_LIBS) $(PUGIXML_LIBS) $(CROWDIN_SUPPORT_LIBS) \
                $(BOOST_LDFLAGS) $(BOOST_THREAD_LIB) $(BOOST_REGEX_LIB) $(BOOST_SYSTEM_LIB)
 
 XRC_RESOURCES = \
-		$(srcdir)/resources/menus.xrc \
-		$(srcdir)/resources/prefs.xrc \
-		$(srcdir)/resources/progress.xrc \
-		$(srcdir)/resources/properties.xrc \
+        $(srcdir)/resources/comment.xrc \
+        $(srcdir)/resources/manager.xrc \
+        $(srcdir)/resources/menus.xrc \
+        $(srcdir)/resources/prefs.xrc \
+        $(srcdir)/resources/progress.xrc \
+        $(srcdir)/resources/properties.xrc \
         $(srcdir)/resources/summary.xrc \
-		$(srcdir)/resources/toolbar.xrc \
-		$(srcdir)/resources/comment.xrc \
-        $(srcdir)/resources/manager.xrc
+        $(srcdir)/resources/toolbar.xrc
 
 compiled_xrc.cpp: $(XRC_RESOURCES)
 	$(WXRC) -v -c -o $@ $(XRC_RESOURCES)

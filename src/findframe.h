@@ -1,7 +1,7 @@
 /*
  *  This file is part of Poedit (https://poedit.net)
  *
- *  Copyright (C) 2001-2016 Vaclav Slavik
+ *  Copyright (C) 2001-2019 Vaclav Slavik
  *
  *  Permission is hereby granted, free of charge, to any person obtaining a
  *  copy of this software and associated documentation files (the "Software"),
@@ -37,7 +37,7 @@ class WXDLLIMPEXP_FWD_CORE wxChoice;
 class WXDLLIMPEXP_FWD_CORE wxTextCtrl;
 
 class Catalog;
-class CustomizedTextCtrl;
+class EditingArea;
 class PoeditFrame;
 
 /** FindFrame is small dialog frame that contains controls for searching
@@ -51,13 +51,13 @@ class FindFrame : public wxFrame
 {
     public:
         /** Ctor.
-            \param owner  Parent frame, FindFrame will float on it
+            \param owner   Parent frame, FindFrame will float on it
             \param list    List control to search in
             \param catalog Catalog to search in
          */
-        FindFrame(PoeditFrame *owner, PoeditListCtrl *list, const CatalogPtr& c,
-                  CustomizedTextCtrl *textCtrlOrig, CustomizedTextCtrl *textCtrlTrans,
-                  wxNotebook *pluralNotebook);
+        FindFrame(PoeditFrame *owner,
+                  PoeditListCtrl *list, EditingArea *editingArea,
+                  const CatalogPtr& c);
         ~FindFrame();
 
         /** Resets the search to starting position and changes
@@ -95,12 +95,11 @@ class FindFrame : public wxFrame
                    *m_findInOrig, *m_findInTrans, *m_findInComments;
 
         wxWeakRef<PoeditListCtrl> m_listCtrl;
+        wxWeakRef<EditingArea> m_editingArea;
         CatalogPtr m_catalog;
         int m_position;
         CatalogItemPtr m_lastItem;
         wxButton *m_btnClose, *m_btnReplaceAll, *m_btnReplace, *m_btnPrev, *m_btnNext;
-        CustomizedTextCtrl *m_textCtrlOrig, *m_textCtrlTrans;
-        wxNotebook *m_pluralNotebook;
 
         // NB: this is static so that last search term is remembered
         static wxString ms_text;

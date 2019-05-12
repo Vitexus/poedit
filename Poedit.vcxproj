@@ -1,5 +1,5 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
-<Project DefaultTargets="Build" ToolsVersion="14.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+<Project DefaultTargets="Build" ToolsVersion="15.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
   <ItemGroup Label="ProjectConfigurations">
     <ProjectConfiguration Include="Debug|Win32">
       <Configuration>Debug</Configuration>
@@ -14,18 +14,19 @@
     <ProjectGuid>{971716FE-F6AD-4C1D-8690-27E243AF73F8}</ProjectGuid>
     <Keyword>Win32Proj</Keyword>
     <RootNamespace>Poedit</RootNamespace>
+    <WindowsTargetPlatformVersion>10.0.17763.0</WindowsTargetPlatformVersion>
   </PropertyGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.Default.props" />
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'" Label="Configuration">
     <ConfigurationType>Application</ConfigurationType>
     <UseDebugLibraries>true</UseDebugLibraries>
-    <PlatformToolset>v140</PlatformToolset>
+    <PlatformToolset>v141</PlatformToolset>
     <CharacterSet>Unicode</CharacterSet>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'" Label="Configuration">
     <ConfigurationType>Application</ConfigurationType>
     <UseDebugLibraries>false</UseDebugLibraries>
-    <PlatformToolset>v140</PlatformToolset>
+    <PlatformToolset>v141</PlatformToolset>
     <WholeProgramOptimization>true</WholeProgramOptimization>
     <CharacterSet>Unicode</CharacterSet>
   </PropertyGroup>
@@ -57,10 +58,11 @@
       <DisableSpecificWarnings>4800</DisableSpecificWarnings>
       <PrecompiledHeaderFile>Poedit-Prefix.pch</PrecompiledHeaderFile>
       <ForcedIncludeFiles>Poedit-Prefix.pch</ForcedIncludeFiles>
+      <AdditionalOptions>/utf-8 %(AdditionalOptions)</AdditionalOptions>
     </ClCompile>
     <Link>
       <SubSystem>Windows</SubSystem>
-      <GenerateDebugInformation>true</GenerateDebugInformation>
+      <GenerateDebugInformation>DebugFastLink</GenerateDebugInformation>
       <AdditionalLibraryDirectories>deps\wx\lib\vc_lib;%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
       <AdditionalDependencies>rpcrt4.lib;advapi32.lib;shlwapi.lib;ws2_32.lib;comctl32.lib;Winhttp.lib;wininet.lib;httpapi.lib;bcrypt.lib;crypt32.lib;version.lib;%(AdditionalDependencies)</AdditionalDependencies>
       <DelayLoadDLLs>mCtrl.dll</DelayLoadDLLs>
@@ -85,10 +87,11 @@
       <DisableSpecificWarnings>4800</DisableSpecificWarnings>
       <PrecompiledHeaderFile>Poedit-Prefix.pch</PrecompiledHeaderFile>
       <ForcedIncludeFiles>Poedit-Prefix.pch</ForcedIncludeFiles>
+      <AdditionalOptions>/utf-8 %(AdditionalOptions)</AdditionalOptions>
     </ClCompile>
     <Link>
       <SubSystem>Windows</SubSystem>
-      <GenerateDebugInformation>true</GenerateDebugInformation>
+      <GenerateDebugInformation>DebugFull</GenerateDebugInformation>
       <EnableCOMDATFolding>true</EnableCOMDATFolding>
       <OptimizeReferences>true</OptimizeReferences>
       <AdditionalLibraryDirectories>deps\wx\lib\vc_lib;%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
@@ -102,22 +105,30 @@
   <ItemGroup>
     <ClCompile Include="src\attentionbar.cpp" />
     <ClCompile Include="src\catalog.cpp" />
+    <ClCompile Include="src\catalog_po.cpp" />
+    <ClCompile Include="src\catalog_xliff.cpp" />
     <ClCompile Include="src\cat_sorting.cpp" />
+    <ClCompile Include="src\cat_update.cpp" />
     <ClCompile Include="src\chooselang.cpp" />
+    <ClCompile Include="src\colorscheme.cpp" />
     <ClCompile Include="src\commentdlg.cpp" />
     <ClCompile Include="src\concurrency.cpp" />
+    <ClCompile Include="src\configuration.cpp" />
     <ClCompile Include="src\crowdin_client.cpp" />
     <ClCompile Include="src\crowdin_gui.cpp" />
     <ClCompile Include="src\customcontrols.cpp" />
-    <ClCompile Include="src\digger.cpp" />
+    <ClCompile Include="src\custom_buttons.cpp" />
     <ClCompile Include="src\edapp.cpp">
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">Create</PrecompiledHeader>
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">Create</PrecompiledHeader>
     </ClCompile>
     <ClCompile Include="src\edframe.cpp" />
+    <ClCompile Include="src\editing_area.cpp" />
     <ClCompile Include="src\edlistctrl.cpp" />
-    <ClCompile Include="src\errorbar.cpp" />
     <ClCompile Include="src\export_html.cpp" />
+    <ClCompile Include="src\extractors\extractor.cpp" />
+    <ClCompile Include="src\extractors\extractor_gettext.cpp" />
+    <ClCompile Include="src\extractors\extractor_legacy.cpp" />
     <ClCompile Include="src\fileviewer.cpp" />
     <ClCompile Include="src\findframe.cpp" />
     <ClCompile Include="src\gexecute.cpp" />
@@ -129,17 +140,18 @@
     <ClCompile Include="src\language.cpp" />
     <ClCompile Include="src\languagectrl.cpp" />
     <ClCompile Include="src\manager.cpp" />
-    <ClCompile Include="src\extractor.cpp" />
     <ClCompile Include="src\pluralforms\pl_evaluate.cpp" />
     <ClCompile Include="src\prefsdlg.cpp" />
+    <ClCompile Include="src\pretranslate.cpp" />
     <ClCompile Include="src\progressinfo.cpp" />
     <ClCompile Include="src\propertiesdlg.cpp" />
+    <ClCompile Include="src\qa_checks.cpp" />
     <ClCompile Include="src\sidebar.cpp" />
     <ClCompile Include="src\spellchecking.cpp" />
-    <ClCompile Include="src\summarydlg.cpp" />
     <ClCompile Include="src\syntaxhighlighter.cpp" />
     <ClCompile Include="src\text_control.cpp" />
     <ClCompile Include="src\tm\suggestions.cpp" />
+    <ClCompile Include="src\tm\tmx_io.cpp" />
     <ClCompile Include="src\tm\transmem.cpp" />
     <ClCompile Include="src\unicode_helpers.cpp" />
     <ClCompile Include="src\utility.cpp" />
@@ -153,19 +165,27 @@
   <ItemGroup>
     <ClInclude Include="src\attentionbar.h" />
     <ClInclude Include="src\catalog.h" />
+    <ClInclude Include="src\catalog_po.h" />
+    <ClInclude Include="src\catalog_xliff.h" />
     <ClInclude Include="src\cat_sorting.h" />
+    <ClInclude Include="src\cat_update.h" />
     <ClInclude Include="src\chooselang.h" />
+    <ClInclude Include="src\cloud_sync.h" />
+    <ClInclude Include="src\colorscheme.h" />
     <ClInclude Include="src\commentdlg.h" />
     <ClInclude Include="src\concurrency.h" />
+    <ClInclude Include="src\configuration.h" />
     <ClInclude Include="src\crowdin_client.h" />
     <ClInclude Include="src\crowdin_gui.h" />
     <ClInclude Include="src\customcontrols.h" />
-    <ClInclude Include="src\digger.h" />
+    <ClInclude Include="src\custom_buttons.h" />
     <ClInclude Include="src\edapp.h" />
     <ClInclude Include="src\edframe.h" />
+    <ClInclude Include="src\editing_area.h" />
     <ClInclude Include="src\edlistctrl.h" />
-    <ClInclude Include="src\errorbar.h" />
     <ClInclude Include="src\errors.h" />
+    <ClInclude Include="src\extractors\extractor.h" />
+    <ClInclude Include="src\extractors\extractor_legacy.h" />
     <ClInclude Include="src\fileviewer.h" />
     <ClInclude Include="src\findframe.h" />
     <ClInclude Include="src\gexecute.h" />
@@ -181,18 +201,20 @@
     <ClInclude Include="src\logcapture.h" />
     <ClInclude Include="src\main_toolbar.h" />
     <ClInclude Include="src\manager.h" />
-    <ClInclude Include="src\extractor.h" />
     <ClInclude Include="src\pluralforms\pl_evaluate.h" />
     <ClInclude Include="src\prefsdlg.h" />
+    <ClInclude Include="src\pretranslate.h" />
     <ClInclude Include="src\progressinfo.h" />
     <ClInclude Include="src\propertiesdlg.h" />
+    <ClInclude Include="src\pugixml.h" />
+    <ClInclude Include="src\qa_checks.h" />
     <ClInclude Include="src\sidebar.h" />
     <ClInclude Include="src\spellchecking.h" />
     <ClInclude Include="src\str_helpers.h" />
-    <ClInclude Include="src\summarydlg.h" />
     <ClInclude Include="src\syntaxhighlighter.h" />
     <ClInclude Include="src\text_control.h" />
     <ClInclude Include="src\tm\suggestions.h" />
+    <ClInclude Include="src\tm\tmx_io.h" />
     <ClInclude Include="src\tm\transmem.h" />
     <ClInclude Include="src\unicode_helpers.h" />
     <ClInclude Include="src\utility.h" />
@@ -244,9 +266,6 @@
     <ProjectReference Include="deps\custom_build\wx_core.vcxproj">
       <Project>{6744dad8-9c70-574a-bff2-9f8dddb24a75}</Project>
     </ProjectReference>
-    <ProjectReference Include="deps\custom_build\wx_html.vcxproj">
-      <Project>{33cc42f9-7756-5587-863c-8d4461b7c5dd}</Project>
-    </ProjectReference>
     <ProjectReference Include="deps\custom_build\wx_stc.vcxproj">
       <Project>{23e1c437-a951-5943-8639-a17f3cf2e606}</Project>
     </ProjectReference>
@@ -279,7 +298,7 @@
       <LinkLibraryDependencies>true</LinkLibraryDependencies>
       <UseLibraryDependencyInputs>false</UseLibraryDependencyInputs>
     </ProjectReference>
-    <ProjectReference Include="deps\winsparkle\WinSparkle-2015.vcxproj">
+    <ProjectReference Include="deps\winsparkle\WinSparkle-2017.vcxproj">
       <Project>{524cccf2-61ea-5b64-a1d9-ff5497027b5f}</Project>
     </ProjectReference>
   </ItemGroup>

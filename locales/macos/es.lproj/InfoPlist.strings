@@ -1,0 +1,11 @@
+/* File kind displayed in Finder */
+"PO Translation" = "Traducción en PO";
+
+/* File kind displayed in Finder */
+"Compiled Translation" = "Traducción compilada";
+
+/* File kind displayed in Finder */
+"Translation Template" = "Plantilla de traducción";
+
+/* File kind displayed in Finder */
+"XLIFF Translation" = "Traducción XLIFF";

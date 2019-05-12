@@ -1,7 +1,7 @@
 /*
  *  This file is part of Poedit (https://poedit.net)
  *
- *  Copyright (C) 2014-2016 Vaclav Slavik
+ *  Copyright (C) 2014-2019 Vaclav Slavik
  *
  *  Permission is hereby granted, free of charge, to any person obtaining a
  *  copy of this software and associated documentation files (the "Software"),
@@ -26,6 +26,7 @@
 #include "suggestions.h"
 
 #include "concurrency.h"
+#include "transmem.h"
 
 
 class SuggestionsProviderImpl
@@ -33,21 +34,18 @@ class SuggestionsProviderImpl
 public:
     SuggestionsProviderImpl() {}
 
-    dispatch::future<SuggestionsList> SuggestTranslation(SuggestionsBackend& backend,
-                                                         const Language& srclang,
-                                                          const Language& lang,
-                                                          const std::wstring& source)
+    dispatch::future<SuggestionsList> SuggestTranslation(SuggestionsBackend& backend, const SuggestionQuery&& q)
     {
         auto bck = &backend;
         return dispatch::async([=]{
             // don't bother asking the backend if the language or query is invalid:
-            if (!srclang.IsValid() || !lang.IsValid() || srclang == lang || source.empty())
+            if (!q.srclang.IsValid() || !q.lang.IsValid() || q.srclang == q.lang || q.source.empty())
             {
                 return dispatch::make_ready_future(SuggestionsList());
             }
 
             // query the backend:
-            return bck->SuggestTranslation(srclang, lang, source);
+            return bck->SuggestTranslation(std::move(q));
         });
     }
 };
@@ -62,10 +60,20 @@ SuggestionsProvider::~SuggestionsProvider()
 {
 }
 
-dispatch::future<SuggestionsList> SuggestionsProvider::SuggestTranslation(SuggestionsBackend& backend,
-                                                                          const Language& srclang,
-                                                                          const Language& lang,
-                                                                          const std::wstring& source)
+dispatch::future<SuggestionsList> SuggestionsProvider::SuggestTranslation(SuggestionsBackend& backend, const SuggestionQuery&& q)
 {
-    return m_impl->SuggestTranslation(backend, srclang, lang, source);
+    return m_impl->SuggestTranslation(backend, std::move(q));
+}
+
+void SuggestionsProvider::Delete(const Suggestion& s)
+{
+    if (s.id.empty())
+        return;
+
+    switch (s.source)
+    {
+        case Suggestion::Source::LocalTM:
+            TranslationMemory::Get().Delete(s.id);
+            break;
+    }
 }

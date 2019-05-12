@@ -1,7 +1,7 @@
-﻿/*
+/*
  *  This file is part of Poedit (https://poedit.net)
  *
- *  Copyright (C) 2016 Vaclav Slavik
+ *  Copyright (C) 2016-2019 Vaclav Slavik
  *
  *  Permission is hereby granted, free of charge, to any person obtaining a
  *  copy of this software and associated documentation files (the "Software"),
@@ -25,13 +25,13 @@
 
 #include "win10_menubar.h"
 
+#include "hidpi.h"
 #include "utility.h"
 
+#include <wx/config.h>
 #include <wx/msw/uxtheme.h>
 #include <wx/nativewin.h>
-#if !wxCHECK_VERSION(3,1,0)
-  #include "wx_backports/nativewin.h"
-#endif
+#include <wx/recguard.h>
 
 #include <mCtrl/menubar.h>
 
@@ -39,6 +39,8 @@ namespace
 {
 
 int g_mctrlInitialized = 0;
+
+const int MENUBAR_OFFSET = -2;
 
 } // anonymous namespace
 
@@ -59,7 +61,7 @@ public:
             MC_WC_MENUBAR,
             _T(""),
             WS_CHILD | WS_VISIBLE | WS_CLIPCHILDREN | WS_CLIPSIBLINGS | CCS_NORESIZE | CCS_NOPARENTALIGN,
-            0, 0, 400, 23*2,
+            0, 0, 1000, 2 * PX(23),
             (HWND)this->GetHWND(),
             (HMENU) -1,
             wxGetInstance(),
@@ -72,7 +74,7 @@ public:
 
         {
             wxUxThemeHandle hTheme(this, L"ExplorerMenu::Toolbar");
-            SetBackgroundColour(wxRGBToColour(wxUxThemeEngine::GetIfActive()->GetThemeSysColor(hTheme, COLOR_WINDOW)));
+            SetBackgroundColour(wxRGBToColour(::GetThemeSysColor(hTheme, COLOR_WINDOW)));
         }
     }
 
@@ -96,6 +98,7 @@ public:
         MSG *msg = (MSG *) pMsg;
         if (mcIsMenubarMessage(m_mctrlHandle, msg))
             return true;
+
         return false;
     }
 
@@ -111,6 +114,7 @@ public:
         SIZE size;
         if (::SendMessage(m_mctrlHandle, TB_GETMAXSIZE, 0, (LPARAM) &size))
         {
+            sizeBest.x = size.cx;
             sizeBest.y = size.cy + 1;
             CacheBestSize(sizeBest);
         }
@@ -121,7 +125,7 @@ private:
     class mCtrlWrapper : public wxNativeWindow
     {
     public:
-        mCtrlWrapper(wxWindow *parent, WXHWND wnd) : wxNativeWindow(parent, wxID_ANY, wnd) {}
+        mCtrlWrapper(wxWindow *parent, WXHWND wnd) : wxNativeWindow(parent, wxID_ANY, wnd), m_flagReenterMctrl(0) {}
 
         WXLRESULT MSWWindowProc(WXUINT nMsg, WXWPARAM wParam, WXLPARAM lParam) override
         {
@@ -129,10 +133,25 @@ private:
             {
                 case WM_COMMAND:
                 case WM_NOTIFY:
-                    return MSWDefWindowProc(nMsg, wParam, lParam);
+                {
+                    wxRecursionGuard guard(m_flagReenterMctrl);
+
+                    if (!guard.IsInside())
+                    {
+                        return MSWDefWindowProc(nMsg, wParam, lParam);
+                    }
+                    else
+                    {
+                        return ::DefWindowProc(GetHwnd(), nMsg, wParam, lParam);
+                    }
+                }
             }
+
             return wxNativeWindow::MSWWindowProc(nMsg, wParam, lParam);
         }
+
+    private:
+        wxRecursionGuardFlag m_flagReenterMctrl;
     };
 
     mCtrlWrapper *m_mctrlWin;
@@ -160,7 +179,10 @@ bool wxFrameWithWindows10Menubar::ShouldUse() const
     if (!IsWindows10OrGreater())
         return false;
 
-    if (!wxUxThemeEngine::GetIfActive())
+    if (!wxUxThemeIsActive())
+        return false;
+
+    if (wxConfig::Get()->ReadBool("/disable_mctrl", false))
         return false;
 
     // Detect screen readers and use normal menubar with them, because the
@@ -178,7 +200,7 @@ wxPoint wxFrameWithWindows10Menubar::GetClientAreaOrigin() const
     wxPoint pt = wxFrame::GetClientAreaOrigin();
     if (IsUsed())
     {
-        pt.y += m_menuBar->GetSize().y;
+        pt.y += wxMax(m_menuBar->GetSize().y, m_menuBar->GetBestSize().y) + MENUBAR_OFFSET;
     }
     return pt;
 }
@@ -197,7 +219,7 @@ void wxFrameWithWindows10Menubar::PositionToolBar()
     int width, height;
     wxWindow::DoGetClientSize(&width, &height);
 
-    int y = 0;
+    int y = MENUBAR_OFFSET;
 
     // use the 'real' MSW position here, don't offset relatively to the
     // client area origin
@@ -209,7 +231,7 @@ void wxFrameWithWindows10Menubar::PositionToolBar()
     if (toolbar && toolbar->IsShown())
     {
         int tbh = toolbar->GetSize().y;
-        toolbar->SetSize(0, y, width, tbh, wxSIZE_NO_ADJUSTMENTS);
+        toolbar->SetSize(0, y, width + 8, tbh, wxSIZE_NO_ADJUSTMENTS);
     }
 }
 

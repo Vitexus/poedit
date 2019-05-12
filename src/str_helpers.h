@@ -1,7 +1,7 @@
 /*
  *  This file is part of Poedit (https://poedit.net)
  *
- *  Copyright (C) 2013-2016 Vaclav Slavik
+ *  Copyright (C) 2013-2019 Vaclav Slavik
  *
  *  Permission is hereby granted, free of charge, to any person obtaining a
  *  copy of this software and associated documentation files (the "Software"),
@@ -28,20 +28,10 @@
 
 #include <string>
 
+#include <boost/locale/encoding_utf.hpp>
+
 #ifdef __OBJC__
 #include <Foundation/NSString.h>
-#endif
-
-// as of gcc-4.9, no functional <codecvt> support yet
-#if defined(__clang__) || defined(_MSC_VER)
-    #define HAVE_CODECVT
-#endif
-
-#ifdef HAVE_CODECVT
-    #include <locale>
-    #include <codecvt>
-#else
-    #include <boost/locale/encoding_utf.hpp>
 #endif
 
 #include <wx/string.h>
@@ -63,28 +53,6 @@
 namespace str
 {
 
-#ifdef HAVE_CODECVT
-
-inline std::string to_utf8(const std::wstring& str)
-{
-    std::wstring_convert<std::codecvt_utf8<wchar_t>, wchar_t> convert;
-    return convert.to_bytes(str.data());
-}
-
-inline std::string to_utf8(const wchar_t *str)
-{
-    std::wstring_convert<std::codecvt_utf8<wchar_t>, wchar_t> convert;
-    return convert.to_bytes(str);
-}
-
-inline std::wstring to_wstring(const std::string& utf8str)
-{
-    std::wstring_convert<std::codecvt_utf8<wchar_t>, wchar_t> convert;
-    return convert.from_bytes(utf8str.data());
-}
-
-#else
-
 inline std::string to_utf8(const std::wstring& str)
 {
     return boost::locale::conv::utf_to_utf<char>(str);
@@ -100,7 +68,10 @@ inline std::wstring to_wstring(const std::string& utf8str)
     return boost::locale::conv::utf_to_utf<wchar_t>(utf8str);
 }
 
-#endif
+inline std::wstring to_wstring(const char *utf8str)
+{
+    return boost::locale::conv::utf_to_utf<wchar_t>(utf8str);
+}
 
 inline std::string to_utf8(const wxString& str)
 {
@@ -110,6 +81,16 @@ inline std::string to_utf8(const wxString& str)
 inline std::wstring to_wstring(const wxString& str)
 {
     return str.ToStdWstring();
+}
+
+inline wxString to_wx(const char *utf8)
+{
+    return wxString::FromUTF8(utf8);
+}
+
+inline wxString to_wx(const std::string& utf8)
+{
+    return wxString::FromUTF8(utf8.c_str());
 }
 
 #if defined(__cplusplus) && defined(__OBJC__)
@@ -146,14 +127,13 @@ inline NSString *to_NS(const std::wstring& str)
 
 inline std::wstring to_wstring(NSString *str)
 {
-    std::wstring_convert<std::codecvt_utf8<wchar_t>, wchar_t> convert;
-    return convert.from_bytes([str UTF8String]);
+    return boost::locale::conv::utf_to_utf<wchar_t>([str UTF8String]);
 }
 
 #endif // Objective-C++
 
 
-// ICU conversions; only included them if ICU is included
+// ICU conversions; only include them if ICU is included
 #ifdef UNISTR_H
 
 /**
@@ -194,25 +174,6 @@ inline icu::UnicodeString to_icu(const std::wstring& str)
 #endif
 }
 
-/**
-    Create buffer with raw UChar* string.
-
-    Notice that the resulting string is only valid for the input's lifetime.
- */
-inline wxScopedCharTypeBuffer<UChar> to_icu_raw(const wxString& str)
-{
-    static_assert(U_SIZEOF_UCHAR == 2, "unexpected UChar size");
-#if SIZEOF_WCHAR_T == 2
-    // read-only aliasing ctor, doesn't copy data
-    return wxScopedCharTypeBuffer<UChar>::CreateNonOwned((const UChar*)str.wx_str(), str.length());
-#else
-    auto buf = wxMBConvUTF16().cWC2MB(str.wc_str());
-    auto len = buf.length();
-    return wxCharTypeBuffer<UChar>::CreateOwned((UChar*)buf.release(), len);
-#endif
-}
-
-
 /// Create wxString from icu::UnicodeString, making a copy.
 inline wxString to_wx(const icu::UnicodeString& str)
 {
@@ -230,6 +191,30 @@ inline std::wstring to_wstring(const icu::UnicodeString& str)
 }
 
 #endif // UNISTR_H
+
+// Low-level ICU conversions:
+#ifdef U_SIZEOF_UCHAR
+
+/**
+    Create buffer with raw UChar* string.
+
+    Notice that the resulting string is only valid for the input's lifetime.
+ */
+inline wxScopedCharTypeBuffer<wxChar16> to_icu_raw(const wxString& str)
+{
+    static_assert(U_SIZEOF_UCHAR == 2, "unexpected UChar size");
+#if SIZEOF_WCHAR_T == 2
+    // read-only aliasing ctor, doesn't copy data
+    return wxScopedCharTypeBuffer<UChar>::CreateNonOwned((const UChar*)str.wx_str(), str.length());
+#else
+    auto buf = wxMBConvUTF16().cWC2MB(str.wc_str());
+    auto len = buf.length();
+    return wxCharTypeBuffer<wxChar16>::CreateOwned((wxChar16*)buf.release(), len);
+#endif
+}
+
+#endif // U_SIZEOF_UCHAR
+
 
 } // namespace str
 

@@ -1,7 +1,7 @@
 /*
  *  This file is part of Poedit (https://poedit.net)
  *
- *  Copyright (C) 2016 Vaclav Slavik
+ *  Copyright (C) 2016-2019 Vaclav Slavik
  *
  *  Permission is hereby granted, free of charge, to any person obtaining a
  *  copy of this software and associated documentation files (the "Software"),
@@ -38,7 +38,7 @@ TextDirection get_base_direction(const wxString& text)
         return TextDirection::LTR;
 
     auto s = str::to_icu_raw(text);
-    switch (ubidi_getBaseDirection(s.data(), (int)s.length()))
+    switch (ubidi_getBaseDirection((const UChar*)s.data(), (int)s.length()))
     {
         case UBIDI_RTL:
             return TextDirection::RTL;
@@ -61,7 +61,7 @@ wxString strip_pointless_control_chars(const wxString& text, TextDirection dir)
     const wchar_t first = *text.begin();
     const wchar_t last = *text.rbegin();
 
-    // POP DIRECTIONAL FORMATTING at the end is pointless (can happen on OS X
+    // POP DIRECTIONAL FORMATTING at the end is pointless (can happen on macOS
     // when editing RTL text under LTR locale:
     if (last == PDF)
     {
@@ -125,6 +125,9 @@ wxString strip_control_chars(const wxString& text)
 
 wxString mark_direction(const wxString& text, TextDirection dir)
 {
+    if (text.empty())
+        return text;
+
     wchar_t mark = (dir == TextDirection::LTR) ? LRE : RLE;
     auto out = mark + text;
 #ifdef BIDI_NEEDS_DIRECTION_ON_EACH_LINE

@@ -1,7 +1,7 @@
 /*
  *  This file is part of Poedit (https://poedit.net)
  *
- *  Copyright (C) 2004-2016 Vaclav Slavik
+ *  Copyright (C) 2004-2019 Vaclav Slavik
  *
  *  Permission is hereby granted, free of charge, to any person obtaining a
  *  copy of this software and associated documentation files (the "Software"),
@@ -29,7 +29,13 @@
 
 #include <set>
 
+#ifdef __WXGTK__
+#include <gtk/gtk.h>
+#endif
+
 #include "icons.h"
+
+#include "colorscheme.h"
 #include "edapp.h"
 #include "hidpi.h"
 #include "utility.h"
@@ -70,7 +76,10 @@ bool ShouldBeMirorredInRTL(const wxArtID& id, const wxArtClient& client)
         "poedit-status-comment",
         "follow-link",
         "sidebar",
-        "sidebar-disabled"
+        "Welcome_EditTranslation",
+        "Welcome_CreateTranslation",
+        "Welcome_WordPress",
+        "Welcome_Collaborate"
     };
 
     bool mirror = s_directional.find(id) != s_directional.end();
@@ -84,21 +93,71 @@ bool ShouldBeMirorredInRTL(const wxArtID& id, const wxArtClient& client)
     return mirror;
 }
 
+void ProcessTemplateImage(wxImage& img, bool keepOpaque, bool inverted)
+{
+    int size = img.GetWidth() * img.GetHeight();
+
+    ColorScheme::Mode inverseMode = inverted ? ColorScheme::Light : ColorScheme::Dark;
+    if (ColorScheme::GetAppMode() == inverseMode)
+    {
+        auto rgb = img.GetData();
+        for (int i = 0; i < 3*size; ++i, ++rgb)
+            *rgb = 255 - *rgb;
+    }
+
+    // Apply 50% transparency
+    if (!keepOpaque)
+    {
+        auto alpha = img.GetAlpha();
+        for (int i = 0; i < size; ++i, ++alpha)
+            *alpha /= 2;
+    }
+}
+
 } // anonymous namespace
 
-wxBitmap PoeditArtProvider::CreateBitmap(const wxArtID& id,
+
+
+PoeditArtProvider::PoeditArtProvider()
+{
+#ifdef __WXGTK3__
+    gtk_icon_theme_prepend_search_path(gtk_icon_theme_get_default(), GetIconsDir().fn_str());
+#endif
+}
+
+
+wxString PoeditArtProvider::GetIconsDir()
+{
+#if defined(__WXMSW__)
+    return wxStandardPaths::Get().GetResourcesDir() + "\\Resources";
+#else
+    return wxStandardPaths::Get().GetInstallPrefix() + "/share/poedit/icons";
+#endif
+}
+
+
+wxBitmap PoeditArtProvider::CreateBitmap(const wxArtID& id_,
                                          const wxArtClient& client,
                                          const wxSize& size)
 {
+    wxLogTrace("poedit.icons", "getting icon '%s'", id_.c_str());
+
+    wxArtID id(id_);
+    #define CHECK_FOR_VARIANT(name)                         \
+        const bool name##Variant = id.Contains("@" #name);  \
+        if (name##Variant)                                  \
+            id.Replace("@" #name, "")
+    CHECK_FOR_VARIANT(disabled);
+    CHECK_FOR_VARIANT(opaque);
+    CHECK_FOR_VARIANT(inverted);
+
     // Silence warning about unused parameter in some of the builds
     (void)client;
     (void)size;
 
-    // Note: On Unix, this code is only called as last resolt, if standard
+    // Note: On Unix, this code is only called as last resort, if standard
     //       theme provider (that uses current icon theme and files from
     //       /usr/share/icons/<theme>) didn't find any matching icon.
-
-    wxLogTrace("poedit.icons", "getting icon '%s'", id.c_str());
 
 #ifdef __WXGTK20__
     // try legacy GNOME icons from standard theme:
@@ -112,12 +171,7 @@ wxBitmap PoeditArtProvider::CreateBitmap(const wxArtID& id,
     }
 #endif // __WXGTK20__
 
-    wxString iconsdir =
-#if defined(__WXMSW__)
-        wxStandardPaths::Get().GetResourcesDir() + "\\Resources";
-#else
-        wxStandardPaths::Get().GetInstallPrefix() + "/share/poedit/icons";
-#endif
+    auto iconsdir = GetIconsDir();
     if ( !wxDirExists(iconsdir) )
     {
         wxLogTrace("poedit.icons",
@@ -125,20 +179,43 @@ wxBitmap PoeditArtProvider::CreateBitmap(const wxArtID& id,
         return wxNullBitmap;
     }
 
-    bool mirror = false;
-    if (wxTheApp->GetLayoutDirection() == wxLayout_RightToLeft)
-        mirror = ShouldBeMirorredInRTL(id, client);
-
-    int padding = 0;
-#ifdef __WXMSW__
-    if (IsWindows10OrGreater())
-        padding = 2;
-#endif
-
     wxString icon;
-    icon.Printf("%s/%s", iconsdir.c_str(), id.c_str());
-    wxLogTrace("poedit.icons", "loading from %s", icon.c_str());
-    return LoadScaledBitmap(icon, mirror, padding);
+    icon.Printf("%s/%s", iconsdir, id);
+    wxLogTrace("poedit.icons", "loading from %s", icon);
+    wxImage img;
+    if (ColorScheme::GetAppMode() == ColorScheme::Dark)
+        img = LoadScaledBitmap(icon + "Dark");
+    if (!img.IsOk())
+        img = LoadScaledBitmap(icon);
+
+    if (!img.IsOk())
+    {
+        wxLogTrace("poedit.icons", "failed to load icon '%s'", id);
+        return wxNullBitmap;
+    }
+
+    if (id.EndsWith("Template"))
+        ProcessTemplateImage(img, opaqueVariant, invertedVariant);
+
+    if (disabledVariant)
+        img = img.ConvertToDisabled();
+
+    if (wxTheApp->GetLayoutDirection() == wxLayout_RightToLeft && ShouldBeMirorredInRTL(id, client))
+    {
+        img = img.Mirror();
+    }
+
+#ifdef __WXMSW__
+    if (client == wxART_TOOLBAR && IsWindows10OrGreater())
+    {
+        const int padding = PX(1);
+        auto sz = img.GetSize();
+        sz.IncBy(padding * 2);
+        img.Resize(sz, wxPoint(padding, padding));
+    }
+#endif // __WXMSW__
+
+    return wxBitmap(img);
 }
 
 #endif // !__WXOSX__

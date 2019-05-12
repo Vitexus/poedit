@@ -1,7 +1,7 @@
 /*
  *  This file is part of Poedit (https://poedit.net)
  *
- *  Copyright (C) 1999-2016 Vaclav Slavik
+ *  Copyright (C) 1999-2019 Vaclav Slavik
  *  Copyright (C) 2005 Olivier Sannier
  *
  *  Permission is hereby granted, free of charge, to any person obtaining a
@@ -118,9 +118,14 @@ bool CatalogItemsComparator::operator()(int i, int j) const
 
     if ( m_order.errorsFirst )
     {
-        if ( a.GetValidity() == CatalogItem::Val_Invalid && b.GetValidity() != CatalogItem::Val_Invalid )
+        if ( a.HasIssue() && !b.HasIssue() )
             return true;
-        else if ( a.GetValidity() != CatalogItem::Val_Invalid && b.GetValidity() == CatalogItem::Val_Invalid )
+        else if ( !a.HasIssue() && b.HasIssue() )
+            return false;
+
+        if ( a.HasError() && !b.HasError() )
+            return true;
+        else if ( !a.HasError() && b.HasError() )
             return false;
     }
 

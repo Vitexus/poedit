@@ -1,7 +1,7 @@
 /*
  *  This file is part of Poedit (https://poedit.net)
  *
- *  Copyright (C) 2014-2016 Vaclav Slavik
+ *  Copyright (C) 2014-2019 Vaclav Slavik
  *
  *  Permission is hereby granted, free of charge, to any person obtaining a
  *  copy of this software and associated documentation files (the "Software"),
@@ -34,9 +34,6 @@ class MainToolbar
 {
 public:
     virtual ~MainToolbar() {}
-
-    virtual bool IsFuzzy() const = 0;
-    virtual void SetFuzzy(bool on) = 0;
 
     virtual void EnableSyncWithCrowdin(bool on) = 0;
 

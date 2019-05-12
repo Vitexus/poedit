@@ -1,7 +1,7 @@
 /*
  *  This file is part of Poedit (https://poedit.net)
  *
- *  Copyright (C) 2001-2016 Vaclav Slavik
+ *  Copyright (C) 2001-2019 Vaclav Slavik
  *
  *  Permission is hereby granted, free of charge, to any person obtaining a
  *  copy of this software and associated documentation files (the "Software"),
@@ -51,6 +51,7 @@
 #endif
 
 #include "catalog.h"
+#include "cat_update.h"
 #include "edapp.h"
 #include "edframe.h"
 #include "hidpi.h"
@@ -79,9 +80,9 @@ ManagerFrame::ManagerFrame() :
 {
 #if defined(__WXGTK__)
     wxIconBundle appicons;
-    appicons.AddIcon(wxArtProvider::GetIcon("poedit", wxART_FRAME_ICON, wxSize(16,16)));
-    appicons.AddIcon(wxArtProvider::GetIcon("poedit", wxART_FRAME_ICON, wxSize(32,32)));
-    appicons.AddIcon(wxArtProvider::GetIcon("poedit", wxART_FRAME_ICON, wxSize(48,48)));
+    appicons.AddIcon(wxArtProvider::GetIcon("net.poedit.Poedit", wxART_FRAME_ICON, wxSize(16,16)));
+    appicons.AddIcon(wxArtProvider::GetIcon("net.poedit.Poedit", wxART_FRAME_ICON, wxSize(32,32)));
+    appicons.AddIcon(wxArtProvider::GetIcon("net.poedit.Poedit", wxART_FRAME_ICON, wxSize(48,48)));
     SetIcons(appicons);
 #elif defined(__WXMSW__)
     SetIcons(wxIconBundle(wxStandardPaths::Get().GetResourcesDir() + "\\Resources\\Poedit.ico"));
@@ -95,11 +96,10 @@ ManagerFrame::ManagerFrame() :
     // De-uglify the toolbar a bit on Windows 10:
     if (IsWindows10OrGreater())
     {
-        const wxUxThemeEngine* theme = wxUxThemeEngine::GetIfActive();
-        if (theme)
+        if (wxUxThemeIsActive())
         {
             wxUxThemeHandle hTheme(tb, L"ExplorerMenu::Toolbar");
-            tb->SetBackgroundColour(wxRGBToColour(theme->GetThemeSysColor(hTheme, COLOR_WINDOW)));
+            tb->SetBackgroundColour(wxRGBToColour(::GetThemeSysColor(hTheme, COLOR_WINDOW)));
         }
     }
 #endif
@@ -210,16 +210,19 @@ static void AddCatalogToList(wxListCtrl *list, int i, int id, const wxString& fi
 
         // FIXME: don't re-load the catalog if it's already loaded in the
         //        editor, reuse loaded instance
-        Catalog cat(file);
-        cat.GetStatistics(&all, &fuzzy, &badtokens, &untranslated, NULL);
-        modtime = wxFileModificationTime(file);
-        lastmodified = cat.Header().RevisionDate;
-        cfg->Write(key + "timestamp", (long)modtime);
-        cfg->Write(key + "all", (long)all);
-        cfg->Write(key + "fuzzy", (long)fuzzy);
-        cfg->Write(key + "badtokens", (long)badtokens);
-        cfg->Write(key + "untranslated", (long)untranslated);
-        cfg->Write(key + "lastmodified", lastmodified);
+        auto cat = Catalog::Create(file);
+        if (cat)
+        {
+            cat->GetStatistics(&all, &fuzzy, &badtokens, &untranslated, NULL);
+            modtime = wxFileModificationTime(file);
+            lastmodified = cat->Header().RevisionDate;
+            cfg->Write(key + "timestamp", (long)modtime);
+            cfg->Write(key + "all", (long)all);
+            cfg->Write(key + "fuzzy", (long)fuzzy);
+            cfg->Write(key + "badtokens", (long)badtokens);
+            cfg->Write(key + "untranslated", (long)untranslated);
+            cfg->Write(key + "lastmodified", lastmodified);
+        }
     }
 
     int icon;
@@ -268,8 +271,8 @@ void ManagerFrame::UpdateListCat(int id)
     m_listCat->InsertColumn(0, _("Catalog"));
     m_listCat->InsertColumn(1, _("Total"));
     m_listCat->InsertColumn(2, _("Untrans"));
-    m_listCat->InsertColumn(3, _("Fuzzy"));
-    m_listCat->InsertColumn(4, _("Bad Tokens"));
+    m_listCat->InsertColumn(3, _("Needs Work"));
+    m_listCat->InsertColumn(4, _("Errors"));
     m_listCat->InsertColumn(5, _("Last modified"));
 
     // FIXME: this is time-consuming, it should be done in parallel on
@@ -463,7 +466,7 @@ void ManagerFrame::OnUpdateProject(wxCommandEvent&)
         {
             // FIXME: there should be only one progress bar for _all_
             //        catalogs, it shouldn't restart on next catalog
-            ProgressInfo pinfo(this, _("Updating catalog"));
+            //ProgressInfo pinfo(this, _("Updating catalog"));
 
             wxString f = m_catalogs[i];
             PoeditFrame *fr = PoeditFrame::Find(f);
@@ -473,12 +476,14 @@ void ManagerFrame::OnUpdateProject(wxCommandEvent&)
             }
             else
             {
-                Catalog cat(f);
+                auto cat = std::make_shared<POCatalog>(f);
                 UpdateResultReason reason;
-                cat.Update(&pinfo, /*summary=*/false, reason);
-                int validation_errors = 0;
-                Catalog::CompilationStatus mo_status;
-                cat.Save(f, false, validation_errors, mo_status);
+                if (PerformUpdateFromSources(this, cat, reason, Update_DontShowSummary))
+                {
+                    Catalog::ValidationResults validation_results;
+                    Catalog::CompilationStatus mo_status;
+                    cat->Save(f, false, validation_results, mo_status);
+                }
             }
          }
 

@@ -2,8 +2,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: poedit\n"
 "Report-Msgid-Bugs-To: help@poedit.net\n"
-"POT-Creation-Date: 2016-08-01 19:26+0200\n"
-"PO-Revision-Date: 2016-05-24 10:04-0400\n"
+"POT-Creation-Date: 2018-10-07 13:14+0200\n"
+"PO-Revision-Date: 2019-01-14 16:31\n"
 "Last-Translator: vslavik <vaclav@slavik.io>\n"
 "Language-Team: Greek\n"
 "Language: el_GR\n"
@@ -19,27 +19,64 @@ msgstr ""
 msgid "Hide this notification message"
 msgstr "Απόκρυψη του παρόντος μηνύματος επισήμανσης"
 
-msgid "Don't Show Again"
+msgid "Don’t Show Again"
 msgstr "Μην το ξαναδείξεις"
 
-msgid "Don't show again"
-msgstr "Να μην εμφανιστεί ξανά"
+msgid "Don’t show again"
+msgstr "Μην το ξαναδείξεις"
 
 #, c-format
-msgid "%i line of file '%s' was not loaded correctly."
-msgid_plural "%i lines of file '%s' were not loaded correctly."
-msgstr[0] "%i γραμμή του αρχείου '%s', δεν φορτώθηκε σωστά."
-msgstr[1] "%i γραμμές του αρχείου '%s' δεν φορτώθηκαν σωστά."
+msgid "(New: %i, obsolete: %i)"
+msgstr "(Νέα: %i, παρωχημένα: %i)"
+
+msgid "Updating catalog"
+msgstr "Ενημερώνεται ο κατάλογος"
+
+msgid "Collecting source files…"
+msgstr "Συλλογή αρχείων προέλευσης…"
+
+msgid "Extracting translatable strings…"
+msgstr "Εξαγωγή μεταφράσιμων συμβολοσειρών…"
+
+msgid "Failed to load extracted catalog."
+msgstr "Αποτυχία στη φόρτωση του εξαγόμενου κατάλογου."
+
+msgid "Merging differences…"
+msgstr "Συνένωση διαφορών…"
 
 #, c-format
-msgid "Line %d of file '%s' is corrupted (not valid %s data)."
-msgstr ""
-"Η γραμμή %d του αρχείου '%s' είναι κατεστραμμένη (τα δεδομένα %s δεν είναι "
-"έγκυρα)."
+msgid "“%s” is not a valid POT file."
+msgstr "Το '%s' δεν είναι έγκυρο αρχείο POT."
 
 #, c-format
-msgid "Malformed header: '%s'"
-msgstr "Παραμορφωμένη κεφαλίδα: '%s'"
+msgid "Malformed header: “%s”"
+msgstr "Παραμορφωμένη κεφαλίδα: «%s»"
+
+msgid "PO Translation Files"
+msgstr "Αρχεία μετάφρασης PO"
+
+msgid "POT Translation Templates"
+msgstr "Πρότυπα μετάφρασης POT"
+
+msgid "XLIFF Translation Files"
+msgstr "Αρχεία Μετάφρασης XLIFF"
+
+msgid "All Translation Files"
+msgstr "Όλα τα αρχεία μετάφρασης"
+
+#, c-format
+msgid "File “%s” is in unsupported format."
+msgstr "Το αρχείο «%s» είναι σε μη υποστηριζόμενη μορφή."
+
+#, c-format
+msgid "%i line of file “%s” was not loaded correctly."
+msgid_plural "%i lines of file “%s” were not loaded correctly."
+msgstr[0] "Η γραμμή %i του αρχείου '%s', δεν φορτώθηκε σωστά."
+msgstr[1] "%i γραμμές του αρχείου '%s', δεν φορτώθηκαν σωστά."
+
+#, c-format
+msgid "Line %d of file “%s” is corrupted (not valid %s data)."
+msgstr "Η γραμμή %d του αρχείου %s είναι κατεστραμμένη ( άκυρα δεδομένα %s)."
 
 msgid ""
 "Broken catalog file: singular form msgstr used together with msgid_plural"
@@ -60,19 +97,19 @@ msgstr ""
 "μπορεί να λείπουν ή να είναι αλλοιωμένα."
 
 #, c-format
-msgid "Couldn't load file %s, it is probably corrupted."
-msgstr "Σφάλμα στη φόρτωση του φακέλου '%s'. Είναι, μάλλον, αλλοιωμένος."
+msgid "Couldn’t load file %s, it is probably corrupted."
+msgstr "Αδυναμία φόρτωσης αρχείου %s, είναι πιθανόν κατεστραμμένο."
 
 #, c-format
 msgid ""
-"File '%s' is read-only and cannot be saved.\n"
+"File “%s” is read-only and cannot be saved.\n"
 "Please save it under different name."
 msgstr ""
-"Το αρχείο '%s' είναι μόνο για ανάγνωση και δεν μπορεί να αποθηκευθεί.\n"
-"Παρακαλώ αποθήκευσέ το με διαφορετικό όνομα."
+"Αρχείο %s είναι μόνο για ανάγνωση και δεν μπορεί να αποθηκευτεί.\n"
+" Παρακαλώ αποθηκεύστε το με διαφορετικό όνομα."
 
 #, c-format
-msgid "Couldn't save file %s."
+msgid "Couldn’t save file %s."
 msgstr "Αδυναμία αποθήκευσης του αρχείου %s."
 
 msgid ""
@@ -83,35 +120,30 @@ msgstr ""
 
 #, c-format
 msgid ""
-"The catalog couldn't be saved in '%s' charset as specified in catalog "
+"The catalog couldn’t be saved in “%s” charset as specified in catalog "
 "settings.\n"
 "\n"
 "It was saved in UTF-8 instead and the setting was modified accordingly."
 msgstr ""
-"Ο κατάλογος δεν μπορούσε να αποθηκευτεί με χαρακτήρες '%s', \n"
-"όπως προσδιορίστηκε στις ρυθμίσεις του καταλόγου. \n"
+"Ο κατάλογος δεν μπορούσε με χαρακτήρες %s όπως προσδιορίστηκε στις ρυθμίσεις "
+"καταλόγου.\n"
 "\n"
-"Αντ' αυτού, αποθηκεύτηκε σε ΓιουΤιΕφ-8 (UTF-8)\n"
-"και η ρύθμιση τροποποιήθηκε αναλόγως."
+" Αποθηκεύτηκε σε UTF-8 και η ρύθμιση τροποποιήθηκε αναλόγως."
 
 msgid "Error saving catalog"
 msgstr "Σφάλμα αποθήκευσης καταλόγου"
 
-msgid "PO Translation Files"
-msgstr "Αρχεία μετάφρασης PO"
-
-msgid "POT Translation Templates"
-msgstr "Πρότυπα μετάφρασης POT"
-
-msgid "All Translation Files"
-msgstr "Όλα τα αρχεία μετάφρασης"
-
-msgid "Merging differences..."
-msgstr "Συνένωση διαφορών..."
+#, c-format
+msgid "Error loading file “%s”: %s."
+msgstr "Σφάλμα κατά τη φόρτωση του αρχείου «%s» : %s ."
 
 #, c-format
-msgid "'%s' is not a valid POT file."
-msgstr "'%s' δεν είναι έγκυρο αρχείο POT."
+msgid "unsupported XLIFF version (%s)"
+msgstr "μη υποστηριζόμενη έκδοση του XLIFF (%s)"
+
+#. TRANSLATORS: Shown as error if a translation of XLIFF markup is not valid XML
+msgid "Broken markup in translation string."
+msgstr "Φθαρμένη σύνταξη στο στίχο μετάφρασης."
 
 msgid "(Use default language)"
 msgstr "(Χρήση εξ ορισμού γλώσσας)"
@@ -125,6 +157,22 @@ msgstr "Επιλογή Γλώσσας"
 msgid "You must restart Poedit for this change to take effect."
 msgstr ""
 "Πρέπει να γίνει επανεκκίνηση του Poedit, ώστε αυτή η αλλαγή να έχει επίδραση."
+
+msgid "Syncing"
+msgstr "Συγχρονισμός"
+
+#. TRANSLATORS: %s is a cloud destination, e.g. "Crowdin" or ftp.wordpress.com etc.
+#, c-format
+msgid "Syncing with %s…"
+msgstr "Συγχρονισμός με %s…"
+
+#. TRANSLATORS: %s is a cloud destination, e.g. "Crowdin" or ftp.wordpress.com etc.
+#, c-format
+msgid "Syncing with %s failed."
+msgstr "Ο συγχρονισμός με το %s απέτυχε."
+
+msgid "Syncing error"
+msgstr "Σφάλμα συγχρονισμού"
 
 msgid "Downloading translations is disabled in this project."
 msgstr "Η λήψη μεταφράσεων είναι απενεργοποιημένη για αυτό το έργο."
@@ -183,19 +231,16 @@ msgid "File:"
 msgstr "Αρχείο:"
 
 msgid "No translation projects listed in your Crowdin account."
-msgstr ""
+msgstr "Δεν υπάρχουν μεταφραστικά έργα στον Crowdin λογαριασμό σας."
 
 msgid "This project has no files that can be translated in Poedit."
-msgstr ""
+msgstr "Αυτό το έργο δεν έχει αρχεία, που μπορούν να μεταφραστούν στο Poedit."
 
 msgid "This file can only be edited in Crowdin’s web interface."
-msgstr ""
+msgstr "Η επεξεργασία του αρχείου πρέπει να γίνει στο Crowdin."
 
 msgid "Downloading latest translations…"
 msgstr "Γίνεται λήψη των τελευταίων μεταφράσεων…"
-
-msgid "Syncing with Crowdin"
-msgstr "Συγχρονισμός με το Crowdin"
 
 msgid "Syncing with Crowdin failed."
 msgstr "Ο συγχρονισμός με το Crowdin απέτυχε."
@@ -215,29 +260,11 @@ msgstr "Περισσότερες πληροφορίες"
 msgid "Learn More"
 msgstr "Μάθετε Περισσότερα"
 
-#, c-format
-msgid "Failed command: %s"
-msgstr "Αποτυχία τη εντολής: %s"
-
-msgid "Failed to merge gettext catalogs."
-msgstr "Αποτυχία στη συγχώνευση των καταλόγων gettext."
-
-msgid "Scanning files..."
-msgstr "Σάρωση αρχείων..."
-
-#. TRANSLATORS: '%s' is replaced with the kind of the files (e.g. C++, PHP, ...)
-#, c-format
-msgid "Parsing %s files..."
-msgstr "Ανάλυση %s αρχείων..."
-
-msgid "Failed to load extracted catalog."
-msgstr "Αποτυχία στη φόρτωση του εξαγόμενου κατάλογου."
-
 msgid "&Help"
 msgstr "&Βοήθεια"
 
 msgid "MO files can’t be directly edited in Poedit."
-msgstr ""
+msgstr "Δεν είναι δυνατή η επεξεργασία αρχείων MO στο Poedit."
 
 msgid "Error opening file"
 msgstr "Σφάλμα κατά το άνοιγμα του αρχείου"
@@ -246,66 +273,31 @@ msgid ""
 "Please open and edit the corresponding PO file instead. When you save it, "
 "the MO file will be updated as well."
 msgstr ""
+"Παρακαλώ ανοίξτε και επεξεργαστείτε τον αντίστοιχο φάκελο PO αντ'άυτου. Όταν "
+"το αποθηκεύσετε, το αρχείο MO θα ενημερωθεί επίσης."
 
-msgid "don't delete temporary files (for debugging)"
-msgstr "χωρίς διαγραφή των προσωρινών αρχείων (για αποσφαλμάτωση)"
+msgid "don’t delete temporary files (for debugging)"
+msgstr "μη διαγράψεις προσωρινά αρχεία (γι' αποσφαλμάτωση)"
 
 msgid "handle a poedit:// URI"
-msgstr "Χειρίσου ένα poedit:// URI"
+msgstr "χειρίσου ένα poedit:// URI"
+
+msgid "go to item at given line number"
+msgstr "μετάβαση στο στοιχείο, στο δεδομένο αριθμό γραμμής"
 
 msgid "Failed to communicate with Poedit process."
-msgstr ""
+msgstr "Αδυναμία επικοινωνίας με τη διεργασία Poedit."
 
 #, c-format
 msgid "Unhandled exception occurred: %s"
 msgstr "Παρουσιάστηκε ανεπίλυτη εξαίρεση: %s"
 
-msgid "Unhandled exception occurred."
-msgstr "Παρουσιάστηκε ανεπίλυτη εξαίρεση."
-
 msgid "Open catalog"
 msgstr "Άνοιγμα καταλόγου"
 
 #, c-format
-msgid "File '%s' doesn't exist."
-msgstr "Το αρχείο '%s' δεν υπάρχει."
-
-#. TRANSLATORS: This is titlebar of about dialog, "%s" is application name
-#. ("Poedit" here, but please use "%s")
-#, c-format
-msgid "About %s"
-msgstr "Περί του %s"
-
-#. TRANSLATORS: This is version information in about dialog, "%s" will be
-#. version number when used
-#, c-format
-msgid "Version %s"
-msgstr "Έκδοση %s"
-
-#. TRANSLATORS: OS X item in app menu
-msgid "Services"
-msgstr ""
-
-#. TRANSLATORS: OS X item in app menu, %s is replaced with "Poedit"
-#, c-format
-msgid "Hide %s"
-msgstr ""
-
-#. TRANSLATORS: OS X item in app menu
-msgid "Hide Others"
-msgstr ""
-
-#. TRANSLATORS: OS X item in app menu
-msgid "Show All"
-msgstr ""
-
-#. TRANSLATORS: OS X item in app menu, %s is replaced with "Poedit"
-#, c-format
-msgid "Quit %s"
-msgstr ""
-
-msgid "Preferences..."
-msgstr ""
+msgid "File “%s” doesn’t exist."
+msgstr "Το αρχείο “%s” δεν υπάρχει."
 
 msgid "Poedit is an easy to use translations editor."
 msgstr "Το Poedit είναι ένας εύκολος στη χρήση επεξεργαστής μεταφράσεων."
@@ -313,8 +305,8 @@ msgstr "Το Poedit είναι ένας εύκολος στη χρήση επε�
 msgid "Catalogs Manager"
 msgstr "Διαχειριστής Καταλόγων"
 
-msgid "Check for Updates..."
-msgstr "Έλεγχος για Ενημερώσεις..."
+msgid "Check for Updates…"
+msgstr "Έλεγχος για Ενημερώσεις…"
 
 msgid "&Edit"
 msgstr "&Επεξεργασία"
@@ -409,6 +401,7 @@ msgstr "Μεγέθυνση"
 msgid "Bring All to Front"
 msgstr "Φέρτε όλα προς τα εμπρός"
 
+#. TRANSLATORS:File kind displayed in Finder/Explorer
 msgid "PO Translation"
 msgstr "Μετάφραση PO"
 
@@ -424,81 +417,12 @@ msgstr ""
 "Το αρχείο μπορεί είτε να είναι φθαρμένο, ή να είναι σε μία μορφή, την οποία "
 "δεν αναγνωρίζει το Ποέντιτ. "
 
-msgid "&Undo"
-msgstr "&Αναίρεση"
-
-msgid "&Redo"
-msgstr "Επαναφο&ρά"
-
-msgid "Cu&t"
-msgstr "Απο&κοπή"
-
-msgid "Cut"
-msgstr "Αποκοπή"
-
-msgid "Copy"
-msgstr "Αντιγραφή"
-
-msgid "&Paste"
-msgstr "&Επικόλληση"
-
-msgid "Paste"
-msgstr "Επικόλληση"
-
-msgid "&Delete"
-msgstr "&Διαγραφή"
-
-msgid "Select &All"
-msgstr "Επιλογή Ό&λων"
-
-msgid "Select All"
-msgstr "Επιλογή όλων"
-
-#. TRANSLATORS: Keyboard shortcut for display in Windows menus
-#. TRANSLATORS: This is the key shortcut used in menus on Windows, some languages call them differently
-msgid "Ctrl+"
-msgstr "Ctrl+"
-
-#. TRANSLATORS: Keyboard shortcut for display in Windows menus
-#. TRANSLATORS: This is the key shortcut used in menus on Windows, some languages call them differently
-msgid "Alt+"
-msgstr "Alt+"
-
-#. TRANSLATORS: Keyboard shortcut for display in Windows menus
-msgid "Shift+"
-msgstr "Shift+"
-
-#. TRANSLATORS: Keyboard shortcut for display in Windows menus
-msgid "Enter"
-msgstr "Enter"
-
-#. TRANSLATORS: Keyboard shortcut for display in Windows menus
-msgid "Up"
-msgstr "Πάνω"
-
-#. TRANSLATORS: Keyboard shortcut for display in Windows menus
-msgid "Down"
-msgstr "Κάτω"
-
-#. TRANSLATORS: Keyboard shortcut, must correspond to translation of "Ctrl+"
-msgid "ctrl"
-msgstr "ctrl"
-
-#. TRANSLATORS: Keyboard shortcut, must correspond to translation of "Alt+"
-msgid "alt"
-msgstr "alt"
-
-#. TRANSLATORS: Keyboard shortcut, must correspond to translation of "Shift+"
-msgid "shift"
-msgstr "shift"
-
-msgid "You can't drop more than one file on Poedit window."
-msgstr ""
-"Δε μπορείτε να σύρετε περισσότερα από ένα αρχείο πάνω σε ένα παράθυρο Poedit."
+msgid "You can’t drop more than one file on Poedit window."
+msgstr "Δεν μπορείτε να σύρετε παραπάνω από ένα αρχείο στο παράθυρο Poedit."
 
 #, c-format
-msgid "File '%s' is not a message catalog."
-msgstr "Το αρχείο '%s' δεν είναι κατάλογος μηνυμάτων."
+msgid "File “%s” is not a translation file."
+msgstr "Το αρχείο «%s» δεν είναι ένα αρχείο μετάφρασης."
 
 msgid "Poedit"
 msgstr "Poedit"
@@ -508,32 +432,6 @@ msgstr "&Αρχείο"
 
 msgid "&Go"
 msgstr "&Μετάβαση"
-
-msgid "Source text:"
-msgstr "Πηγαίο κείμενο:"
-
-msgid "Singular:"
-msgstr "Ενικός:"
-
-msgid "Plural:"
-msgstr "Πληθυντικός:"
-
-msgid "Translation:"
-msgstr "Μετάφραση:"
-
-msgid ""
-"POT files are only templates and don’t contain any translations themselves.\n"
-"To make a translation, create a new PO file based on the template."
-msgstr ""
-"Τα αρχεία POT είναι μόνο πρότυπα και δεν περιέχουν μεταφράσεις. \n"
-"Για να κάνετε μια μετάφραση, δημιουργήστε ένα νέο αρχείο PO που βασίζεται "
-"στο πρότυπο."
-
-msgid "Create New Translation"
-msgstr "Δημιουργία νέας μετάφρασης"
-
-msgid "Create new translation"
-msgstr "Δημιουργία νέας μετάφρασης"
 
 #. TRANSLATORS: %s is language name in its basic form (as you
 #. would see e.g. in a list of supported languages). You may need
@@ -554,38 +452,35 @@ msgstr "Ο κατάλογος τροποποιήθηκε. Θέλετε να γί
 msgid "Save changes"
 msgstr "Αποθήκευση αλλαγών"
 
-msgid "Your changes will be lost if you don't save them."
-msgstr "Οι αλλαγές που έχεις κάνει θα χαθούν, εάν δεν τις αποθηκεύσεις."
+msgid "Your changes will be lost if you don’t save them."
+msgstr "Οι αλλαγές σας θα χαθούν αν δεν τις αποθηκεύσετε."
 
 msgid "Save"
 msgstr "Αποθήκευση"
 
-msgid "Don't save"
+msgid "Do&n’t save"
+msgstr "&Χωρίς αποθήκευση"
+
+msgid "Don’t Save"
 msgstr "Να μην αποθηκευθεί"
 
-msgid "Don't Save"
-msgstr "Να μην Αποθηκευθεί"
+msgid "Save as…"
+msgstr "Αποθήκευση ως…"
 
-msgid "Save as..."
-msgstr "Αποθήκευση ως..."
-
-msgid "Compile to..."
-msgstr "Μεταγλώττιση σε..."
+msgid "Compile to…"
+msgstr "Μεταγλώττιση σε…"
 
 msgid "Compiled Translation Files"
 msgstr "Μεταγλωττισμένα αρχεία μετάφρασης"
 
-msgid "Export as..."
-msgstr "Εξαγωγή ως..."
+msgid "Export as…"
+msgstr "Εξαγωγή ως…"
 
 msgid "HTML Files"
 msgstr "Αρχεία HTML"
 
 msgid "Open catalog template"
 msgstr "Άνοιγμα προτύπου καταλόγου"
-
-msgid "Updating catalog"
-msgstr "Ενημερώνεται ο κατάλογος"
 
 msgid "Source code not available."
 msgstr "Ο πηγαίος κώδικας δεν είναι διαθέσιμος."
@@ -597,6 +492,9 @@ msgid ""
 "Translations couldn’t be updated from the source code, because no code was "
 "found in the location specified in the catalog’s Properties."
 msgstr ""
+"Οι μεταφράσεις δεν μπόρεσαν να ενημερωθούν από τον πηγαίο κώδικα, επειδή δεν "
+"βρέθηκε κανένας κώδικας στην τοποθεσία που καθορίζετε στις ιδιότητες του "
+"καταλόγου."
 
 msgid "Entries in the catalog are probably incorrect."
 msgstr "Οι καταχωρήσεις στον κατάλογο είναι μάλλον λανθασμένες."
@@ -649,6 +547,8 @@ msgstr ""
 
 msgid "The file cannot be compiled into the MO format and used."
 msgstr ""
+"Αυτό το αρχείο δεν μπορεί να μεταγλωττιστεί σε μορφή MO και να "
+"χρησιμοποιηθεί."
 
 msgid "No problems with the translation found."
 msgstr "Δεν βρέθηκε κανένα πρόβλημα στην μετάφραση."
@@ -658,27 +558,41 @@ msgid "The translation is ready for use, but %d entry is not translated yet."
 msgid_plural ""
 "The translation is ready for use, but %d entries are not translated yet."
 msgstr[0] ""
+"Η μετάφραση είναι έτοιμη για χρήση, αλλά η καταχώρηση %d δεν έχει "
+"μεταφραστεί ακόμα."
 msgstr[1] ""
+"Η μετάφραση είναι έτοιμη για χρήση, αλλά οι καταχωρήσεις %d δεν έχουν "
+"μεταφραστεί ακόμα."
 
 msgid "The translation is ready for use."
 msgstr "Η μετάφραση είναι έτοιμη προς χρήση."
 
-msgid "Context:"
-msgstr "Περιεχόμενα:"
+msgid "Warnings have been disabled."
+msgstr "Οι προειδοποιήσεις έχουν απενεργοποιηθεί."
+
+msgid ""
+"If you disabled the warnings because of excessive false positives, please "
+"consider sending a sample file to help@poedit.net to help improve them."
+msgstr ""
 
 #, c-format
 msgid "Poedit automatically fixed invalid content in the file “%s”."
-msgstr ""
+msgstr "Το Poedit διόρθωσε αυτόματα άκυρο περιεχόμενο στο αρχείο %s."
 
 msgid ""
 "The file contained duplicate items, which is not allowed in PO files and "
 "would prevent the file from being used. Poedit fixed the issue, but you "
-"should review translations of any items marked as fuzzy and correct them if "
-"necessary."
+"should review translations of any items marked as needing work and correct "
+"them if necessary."
 msgstr ""
+"Το αρχείο περιέχει αντίγραφα στοιχεία, το οποίο δεν επιτρέπεται στα αρχεία "
+"PO και θα αποτρέψει το αρχείο από το να χρησιμοποιηθεί. Το Poedit διόρθωσε "
+"το θέμα, αλλά θα πρέπει να επανεξετάσετε τις μεταφράσεις οποιουδήποτε "
+"στοιχείου έχει επισημανθεί ότι χρειάζεται δουλειά και να το διορθώσετε εάν "
+"είναι απαραίτητο."
 
-msgid "Language of the translation isn't set."
-msgstr "δεν έχει οριστεί η γλώσσα της μετάφρασης."
+msgid "Language of the translation isn’t set."
+msgstr "Δεν έχει οριστεί η γλώσσα της μετάφρασης."
 
 msgid "Set Language"
 msgstr "Ορισμός γλώσσας"
@@ -691,9 +605,11 @@ msgid ""
 "Suggestions are not available if the translation language is not set "
 "correctly. Other features, such as plural forms, may be affected as well."
 msgstr ""
+"Οι υποδείξεις δεν είναι διαθέσιμες αν η γλώσσα μετάφρασης δεν έχει οριστεί "
+"σωστά. Άλλες λειτουργίες, όπως ο πληθυντικός, μπορεί επίσης να επηρεαστούν."
 
 msgid "Language of the translation is the same as source language."
-msgstr ""
+msgstr "Η γλώσσα μετάφρασης είναι η ίδια όπως η πηγαία γλώσσα."
 
 msgid "Fix Language"
 msgstr "Επιδιόρθωση γλώσσας"
@@ -702,18 +618,18 @@ msgid "Fix language"
 msgstr "Επιδιόρθωση γλώσσας"
 
 msgid ""
-"This catalog has entries with plural forms, but doesn't have Plural-Forms "
+"This catalog has entries with plural forms, but doesn’t have Plural-Forms "
 "header configured."
 msgstr ""
-"Αυτός ο κατάλογος έχει θέσεις με μορφές πληθυντικού, όμως δεν είναι "
-"ρυθμισμένη η «Plural-Forms» κεφαλίδα του."
+"Αυτός ο κατάλογος έχει καταχωρήσεις στον πληθυντικό, αλλά δεν έχει "
+"διαμορφωμένη επικεφαλίδα Πληθυντικού."
 
 msgid ""
 "Entries in this catalog have different plural forms count from what "
-"catalog's Plural-Forms header says"
+"catalog’s Plural-Forms header says"
 msgstr ""
-"Οι θέσεις, σε αυτό τον Κατάλογο Μετάφρασης, έχουν διαφορετικό πλήθος μορφών "
-"πληθυντικού, από όσες αναφέρει η κεφαλίδα «Plural-Forms» του καταλόγου."
+"Οι καταχωρήσεις σε αυτόν τον κατάλογο έχουν διαφορετικό μέτρηση πληθυντικού "
+"από αυτή που αναφέρει η επικεφαλίδα Πληθυντικού του καταλόγου"
 
 msgid "Required header Plural-Forms is missing."
 msgstr "Λείπει η απαιτούμενη κεφαλίδα «Plural-Forms»."
@@ -742,8 +658,8 @@ msgid "Review"
 msgstr "Επισκόπηση"
 
 #, c-format
-msgid "Error loading message catalog file '%s'."
-msgstr "Σφάλμα στη φόρτωση του αρχείου καταλόγου μηνυμάτων '%s'."
+msgid "Error loading message catalog file “%s”."
+msgstr "Σφάλμα φόρτωσης αρχείο μηνύματος καταλόγου \"%s\"."
 
 #, c-format
 msgid "Translated: %d of %d (%d %%)"
@@ -770,9 +686,6 @@ msgstr " (μη αποθηκευμένο)"
 
 msgid " (modified)"
 msgstr " (τροποποιήθηκε)"
-
-msgid "Go"
-msgstr "Μετάβαση"
 
 #, c-format
 msgid "Failed to update translation memory: %s"
@@ -802,65 +715,16 @@ msgstr "Διατήρηση"
 msgid "Purge"
 msgstr "Εκκαθάριση"
 
-msgid "Fill missing translations from TM"
-msgstr ""
-
-msgid "Only fill in exact matches"
-msgstr ""
-
-msgid ""
-"By default, inaccurate results are filled in as well and marked as fuzzy. "
-"Check this option to only include accurate matches."
-msgstr ""
-
-msgid "Don’t mark exact matches as fuzzy"
-msgstr ""
-
-msgid ""
-"Only enable if you trust the quality of your TM. By default, all matches "
-"from the TM are marked as fuzzy and should be reviewed."
-msgstr ""
-
-msgid "Fill"
-msgstr "Συμπλήρωση"
-
-#, c-format
-msgid "%d entry was filled from the translation memory."
-msgid_plural "%d entries were filled from the translation memory."
-msgstr[0] ""
-msgstr[1] ""
-
-msgid ""
-"The translations were marked as fuzzy, because they may be inaccurate. You "
-"should review them for correctness."
-msgstr ""
-
-msgid "No entries could be filled from the translation memory."
-msgstr ""
-
-msgid ""
-"The TM doesn’t contain any strings similar to the content of this file. It "
-"is only effective for semi-automatic translations after Poedit learns enough "
-"from files that you translated manually."
-msgstr ""
-
-msgid "Translating"
-msgstr "Μετάφραση"
-
-msgid "Filling missing translations from TM..."
-msgstr ""
-
-#, c-format
-msgid "Translated %u string"
-msgid_plural "Translated %u strings"
-msgstr[0] "Μεταφράστηκε %u συμβολοσειρά"
-msgstr[1] "Μεταφράστηκαν %u συμβολοσειρές"
-
 msgid "Copy from source text"
 msgstr "Αντιγραφή από το πηγαίο κείμενο"
 
 msgid "Copy from Source Text"
 msgstr "Αντιγραφή από το Πηγαίο Κείμενο"
+
+#. TRANSLATORS: This is the key shortcut used in menus on Windows, some languages call them differently
+#. TRANSLATORS: Keyboard shortcut for display in Windows menus
+msgid "Ctrl+"
+msgstr "Ctrl+"
 
 msgid "Clear translation"
 msgstr "Εκκαθάριση της μετάφρασης"
@@ -877,12 +741,95 @@ msgstr "Επεξεργασία των Σχολίων"
 msgid "References:"
 msgstr "Αναφορές:"
 
+msgid "&Bookmarks"
+msgstr "&Σελιδοδείκτες"
+
+#. TRANSLATORS: This is the key shortcut used in menus on Windows, some languages call them differently
+#. TRANSLATORS: Keyboard shortcut for display in Windows menus
+msgid "Alt+"
+msgstr "Alt+"
+
+#, c-format
+msgid "Set bookmark %i"
+msgstr "Ορίστε σελιδοδείκτη %i"
+
+#, c-format
+msgid "Go to bookmark %i"
+msgstr "Μετάβαση σε σελιδοδείκτη %i"
+
+#, c-format
+msgid "Set Bookmark %i"
+msgstr "Ορίστε το Σελιδοδείκτη %i"
+
+#, c-format
+msgid "Go to Bookmark %i"
+msgstr "Μετάβαση στο Σελιδοδείκτη %i"
+
+msgid "Hide Sidebar"
+msgstr "Απόκρυψη πλευρικής μπάρας"
+
+msgid "Show Sidebar"
+msgstr "Εμφάνιση πλευρικής μπάρας"
+
+msgid "Hide Status Bar"
+msgstr "Απόκρυψη μπάρας κατάστασης"
+
+msgid "Show Status Bar"
+msgstr "Εμφάνιση μπάρας κατάστασης"
+
+msgid "Source text:"
+msgstr "Πηγαίο κείμενο:"
+
+msgid "Singular:"
+msgstr "Ενικός:"
+
+msgid "Plural:"
+msgstr "Πληθυντικός:"
+
+msgid "Translation:"
+msgstr "Μετάφραση:"
+
+msgid "Pre-translated"
+msgstr "Προ-μεταφρασμένο"
+
+msgid "Needs Work"
+msgstr "Χρειάζεται δουλειά"
+
+#. TRANSLATORS: This indicates that the string's translation isn't final
+#. and has known problems.  For example, it might be machine translated or
+#. fuzzy matched from an older string. The translation should be short and
+#. convey this. If it's problematic to translate it, "Needs review" is
+#. acceptable substitute, but note that the meaning is subtly different:
+#. "needs review" implies that somebody else should review the string after
+#. I am done with it (i.e. consider it good), while "needs work" implies I
+#. need to return to it and finish the translation.
+msgid "Needs work"
+msgstr "Χρειάζεται δουλειά"
+
+msgid ""
+"POT files are only templates and don’t contain any translations themselves.\n"
+"To make a translation, create a new PO file based on the template."
+msgstr ""
+"Τα αρχεία POT είναι μόνο πρότυπα και δεν περιέχουν μεταφράσεις. \n"
+"Για να κάνετε μια μετάφραση, δημιουργήστε ένα νέο αρχείο PO που βασίζεται "
+"στο πρότυπο."
+
+msgid "Create New Translation"
+msgstr "Δημιουργία νέας μετάφρασης"
+
+msgid "Create new translation"
+msgstr "Δημιουργία νέας μετάφρασης"
+
 msgid "Everything"
 msgstr "Τα πάντα"
 
 #, c-format
 msgid "Form %i"
 msgstr "Μορφή %i"
+
+#, c-format
+msgid "Form %i (unused)"
+msgstr "Μορφή %i (αχρησιμοποίητη)"
 
 msgid "Singular"
 msgstr "Ενικός"
@@ -902,59 +849,38 @@ msgstr "Πληθυντικός"
 msgid "Other"
 msgstr "Άλλο"
 
-msgid "&Bookmarks"
-msgstr "&Σελιδοδείκτες"
-
 #, c-format
-msgid "Set bookmark %i"
-msgstr ""
+msgid "%s Format"
+msgstr "%s Μορφή"
 
+#. TRANSLATORS: %s is replaced with language name, e.g. "PHP" or "C", so "PHP Format" etc."
 #, c-format
-msgid "Go to bookmark %i"
-msgstr ""
-
-#, c-format
-msgid "Set Bookmark %i"
-msgstr ""
-
-#, c-format
-msgid "Go to Bookmark %i"
-msgstr ""
-
-msgid "Hide Sidebar"
-msgstr ""
-
-msgid "Show Sidebar"
-msgstr ""
-
-msgid "Hide Status Bar"
-msgstr ""
-
-msgid "Show Status Bar"
-msgstr ""
+msgid "%s format"
+msgstr "%s μορφή"
 
 msgid "Source text"
 msgstr "Πηγαίο κείμενο"
 
-msgid "Translation"
-msgstr "Μετάφραση"
+#, c-format
+msgid "Translation — %s"
+msgstr "Μετάφραση — %s"
 
 msgid "ID"
 msgstr "Ταυτότητα"
 
 #, c-format
 msgid "Source text — %s"
-msgstr ""
+msgstr "Πηγαίο κείμενο -%s"
 
 msgid "unknown language"
 msgstr "άγνωστη γλώσσα"
 
 #, c-format
-msgid "Translation — %s"
-msgstr "Μετάφραση — %s"
+msgid "Failed command: %s"
+msgstr "Αποτυχία τη εντολής: %s"
 
-msgid "Error:"
-msgstr "Σφάλμα:"
+msgid "Failed to merge gettext catalogs."
+msgstr "Αποτυχία στη συγχώνευση των καταλόγων gettext."
 
 msgid "Source file"
 msgstr "Αρχείο πηγαίου κώδικα"
@@ -963,13 +889,13 @@ msgid "Source file occurrence:"
 msgstr "Συνύπαρξη πηγαίου αρχείου:"
 
 msgid "Open in Editor"
-msgstr ""
+msgstr "Άνοιγμα στον Επεξεργαστή"
 
 msgid "Open in editor"
-msgstr ""
+msgstr "Άνοιγμα στον επεξεργαστή"
 
 msgid "No references for the selected item."
-msgstr ""
+msgstr "Καμία αναφορά για το επιλεγμένο στοιχείο."
 
 #, c-format
 msgid "Error opening file %s!"
@@ -995,10 +921,10 @@ msgid "Whole words only"
 msgstr "Πλήρης λέξεις μόνο"
 
 msgid "Find in source texts"
-msgstr ""
+msgstr "Βρίσκεται στα πηγαία κείμενα"
 
 msgid "Find in translations"
-msgstr ""
+msgstr "Βρείτε στις μεταφράσεις"
 
 msgid "Find in comments"
 msgstr "Ανεύρεση στα σχόλια"
@@ -1006,11 +932,14 @@ msgstr "Ανεύρεση στα σχόλια"
 msgid "Close"
 msgstr "Κλείσιμο"
 
-msgid "Replace All"
-msgstr ""
+msgid "Replace &All"
+msgstr "Αντικατάσταση &Όλων"
 
-msgid "Replace all"
-msgstr ""
+msgid "Replace &all"
+msgstr "Αντικατάσταση &όλων"
+
+msgid "&Replace"
+msgstr "&Αντικατάσταση"
 
 msgid "< &Previous"
 msgstr "< &Προηγούμενο"
@@ -1019,10 +948,10 @@ msgid "&Next >"
 msgstr "&Επόμενο >"
 
 msgid "String to find"
-msgstr ""
+msgstr "Συμβολοσειρά για να βρείτε"
 
 msgid "Replacement string"
-msgstr ""
+msgstr "Συμβολοσειρά αντικαταστάτης"
 
 #, c-format
 msgid "Cannot execute program: %s"
@@ -1049,11 +978,8 @@ msgstr "Συνολικά"
 msgid "Untrans"
 msgstr "Μη μεταφρασμένο"
 
-msgid "Fuzzy"
-msgstr "Ασαφές"
-
-msgid "Bad Tokens"
-msgstr "Άσχημα Κουπόνια"
+msgid "Errors"
+msgstr "Σφάλματα"
 
 msgid "Last modified"
 msgstr "Τελευταία τροποποίηση"
@@ -1099,12 +1025,14 @@ msgid ""
 "Your name and email address are only used to set the Last-Translator header "
 "of GNU gettext files."
 msgstr ""
+"Το όνομα σας και η διεύθυνση email σας χρησιμοποιούνται μόνο για να ορίσουν "
+"την επικεφαλίδα Τελευταίος-Μεταφραστής στα αρχεία GNU gettext."
 
 msgid "Editing"
 msgstr "Επεξεργασία"
 
 msgid "Automatically compile MO file when saving"
-msgstr ""
+msgstr "Αυτόματη σύνταξη αρχείου MO όταν αποθηκεύεται"
 
 msgid "Show summary after catalog update"
 msgstr "Εμφάνιση περίληψης μετά την ενημέρωση του καταλόγου"
@@ -1129,10 +1057,10 @@ msgid "Appearance"
 msgstr "Εμφάνιση"
 
 msgid "Use custom list font:"
-msgstr ""
+msgstr "Χρησιμοποιείστε προσαρμοσμένη λίστα γραμματοσειράς:"
 
 msgid "Use custom text fields font:"
-msgstr ""
+msgstr "Χρήση της προσαρμοσμένης γραμματοσειράς στο πεδίο κειμένου:"
 
 msgid "Change UI language"
 msgstr "Επιλογή γλώσσας UI"
@@ -1147,25 +1075,32 @@ msgstr "Γενικές ρυθμίσεις"
 msgid "Use translation memory"
 msgstr "Χρήση της μεταφραστικής μνήμης"
 
-msgid "Learn From Files..."
-msgstr "Εκμάθηση από Αρχεία..."
+msgid "Manage…"
+msgstr "Διαχείριση…"
 
-msgid "Learn from files..."
-msgstr "Εκμάθηση από τα αρχεία..."
+#. TRANSLATORS: Followed by "match translations within the file" or "pre-translate from TM"
+msgid "When updating from sources"
+msgstr "Κατά την ενημέρωση από πηγές"
 
-#. TRANSLATORS: This is a button that deletes everything in the translation memory (i.e. clears/resets it).
-msgid "Reset"
-msgstr ""
+#. TRANSLATORS: Preceded by "When updating from sources"
+msgid "fuzzy match within the file"
+msgstr "ασαφή αντιστοιχία στον φάκελο"
 
-msgid "Consult TM when updating from sources"
-msgstr "Να συμβουλεύεται την Μετ.Μνήμη όταν γίνεται ενημέρωση από πηγές"
+#. TRANSLATORS: Preceded by "When updating from sources"
+msgid "pre-translate from TM"
+msgstr "προ-μετάφραση από τη Μετ.Μνήμη"
 
 msgid ""
-"If enabled, Poedit will try to fill in new entries using your previous\n"
-"translations stored in the translation memory. If the TM is\n"
-"near-empty, it will not be very effective. The more translations\n"
-"you edit and the larger the TM grows, the better it gets."
+"Poedit can attempt to fill in new entries from only previous translations in "
+"the file or from your entire translation memory. Using the TM won’t be very "
+"effective if it’s near-empty, but it will get better as you add more "
+"translations to it."
 msgstr ""
+"Το Poedit μπορεί να προσπαθήσει να συμπληρώσει νέες καταχωρήσεις μόνο από "
+"προηγούμενες μεταφράσεις στο αρχείο ή από ολόκληρη την μνήμη μετάφρασης. Η "
+"χρήση της Μνήμης Μετάφρασης δεν θα είναι πολύ αποτελεσματική εάν είναι "
+"σχεδόν άδεια, αλλά θα γίνει καλύτερη όσο προσθέτετε περισσότερες μεταφράσεις "
+"σε αυτή."
 
 msgid "Stored translations:"
 msgstr "Αποθηκευμένες μεταφράσεις:"
@@ -1173,64 +1108,129 @@ msgstr "Αποθηκευμένες μεταφράσεις:"
 msgid "Database size on disk:"
 msgstr "Το μέγεθος της βάσης δεδομένων στο δίσκο:"
 
+msgid "Import Translation Files…"
+msgstr "Εισαγωγή Αρχείων Μετάφρασης…"
+
+msgid "Import translation files…"
+msgstr "Εισαγωγή αρχείων μετάφρασης…"
+
+msgid "Import From TMX…"
+msgstr "Εισαγωγή από TMX…"
+
+msgid "Import from TMX…"
+msgstr "Εισαγωγή από TMX…"
+
+msgid "Export To TMX…"
+msgstr "Εξαγωγή σε TMX…"
+
+msgid "Export to TMX…"
+msgstr "Εξαγωγή σε TMX…"
+
+#. TRANSLATORS: This is a button that deletes everything in the translation memory (i.e. clears/resets it).
+msgid "Reset"
+msgstr "Επαναφορά"
+
 msgid "Select translation files to import"
 msgstr "Επέλεξε τα αρχεία μετάφρασης προς εισαγωγή"
 
 msgid "Translation Memory"
 msgstr "Μεταφραστική Μνήμη"
 
-msgid "Importing translations..."
-msgstr "Εισάγονται οι μεταφράσεις..."
+msgid "Importing translations…"
+msgstr "Εισαγωγή μεταφράσεων…"
 
-msgid "Finalizing..."
-msgstr "Τελικοποίηση..."
+msgid "Finalizing…"
+msgstr "Τελικοποίηση…"
+
+msgid "Select TMX files to import"
+msgstr ""
+
+msgid "TMX Files"
+msgstr ""
+
+#, c-format
+msgid "Importing translation memory from “%s” failed."
+msgstr ""
+
+msgid "Import error"
+msgstr "Σφάλμα εισαγωγής"
+
+msgid "Exporting translations…"
+msgstr ""
+
+#, c-format
+msgid "Exporting translation memory to “%s” failed."
+msgstr ""
+
+msgid "Export error"
+msgstr "Σφάλμα εξαγωγής"
 
 msgid "Reset translation memory"
 msgstr "Επαναφορά μεταφραστικής μνήμης"
 
 msgid "Are you sure you want to reset the translation memory?"
-msgstr ""
+msgstr "Είστε σίγουροι ότι θέλετε να επαναφέρετε την μνήμη μεταφράσεων;"
 
 msgid ""
 "Resetting the translation memory will irrevocably delete all stored "
 "translations from it. You can’t undo this operation."
 msgstr ""
+"Η επαναφορά της μνήμης μεταφράσεων θα διαγράψει αμετάκλητα όλες τις "
+"αποθηκευμένες μεταφράσεις από αυτήν. Δεν μπορείτε να αναιρέσετε αυτή τη "
+"λειτουργία."
 
 msgid "Cancel"
 msgstr "Ακύρωση"
 
-#. TRANSLATORS: This is abbreviation of "Translation Memory" used in Preferences on OS X.
+#. TRANSLATORS: This is abbreviation of "Translation Memory" used in Preferences on macOS.
 #. Long text looks weird there, too short (like TM) too, but less so. "General" is about ideal
 #. length there.
 msgid "TM"
-msgstr ""
+msgstr "Μνήμη μεταφράσεων"
 
 msgid ""
 "Source code extractors are used to find translatable strings in the source "
 "code files and extract them so that they can be translated."
 msgstr ""
+"Οι εξαγωγείς πηγαίου κώδικα χρησιμοποιούνται για να βρουν μεταφράσιμες "
+"συμβολοσειρές στα αρχεία του πηγαίου κώδικα και τις εξάγουν ώστε να "
+"μπορέσουν να μεταφραστούν."
 
-msgid "New"
-msgstr "Νέο"
+msgid "Custom Extractors:"
+msgstr "Προσαρμοσμένη εξαγωγείς:"
 
-msgid "Edit"
-msgstr "Επεξεργασία"
+msgid "Custom extractors:"
+msgstr ""
+
+msgid "Edit…"
+msgstr "Επεξεργασία…"
+
+msgid "GNU gettext"
+msgstr ""
+
+msgid ""
+"Supports all programming languages recognized by GNU gettext tools (PHP, C/C+"
+"+, C#, Perl, Python, Java, JavaScript and others)."
+msgstr ""
+"Υποστηρίζει όλες τις γλώσσες προγραμματισμού που αναγνωρίζονται από τα "
+"εργαλεία gettext GNU (PHP, C/C++, C#, Perl, Python, Java, JavaScript και "
+"άλλες)."
 
 msgid "Delete extractor"
-msgstr ""
+msgstr "Διαγραφή εξαγωγέα"
 
 #, c-format
 msgid "Are you sure you want to delete the “%s” extractor?"
-msgstr ""
+msgstr "Είστε σίγουροι ότι θέλετε να διαγράψετε τον εξαγωγέα %s;"
 
 msgid "Extractors"
-msgstr ""
+msgstr "Εξαγωγείς"
 
 msgid "Accounts"
-msgstr ""
+msgstr "Λογαριασμοί"
 
 msgid "Automatically check for updates"
-msgstr ""
+msgstr "Ελέγχει αυτόματα για ενημερώσεις"
 
 msgid "Include beta versions"
 msgstr "Περιλαμβανομένων των δοκιμαστικών εκδόσεων"
@@ -1239,17 +1239,21 @@ msgid ""
 "Beta versions contain the latest new features and improvements, but may be a "
 "bit less stable."
 msgstr ""
+"Οι εκδόσεις Beta περιέχουν τις πιο πρόσφατες λειτουργίες και βελτιώσεις, "
+"αλλά μπορεί να είναι λιγότερο σταθερές."
 
 msgid "Updates"
-msgstr ""
+msgstr "Ενημερώσεις"
 
 msgid ""
 "These settings affect internal formatting of PO files. Adjust them if you "
 "have specific requirements e.g. because of version control."
 msgstr ""
+"Αυτές οι ρυθμίσεις επηρεάζουν την εσωτερική μορφοποίηση των αρχείων PO. "
+"Προσαρμόστε τες αν έχετε ειδικές απαιτήσεις π.χ λόγω ελέγχου έκδοσης."
 
 msgid "Line endings:"
-msgstr ""
+msgstr "Καταλήξεις γραμμής:"
 
 msgid "Unix (recommended)"
 msgstr "UNIX (προτείνεται)"
@@ -1262,15 +1266,88 @@ msgid "Wrap at:"
 msgstr ""
 
 msgid "Preserve formatting of existing files"
-msgstr ""
+msgstr "Διατηρήστε την μορφοποίηση των υπαρχόντων αρχείων"
 
 msgid "Advanced"
 msgstr "Για προχωρημένους"
 
-#. TRANSLATORS: Title of the preferences window on Windows and Linux. "%s" is replaced with "Poedit" when running.
+msgid "Pre-translating…"
+msgstr "Προ-μετάφραση…"
+
 #, c-format
-msgid "%s Preferences"
+msgid "Pre-translated %u string"
+msgid_plural "Pre-translated %u strings"
+msgstr[0] "Προ-μεταφρασμένη συμβολοσειρά %u"
+msgstr[1] "Προ-μεταφρασμένες συμβολοσειρές %u"
+
+#. TRANSLATORS: This is a somewhat common term describing the action where
+#. you apply the translation memory and/or machine translation to all of the
+#. strings you're translating as the first step, followed by correcting,
+#. improving etc., i.e. actually translating the strings. This may be tricky
+#. to express in other languages as simply as in English, but please try to
+#. keep it similarly concise. Please try to avoid, if possible, describing it
+#. as "auto-translation" and similar, because such terminology would mislead
+#. some users into thinking it's all that needs to be done (spoken from
+#. experience). "Pre-translate" nicely expresses that it's only the step done
+#. *before* actual translation.
+msgid "Pre-translate"
 msgstr ""
+
+msgid "Only fill in exact matches"
+msgstr "Συμπληρώστε μόνο ακριβείς αντιστοιχίες"
+
+msgid ""
+"By default, inaccurate results are filled in as well and marked as needing "
+"work. Check this option to only include accurate matches."
+msgstr ""
+"Από προεπιλογή, ανακριβή αποτελέσματα συμπληρώνονται επίσης και "
+"επισημαίνονται ως \"απαιτούν εργασία\". Ελέγξτε αυτή την επιλογή για να "
+"συμπεριλάβετε μόνο ακριβείς αντιστοιχίες."
+
+msgid "Don’t mark exact matches as needing work"
+msgstr "Μην επισημάνετε ακριβείς αντιστοιχίες ως χρειάζεται δουλειά"
+
+msgid ""
+"Only enable if you trust the quality of your TM. By default, all matches "
+"from the TM are marked as needing work and should be reviewed before use."
+msgstr ""
+"Ενεργοποιήστε μόνο εάν εμπιστεύεστε την ποιότητα της μνήμης μεταφράσεων σας. "
+"Από προεπιλογή, όλες οι αντιστοιχίες από την Μνήμη Μεταφράσεων "
+"επισημαίνονται ως \"απαιτεί εργασία\" και πρέπει να θεωρηθούν πριν την χρήση."
+
+msgid ""
+"Pre-translation automatically finds exact or fuzzy matches for untranslated "
+"strings in the translation memory and fills in their translations."
+msgstr ""
+"Η προ-μετάφραση βρίσκει αυτόματα ακριβείς ή ασαφείς αντιστοιχίες για "
+"αμετάφραστες συμβολοσειρές στην μνήμη μεταφράσεων και συμπληρώνει τις "
+"μεταφράσεις τους."
+
+#, c-format
+msgid "%d entry was pre-translated."
+msgid_plural "%d entries were pre-translated."
+msgstr[0] "η καταχώρηση %d προ-μεταφράστηκε."
+msgstr[1] "Οι καταχωρήσεις %d προ-μεταφράστηκαν."
+
+msgid ""
+"The translations were marked as needing work, because they may be "
+"inaccurate. You should review them for correctness."
+msgstr ""
+"Οι μεταφράσεις επισημάνθηκαν ως \"απαιτεί εργασία\", επειδή μπορεί να είναι "
+"ανακριβείς. Θα πρέπει να τις εξετάσετε για την ορθότητα τους."
+
+msgid "No entries could be pre-translated."
+msgstr "Οι καταχωρήσεις δεν μπόρεσαν να προ-μεταφραστούν."
+
+msgid ""
+"The TM doesn’t contain any strings similar to the content of this file. It "
+"is only effective for semi-automatic translations after Poedit learns enough "
+"from files that you translated manually."
+msgstr ""
+"Η Μνήμη Μεταφράσεων δεν περιέχει καμία συμβολοσειρά παρόμοια με το "
+"περιεχόμενο αυτού του αρχείου. Είναι μόνο αποτελεσματική για ημι-αυτόματες "
+"μεταφράσεις αφού το Poedit μάθει αρκετά από αρχεία που έχετε μεταφράσει με "
+"μη αυτόματο τρόπο."
 
 msgid ""
 "<big>Drag and Drop Folders Here</big>\n"
@@ -1284,28 +1361,43 @@ msgid ""
 "or use the + button"
 msgstr ""
 
-msgid "Add Folders..."
-msgstr "Προσθέσετε φακέλους..."
+msgid "Add Folders…"
+msgstr "Προσθήκη Φακέλων…"
 
-msgid "Add folders..."
-msgstr "Προσθέσετε φακέλους..."
+msgid "Add folders…"
+msgstr "Προσθήκη φακέλων…"
 
-msgid "Add Files..."
+msgid "Add Files…"
+msgstr "Προσθέστε αρχεία…"
+
+msgid "Add files…"
+msgstr "Προσθήκη αρχείων…"
+
+msgid "Add Wildcard…"
 msgstr ""
 
-msgid "Add files..."
-msgstr ""
-
-msgid "Add Wildcard..."
-msgstr ""
-
-msgid "Add wildcard..."
+msgid "Add wildcard…"
 msgstr ""
 
 msgid "Paths"
 msgstr "Διαδρομές"
 
 msgid "Excluded paths"
+msgstr "Εξαίρεση διαδρομών"
+
+msgid "Advanced extraction settings"
+msgstr "Ρυθμίσεις προηγμένης εξαγωγής"
+
+msgid "Extract notes for translators from:"
+msgstr ""
+
+msgid "Comments prefixed with:"
+msgstr ""
+
+msgid "All comments"
+msgstr "Όλα τα σχόλια"
+
+msgid "Additional xgettext flags:"
 msgstr ""
 
 msgid "Additional keywords"
@@ -1313,6 +1405,9 @@ msgstr "Επιπρόσθετες λέξεις-κλειδιά"
 
 msgid "Name of the project the translation is for"
 msgstr "Το όνομα της εργασίας για την οποία είναι η μετάφραση"
+
+msgid "Team name and email address or URL"
+msgstr "Όνομα ομάδας και διεύθυνση email ή διεύθυνση URL"
 
 msgid "e.g. nplurals=2; plural=(n > 1);"
 msgstr "παράδειγμα nplurals=2; plural=(n > 1);"
@@ -1324,6 +1419,45 @@ msgid "Please save the file first. This section cannot be edited until then."
 msgstr ""
 "Παρακαλώ αποθήκευσε αυτό το αρχείο, πρώτα, ώστε να μπορεί να γίνει, μετά, "
 "επεξεργασία αυτού του τμήματος."
+
+msgid "Not all plural forms are translated."
+msgstr "Δεν είναι όλες οι μορφές πληθυντικού μεταφρασμένες."
+
+msgid "The translation should start as a sentence."
+msgstr "Η μετάφραση πρέπει να ξεκινά ως μία πρόταση."
+
+msgid "The translation should start with a lowercase character."
+msgstr "Η μετάφραση θα πρέπει να ξεκινά με πεζό χαρακτήρα."
+
+msgid "The translation doesn’t start with a space."
+msgstr "Η μετάφραση δεν ξεκινά με κενό."
+
+msgid "The translation starts with a space, but the source text doesn’t."
+msgstr "Η μετάφραση ξεκινά με κενό, αλλά το πηγαίο κείμενο όχι."
+
+msgid "The translation is missing a newline at the end."
+msgstr ""
+
+msgid "The translation ends with a newline, but the source text doesn’t."
+msgstr ""
+
+msgid "The translation is missing a space at the end."
+msgstr "Στην μετάφραση λείπει ένα κενό στο τέλος."
+
+msgid "The translation ends with a space, but the source text doesn’t."
+msgstr "Η μετάφραση τελειώνει με κενό, αλλά το πηγαίο κείμενο όχι."
+
+#, c-format
+msgid "The translation should end with “%s”."
+msgstr "Η μετάφραση θα πρέπει να τελειώνει με %s."
+
+#, c-format
+msgid "The translation should not end with “%s”."
+msgstr ""
+
+#, c-format
+msgid "The translation ends with “%s”, but the source text ends with “%s”."
+msgstr "Η μετάφραση τελειώνει με %s, αλλά το πηγαίο κείμενο τελειώνει με %s."
 
 msgid "Comment:"
 msgstr "Σχόλιο:"
@@ -1337,8 +1471,14 @@ msgstr "&Καθαρισμός"
 msgid "Clear the comment"
 msgstr "Καθαρισμός σχολίου"
 
+msgid "New"
+msgstr "Νέο"
+
 msgid "Create new translations project"
 msgstr "Δημιουργία νέας εργασίας μετάφρασης"
+
+msgid "Edit"
+msgstr "Επεξεργασία"
 
 msgid "Edit the project"
 msgstr "Επεξεργασία εργασίας"
@@ -1364,26 +1504,26 @@ msgstr "Εξερεύνηση"
 msgid "Add directory to the list"
 msgstr "Προσθήκη φακέλου στη λίστα"
 
-msgid "&New..."
-msgstr "&Νέο..."
+msgid "&New…"
+msgstr "& Νέο…"
 
-msgid "New from &POT/PO file..."
-msgstr "Νέος από αρχείο &POT/PO..."
+msgid "New from &POT/PO file…"
+msgstr "Νέο από αρχείο &POT/PO …"
 
-msgid "New From &POT/PO File..."
-msgstr "Νέος από Αρχείο &POT/PO..."
+msgid "New From &POT/PO File…"
+msgstr "Νέο Από Αρχείο &POT/PO …"
 
-msgid "&Open..."
-msgstr "&Άνοιγμα..."
+msgid "&Open…"
+msgstr "&Άνοιγμα…"
 
 msgid "Open Recent"
-msgstr ""
+msgstr "Ανοίχτηκε πρόσφατα"
 
-msgid "Open from Crowdin..."
-msgstr ""
+msgid "Open from Crowdin…"
+msgstr "Ανοίχτηκε από το Crowdin…"
 
-msgid "Open From Crowdin..."
-msgstr ""
+msgid "Open From Crowdin…"
+msgstr "Άνοιγμα από το Crowdin…"
 
 msgid "&Close"
 msgstr "&Κλείσιμο"
@@ -1391,23 +1531,23 @@ msgstr "&Κλείσιμο"
 msgid "&Save"
 msgstr "&Αποθήκευση"
 
-msgid "Save &as..."
-msgstr "Αποθήκευση &ως..."
+msgid "Save &as…"
+msgstr "Αποθήκευση ως…"
 
-msgid "Save &As..."
-msgstr "Αποθήκευση &Ως..."
+msgid "Save &As…"
+msgstr "Αποθήκευση &Ως…"
 
-msgid "Compile to MO..."
-msgstr ""
+msgid "Compile to MO…"
+msgstr "Σύνθεση σε MO…"
 
-msgid "E&xport as HTML..."
-msgstr "Ε&ξαγωγή ως HTML..."
+msgid "E&xport as HTML…"
+msgstr "E&ξαγωγή ως HTML…"
 
-msgid "Check for updates..."
-msgstr "Έλεγχος ενημερώσεων..."
+msgid "Check for updates…"
+msgstr "Έλεγχος για ενημερώσεις…"
 
-msgid "&Preferences..."
-msgstr "&Προτιμήσεις..."
+msgid "&Preferences…"
+msgstr "&Προτιμήσεις…"
 
 msgid "Catalogs &manager"
 msgstr "&Διαχειριστής Καταλόγων"
@@ -1427,11 +1567,11 @@ msgstr "Αντιγραφή από ενικό"
 msgid "Copy From Singular"
 msgstr "Αντιγραφή από ενικό"
 
-msgid "Translation is &fuzzy"
-msgstr "Η μετάφραση είναι &ασαφής"
+msgid "Translation needs &work"
+msgstr "Η μετάφραση είναι α&νέτοιμη"
 
-msgid "Translation Is &Fuzzy"
-msgstr "Η Μετάφραση είναι &Ασαφής"
+msgid "Translation Needs &Work"
+msgstr "Η Μετάφραση Είναι Α&νέτοιμη"
 
 msgid "Edit &comment"
 msgstr "Επεξεργασία &σχολίου"
@@ -1440,19 +1580,13 @@ msgid "Edit &Comment"
 msgstr "Επεξεργασία των Σ&χολίων"
 
 msgid "Suggestions"
-msgstr ""
+msgstr "Προτάσεις"
 
-msgid "&Show references"
-msgstr "&Εμφάνιση αναφορών"
+msgid "&Find…"
+msgstr "&Εύρεση…"
 
-msgid "&Show References"
-msgstr "&Εμφάνιση των Αναφορών"
-
-msgid "&Find..."
-msgstr "&Εύρεση..."
-
-msgid "Replace..."
-msgstr ""
+msgid "Replace…"
+msgstr "Αντικατάσταση…"
 
 msgid "Find next"
 msgstr "Εύρεση επόμενου"
@@ -1460,8 +1594,8 @@ msgstr "Εύρεση επόμενου"
 msgid "Find previous"
 msgstr "Εύρεση προηγούμενου"
 
-msgid "Find and Replace..."
-msgstr ""
+msgid "Find and Replace…"
+msgstr "Εύρεση και Αντικατάσταση…"
 
 msgid "Find Next"
 msgstr "Εύρεση Επόμενου"
@@ -1472,11 +1606,17 @@ msgstr "Εύρεση Προηγούμενου"
 msgid "&Preferences"
 msgstr "&Προτιμήσεις"
 
-msgid "Display entry &IDs"
-msgstr "Προβολή της ταυτότητας του ειση&γμένου"
+msgid "Show string &ID"
+msgstr "Προβολή του Αριθμού &Ταυτότητας του στίχου"
 
-msgid "Display Entry &IDs"
-msgstr "Προβολή της Ταυτότητας του Ειση&γμένου"
+msgid "Show String &ID"
+msgstr "Προβολή του Αριθμού &Ταυτότητας του Στίχου"
+
+msgid "Show warnings"
+msgstr "Προβολή προειδοποιήσεων"
+
+msgid "Show Warnings"
+msgstr "Προβολή Προειδοποιήσεων"
 
 msgid "Sort by &file order"
 msgstr "Ταξινόμηση κατά τη σειρά των &σρχείων"
@@ -1497,10 +1637,10 @@ msgid "Sort by &Translation"
 msgstr "Ταξινόμηση κατά τη &Μετάφραση"
 
 msgid "&Group by context"
-msgstr ""
+msgstr "Ομαδοποίηση κατά &περιεχόμενο"
 
 msgid "&Group By Context"
-msgstr ""
+msgstr "Ομαδοποίηση Κατά &Περιεχόμενο"
 
 msgid "Entries with errors first"
 msgstr "Καταχωρήσεις με σφάλματα πρώτες"
@@ -1514,6 +1654,12 @@ msgstr "Πρώτα οι &αμετάφραστες καταχωρήσεις"
 msgid "&Untranslated Entries First"
 msgstr "Πρώτα οι &Αμετάφραστες Καταχωρήσεις"
 
+msgid "&Show references"
+msgstr "&Εμφάνιση αναφορών"
+
+msgid "&Show References"
+msgstr "&Εμφάνιση των Αναφορών"
+
 msgid "Show sidebar"
 msgstr "Εμφάνιση πλευρικής μπάρας"
 
@@ -1523,25 +1669,22 @@ msgstr "Εμφάνιση γραμμής κατάστασης"
 msgid "C&atalog"
 msgstr "Κ&ατάλογος"
 
-msgid "&Update from sources"
-msgstr "&Ενημέρωση από τις πηγές"
+msgid "&Update from source code"
+msgstr "&Ενημέρωση από τον πηγαίο κώδικα"
 
-msgid "&Update from Sources"
-msgstr "&Ενημέρωση από τις Πηγές"
+msgid "&Update from Source Code"
+msgstr "&Ενημέρωση από τον Πηγαίο Κώδικα"
 
-msgid "Update from &POT file..."
-msgstr "Ενημέρωση από το αρχείο &POT..."
+msgid "Update from &POT file…"
+msgstr "Ενημέρωση από αρχείο &POT …"
 
-msgid "Update from &POT File..."
-msgstr "Ενημέρωση από το Αρχείο &POT..."
+msgid "Update from &POT File…"
+msgstr "Ενημέρωση από Αρχείο &POT …"
 
 msgid "Sync with Crowdin"
 msgstr "Συγχρονισμός με Crowdin"
 
-msgid "Fill missing translations from &TM..."
-msgstr ""
-
-msgid "Fill Missing Translations from &TM..."
+msgid "Pre-&translate…"
 msgstr ""
 
 msgid "&Purge deleted translations"
@@ -1556,8 +1699,8 @@ msgstr "Επι&κύρωση των μεταφράσεων"
 msgid "&Validate Translations"
 msgstr "Επι&κύρωση των Μεταφράσεων"
 
-msgid "&Properties..."
-msgstr "&Ιδιότητες..."
+msgid "&Properties…"
+msgstr ""
 
 msgid "&Done and next"
 msgstr "Έ&γκριση και μετάβαση στο επόμενο"
@@ -1677,8 +1820,11 @@ msgstr "Ιδιότητες καταλόγου"
 msgid "Project name and version:"
 msgstr "Όνομα εργασίας και έκδοση:"
 
-msgid "Plural Forms:"
-msgstr "Μορφές Πληθυντικού:"
+msgid "Language team:"
+msgstr ""
+
+msgid "Plural forms:"
+msgstr ""
 
 msgid "Use default rules for this language"
 msgstr "Χρήση των προκαθορισμένων κανόνων για αυτή τη γλώσσα"
@@ -1692,13 +1838,19 @@ msgstr "Πληροφορίες για τις Μορφές Πληθυντικού
 msgid "Charset:"
 msgstr "Σύνολο Χαρακτήρων:"
 
-msgid "Team:"
-msgstr "Ομάδα:"
+msgid "Advanced Extraction Settings…"
+msgstr ""
 
-msgid "Team's email address:"
-msgstr "Ηλεκτρονική διεύθυνση ομάδας:"
+msgid "Advanced extraction settings…"
+msgstr ""
+
+msgid "Translation Properties"
+msgstr ""
 
 msgid "Translation properties"
+msgstr ""
+
+msgid "Sources Paths"
 msgstr ""
 
 msgid "Sources paths"
@@ -1710,6 +1862,9 @@ msgstr "Εξαγωγή του κειμένου από τα πηγαία αρχε
 msgid "Base path:"
 msgstr "Διαδρομή βάσης:"
 
+msgid "Sources Keywords"
+msgstr ""
+
 msgid "Sources keywords"
 msgstr "Λέξεις-κλειδιά των πηγών"
 
@@ -1720,6 +1875,12 @@ msgstr ""
 "Χρήση αυτών των λέξεων κλειδιών (ονόματα συναρτήσεων) προς αναγνώριση "
 "μεταφράσιμων στίχων\n"
 "στα πηγαία αρχεία:"
+
+msgid "Also use default keywords for supported languages"
+msgstr ""
+
+msgid "Learn About Gettext Keywords"
+msgstr ""
 
 msgid "Learn about gettext keywords"
 msgstr "Εκμάθηση από λέξεις-κλειδιά του γκέττεξτ"
@@ -1762,14 +1923,17 @@ msgstr "Επικύρωση"
 msgid "Check for errors in the translation"
 msgstr "Έλεγχος λαθών στη μετάφραση"
 
-msgid "Update"
-msgstr "Ενημέρωση"
+msgid "Update from code"
+msgstr ""
+
+msgid "Update from Code"
+msgstr ""
 
 msgid "Update catalog - synchronize it with sources"
 msgstr "Ενημέρωση καταλόγου - συγχρονισμός με τον πηγαίο κώδικα"
 
-msgid "Toggled if selected string has fuzzy translation"
-msgstr "Ενεργοποιημένο αν ο επιλεγμένος στίχος έχει ασαφή μετάφραση"
+msgid "Sidebar"
+msgstr ""
 
 msgid "Show or hide the sidebar"
 msgstr ""
@@ -1779,8 +1943,8 @@ msgid "Previous source text:"
 msgstr ""
 
 msgid ""
-"The old source text (before it changed during an update) that the fuzzy "
-"translation corresponds to."
+"The old source text (before it changed during an update) that the now-"
+"inaccurate translation corresponds to."
 msgstr ""
 
 msgid "Notes for translators:"
@@ -1792,63 +1956,38 @@ msgstr ""
 msgid "Add Comment"
 msgstr ""
 
+msgid "Delete From Translation Memory"
+msgstr ""
+
+msgid "Delete from translation memory"
+msgstr ""
+
 msgid "Translation suggestions:"
 msgstr ""
 
 #. TRANSLATORS: This is shown when no translation suggestions can be found in the TM (Windows).
 msgid "No matches found"
-msgstr ""
+msgstr "Δεν βρέθηκαν κάποια που να ταιριάζουν"
 
-#. TRANSLATORS: This is shown when no translation suggestions can be found in the TM (OS X, Linux).
+#. TRANSLATORS: This is shown when no translation suggestions can be found in the TM (macOS, Linux).
 msgid "No Matches Found"
-msgstr ""
+msgstr "Δεν Βρέθηκαν Κάποια που να Ταιριάζουν"
 
 msgid "This string was found in Poedit’s translation memory."
 msgstr ""
 
-#, c-format
-msgid "(New: %i, obsolete: %i)"
+msgid "The TMX file is malformed."
+msgstr ""
+
+msgid "No translations were found in the TMX file."
 msgstr ""
 
 #, c-format
-msgid "Importing translations: %d"
-msgstr "Εισάγονται οι μεταφράσεις: %d"
-
-msgid "Poedit Update"
-msgstr "Ενημέρωση του Ποέντιτ"
-
-msgid "Preparing migration..."
-msgstr "Προετοιμασία της μετανάστευσης..."
+msgid "Translation memory database is corrupted: %s (%d)."
+msgstr ""
 
 #, c-format
-msgid "Migration exit status: %d"
-msgstr ""
-
-msgid "Poedit needs to convert your translation memory to a new format."
-msgstr ""
-"Πρέπει το Ποέντιτ να μετατρέψει την μεταφραστική μνήμη σε μια νέα μορφή."
-
-msgid ""
-"This must be done before Poedit can start. It may take a few minutes if you "
-"have lots of translations stored, but should normally be much faster."
-msgstr ""
-"Αυτό πρέπει να γίνει πριν ξεκινήσει το Ποέντιτ. \n"
-"Ίσως να χρειαστούν μερικά λεπτά, αν έχεις αποθηκευμένες πολλές "
-"μεταφράσεις. \n"
-"Συνήθως, όμως, διαρκεί αρκετά λιγότερο."
-
-msgid "Proceed"
-msgstr "Συνέχιση"
-
-msgid "Translation memory migration failed."
-msgstr "Αποτυχία μετανάστευσης της μεταφραστικής μνήμης."
-
-#, c-format
-msgid ""
-"Your translation memory data couldn't be migrated. The error was:\n"
-"\n"
-"%s\n"
-"Please email help@poedit.net and we’ll get it fixed."
+msgid "Translation memory error: %s (%d)."
 msgstr ""
 
 msgid "Cannot create temporary directory."
@@ -1856,6 +1995,15 @@ msgstr "Αδυναμία δημιουργίας του φακέλου των π�
 
 msgid "Welcome to Poedit"
 msgstr "Καλώς ήρθες στο Ποέντιτ"
+
+#. TRANSLATORS: This is version information in about dialog, "%s" will be
+#. version number when used
+#, c-format
+msgid "Version %s"
+msgstr "Έκδοση %s"
+
+msgid "Edit a Translation"
+msgstr ""
 
 msgid "Edit a translation"
 msgstr "Επεξεργασία μιας μετάφρασης"
@@ -1870,7 +2018,10 @@ msgstr ""
 "Χρησιμοποίησε ένα υπάρχον αρχείο .PO, ή ένα πρότυπο .POT, και δημιούργησε "
 "μία νέα μετάφραση."
 
-msgid "Collaborate on a translation with Crowdin"
+msgid "Collaborate on a Translation with Others"
+msgstr ""
+
+msgid "Collaborate on a translation with others"
 msgstr ""
 
 msgid ""
@@ -1884,17 +2035,12 @@ msgid "There are no translations. That’s unusual."
 msgstr "Δεν υπάρχουν μεταφράσεις. Αυτό είναι ασυνήθιστο."
 
 msgid ""
-"Translatable entries aren't added manually in the Gettext system, but are "
+"Translatable entries aren’t added manually in the Gettext system, but are "
 "automatically extracted\n"
 "from source code. This way, they stay up to date and accurate.\n"
 "Translators typically use PO template files (POTs) prepared for them by the "
 "developer."
 msgstr ""
-"Οι μεταφράσιμοι στίχοι δεν προσθέτονται αυτόματα στο σύστημα του Γκέττεξτ,\n"
-"αλλά εξάγονται αυτόματα, από τον πηγαίο κώδικα.\n"
-"Έτσι είναι, πάντα, της τελευταίας έκδοσης και ακριβείς.\n"
-"Οι μεταφραστές, συνήθως, χρησιμοποιούν πρότυπα αρχεία PO (.POTs),\n"
-"τα οποία έχουν προετοιμάσει για αυτούς οι προγραμματιστές."
 
 msgid "(Learn more about GNU gettext)"
 msgstr "(Μάθε περισσότερα για το ΤζιΕνΓιού γκέττεξτ)"
@@ -1927,3 +2073,186 @@ msgstr ""
 
 msgid "Synchronize the translation with Crowdin"
 msgstr ""
+
+#. TRANSLATORS: This is titlebar of about dialog, "%s" is application name
+#. ("Poedit" here, but please use "%s")
+#, c-format
+msgid "About %s"
+msgstr "Περί του %s"
+
+#. TRANSLATORS: Title of the preferences window on Windows and Linux. "%s" is replaced with "Poedit" when running.
+#, c-format
+msgid "%s Preferences"
+msgstr ""
+
+#. TRANSLATORS: macOS item in app menu
+msgid "Services"
+msgstr ""
+
+#. TRANSLATORS: macOS item in app menu, %s is replaced with "Poedit"
+#, c-format
+msgid "Hide %s"
+msgstr ""
+
+#. TRANSLATORS: macOS item in app menu
+msgid "Hide Others"
+msgstr ""
+
+#. TRANSLATORS: macOS item in app menu
+msgid "Show All"
+msgstr ""
+
+#. TRANSLATORS: macOS item in app menu, %s is replaced with "Poedit"
+#, c-format
+msgid "Quit %s"
+msgstr ""
+
+#. TRANSLATORS: macOS item in app menu
+msgid "Preferences…"
+msgstr ""
+
+msgid "Preferences..."
+msgstr ""
+
+#. TRANSLATORS: Title of a category in Windows task menu (right-click icon in taskbar)
+msgid "Recent"
+msgstr ""
+
+#. TRANSLATORS: Title of a category in Windows task menu (right-click icon in taskbar)
+msgid "Frequent"
+msgstr ""
+
+msgid "&Apply"
+msgstr ""
+
+msgid "Apply"
+msgstr ""
+
+msgid "&Back"
+msgstr ""
+
+msgid "Back"
+msgstr ""
+
+msgid "&Cancel"
+msgstr ""
+
+msgid "&Clear"
+msgstr ""
+
+msgid "Clear"
+msgstr ""
+
+msgid "Copy"
+msgstr "Αντιγραφή"
+
+msgid "Cu&t"
+msgstr "Απο&κοπή"
+
+msgid "Cut"
+msgstr "Αποκοπή"
+
+msgid "&Delete"
+msgstr "&Διαγραφή"
+
+msgid "&Quit"
+msgstr ""
+
+msgid "File"
+msgstr ""
+
+msgid "Help"
+msgstr ""
+
+msgid "&New"
+msgstr ""
+
+msgid "&No"
+msgstr ""
+
+msgid "No"
+msgstr ""
+
+msgid "&OK"
+msgstr ""
+
+msgid "Open…"
+msgstr ""
+
+msgid "&Open..."
+msgstr "&Άνοιγμα..."
+
+msgid "Open..."
+msgstr ""
+
+msgid "&Paste"
+msgstr "&Επικόλληση"
+
+msgid "Paste"
+msgstr "Επικόλληση"
+
+msgid "Preferences"
+msgstr ""
+
+msgid "&Redo"
+msgstr "Επαναφο&ρά"
+
+msgid "Refresh"
+msgstr ""
+
+msgid "&Save as"
+msgstr ""
+
+msgid "Save as"
+msgstr ""
+
+msgid "Select &All"
+msgstr "Επιλογή Ό&λων"
+
+msgid "Select All"
+msgstr "Επιλογή όλων"
+
+msgid "&Undo"
+msgstr "&Αναίρεση"
+
+msgid "&Yes"
+msgstr ""
+
+msgid "Yes"
+msgstr ""
+
+#. TRANSLATORS: Keyboard shortcut for display in Windows menus
+msgid "Shift+"
+msgstr "Shift+"
+
+#. TRANSLATORS: Keyboard shortcut for display in Windows menus
+msgid "Enter"
+msgstr "Enter"
+
+#. TRANSLATORS: Keyboard shortcut for display in Windows menus
+msgid "Up"
+msgstr "Πάνω"
+
+#. TRANSLATORS: Keyboard shortcut for display in Windows menus
+msgid "Down"
+msgstr "Κάτω"
+
+#. TRANSLATORS: Keyboard shortcut for display in Windows menus
+msgid "Left"
+msgstr ""
+
+#. TRANSLATORS: Keyboard shortcut for display in Windows menus
+msgid "Right"
+msgstr ""
+
+#. TRANSLATORS: Keyboard shortcut, must correspond to translation of "Ctrl+"
+msgid "ctrl"
+msgstr "ctrl"
+
+#. TRANSLATORS: Keyboard shortcut, must correspond to translation of "Alt+"
+msgid "alt"
+msgstr "alt"
+
+#. TRANSLATORS: Keyboard shortcut, must correspond to translation of "Shift+"
+msgid "shift"
+msgstr "shift"

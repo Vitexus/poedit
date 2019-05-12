@@ -1,5 +1,5 @@
 
-POEDIT_LINGUAS = an ar az be be@latin bg bs ca ckb co cs da de el en_GB es et eu fa fi fr gl he hr hu hy id is it ja ka kab kk ko lt lv ms nb nl oc pa pl pt_BR pt_PT ro ru sk sl sq sr sv tg th tr uk uz vi zh_CN zh_TW
+POEDIT_LINGUAS = af an ar az be be@latin bg bs ca ckb co cs da de el en_GB es et eu fa fi fr ga gl he hr hu hy id is it ja ka kab kk ko lt lv ms nb nl oc pa pl pt_BR pt_PT ro ru sk sl sq sr sv tg th tr uk uz vi zh_CN zh_TW
 
 localedir = $(datadir)/locale
 
@@ -30,7 +30,7 @@ XARGS=xargs
 XGETTEXT_ARGS=-C -k_ -kwxGetTranslation -kwxTRANSLATE -kwxPLURAL:1,2 -F -j \
               --add-comments=TRANSLATORS \
               --from-code=UTF-8 \
-              --package-name=Poedit --package-version=$(PACKAGE_SHORT_VERSION) \
+              --package-name=Poedit --package-version=$(PACKAGE_VERSION) \
               --msgid-bugs-address=help@poedit.net
 
 # implicit rules
@@ -39,7 +39,7 @@ XGETTEXT_ARGS=-C -k_ -kwxGetTranslation -kwxTRANSLATE -kwxPLURAL:1,2 -F -j \
 
 # a PO file must be updated from  poedit.pot include new translations
 %.po: $(srcdir)/poedit.pot
-	if [ -f $@ ]; then $(MSGMERGE) $@ $(srcdir)/poedit.pot > $@.new && mv $@.new $@; else cp $(srcdir)/poedit.pot $@; fi
+	if [ -f $@ ]; then $(MSGMERGE) --previous $@ $(srcdir)/poedit.pot > $@.new && mv $@.new $@; else cp $(srcdir)/poedit.pot $@; fi
 
 $(srcdir)/sr_RS@latin.po: $(srcdir)/sr.po
 	recode-sr-latin <$< >$@

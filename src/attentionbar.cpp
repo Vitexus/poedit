@@ -1,7 +1,7 @@
 /*
  *  This file is part of Poedit (https://poedit.net)
  *
- *  Copyright (C) 2008-2016 Vaclav Slavik
+ *  Copyright (C) 2008-2019 Vaclav Slavik
  *
  *  Permission is hereby granted, free of charge, to any person obtaining a
  *  copy of this software and associated documentation files (the "Software"),
@@ -25,6 +25,10 @@
 
 #include "attentionbar.h"
 
+#include "colorscheme.h"
+#include "custom_buttons.h"
+#include "customcontrols.h"
+#include "hidpi.h"
 #include "utility.h"
 
 #include <wx/checkbox.h>
@@ -36,12 +40,10 @@
 #include <wx/statbmp.h>
 #include <wx/config.h>
 #include <wx/dcclient.h>
-
-#include "customcontrols.h"
-#include "hidpi.h"
+#include <wx/wupdlock.h>
 
 #ifdef __WXOSX__
-#include "osx_helpers.h"
+#include "macos_helpers.h"
 #endif
 
 #ifdef __WXOSX__
@@ -63,9 +65,11 @@ AttentionBar::AttentionBar(wxWindow *parent)
 {
 #ifdef __WXOSX__
     SetWindowVariant(wxWINDOW_VARIANT_SMALL);
+    NSView *view = GetHandle();
+    view.appearance = [NSAppearance appearanceNamed:NSAppearanceNameAqua];
 #endif
 
-#ifndef __WXGTK__
+#ifdef __WXMSW__
     m_icon = new wxStaticBitmap(this, wxID_ANY, wxNullBitmap);
 #endif
     m_label = new AutoWrappingText(this, "");
@@ -73,18 +77,25 @@ AttentionBar::AttentionBar(wxWindow *parent)
     m_explanation = new AutoWrappingText(this, "");
     m_explanation->SetForegroundColour(GetBackgroundColour().ChangeLightness(40));
 
+#ifndef __WXOSX__
+    if (ColorScheme::GetAppMode() == ColorScheme::Dark)
+    {
+        m_label->SetForegroundColour(wxColour(0,0,0,180));
+        m_explanation->SetForegroundColour(wxColour(0,0,0,180));
+    }
+#endif
+
     m_buttons = new wxBoxSizer(wxHORIZONTAL);
 
     m_checkbox = new wxCheckBox(this, wxID_ANY, "");
 
-    wxButton *btnClose =
-            new wxBitmapButton
-                (
-                    this, wxID_CLOSE,
-                    wxArtProvider::GetBitmap("window-close", wxART_MENU),
-                    wxDefaultPosition, wxDefaultSize,
-                    wxNO_BORDER
-                );
+    auto btnClose = new wxBitmapButton
+                    (
+                        this, wxID_CLOSE,
+                        wxArtProvider::GetBitmap("window-close", wxART_MENU),
+                        wxDefaultPosition, wxDefaultSize,
+                        wxNO_BORDER
+                    );
     btnClose->SetToolTip(_("Hide this notification message"));
 #ifdef __WXMSW__
     btnClose->SetBackgroundColour(GetBackgroundColour());
@@ -100,7 +111,7 @@ AttentionBar::AttentionBar(wxWindow *parent)
 
     wxSizer *sizer = new wxBoxSizer(wxHORIZONTAL);
     sizer->AddSpacer(PXDefaultBorder);
-#ifndef __WXGTK__
+#ifdef __WXMSW__
     sizer->Add(m_icon, wxSizerFlags().Center().Border(wxALL, SMALL_BORDER));
 #endif
 
@@ -109,9 +120,16 @@ AttentionBar::AttentionBar(wxWindow *parent)
     labelSizer->Add(m_explanation, wxSizerFlags().Expand().Border(wxTOP|wxRIGHT, PX(4)));
     sizer->Add(labelSizer, wxSizerFlags(1).Center().PXDoubleBorder(wxALL));
     sizer->AddSpacer(PX(20));
-    sizer->Add(m_buttons, wxSizerFlags().Center().Border(wxALL, SMALL_BORDER));
-    sizer->Add(m_checkbox, wxSizerFlags().Center().Border(wxRIGHT, BUTTONS_SPACE));
-    sizer->Add(btnClose, wxSizerFlags().Center().Border(wxALL, SMALL_BORDER));
+    auto allButtonsSizer = new wxBoxSizer(wxHORIZONTAL);
+    auto buttonsAndCheckboxSizer = new wxBoxSizer(wxVERTICAL);
+    sizer->Add(buttonsAndCheckboxSizer, wxSizerFlags().Center().Border(wxTOP, PX(1)));
+    buttonsAndCheckboxSizer->Add(allButtonsSizer, wxSizerFlags().Expand());
+    buttonsAndCheckboxSizer->Add(m_checkbox, wxSizerFlags().Left().Border(wxTOP, MACOS_OR_OTHER(PX(2), PX(4))));
+    allButtonsSizer->Add(m_buttons);
+    allButtonsSizer->AddStretchSpacer();
+    allButtonsSizer->AddSpacer(SMALL_BORDER);
+    allButtonsSizer->Add(btnClose, wxSizerFlags().Center().Border(wxTOP, PX(1)));
+    allButtonsSizer->AddSpacer(SMALL_BORDER);
 #ifdef __WXMSW__
     sizer->AddSpacer(PX(4));
 #endif
@@ -126,15 +144,13 @@ AttentionBar::AttentionBar(wxWindow *parent)
 void AttentionBar::OnPaint(wxPaintEvent&)
 {
     wxPaintDC dc(this);
-    wxRect rect(dc.GetSize());
 
-    auto bg = GetBackgroundColour();
-    dc.SetBrush(*wxTRANSPARENT_BRUSH);
-    dc.SetPen(bg.ChangeLightness(90));
-#ifndef __WXOSX__
-    dc.DrawLine(rect.GetTopLeft(), rect.GetTopRight());
-#endif
-    dc.DrawLine(rect.GetBottomLeft(), rect.GetBottomRight());
+    auto bg = GetBackgroundColour().ChangeLightness(80);
+    dc.SetBrush(bg);
+    dc.SetPen(bg);
+
+    wxRect rect(GetSize());
+    dc.DrawRectangle(0, rect.height - MACOS_OR_OTHER(0, PX(1)), rect.width, PX(1));
 }
 
 
@@ -143,35 +159,16 @@ void AttentionBar::ShowMessage(const AttentionMessage& msg)
     if ( msg.IsBlacklisted() )
         return;
 
-#ifdef __WXGTK__
     switch ( msg.m_kind )
     {
-        case AttentionMessage::Info:
-            SetBackgroundColour(wxColour(252,252,189));
-            break;
         case AttentionMessage::Warning:
-            SetBackgroundColour(wxColour(250,173,61));
+            SetBackgroundColour(ColorScheme::Get(Color::AttentionWarningBackground));
             break;
         case AttentionMessage::Question:
-            SetBackgroundColour(wxColour(138,173,212));
+            SetBackgroundColour(ColorScheme::Get(Color::AttentionQuestionBackground));
             break;
         case AttentionMessage::Error:
-            SetBackgroundColour(wxColour(237,54,54));
-            break;
-    }
-#else
-
-    switch ( msg.m_kind )
-    {
-        case AttentionMessage::Question:
-            SetBackgroundColour("#ABE887");
-            break;
-        default:
-    #ifdef __WXMSW__
-            SetBackgroundColour("#FFF499"); // match Visual Studio 2012+'s aesthetics
-    #else
-            SetBackgroundColour("#FCDE59");
-    #endif
+            SetBackgroundColour(ColorScheme::Get(Color::AttentionErrorBackground));
             break;
     }
 
@@ -184,9 +181,6 @@ void AttentionBar::ShowMessage(const AttentionMessage& msg)
     wxString iconName;
     switch ( msg.m_kind )
     {
-        case AttentionMessage::Info:
-            iconName = wxART_INFORMATION;
-            break;
         case AttentionMessage::Warning:
             iconName = wxART_WARNING;
             break;
@@ -197,6 +191,7 @@ void AttentionBar::ShowMessage(const AttentionMessage& msg)
             iconName = wxART_ERROR;
             break;
     }
+#ifdef __WXMSW__
     m_icon->SetBitmap(wxArtProvider::GetBitmap(iconName, wxART_MENU, wxSize(PX(16), PX(16))));
 #endif
 
@@ -212,17 +207,15 @@ void AttentionBar::ShowMessage(const AttentionMessage& msg)
     for ( AttentionMessage::Actions::const_iterator i = msg.m_actions.begin();
           i != msg.m_actions.end(); ++i )
     {
-        wxButton *b = new wxButton(this, wxID_ANY, i->first);
-#ifdef __WXOSX__
-        MakeButtonRounded(b->GetHandle());
-#endif
+        auto b = new TranslucentButton(this, wxID_ANY, i->first);
         m_buttons->Add(b, wxSizerFlags().Center().Border(wxRIGHT, BUTTONS_SPACE));
         m_actions[b] = i->second;
     }
 
     // we need to size the control correctly _and_ lay out the controls if this
     // is the first time it's being shown, otherwise we can get garbled look:
-    SetSize(GetParent()->GetClientSize().x, GetBestSize().y);
+    wxWindowUpdateLocker lock(this);
+    SetSize(GetParent()->GetClientSize().x, 1);
     Layout();
 
     Refresh();
@@ -284,7 +277,7 @@ void AttentionMessage::AddDontShowAgain()
 {
     auto id = m_id;
     AddAction(
-        MSW_OR_OTHER(_("Don't show again"), _("Don't Show Again")), [id]{
+        MSW_OR_OTHER(_(L"Don’t show again"), _(L"Don’t Show Again")), [id]{
         AddToBlacklist(id);
     });
 }

@@ -1,7 +1,7 @@
 /*
  *  This file is part of Poedit (https://poedit.net)
  *
- *  Copyright (C) 2001-2016 Vaclav Slavik
+ *  Copyright (C) 2001-2019 Vaclav Slavik
  *
  *  Permission is hereby granted, free of charge, to any person obtaining a
  *  copy of this software and associated documentation files (the "Software"),
@@ -43,7 +43,7 @@ CommentDialog::CommentDialog(wxWindow *parent, const wxString& comment) : wxDial
     m_text->SetValue(RemoveStartHash(comment));
 
     wxAcceleratorEntry entries[] = {
-        { wxACCEL_CMD,  WXK_RETURN, wxID_OK }
+        { wxACCEL_CMD, WXK_RETURN, wxID_OK }
     };
     wxAcceleratorTable accel(WXSIZEOF(entries), entries);
     SetAcceleratorTable(accel);

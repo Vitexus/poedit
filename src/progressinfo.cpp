@@ -1,7 +1,7 @@
 /*
  *  This file is part of Poedit (https://poedit.net)
  *
- *  Copyright (C) 2000-2016 Vaclav Slavik
+ *  Copyright (C) 2000-2019 Vaclav Slavik
  *
  *  Permission is hereby granted, free of charge, to any person obtaining a
  *  copy of this software and associated documentation files (the "Software"),
@@ -69,8 +69,36 @@ ProgressInfo::ProgressInfo(wxWindow *parent, const wxString& title)
 
 ProgressInfo::~ProgressInfo()
 {
-    delete m_disabler;
-    m_dlg->Destroy();
+    Done();
+}
+
+void ProgressInfo::Hide()
+{
+    m_dlg->Show(false);
+    m_dlg->Refresh();
+    wxEventLoop::GetActive()->YieldFor(wxEVT_CATEGORY_UI);
+}
+
+
+void ProgressInfo::Show()
+{
+    m_dlg->Show(true);
+    m_dlg->Refresh();
+    wxEventLoop::GetActive()->YieldFor(wxEVT_CATEGORY_UI);
+}
+
+void ProgressInfo::Done()
+{
+    if (m_disabler)
+    {
+        delete m_disabler;
+        m_disabler = nullptr;
+    }
+    if (m_dlg)
+    {
+        m_dlg->Destroy();
+        m_dlg = nullptr;
+    }
 }
 
 void ProgressInfo::SetGaugeMax(int limit)
@@ -98,6 +126,11 @@ void ProgressInfo::ResetGauge(int value)
     XRCCTRL(*m_dlg, "progress", wxGauge)->SetValue(value);
 }
 
+void ProgressInfo::PulseGauge()
+{
+    XRCCTRL(*m_dlg, "progress", wxGauge)->Pulse();
+}
+
 void ProgressInfo::UpdateMessage(const wxString& text)
 {
     wxStaticText *txt = XRCCTRL(*m_dlg, "info", wxStaticText);
@@ -105,5 +138,5 @@ void ProgressInfo::UpdateMessage(const wxString& text)
     txt->Refresh();
     txt->Update();
     m_dlg->Refresh();
-    wxEventLoop::GetActive()->Yield(/*onlyIfNeeded=*/true);
+    wxEventLoop::GetActive()->YieldFor(wxEVT_CATEGORY_UI);
 }

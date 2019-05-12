@@ -1,7 +1,7 @@
 /*
  *  This file is part of Poedit (https://poedit.net)
  *
- *  Copyright (C) 1999-2016 Vaclav Slavik
+ *  Copyright (C) 1999-2019 Vaclav Slavik
  *
  *  Permission is hereby granted, free of charge, to any person obtaining a
  *  copy of this software and associated documentation files (the "Software"),
@@ -61,7 +61,7 @@ class PoeditApp : public wxApp
         bool CheckForBetaUpdates() const;
 
         // opens files in new frame
-        void OpenFiles(const wxArrayString& filenames);
+        void OpenFiles(const wxArrayString& filenames, int lineno = 0);
         // opens empty frame or catalogs manager
         void OpenNewFile();
 
@@ -70,7 +70,7 @@ class PoeditApp : public wxApp
 #endif
 
 #ifdef __WXOSX__
-        virtual void MacOpenFiles(const wxArrayString& names) { OpenFiles(names); }
+        virtual void MacOpenFiles(const wxArrayString& names);
         virtual void MacNewFile() { OpenNewFile(); }
         virtual void MacOpenURL(const wxString &url) { HandleCustomURI(url); }
 #endif
@@ -87,8 +87,8 @@ class PoeditApp : public wxApp
         // the apple menu etc. Call on every newly created menubar
         void TweakOSXMenuBar(wxMenuBar *bar);
         void CreateFakeOpenRecentMenu();
-        void InstallOpenRecentMenu(wxMenuBar *bar);
-        void OnIdleInstallOpenRecentMenu(wxIdleEvent& event);
+        void FixupMenusForMac(wxMenuBar *bar);
+        void OnIdleFixupMenusForMac(wxIdleEvent& event);
         virtual void OSXOnWillFinishLaunching();
         void OnCloseWindowCommand(wxCommandEvent& event);
 #endif
@@ -99,7 +99,6 @@ class PoeditApp : public wxApp
             upgrade to new version.)
          */
         void SetDefaultCfg(wxConfigBase *cfg);
-        void SetDefaultExtractors(wxConfigBase *cfg);
         
         void OnInitCmdLine(wxCmdLineParser& parser);
         bool OnCmdLineParsed(wxCmdLineParser& parser);
@@ -133,8 +132,8 @@ class PoeditApp : public wxApp
         DECLARE_EVENT_TABLE()
 
 #ifdef __WXOSX__
-        class RecentMenuData;
-        std::unique_ptr<RecentMenuData> m_recentMenuData;
+        class NativeMacAppData;
+        std::unique_ptr<NativeMacAppData> m_nativeMacAppData;
 #else
         wxFileHistory m_history;
 #endif

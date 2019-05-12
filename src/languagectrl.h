@@ -1,7 +1,7 @@
 /*
  *  This file is part of Poedit (https://poedit.net)
  *
- *  Copyright (C) 2013-2016 Vaclav Slavik
+ *  Copyright (C) 2013-2019 Vaclav Slavik
  *
  *  Permission is hereby granted, free of charge, to any person obtaining a
  *  copy of this software and associated documentation files (the "Software"),
@@ -35,7 +35,7 @@
 class LanguageCtrl : public wxComboBox
 {
 public:
-    LanguageCtrl() : m_inited(false) {}
+    LanguageCtrl();
     LanguageCtrl(wxWindow *parent, wxWindowID winid = wxID_ANY, Language lang = Language());
 
     void SetLang(const Language& lang);
@@ -46,6 +46,11 @@ public:
         return GetLang().IsValid();
     }
 
+#ifdef __WXOSX__
+    int FindString(const wxString& s, bool bCase) const override;
+    wxString GetString(unsigned int n) const override;
+#endif
+
 #ifdef __WXMSW__
     wxSize DoGetBestSize() const;
 #endif
@@ -54,6 +59,11 @@ private:
     void Init(Language lang);
 
     bool m_inited;
+
+#ifdef __WXOSX__
+    struct impl;
+    std::unique_ptr<impl> m_impl;
+#endif
 
     DECLARE_DYNAMIC_CLASS(LanguageCtrl)
 };

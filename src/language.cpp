@@ -1,7 +1,7 @@
 /*
  *  This file is part of Poedit (https://poedit.net)
  *
- *  Copyright (C) 2013-2016 Vaclav Slavik
+ *  Copyright (C) 2013-2019 Vaclav Slavik
  *
  *  Permission is hereby granted, free of charge, to any person obtaining a
  *  copy of this software and associated documentation files (the "Software"),
@@ -31,6 +31,8 @@
 #include <mutex>
 #include <memory>
 
+#include <boost/algorithm/string.hpp>
+
 #include <unicode/uvernum.h>
 #include <unicode/locid.h>
 #include <unicode/coll.h>
@@ -39,6 +41,7 @@
 #include <wx/filename.h>
 
 #include "str_helpers.h"
+#include "pluralforms/pl_evaluate.h"
 
 #ifdef HAVE_CLD2
     #ifdef HAVE_CLD2_PUBLIC_COMPACT_LANG_DET_H
@@ -53,12 +56,16 @@
 // GCC's libstdc++ didn't have functional std::regex implementation until 4.9
 #if (defined(__GNUC__) && !defined(__clang__) && !wxCHECK_GCC_VERSION(4,9))
     #include <boost/regex.hpp>
+    using boost::regex;
     using boost::wregex;
     using boost::regex_match;
+    using boost::smatch;
 #else
     #include <regex>
+    using std::regex;
     using std::wregex;
     using std::regex_match;
+    using std::smatch;
 #endif
 
 namespace
@@ -175,9 +182,15 @@ const DisplayNamesData& GetDisplayNamesData()
             if (*script != '\0')
             {
                 if (strcmp(script, "Latn") == 0)
+                {
                     code += "@latin";
+                }
                 else if (strcmp(script, "Cyrl") == 0)
-                    code += "@cyrillic";
+                {
+                    // add @cyrillic only if it's not the default already
+                    if (strcmp(language, "sr") != 0)
+                        code += "@cyrillic";
+                }
             }
             
             s.foldCase();
@@ -306,6 +319,11 @@ Language Language::TryParse(const std::wstring& s)
     if (IsValidCode(s))
         return Language(s);
 
+    if (s == "zh-Hans")
+        return Language("zh_CN");
+    else if (s == "zh-Hant")
+        return Language("zh_TW");
+
     // Is it a standard language code?
     if (regex_match(s, RE_LANG_CODE_PERMISSIVE))
     {
@@ -375,12 +393,12 @@ Language Language::FromLegacyNames(const std::string& lang, const std::string& c
 }
 
 
-std::string Language::DefaultPluralFormsExpr() const
+PluralFormsExpr Language::DefaultPluralFormsExpr() const
 {
     if (!IsValid())
-        return std::string();
+        return PluralFormsExpr();
 
-    static const std::unordered_map<std::string, std::string> forms = {
+    static const std::unordered_map<std::string, PluralFormsExpr> forms = {
         #include "language_impl_plurals.h"
     };
 
@@ -396,7 +414,13 @@ std::string Language::DefaultPluralFormsExpr() const
     if ( i != forms.end() )
         return i->second;
 
-    return std::string();
+    return PluralFormsExpr();
+}
+
+
+int Language::nplurals() const
+{
+    return DefaultPluralFormsExpr().nplurals();
 }
 
 
@@ -524,7 +548,7 @@ Language Language::TryDetectFromText(const char *buffer, size_t len, Language pr
 
     auto lang = CLD2::ExtDetectLanguageSummary(
                         buffer, (int)len,
-                        /*is_plain_text=*/true, // any embedded HTML markup should be insignificant
+                        /*is_plain_text=*/false,
                         &hints,
                         /*flags=*/0,
                         language3, percent3, normalized_score3,
@@ -550,4 +574,81 @@ Language Language::TryDetectFromText(const char *buffer, size_t len, Language pr
     (void)len;
     return probableLanguage;
 #endif
+}
+
+
+PluralFormsExpr::PluralFormsExpr() : m_calcCreated(true)
+{
+}
+
+PluralFormsExpr::PluralFormsExpr(const std::string& expr, int nplurals)
+    : m_expr(expr), m_nplurals(nplurals), m_calcCreated(false)
+{
+}
+
+PluralFormsExpr::~PluralFormsExpr()
+{
+}
+
+int PluralFormsExpr::nplurals() const
+{
+    if (m_nplurals != -1)
+        return m_nplurals;
+    if (m_calc)
+        return m_calc->nplurals();
+
+    const regex re("^nplurals=([0-9]+)");
+    smatch m;
+    if (regex_match(m_expr, m, re))
+        return std::stoi(m.str(1));
+    else
+        return -1;
+}
+
+std::shared_ptr<PluralFormsCalculator> PluralFormsExpr::calc() const
+{
+    auto self = const_cast<PluralFormsExpr*>(this);
+    if (m_calcCreated)
+        return m_calc;
+    if (!m_expr.empty())
+        self->m_calc = PluralFormsCalculator::make(m_expr.c_str());
+    self->m_calcCreated = true;
+    return m_calc;
+}
+
+bool PluralFormsExpr::operator==(const PluralFormsExpr& other) const
+{
+    if (m_expr == other.m_expr)
+        return true;
+
+    // do some normalization to avoid unnecessary complains when the only
+    // differences are in whitespace for example:
+    auto expr1 = boost::erase_all_copy(m_expr, " \t");
+    auto expr2 = boost::erase_all_copy(other.m_expr, " \t");
+    if (expr1 == expr2)
+        return true;
+
+    // failing that, compare the expressions semantically:
+    auto calc1 = calc();
+    auto calc2 = other.calc();
+
+    if (!calc1 || !calc2)
+        return false; // at least one is invalid _and_ the strings are different due to code above
+
+    if (calc1->nplurals() != calc2->nplurals())
+        return false;
+
+    for (int i = 0; i < MAX_EXAMPLES_COUNT; i++)
+    {
+        if (calc1->evaluate(i) != calc2->evaluate(i))
+            return false;
+    }
+    // both expressions are identical on all tested integers
+    return true;
+}
+
+int PluralFormsExpr::evaluate_for_n(int n) const
+{
+    auto c = calc();
+    return c ? c->evaluate(n) : 0;
 }

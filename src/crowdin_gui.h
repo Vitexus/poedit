@@ -1,7 +1,7 @@
 /*
  *  This file is part of Poedit (https://poedit.net)
  *
- *  Copyright (C) 2015-2016 Vaclav Slavik
+ *  Copyright (C) 2015-2019 Vaclav Slavik
  *
  *  Permission is hereby granted, free of charge, to any person obtaining a
  *  copy of this software and associated documentation files (the "Software"),
@@ -29,6 +29,7 @@
 #ifdef HAVE_HTTP_CLIENT
 
 #include "catalog.h"
+#include "cloud_sync.h"
 #include "customcontrols.h"
 
 #include <wx/panel.h>
@@ -75,6 +76,15 @@ protected:
     wxBoxSizer *m_loginInfo;
     wxButton *m_signIn, *m_signOut;
     wxString m_userName, m_userLogin;
+};
+
+
+class CrowdinSyncDestination : public CloudSyncDestination
+{
+public:
+    wxString GetName() const override { return "Crowdin"; }
+
+    dispatch::future<void> Upload(CatalogPtr file) override;
 };
 
 

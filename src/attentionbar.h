@@ -1,7 +1,7 @@
 /*
  *  This file is part of Poedit (https://poedit.net)
  *
- *  Copyright (C) 2008-2016 Vaclav Slavik
+ *  Copyright (C) 2008-2019 Vaclav Slavik
  *
  *  Permission is hereby granted, free of charge, to any person obtaining a
  *  copy of this software and associated documentation files (the "Software"),
@@ -45,7 +45,6 @@ public:
     /// Kind of the message
     enum Kind
     {
-        Info,
         Warning,
         Question,
         Error
@@ -147,7 +146,7 @@ private:
     void OnPaint(wxPaintEvent& event);
 
 private:
-#ifndef __WXGTK__
+#ifdef __WXMSW__
     wxStaticBitmap *m_icon;
 #endif
     AutoWrappingText *m_label;

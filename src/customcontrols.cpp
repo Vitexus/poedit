@@ -1,7 +1,7 @@
 /*
  *  This file is part of Poedit (https://poedit.net)
  *
- *  Copyright (C) 2015-2016 Vaclav Slavik
+ *  Copyright (C) 2015-2019 Vaclav Slavik
  *
  *  Permission is hereby granted, free of charge, to any person obtaining a
  *  copy of this software and associated documentation files (the "Software"),
@@ -28,6 +28,7 @@
 #include "concurrency.h"
 #include "errors.h"
 #include "hidpi.h"
+#include "utility.h"
 
 #include <wx/app.h>
 #include <wx/clipbrd.h>
@@ -150,6 +151,19 @@ wxString WrapTextAtWidth(const wxString& text_, int width, Language lang, wxWind
 } // anonymous namespace
 
 
+HeadingLabel::HeadingLabel(wxWindow *parent, const wxString& label)
+    : wxStaticText(parent, wxID_ANY, label)
+{
+#ifdef __WXGTK3__
+    // This is needed to avoid missizing text with bold font. See
+    // https://github.com/vslavik/poedit/pull/411 and https://trac.wxwidgets.org/ticket/16088
+    SetLabelMarkup("<b>" + EscapeMarkup(label) + "</b>");
+#else
+    SetFont(GetFont().Bold());
+#endif
+}
+
+
 AutoWrappingText::AutoWrappingText(wxWindow *parent, const wxString& label)
     : wxStaticText(parent, wxID_ANY, "", wxDefaultPosition, wxDefaultSize, wxST_NO_AUTORESIZE),
       m_text(label),
@@ -201,6 +215,10 @@ void AutoWrappingText::OnSize(wxSizeEvent& e)
     e.Skip();
     int w = wxMax(0, e.GetSize().x - PX(4));
     if (w == m_wrapWidth)
+        return;
+
+    // refuse to participate in crazy-small sizes sizing (will be undone anyway):
+    if (w < 50)
         return;
 
     wxWindowUpdateLocker lock(this);
@@ -297,9 +315,23 @@ LearnMoreLink::LearnMoreLink(wxWindow *parent, const wxString& url, wxString lab
     }
 
     wxHyperlinkCtrl::Create(parent, winid, label, url);
-    SetNormalColour("#2F79BE");
-    SetVisitedColour("#2F79BE");
-    SetHoverColour("#3D8DD5");
+
+#ifdef __WXOSX__
+    if (@available(macOS 10.14, *))
+    {
+        wxColour normal(NSColor.linkColor);
+        wxColour hover([NSColor.linkColor colorWithSystemEffect:NSColorSystemEffectRollover]);
+        SetNormalColour(normal);
+        SetVisitedColour(normal);
+        SetHoverColour(hover);
+    }
+    else
+#endif
+    {
+        SetNormalColour("#2F79BE");
+        SetVisitedColour("#2F79BE");
+        SetHoverColour("#3D8DD5");
+    }
 
 #ifdef __WXOSX__
     SetWindowVariant(wxWINDOW_VARIANT_SMALL);
@@ -322,7 +354,7 @@ bool LearnMoreLinkXmlHandler::CanHandle(wxXmlNode *node)
 }
 
 
-ActivityIndicator::ActivityIndicator(wxWindow *parent)
+ActivityIndicator::ActivityIndicator(wxWindow *parent, int flags)
     : wxWindow(parent, wxID_ANY), m_running(false)
 {
     auto sizer = new wxBoxSizer(wxHORIZONTAL);
@@ -335,17 +367,39 @@ ActivityIndicator::ActivityIndicator(wxWindow *parent)
     m_label->SetWindowVariant(wxWINDOW_VARIANT_SMALL);
 #endif
 
+    if (flags & Centered)
+        sizer->AddStretchSpacer();
     sizer->Add(m_spinner, wxSizerFlags().Center().Border(wxRIGHT, PX(4)));
     sizer->Add(m_label, wxSizerFlags(1).Center());
+    if (flags & Centered)
+        sizer->AddStretchSpacer();
 
     wxWeakRef<ActivityIndicator> self(this);
-    HandleError = [self](std::exception_ptr e){
+    HandleError = [self](dispatch::exception_ptr e){
         dispatch::on_main([self,e]{
             if (self)
                 self->StopWithError(DescribeException(e));
         });
     };
 }
+
+
+void ActivityIndicator::UpdateLayoutAfterTextChange()
+{
+    m_label->Wrap(GetSize().x);
+
+    Layout();
+
+    if (GetSizer()->IsShown(m_label))
+    {
+        InvalidateBestSize();
+        SetMinSize(wxDefaultSize);
+        SetMinSize(GetBestSize());
+
+        GetParent()->Layout();
+    }
+}
+
 
 void ActivityIndicator::Start(const wxString& msg)
 {
@@ -357,7 +411,8 @@ void ActivityIndicator::Start(const wxString& msg)
     auto sizer = GetSizer();
     sizer->Show(m_spinner);
     sizer->Show(m_label, !msg.empty());
-    Layout();
+
+    UpdateLayoutAfterTextChange();
 
     m_spinner->Start();
 }
@@ -372,7 +427,8 @@ void ActivityIndicator::Stop()
     auto sizer = GetSizer();
     sizer->Hide(m_spinner);
     sizer->Hide(m_label);
-    Layout();
+
+    UpdateLayoutAfterTextChange();
 }
 
 void ActivityIndicator::StopWithError(const wxString& msg)
@@ -382,9 +438,23 @@ void ActivityIndicator::StopWithError(const wxString& msg)
     m_spinner->Stop();
     m_label->SetForegroundColour(*wxRED);
     m_label->SetLabel(msg);
+    m_label->SetToolTip(msg);
 
     auto sizer = GetSizer();
     sizer->Hide(m_spinner);
     sizer->Show(m_label);
-    Layout();
+
+    UpdateLayoutAfterTextChange();
+}
+
+
+
+ImageButton::ImageButton(wxWindow *parent, const wxBitmap& bmp)
+    : wxBitmapButton(parent, wxID_ANY, bmp, wxDefaultPosition, wxDefaultSize, wxBORDER_NONE | wxBU_EXACTFIT)
+{
+#ifdef __WXOSX__
+    // don't light up the background when clicked:
+    NSButton *view = (NSButton*)GetHandle();
+    view.buttonType = NSMomentaryChangeButton;
+#endif
 }

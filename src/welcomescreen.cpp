@@ -1,7 +1,7 @@
-﻿/*
+/*
  *  This file is part of Poedit (https://poedit.net)
  *
- *  Copyright (C) 2013-2016 Vaclav Slavik
+ *  Copyright (C) 2013-2019 Vaclav Slavik
  *
  *  Permission is hereby granted, free of charge, to any person obtaining a
  *  copy of this software and associated documentation files (the "Software"),
@@ -25,11 +25,13 @@
 
 #include "welcomescreen.h"
 
+#include "colorscheme.h"
 #include "crowdin_gui.h"
 #include "edapp.h"
 #include "edframe.h"
 #include "hidpi.h"
 #include "str_helpers.h"
+#include "utility.h"
 
 #include <wx/dcbuffer.h>
 #include <wx/statbmp.h>
@@ -55,8 +57,10 @@ class ActionButton : public wxWindow
 {
 public:
     ActionButton(wxWindow *parent, wxWindowID winid, const wxString& label, const wxString& note)
-        : wxWindow(parent, wxID_ANY, wxDefaultPosition, wxSize(500, 65))
+        : wxWindow(parent, wxID_ANY)
     {
+        SetMinSize(wxSize(500, 65));
+
         m_button = new wxButton(this, winid, "");
         auto sizer = new wxBoxSizer(wxHORIZONTAL);
         sizer->Add(m_button, wxSizerFlags(1).Expand());
@@ -93,7 +97,8 @@ public:
         [btn setBezelStyle:NSSmallSquareBezelStyle];
         [btn setButtonType:NSMomentaryPushInButton];
 
-        SetBackgroundColour(wxColour("#F2FCE2"));
+        if (ColorScheme::GetWindowMode(this) == ColorScheme::Light)
+            SetBackgroundColour(wxColour("#F2FCE2"));
         Bind(wxEVT_PAINT, &ActionButton::OnPaint, this);
     }
 
@@ -162,7 +167,15 @@ WelcomeScreenBase::WelcomeScreenBase(wxWindow *parent)
       m_clrNorm("#444444"),
       m_clrSub("#aaaaaa")
 {
-    SetBackgroundColour(wxColour("#fffcf5"));
+    switch (ColorScheme::GetWindowMode(this))
+    {
+        case ColorScheme::Light:
+            SetBackgroundColour("#fffcf5");
+            break;
+        case ColorScheme::Dark:
+            SetBackgroundColour("#00030a");
+            break;
+    }
 
 #if defined(__WXOSX__)
     auto guiface = wxSystemSettings::GetFont(wxSYS_DEFAULT_GUI_FONT).GetFaceName();
@@ -200,43 +213,54 @@ WelcomeScreenPanel::WelcomeScreenPanel(wxWindow *parent)
     uberSizer->AddStretchSpacer();
     SetSizer(uberSizer);
 
+    auto headerSizer = new wxBoxSizer(wxVERTICAL);
+
     auto hdr = new wxStaticBitmap(this, wxID_ANY, wxArtProvider::GetBitmap("PoeditWelcome"));
-    sizer->Add(hdr, wxSizerFlags().Center());
+    headerSizer->Add(hdr, wxSizerFlags().Center());
 
     auto header = new HeaderStaticText(this, wxID_ANY, _("Welcome to Poedit"));
     header->SetFont(m_fntHeader);
     header->SetForegroundColour(m_clrHeader);
-    sizer->Add(header, wxSizerFlags().Center().Border(wxTOP, PX(10)));
+    headerSizer->Add(header, wxSizerFlags().Center().Border(wxTOP, PX(10)));
 
     auto version = new wxStaticText(this, wxID_ANY, wxString::Format(_("Version %s"), wxGetApp().GetAppVersion()));
     version->SetFont(m_fntSub);
     version->SetForegroundColour(m_clrSub);
-    sizer->Add(version, wxSizerFlags().Center());
+    headerSizer->Add(version, wxSizerFlags().Center());
 
-    sizer->AddSpacer(PX(20));
+    headerSizer->AddSpacer(PX(20));
+
+    sizer->Add(headerSizer, wxSizerFlags().Expand());
 
     sizer->Add(new ActionButton(
                        this, wxID_OPEN,
-                       _("Edit a translation"),
+                       MSW_OR_OTHER(_("Edit a translation"), _("Edit a Translation")),
                        _("Open an existing PO file and edit the translation.")),
                wxSizerFlags().PXBorderAll().Expand());
 
     sizer->Add(new ActionButton(
                        this, XRCID("menu_new_from_pot"),
-                       _("Create new translation"),
+                       MSW_OR_OTHER(_("Create new translation"), _("Create New Translation")),
                        _("Take an existing PO file or POT template and create a new translation from it.")),
                wxSizerFlags().PXBorderAll().Expand());
 
 #ifdef HAVE_HTTP_CLIENT
     sizer->Add(new ActionButton(
                        this, XRCID("menu_open_crowdin"),
-                       _("Collaborate on a translation with Crowdin"),
+                       MSW_OR_OTHER(_("Collaborate on a translation with others"), _("Collaborate on a Translation with Others")),
                        _("Download a file from Crowdin project, translate and sync your changes back.")),
                wxSizerFlags().PXBorderAll().Expand());
     sizer->Add(new LearnAboutCrowdinLink(this, _("What is Crowdin?")), wxSizerFlags().Right().Border(wxRIGHT, PX(8)));
 #endif // HAVE_HTTP_CLIENT
 
     sizer->AddSpacer(PX(50));
+
+    // Hide the cosmetic logo part if the screen is too small:
+    auto minFullSize = sizer->GetMinSize().y + PX(50);
+    Bind(wxEVT_SIZE, [=](wxSizeEvent& e){
+        sizer->Show((size_t)0, e.GetSize().y >= minFullSize);
+        e.Skip();
+    });
 }
 
 
@@ -257,13 +281,12 @@ EmptyPOScreenPanel::EmptyPOScreenPanel(PoeditFrame *parent)
     header->SetForegroundColour(m_clrHeader);
     sizer->Add(header, wxSizerFlags().Center().PXBorderAll());
 
-    auto explain = new wxStaticText(this, wxID_ANY, _("Translatable entries aren't added manually in the Gettext system, but are automatically extracted\nfrom source code. This way, they stay up to date and accurate.\nTranslators typically use PO template files (POTs) prepared for them by the developer."));
+    auto explain = new wxStaticText(this, wxID_ANY, _(L"Translatable entries aren’t added manually in the Gettext system, but are automatically extracted\nfrom source code. This way, they stay up to date and accurate.\nTranslators typically use PO template files (POTs) prepared for them by the developer."));
     explain->SetFont(m_fntNorm);
     explain->SetForegroundColour(m_clrNorm);
     sizer->Add(explain, wxSizerFlags());
 
-    auto learnMore = new wxHyperlinkCtrl(this, wxID_ANY, _("(Learn more about GNU gettext)"), "http://www.gnu.org/software/gettext/manual/html_node/");
-    learnMore->SetFont(m_fntNorm);
+    auto learnMore = new LearnMoreLink(this, "http://www.gnu.org/software/gettext/manual/html_node/", _("(Learn more about GNU gettext)"));
     sizer->Add(learnMore, wxSizerFlags().PXBorder(wxTOP|wxBOTTOM).Align(wxALIGN_RIGHT));
 
     auto explain2 = new wxStaticText(this, wxID_ANY, _("The simplest way to fill this catalog is to update it from a POT:"));

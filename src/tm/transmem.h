@@ -1,7 +1,7 @@
 /*
  *  This file is part of Poedit (https://poedit.net)
  *
- *  Copyright (C) 2013-2016 Vaclav Slavik
+ *  Copyright (C) 2013-2019 Vaclav Slavik
  *
  *  Permission is hereby granted, free of charge, to any person obtaining a
  *  copy of this software and associated documentation files (the "Software"),
@@ -27,6 +27,7 @@
 #define _TRANSMEM_H_
 
 #include <exception>
+#include <functional>
 #include <string>
 #include <vector>
 #include <memory>
@@ -47,7 +48,7 @@ public:
     /// Return singleton instance of the TM.
     static TranslationMemory& Get();
 
-    /// Destroys the singleton, must be called (omly) on app shutdown.
+    /// Destroys the singleton, must be called (only) on app shutdown.
     static void CleanUp();
 
     /**
@@ -64,9 +65,38 @@ public:
                            const std::wstring& source);
 
     /// SuggestionsBackend API implementation:
-    dispatch::future<SuggestionsList> SuggestTranslation(const Language& srclang,
-                                                         const Language& lang,
-                                                         const std::wstring& source) override;
+    dispatch::future<SuggestionsList> SuggestTranslation(const SuggestionQuery&& q) override;
+
+    void Delete(const std::string& id) override;
+
+    /// Abstract interface to processing TM entries
+    class IOInterface
+    {
+    public:
+        virtual ~IOInterface() {}
+
+        virtual void Insert(const Language& srclang,
+                            const Language& lang,
+                            const std::wstring& source,
+                            const std::wstring& trans,
+                            time_t creationTime) = 0;
+    };
+
+    /**
+        Exports all database entries by pushing them to the provided output interface.
+
+        May throw on error.
+     */
+    void ExportData(IOInterface& destination);
+
+    /**
+        Imports data provided by the function into the database. The function
+        must use the interface passed to it to write data.
+
+        May throw on error.
+     */
+    void ImportData(std::function<void(IOInterface&)> source);
+
 
     /**
         Performs updates to the translation memory.
@@ -83,10 +113,16 @@ public:
 
         All methods may throw Exception.
       */
-    class Writer
+    class Writer : public IOInterface
     {
     public:
         virtual ~Writer() {}
+
+        void Insert(const Language& srclang,
+                            const Language& lang,
+                            const std::wstring& source,
+                            const std::wstring& trans,
+                            time_t creationTime) override = 0;
 
         /**
             Insert translation into the TM.
@@ -120,6 +156,9 @@ public:
          */
         virtual void Insert(const CatalogPtr& cat) = 0;
 
+        /// Delete a single document identifed by its UUID
+        virtual void Delete(const std::string& uuid) = 0;
+
         /// Deletes everything from the TM.
         virtual void DeleteAll() = 0;
 
@@ -132,6 +171,9 @@ public:
 
     /// Returns the shared writer instance
     std::shared_ptr<Writer> GetWriter();
+
+    /// Resets the database to pristine state, removing all data
+    void DeleteAllAndReset();
 
     /// Returns statistics about the TM
     void GetStats(long& numDocs, long& fileSize);

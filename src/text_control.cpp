@@ -1,7 +1,7 @@
-﻿/*
+/*
  *  This file is part of Poedit (https://poedit.net)
  *
- *  Copyright (C) 1999-2016 Vaclav Slavik
+ *  Copyright (C) 1999-2019 Vaclav Slavik
  *
  *  Permission is hereby granted, free of charge, to any person obtaining a
  *  copy of this software and associated documentation files (the "Software"),
@@ -46,8 +46,11 @@
   #include <comdef.h>
   #include <tom.h>
   _COM_SMARTPTR_TYPEDEF(ITextDocument, __uuidof(ITextDocument));
+  _COM_SMARTPTR_TYPEDEF(ITextRange, __uuidof(ITextRange));
+  _COM_SMARTPTR_TYPEDEF(ITextFont, __uuidof(ITextFont));
 #endif
 
+#include "colorscheme.h"
 #include "spellchecking.h"
 #include "str_helpers.h"
 #include "unicode_helpers.h"
@@ -80,7 +83,7 @@ public:
         m_view.automaticSpellingCorrectionEnabled = NO;
     }
 
-    DisableAutomaticSubstitutions()
+    ~DisableAutomaticSubstitutions()
     {
         m_view.automaticDashSubstitutionEnabled = m_dash;
         m_view.automaticQuoteSubstitutionEnabled = m_quote;
@@ -107,6 +110,30 @@ inline ITextDocumentPtr TextDocument(wxTextCtrl *ctrl)
     if (ole)
         ole->QueryInterface<ITextDocument>(&doc);
     return doc;
+}
+
+// Use temporary styles (used e.g. by spellchecker too) for syntax highlighting.
+// See this nice summary of resources:
+// https://stackoverflow.com/questions/55366383/how-to-clear-temporary-tomapplytmp-formatting-from-a-richedit
+inline void SetTOMTmpStyle(const ITextDocumentPtr& doc, int from, int to, const wxTextAttr& attr)
+{
+    ITextRangePtr range;
+    doc->Range(from, to, &range);
+    if (!range)
+        return;
+    ITextFontPtr font;
+    range->GetFont(&font);
+    if (!font)
+        return;
+    font->Reset(tomApplyTmp);
+
+    auto fg = attr.GetTextColour();
+    auto bg = attr.GetBackgroundColour();
+    if (fg.IsOk())
+        font->SetForeColor(fg.GetPixel());
+    if (bg.IsOk())
+    font->SetBackColor(bg.GetPixel());
+    font->Reset(tomApplyNow);
 }
 
 // Temporarily suppresses recording of changes for Undo/Redo functionality
@@ -202,7 +229,7 @@ private:
 
 #ifdef __WXOSX__
 
-// wxTextCtrl implementation on OS X uses insertText:, which is intended for
+// wxTextCtrl implementation on macOS uses insertText:, which is intended for
 // user input and performs some user input processing, such as autocorrections.
 // We need to avoid this, because Poedit's text control is filled with data
 // when moving in the list control: https://github.com/vslavik/poedit/issues/81
@@ -213,13 +240,12 @@ CustomizedTextCtrl::CustomizedTextCtrl(wxWindow *parent, wxWindowID winid, long 
 {
     auto text = TextView(this);
 
-    [text setTextContainerInset:NSMakeSize(1,3)];
+    [text setTextContainerInset:NSMakeSize(0,3)];
     [text setRichText:NO];
 
-    // TODO: This isn't implemented and doesn't work in OS X
-    //Bind(wxEVT_TEXT_COPY, &CustomizedTextCtrl::OnCopy, this);
-    //Bind(wxEVT_TEXT_CUT, &CustomizedTextCtrl::OnCut, this);
-    //Bind(wxEVT_TEXT_PASTE, &CustomizedTextCtrl::OnPaste, this);
+    Bind(wxEVT_TEXT_COPY, &CustomizedTextCtrl::OnCopy, this);
+    Bind(wxEVT_TEXT_CUT, &CustomizedTextCtrl::OnCut, this);
+    Bind(wxEVT_TEXT_PASTE, &CustomizedTextCtrl::OnPaste, this);
 }
 
 void CustomizedTextCtrl::DoSetValue(const wxString& value, int flags)
@@ -259,18 +285,17 @@ wxString CustomizedTextCtrl::DoGetValue() const
 #else // !__WXOSX__
 
 CustomizedTextCtrl::CustomizedTextCtrl(wxWindow *parent, wxWindowID winid, long style)
-   : wxTextCtrl(parent, winid, "", wxDefaultPosition, wxDefaultSize, style | ALWAYS_USED_STYLE)
 {
+    wxTextCtrl::Create(parent, winid, "", wxDefaultPosition, wxDefaultSize, style | ALWAYS_USED_STYLE);
+
     wxTextAttr padding;
     padding.SetLeftIndent(5);
     padding.SetRightIndent(5);
     SetDefaultStyle(padding);
 
-#if defined(__WXMSW__) || defined(__WXGTK__)
     Bind(wxEVT_TEXT_COPY, &CustomizedTextCtrl::OnCopy, this);
     Bind(wxEVT_TEXT_CUT, &CustomizedTextCtrl::OnCut, this);
     Bind(wxEVT_TEXT_PASTE, &CustomizedTextCtrl::OnPaste, this);
-#endif
 
 #ifdef __WXGTK__
     m_historyLocks = 0;
@@ -281,7 +306,21 @@ CustomizedTextCtrl::CustomizedTextCtrl(wxWindow *parent, wxWindowID winid, long 
 
 #endif // !__WXOSX__
 
-#if defined(__WXMSW__) || defined(__WXGTK__)
+
+#ifdef __WXMSW__
+
+WXDWORD CustomizedTextCtrl::MSWGetStyle(long style, WXDWORD *exstyle) const
+{
+    auto msStyle = wxTextCtrl::MSWGetStyle(style, exstyle);
+    // Disable always-shown scrollbars. The reason wx does this doesn't seem to
+    // affect Poedit, so it should be safe:
+    msStyle &= ~ES_DISABLENOSCROLL;
+    return msStyle;
+}
+
+#endif // __WXMSW__
+
+
 // We use wxTE_RICH2 style, which allows for pasting rich-formatted
 // text into the control. We want to allow only plain text (all the
 // formatting done is Poedit's syntax highlighting), so we need to
@@ -355,7 +394,6 @@ void CustomizedTextCtrl::DoPasteText(long from, long to, const wxString& s)
 {
     Replace(from, to, s);
 }
-#endif // __WXMSW__/__WXGTK__
 
 #ifdef __WXGTK__
 void CustomizedTextCtrl::BeginUndoGrouping()
@@ -454,28 +492,34 @@ class AnyTranslatableTextCtrl::Attributes
 {
 public:
 #ifdef __WXOSX__
-    NSDictionary *m_attrSpace, *m_attrEscape;
+    NSDictionary *m_attrSpace, *m_attrEscape, *m_attrMarkup, *m_attrFormat;
     typedef NSDictionary* AttrType;
 
-    Attributes()
+    Attributes(wxTextCtrl*)
     {
-        m_attrSpace  = @{NSBackgroundColorAttributeName: [NSColor colorWithSRGBRed:0.89 green:0.96 blue:0.68 alpha:1]};
-        m_attrEscape = @{NSBackgroundColorAttributeName: [NSColor colorWithSRGBRed:1 green:0.95 blue:1 alpha:1],
-                         NSForegroundColorAttributeName: [NSColor colorWithSRGBRed:0.46 green:0 blue:0.01 alpha:1]};
+        m_attrSpace  = @{NSBackgroundColorAttributeName: ColorScheme::Get(Color::SyntaxLeadingWhitespaceBg).OSXGetNSColor()};
+        m_attrEscape = @{NSBackgroundColorAttributeName: ColorScheme::Get(Color::SyntaxEscapeBg).OSXGetNSColor(),
+                         NSForegroundColorAttributeName: ColorScheme::Get(Color::SyntaxEscapeFg).OSXGetNSColor()};
+        m_attrMarkup = @{NSForegroundColorAttributeName: ColorScheme::Get(Color::SyntaxMarkup).OSXGetNSColor()};
+        m_attrFormat = @{NSForegroundColorAttributeName: ColorScheme::Get(Color::SyntaxFormat).OSXGetNSColor()};
     }
 #else // !__WXOSX__
-    wxTextAttr m_attrDefault, m_attrSpace, m_attrEscape;
+    wxTextAttr m_attrDefault, m_attrSpace, m_attrEscape, m_attrMarkup, m_attrFormat;
     typedef wxTextAttr AttrType;
 
-    Attributes()
+    Attributes(wxTextCtrl *ctrl)
     {
-        m_attrDefault.SetBackgroundColour(*wxWHITE);
-        m_attrDefault.SetTextColour(*wxBLACK);
+        m_attrDefault.SetBackgroundColour(ctrl->GetBackgroundColour());
+        m_attrDefault.SetTextColour(ctrl->GetForegroundColour());
 
-        m_attrSpace.SetBackgroundColour("#E4F6AE");
+        m_attrSpace.SetBackgroundColour(ColorScheme::Get(Color::SyntaxLeadingWhitespaceBg));
 
-        m_attrEscape.SetBackgroundColour("#FFF1FF");
-        m_attrEscape.SetTextColour("#760003");
+        m_attrEscape.SetBackgroundColour(ColorScheme::Get(Color::SyntaxEscapeBg));
+        m_attrEscape.SetTextColour(ColorScheme::Get(Color::SyntaxEscapeFg));
+
+        m_attrMarkup.SetTextColour(ColorScheme::Get(Color::SyntaxMarkup));
+
+        m_attrFormat.SetTextColour(ColorScheme::Get(Color::SyntaxFormat));
     }
 
     const AttrType& Default() const {  return m_attrDefault; }
@@ -487,6 +531,8 @@ public:
         {
             case SyntaxHighlighter::LeadingWhitespace:  return m_attrSpace;
             case SyntaxHighlighter::Escape:             return m_attrEscape;
+            case SyntaxHighlighter::Markup:             return m_attrMarkup;
+            case SyntaxHighlighter::Format:             return m_attrFormat;
         }
         return m_attrSpace; // silence bogus warning
     }
@@ -494,9 +540,9 @@ public:
 
 
 AnyTranslatableTextCtrl::AnyTranslatableTextCtrl(wxWindow *parent, wxWindowID winid, int style)
-   : CustomizedTextCtrl(parent, winid, style),
-     m_attrs(new Attributes)
+   : CustomizedTextCtrl(parent, winid, style)
 {
+    m_attrs.reset(new Attributes(this));
     Bind(wxEVT_TEXT, [=](wxCommandEvent& e){
         e.Skip();
         HighlightText();
@@ -512,6 +558,8 @@ AnyTranslatableTextCtrl::~AnyTranslatableTextCtrl()
 void AnyTranslatableTextCtrl::SetLanguage(const Language& lang)
 {
     m_language = lang;
+
+    wxEventBlocker block(this, wxEVT_TEXT);
 
 #ifdef __WXOSX__
     NSTextView *text = TextView(this);
@@ -559,7 +607,7 @@ wxString AnyTranslatableTextCtrl::GetPlainText() const
 wxString AnyTranslatableTextCtrl::EscapePlainText(const wxString& s)
 {
     // Note: the escapes used here should match with
-    //       SyntaxHighlighter::Highlight() ones
+    //       BasicSyntaxHighlighter::Highlight() ones
     wxString s2;
     s2.reserve(s.length());
     for (auto i = s.begin(); i != s.end(); ++i)
@@ -666,7 +714,6 @@ wxString AnyTranslatableTextCtrl::UnescapePlainText(const wxString& s)
     return s2;
 }
 
-#if defined(__WXMSW__) || defined(__WXGTK__)
 wxString AnyTranslatableTextCtrl::DoCopyText(long from, long to)
 {
     return UnescapePlainText(GetRange(from, to));
@@ -676,16 +723,20 @@ void AnyTranslatableTextCtrl::DoPasteText(long from, long to, const wxString& s)
 {
     Replace(from, to, EscapePlainText(s));
 }
-#endif
 
-#ifdef __WXMSW__
 void AnyTranslatableTextCtrl::DoSetValue(const wxString& value, int flags)
 {
+#ifdef __WXMSW__
     wxWindowUpdateLocker dis(this);
+#endif
     CustomizedTextCtrl::DoSetValue(value, flags);
+#ifdef __WXMSW__
     UpdateRTLStyle();
+#endif
+    HighlightText();
 }
 
+#ifdef __WXMSW__
 void AnyTranslatableTextCtrl::UpdateRTLStyle()
 {
     wxEventBlocker block(this, wxEVT_TEXT);
@@ -704,15 +755,7 @@ void AnyTranslatableTextCtrl::UpdateRTLStyle()
     ::SendMessage((HWND) GetHWND(), EM_SETPARAFORMAT, 0, (LPARAM) &pf);
     SetSelection(start, end);
 }
-#endif // __WXMSW__
-
-#ifdef __WXGTK__
-void AnyTranslatableTextCtrl::DoSetValue(const wxString& value, int flags)
-{
-    CustomizedTextCtrl::DoSetValue(value, flags);
-    HighlightText();
-}
-#endif
+#endif // !__WXMSW__
 
 void AnyTranslatableTextCtrl::HighlightText()
 {
@@ -725,46 +768,63 @@ void AnyTranslatableTextCtrl::HighlightText()
     [layout removeTemporaryAttribute:NSForegroundColorAttributeName forCharacterRange:fullRange];
     [layout removeTemporaryAttribute:NSBackgroundColorAttributeName forCharacterRange:fullRange];
 
-    m_syntax.Highlight(text, [=](int a, int b, SyntaxHighlighter::TextKind kind){
-        [layout addTemporaryAttributes:m_attrs->For(kind) forCharacterRange:NSMakeRange(a, b-a)];
-    });
+    if (m_syntax)
+    {
+        m_syntax->Highlight(text, [=](int a, int b, SyntaxHighlighter::TextKind kind){
+            [layout addTemporaryAttributes:m_attrs->For(kind) forCharacterRange:NSMakeRange(a, b-a)];
+        });
+    }
 
 #else // !__WXOSX__
 
-#ifndef __WXGTK__
-    // Freezing (and more to the point, thawing) the window from inside wxEVT_TEXT
-    // handler breaks pasting under GTK+ (selection is not replaced).
-    // See https://github.com/vslavik/poedit/issues/139
-    wxWindowUpdateLocker noupd(this);
-#endif
-
     wxEventBlocker block(this, wxEVT_TEXT);
-  #ifdef __WXMSW__
-    UndoSuppressor blockUndo(this);
-  #endif
 
     auto deflt = m_attrs->Default();
     deflt.SetFont(GetFont());
-    SetStyle(0, text.length(), deflt);
 
-    m_syntax.Highlight(text, [=](int a, int b, SyntaxHighlighter::TextKind kind){
-        SetStyle(a, b, m_attrs->For(kind));
-    });
+  #ifdef __WXMSW__
+    UndoSuppressor blockUndo(this);
 
+    auto doc = TextDocument(this);
+    if (IsEditable() && doc)
+    {
+        // If possible, use TOM interface to apply temporary styles, which is much
+        // more efficient. Unfortunately, it's not possible to do with read-only controls.
+        SetTOMTmpStyle(doc, 0, text.length(), deflt);
+
+        if (m_syntax)
+        {
+            m_syntax->Highlight(text, [=](int a, int b, SyntaxHighlighter::TextKind kind){
+                SetTOMTmpStyle(doc, a, b, m_attrs->For(kind));
+            });
+        }
+    }
+    else
+  #endif // __WXMSW___
+    {
+        SetStyle(0, text.length(), deflt);
+
+        if (m_syntax)
+        {
+            m_syntax->Highlight(text, [=](int a, int b, SyntaxHighlighter::TextKind kind){
+                SetStyle(a, b, m_attrs->For(kind));
+            });
+        }
+    }
 #endif // __WXOSX__/!__WXOSX__
 }
 
 
 
 SourceTextCtrl::SourceTextCtrl(wxWindow *parent, wxWindowID winid)
-    : AnyTranslatableTextCtrl(parent, winid, wxTE_READONLY)
+    : AnyTranslatableTextCtrl(parent, winid, wxTE_READONLY | wxNO_BORDER)
 {
     SetLanguage(Language::English());
 }
 
 
 TranslationTextCtrl::TranslationTextCtrl(wxWindow *parent, wxWindowID winid)
-    : AnyTranslatableTextCtrl(parent, winid),
+    : AnyTranslatableTextCtrl(parent, winid, wxNO_BORDER),
       m_lastKeyWasReturn(false)
 {
 #ifdef __WXMSW__
@@ -820,6 +880,14 @@ void TranslationTextCtrl::DoSetValue(const wxString& value, int flags)
 }
 #endif
 
+#ifdef __WXMSW__
+void TranslationTextCtrl::DoEnable(bool enable)
+{
+    wxEventBlocker block(this, wxEVT_TEXT);
+    AnyTranslatableTextCtrl::DoEnable(enable);
+}
+#endif
+
 void TranslationTextCtrl::SetPlainTextUserWritten(const wxString& value)
 {
     UndoGroup undo(this);
@@ -831,4 +899,6 @@ void TranslationTextCtrl::SetPlainTextUserWritten(const wxString& value)
     SelectAll();
     WriteText(EscapePlainText(value));
     SetInsertionPointEnd();
+
+    HighlightText();
 }

@@ -1,7 +1,7 @@
 /*
  *  This file is part of Poedit (https://poedit.net)
  *
- *  Copyright (C) 2001-2016 Vaclav Slavik
+ *  Copyright (C) 2001-2019 Vaclav Slavik
  *
  *  Permission is hereby granted, free of charge, to any person obtaining a
  *  copy of this software and associated documentation files (the "Software"),
@@ -46,6 +46,7 @@
 #include "catalog.h"
 #include "text_control.h"
 #include "edframe.h"
+#include "editing_area.h"
 #include "edlistctrl.h"
 #include "findframe.h"
 #include "hidpi.h"
@@ -74,18 +75,14 @@ wxString FindFrame::ms_text;
 
 FindFrame::FindFrame(PoeditFrame *owner,
                      PoeditListCtrl *list,
-                     const CatalogPtr& c,
-                     CustomizedTextCtrl *textCtrlOrig,
-                     CustomizedTextCtrl *textCtrlTrans,
-                     wxNotebook *pluralNotebook)
+                     EditingArea *editingArea,
+                     const CatalogPtr& c)
         : wxFrame(owner, wxID_ANY, _("Find"), wxDefaultPosition, wxDefaultSize, FRAME_STYLE),
           m_owner(owner),
           m_listCtrl(list),
+          m_editingArea(editingArea),
           m_catalog(c),
-          m_position(-1),
-          m_textCtrlOrig(textCtrlOrig),
-          m_textCtrlTrans(textCtrlTrans),
-          m_pluralNotebook(pluralNotebook)
+          m_position(-1)
 {
     auto panel = new wxPanel(this, wxID_ANY);
     wxBoxSizer *panelsizer = new wxBoxSizer(wxVERTICAL);
@@ -146,8 +143,8 @@ FindFrame::FindFrame(PoeditFrame *owner,
 #endif
 
     m_btnClose = new wxButton(panel, wxID_CLOSE, _("Close"));
-    m_btnReplaceAll = new wxButton(panel, wxID_ANY, MSW_OR_OTHER(_("Replace all"), _("Replace All")));
-    m_btnReplace = new wxButton(panel, wxID_ANY, _("Replace"));
+    m_btnReplaceAll = new wxButton(panel, wxID_ANY, MSW_OR_OTHER(_("Replace &all"), _("Replace &All")));
+    m_btnReplace = new wxButton(panel, wxID_ANY, _("&Replace"));
     m_btnPrev = new wxButton(panel, wxID_ANY, _("< &Previous"));
     m_btnNext = new wxButton(panel, wxID_ANY, _("&Next >"));
     m_btnNext->SetDefault();
@@ -185,12 +182,13 @@ FindFrame::FindFrame(PoeditFrame *owner,
 
     wxAcceleratorEntry entries[] = {
 #ifndef __WXGTK__
-        { wxACCEL_SHIFT,  WXK_RETURN, m_btnPrev->GetId() },
+        { wxACCEL_SHIFT, WXK_RETURN, m_btnPrev->GetId() },
 #endif
 #ifdef __WXOSX__
-        { wxACCEL_CMD,  'W', wxID_CLOSE },
+        { wxACCEL_NORMAL, WXK_RETURN, m_btnNext->GetId() },
+        { wxACCEL_CMD, 'W', wxID_CLOSE },
 #endif
-        { wxACCEL_NORMAL,  WXK_ESCAPE, wxID_CLOSE }
+        { wxACCEL_NORMAL, WXK_ESCAPE, wxID_CLOSE }
     };
     wxAcceleratorTable accel(WXSIZEOF(entries), entries);
     SetAcceleratorTable(accel);
@@ -214,8 +212,11 @@ FindFrame::FindFrame(PoeditFrame *owner,
     // wouldn't work. Emulate it in custom code instead, by handling the
     // event originating from the button and from the accelerator table above
     // differently. More than a bit of a hack, but it works.
-    NSButton *osxPrev = (NSButton*)m_btnPrev->GetHandle();
-    Bind(wxEVT_MENU, [=](wxCommandEvent&){ [osxPrev performClick:nil]; }, m_btnPrev->GetId());
+    NSButton *macPrev = (NSButton*)m_btnPrev->GetHandle();
+    Bind(wxEVT_MENU, [=](wxCommandEvent&){ [macPrev performClick:nil]; }, m_btnPrev->GetId());
+
+    NSButton *macNext = (NSButton*)m_btnNext->GetHandle();
+    Bind(wxEVT_MENU, [=](wxCommandEvent&){ [macNext performClick:nil]; }, m_btnNext->GetId());
 #endif
 
     OnModeChanged();
@@ -270,7 +271,7 @@ void FindFrame::ShowForReplace()
 
 void FindFrame::DoShowFor(int mode)
 {
-    m_position = (int)m_listCtrl->GetFirstSelected();
+    m_position = m_listCtrl->GetCurrentItemListIndex();
 
     m_mode->SetSelection(mode);
     OnModeChanged();
@@ -293,7 +294,14 @@ void FindFrame::OnModeChanged()
 {
     bool isReplace = m_mode->GetSelection() == Mode_Replace;
 
-    SetTitle(isReplace ? _("Replace") : _("Find"));
+    wxString title = isReplace ? _("Replace") : _("Find");
+    if (PoeditFrame::GetOpenWindowsCount() > 1)
+    {
+        auto filename = m_owner->GetFileNamePartOfTitle();
+        if (!filename.empty())
+            title += wxString::Format(L" — %s", filename);
+    }
+    SetTitle(title);
 
     m_btnReplace->Show(isReplace);
     m_btnReplaceAll->Show(isReplace);
@@ -435,6 +443,7 @@ enum FoundState
 {
     Found_Not = 0,
     Found_InOrig,
+    Found_InOrigPlural,
     Found_InTrans,
     Found_InComments,
     Found_InExtractedComments
@@ -451,7 +460,7 @@ bool FindFrame::DoFind(int dir)
 
     int mode = m_mode->GetSelection();
     int cnt = m_listCtrl->GetItemCount();
-    bool inTrans = m_findInTrans->GetValue()  && (m_catalog->HasCapability(Catalog::Cap::Translations));
+    bool inTrans = m_findInTrans->GetValue() && (m_catalog->HasCapability(Catalog::Cap::Translations));
     bool inSource = (mode == Mode_Find) && m_findInOrig->GetValue();
     bool inComments = (mode == Mode_Find) && m_findInComments->GetValue();
     bool ignoreCase = (mode == Mode_Find) && m_ignoreCase->GetValue();
@@ -513,6 +522,11 @@ bool FindFrame::DoFind(int dir)
                 found = Found_InOrig;
                 break;
             }
+            if (dt->HasPlural() && IsTextInString(dt->GetPluralString(), text, ignoreCase, wholeWords, ignoreAmp, ignoreUnderscore))
+            {
+                found = Found_InOrigPlural;
+                break;
+            }
         }
         if (inComments)
         {
@@ -533,7 +547,7 @@ bool FindFrame::DoFind(int dir)
     {
         m_lastItem = lastItem;
 
-        m_listCtrl->EnsureVisible(m_position);
+        m_listCtrl->EnsureVisible(m_listCtrl->ListIndexToListItem(m_position));
         m_listCtrl->SelectAndFocus(m_position);
 
         // find the text on the control and select it:
@@ -542,17 +556,20 @@ bool FindFrame::DoFind(int dir)
         switch (found)
         {
             case Found_InOrig:
-              txt = m_textCtrlOrig;
+              txt = m_editingArea->Ctrl_Original();
+              break;
+            case Found_InOrigPlural:
+              txt = m_editingArea->Ctrl_OriginalPlural();
               break;
             case Found_InTrans:
               if (lastItem->GetNumberOfTranslations() == 1)
               {
-                  txt = m_textCtrlTrans;
+                  txt = m_editingArea->Ctrl_Translation();
               }
               else
               {
-                  m_pluralNotebook->SetSelection(trans);
-                  txt = (CustomizedTextCtrl*)m_pluralNotebook->GetCurrentPage();
+                  m_editingArea->Ctrl_PluralNotebook()->SetSelection(trans);
+                  txt = m_editingArea->Ctrl_PluralTranslation(trans);
               }
               break;
             case Found_InComments:
@@ -566,9 +583,15 @@ bool FindFrame::DoFind(int dir)
             textc = txt->GetValue();
             if (ignoreCase)
                 textc.MakeLower();
-            int pos = textc.Find(text);
-            if (pos != wxNOT_FOUND)
-                txt->ShowFindIndicator(pos, (int)text.length());
+            FindTextInStringAndDo
+            (
+                textc, text, wholeWords,
+                [=](const wxString&,size_t pos, size_t len)
+                {
+                    txt->ShowFindIndicator((int)pos, (int)len);
+                    return wxString::npos;
+                }
+            );
         }
 
         return true;
@@ -585,14 +608,21 @@ bool FindFrame::DoReplaceInItem(CatalogItemPtr item)
     auto replace = m_replaceField->GetValue();
 
     bool replaced = false;
-    for (auto& t: item->GetTranslations())
+    auto translations = item->GetTranslations();
+    for (auto& t: translations)
     {
         if (ReplaceTextInString(t, search, wholeWords, replace))
             replaced = true;
     }
 
-    if (replaced && item == m_owner->GetCurrentItem())
-        m_owner->UpdateToTextCtrl(PoeditFrame::UndoableEdit);
+    if (replaced)
+    {
+        item->SetTranslations(translations);
+        item->SetModified(true);
+        m_owner->MarkAsModified();
+        if (item == m_owner->GetCurrentItem())
+            m_owner->UpdateToTextCtrl(EditingArea::UndoableEdit);
+    }
 
     return replaced;
 }
@@ -601,13 +631,25 @@ void FindFrame::OnReplace(wxCommandEvent&)
 {
     if (!m_lastItem)
         return;
-    DoReplaceInItem(m_lastItem);
-    m_listCtrl->Refresh();
+    if (DoReplaceInItem(m_lastItem))
+    {
+        // FIXME: Only refresh affected items
+        m_listCtrl->RefreshAllItems();
+    }
 }
 
 void FindFrame::OnReplaceAll(wxCommandEvent&)
 {
+    bool replaced = false;
     for (auto& item: m_catalog->items())
-        DoReplaceInItem(item);
-    m_listCtrl->Refresh();
+    {
+        if (DoReplaceInItem(item))
+            replaced = true;
+    }
+
+    if (replaced)
+    {
+        // FIXME: Only refresh affected items
+        m_listCtrl->RefreshAllItems();
+    }
 }

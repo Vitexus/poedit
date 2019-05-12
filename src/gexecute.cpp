@@ -1,7 +1,7 @@
 /*
  *  This file is part of Poedit (https://poedit.net)
  *
- *  Copyright (C) 2000-2016 Vaclav Slavik
+ *  Copyright (C) 2000-2019 Vaclav Slavik
  *
  *  Permission is hereby granted, free of charge, to any person obtaining a
  *  copy of this software and associated documentation files (the "Software"),
@@ -32,6 +32,8 @@
 #include <wx/stdpaths.h>
 #include <wx/translation.h>
 #include <wx/filename.h>
+
+#include <boost/throw_exception.hpp>
 
 #include "gexecute.h"
 #include "errors.h"
@@ -81,7 +83,7 @@ wxString GetPathToAuxBinary(const wxString& program)
     else
     {
         wxLogTrace("poedit.execute",
-                   "%s doesn't exist, falling back to %s",
+                   L"%s doesn’t exist, falling back to %s",
                    path.GetFullPath().c_str(),
                    program.c_str());
         return program;
@@ -94,13 +96,25 @@ bool ReadOutput(wxInputStream& s, wxArrayString& out)
 {
     // the stream could be already at EOF or in wxSTREAM_BROKEN_PIPE state
     s.Reset();
-    wxTextInputStream tis(s, " ", wxConvUTF8);
+
+    // Read the input as Latin1, even though we know it's UTF-8. This is terrible,
+    // terrible thing to do, but gettext tools may sometimes output invalid UTF-8
+    // (e.g. when using non-ASCII, non-UTF8 msgids) and wxTextInputStream logic
+    // can't cope well with failing conversions. To make this work, we read the
+    // input as Latin1 and later re-encode it back and re-parse as UTF-8.
+    wxTextInputStream tis(s, " ", wxConvISO8859_1);
 
     while (true)
     {
-        wxString line = tis.ReadLine();
+        const wxString line = tis.ReadLine();
         if ( !line.empty() )
-            out.push_back(line);
+        {
+            // reconstruct the UTF-8 text if we can
+            wxString line2(line.mb_str(wxConvISO8859_1), wxConvUTF8);
+            if (line2.empty())
+                line2 = line;
+            out.push_back(line2);
+        }
         if (s.Eof())
             break;
         if ( !s )
@@ -128,7 +142,7 @@ long DoExecuteGettext(const wxString& cmdline_, wxArrayString& gstderr)
 
 #ifdef __WXOSX__
     // Hack alert! On Windows, relocation works, but building with it is too
-    // messy/broken on OS X, so just use some custom hacks instead:
+    // messy/broken on macOS, so just use some custom hacks instead:
     auto sharedir = GetGettextPackagePath() + "/share";
     env.env["POEDIT_LOCALEDIR"] = sharedir + "/locale";
     env.env["GETTEXTDATADIR"] = sharedir + "/gettext";
@@ -146,7 +160,9 @@ long DoExecuteGettext(const wxString& cmdline_, wxArrayString& gstderr)
         retcode = -1;
 
     if ( retcode == -1 )
-        throw Exception(wxString::Format(_("Cannot execute program: %s"), cmdline.c_str()));
+    {
+        BOOST_THROW_EXCEPTION(Exception(wxString::Format(_("Cannot execute program: %s"), cmdline.c_str())));
+    }
 
     return retcode;
 }
@@ -159,12 +175,28 @@ bool ExecuteGettext(const wxString& cmdline)
     wxArrayString gstderr;
     long retcode = DoExecuteGettext(cmdline, gstderr);
 
-    for ( size_t i = 0; i < gstderr.size(); i++ )
+    wxString pending;
+    for (auto& ln: gstderr)
     {
-        if ( gstderr[i].empty() )
+        if (ln.empty())
             continue;
-        wxLogError("%s", gstderr[i].c_str());
+
+        // special handling of multiline errors
+        if (ln[0] == ' ' || ln[0] == '\t')
+        {
+            pending += "\n\t" + ln.Strip(wxString::both);
+        }
+        else
+        {
+            if (!pending.empty())
+                wxLogError("%s", pending);
+
+            pending = ln;
+        }
     }
+
+    if (!pending.empty())
+        wxLogError("%s", pending);
 
     return retcode == 0;
 }

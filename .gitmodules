@@ -19,21 +19,21 @@
 [submodule "deps/letsmove"]
 	path = deps/letsmove
 	url = git://github.com/potionfactory/LetsMove.git
-[submodule "deps/rekit"]
-	path = deps/rekit
-	url = https://github.com/vslavik/REKit.git
 [submodule "deps/cld2"]
 	path = deps/cld2
 	url = https://github.com/CLD2Owners/cld2.git
 [submodule "deps/casablanca"]
 	path = deps/casablanca
-    url = https://github.com/Microsoft/cpprestsdk.git
+	url = https://github.com/Microsoft/cpprestsdk.git
 [submodule "deps/AFNetworking"]
 	path = deps/AFNetworking
 	url = https://github.com/vslavik/AFNetworking.git
 [submodule "deps/mctrl"]
 	path = deps/mctrl
 	url = https://github.com/mity/mctrl.git
-[submodule "src/json"]
-	path = src/json
+[submodule "deps/json"]
+	path = deps/json
 	url = https://github.com/nlohmann/json.git
+[submodule "deps/pugixml"]
+	path = deps/pugixml
+	url = https://github.com/zeux/pugixml.git

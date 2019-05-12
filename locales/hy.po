@@ -2,8 +2,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: poedit\n"
 "Report-Msgid-Bugs-To: help@poedit.net\n"
-"POT-Creation-Date: 2016-08-01 19:26+0200\n"
-"PO-Revision-Date: 2016-05-24 10:03-0400\n"
+"POT-Creation-Date: 2018-10-07 13:14+0200\n"
+"PO-Revision-Date: 2019-01-14 16:31\n"
 "Last-Translator: vslavik <vaclav@slavik.io>\n"
 "Language-Team: Armenian\n"
 "Language: hy_AM\n"
@@ -19,25 +19,64 @@ msgstr ""
 msgid "Hide this notification message"
 msgstr "Թաքցնել ծանուցումը"
 
-msgid "Don't Show Again"
+msgid "Don’t Show Again"
 msgstr "Այլևս չցուցադրել"
 
-msgid "Don't show again"
+msgid "Don’t show again"
 msgstr "Այլևս չցուցադրել"
 
 #, c-format
-msgid "%i line of file '%s' was not loaded correctly."
-msgid_plural "%i lines of file '%s' were not loaded correctly."
-msgstr[0] "%i տողը '%s' ֆայլում ճիշտ չեն բեռնվել:"
-msgstr[1] "%i տողերը '%s' ֆայլում ճիշտ չեն բեռնվել:"
+msgid "(New: %i, obsolete: %i)"
+msgstr "(Նոր՝ %i, հնացած՝ %i)"
+
+msgid "Updating catalog"
+msgstr "Գրացուցակի թարմացում"
+
+msgid "Collecting source files…"
+msgstr "Հավաքում է աղբյուր ֆայլերը..."
+
+msgid "Extracting translatable strings…"
+msgstr "Դուրս է բերում թարգմանվող տողերը…"
+
+msgid "Failed to load extracted catalog."
+msgstr "Ձախողվեց դուրս բերված գրացուցակի բեռնումը:"
+
+msgid "Merging differences…"
+msgstr "Տարբերությունները ձուլվում են…"
 
 #, c-format
-msgid "Line %d of file '%s' is corrupted (not valid %s data)."
-msgstr "%d տողի '%s' ֆայլը վնասված է (անվավեր %s տվյալ):"
+msgid "“%s” is not a valid POT file."
+msgstr "'%s'-ը վավեր POT ֆայլ չէ:"
 
 #, c-format
-msgid "Malformed header: '%s'"
+msgid "Malformed header: “%s”"
 msgstr "Այլակերպված '%s' գլխագիր"
+
+msgid "PO Translation Files"
+msgstr "PO թարգմանության ֆայլեր"
+
+msgid "POT Translation Templates"
+msgstr "POT թարգմանության ֆայլեր"
+
+msgid "XLIFF Translation Files"
+msgstr "XLIFF թարգմանության ֆայլեր"
+
+msgid "All Translation Files"
+msgstr "Թարգմանության բոլոր ֆայլերը"
+
+#, c-format
+msgid "File “%s” is in unsupported format."
+msgstr "«%s» ֆայլի ձևաչափը չի աջակցվում:"
+
+#, c-format
+msgid "%i line of file “%s” was not loaded correctly."
+msgid_plural "%i lines of file “%s” were not loaded correctly."
+msgstr[0] "«%2$s» ֆայլի %1$i տողը ճիշտ չէ բեռնվել."
+msgstr[1] "«%2$s» ֆայլի %1$i տողերը ճիշտ չեն բեռնվել."
+
+#, c-format
+msgid "Line %d of file “%s” is corrupted (not valid %s data)."
+msgstr "%d տողի '%s' ֆայլը վնասված է (անվավեր %s տվյալ):"
 
 msgid ""
 "Broken catalog file: singular form msgstr used together with msgid_plural"
@@ -54,19 +93,19 @@ msgid ""
 msgstr "Սխալ՝ գրացուցակը բեռնելիս: Որոշ տվյալներ բացակայում են կամ վնասված են:"
 
 #, c-format
-msgid "Couldn't load file %s, it is probably corrupted."
+msgid "Couldn’t load file %s, it is probably corrupted."
 msgstr "Հնարավոր չէ բեռնել %s ֆայլը: Հնարավոր է այն վնասված է:"
 
 #, c-format
 msgid ""
-"File '%s' is read-only and cannot be saved.\n"
+"File “%s” is read-only and cannot be saved.\n"
 "Please save it under different name."
 msgstr ""
-"'%s' ֆայլը միայն կարդալու համար է և չի կարող պահպանվել:\n"
+"«%s» ֆայլը միայն կարդալու համար է և հնարավոր չէ այն պահպանել:\n"
 "Պահպանեք այն այլ անունով:"
 
 #, c-format
-msgid "Couldn't save file %s."
+msgid "Couldn’t save file %s."
 msgstr "Հնարավոր չէ պահպանել %s ֆայլը:"
 
 msgid ""
@@ -75,34 +114,31 @@ msgstr "Ֆայլը նորմալ ձևաչափելու խնդիր (բայց այն
 
 #, c-format
 msgid ""
-"The catalog couldn't be saved in '%s' charset as specified in catalog "
+"The catalog couldn’t be saved in “%s” charset as specified in catalog "
 "settings.\n"
 "\n"
 "It was saved in UTF-8 instead and the setting was modified accordingly."
 msgstr ""
-"Գրացուցակը չի կարող պահպանվել '%s' կոդավորմամբ, ինչպես նշված է "
-"կարգավորումներում:\n"
+"ՀՆարավոր չէ պահպանել գրացուցակը «%s»-ում այն գաղտնագրմամբ, որը հատկորոշված է "
+"գրացուցակի կարգավորումներում:\n"
 "\n"
-"Այն պահպանվել է UTF-8-ով և կարգավորումները փոփոխվել են համապատասխանաբար:"
+"Փոխարենը՝ այն պահպանվել է UTF-8-ով և համապատասխանաբար կարգավորումը փոփոխվել "
+"է:"
 
 msgid "Error saving catalog"
 msgstr "Սխալ՝ գրացուցակը պահպանելիս"
 
-msgid "PO Translation Files"
-msgstr "PO թարգմանության ֆայլեր"
-
-msgid "POT Translation Templates"
-msgstr "POT թարգմանության ֆայլեր"
-
-msgid "All Translation Files"
-msgstr "Թարգմանության բոլոր ֆայլերը"
-
-msgid "Merging differences..."
-msgstr "Տարբերությունները ձուլվում են..."
+#, c-format
+msgid "Error loading file “%s”: %s."
+msgstr "Ֆայլը բեռնելու սխալ “%s”: %s:"
 
 #, c-format
-msgid "'%s' is not a valid POT file."
-msgstr "'%s'-ը վավեր POT ֆայլ չէ:"
+msgid "unsupported XLIFF version (%s)"
+msgstr "չաջակցվող XLIFF տարբերակ (%s)"
+
+#. TRANSLATORS: Shown as error if a translation of XLIFF markup is not valid XML
+msgid "Broken markup in translation string."
+msgstr "Կոտրված նշարկում թարգմանության տողում:"
 
 msgid "(Use default language)"
 msgstr "(Օգտ. հիմնական լեզուն)"
@@ -115,6 +151,22 @@ msgstr "Լեզվի ընտրություն"
 
 msgid "You must restart Poedit for this change to take effect."
 msgstr "Կիրառֆելու համար պետք է վերագործարկեք Poedit-ը"
+
+msgid "Syncing"
+msgstr "Համաժամեցում"
+
+#. TRANSLATORS: %s is a cloud destination, e.g. "Crowdin" or ftp.wordpress.com etc.
+#, c-format
+msgid "Syncing with %s…"
+msgstr "Համաժամեցում %s-ի հետ..."
+
+#. TRANSLATORS: %s is a cloud destination, e.g. "Crowdin" or ftp.wordpress.com etc.
+#, c-format
+msgid "Syncing with %s failed."
+msgstr "%s-ի հետ համաժամեցումը ձախողվեց:"
+
+msgid "Syncing error"
+msgstr "Համաժամեցման սխալ"
 
 msgid "Downloading translations is disabled in this project."
 msgstr "Թարգմանությունների ներբեռնումը անջատած է այս նախագծի համար:"
@@ -184,9 +236,6 @@ msgstr "Այս ֆայլը կարող է խմբագրվել միայն Crowdin-ո
 msgid "Downloading latest translations…"
 msgstr "Ներբեռնում է վերջին թարգմանությունները..."
 
-msgid "Syncing with Crowdin"
-msgstr "Համաժամեցում Crowdin-ի հետ"
-
 msgid "Syncing with Crowdin failed."
 msgstr "Համաժամեցումը Crowdin-ի հետ ձախողվեց:"
 
@@ -205,24 +254,6 @@ msgstr "Մանրամասներ"
 msgid "Learn More"
 msgstr "Մանրամասներ"
 
-#, c-format
-msgid "Failed command: %s"
-msgstr "Ձախողված հրաման. %s"
-
-msgid "Failed to merge gettext catalogs."
-msgstr "Հնարավոր չեղավ ձուլել gettext գրացուցակները:"
-
-msgid "Scanning files..."
-msgstr "Ֆայլերի ստուգում..."
-
-#. TRANSLATORS: '%s' is replaced with the kind of the files (e.g. C++, PHP, ...)
-#, c-format
-msgid "Parsing %s files..."
-msgstr "Վերլուծում է %s ֆայլերը..."
-
-msgid "Failed to load extracted catalog."
-msgstr "Ձախողվեց դուրս բերված գրացուցակի բեռնումը:"
-
 msgid "&Help"
 msgstr "&Օգնություն"
 
@@ -239,11 +270,14 @@ msgstr ""
 "Փոխարենը խնդրում ենք բացել և խմբագրել համապատասխան PO ֆայլը: Երբ պահպանեք "
 "այն՝ MO ֆայլը կթարմացվի:"
 
-msgid "don't delete temporary files (for debugging)"
+msgid "don’t delete temporary files (for debugging)"
 msgstr "չջնջել ժամանակավոր ֆայլերը (վրիպազերծելու համար)"
 
 msgid "handle a poedit:// URI"
 msgstr "handle a poedit:// URI"
+
+msgid "go to item at given line number"
+msgstr "անցնել միույթի՝ տողի տրված համարով"
 
 msgid "Failed to communicate with Poedit process."
 msgstr "Հնարավոր չէ հաղորդակցել Poedit-ի ընթացքը:"
@@ -252,52 +286,12 @@ msgstr "Հնարավոր չէ հաղորդակցել Poedit-ի ընթացքը:"
 msgid "Unhandled exception occurred: %s"
 msgstr "Անհայտ բացառություն. %s"
 
-msgid "Unhandled exception occurred."
-msgstr "Անհայտ բացառություն:"
-
 msgid "Open catalog"
 msgstr "Բացել գրացուցակ"
 
 #, c-format
-msgid "File '%s' doesn't exist."
-msgstr "'%s' ֆայլը գոյություն չունի:"
-
-#. TRANSLATORS: This is titlebar of about dialog, "%s" is application name
-#. ("Poedit" here, but please use "%s")
-#, c-format
-msgid "About %s"
-msgstr "%s ծրագրի մասին"
-
-#. TRANSLATORS: This is version information in about dialog, "%s" will be
-#. version number when used
-#, c-format
-msgid "Version %s"
-msgstr "Տարբերակ՝ %s"
-
-#. TRANSLATORS: OS X item in app menu
-msgid "Services"
-msgstr "Ծառայություններ"
-
-#. TRANSLATORS: OS X item in app menu, %s is replaced with "Poedit"
-#, c-format
-msgid "Hide %s"
-msgstr "Թաքցնել %s-ը"
-
-#. TRANSLATORS: OS X item in app menu
-msgid "Hide Others"
-msgstr "Թաքցնել ուրիշները"
-
-#. TRANSLATORS: OS X item in app menu
-msgid "Show All"
-msgstr "Ցուցադրել բոլորը"
-
-#. TRANSLATORS: OS X item in app menu, %s is replaced with "Poedit"
-#, c-format
-msgid "Quit %s"
-msgstr "Փակել %s-ը"
-
-msgid "Preferences..."
-msgstr ""
+msgid "File “%s” doesn’t exist."
+msgstr "«%s» ֆայլը գոյություն չունի:"
 
 msgid "Poedit is an easy to use translations editor."
 msgstr "Poedit-ը թարգմանությունների դյուրին խմբագիր է:"
@@ -305,8 +299,8 @@ msgstr "Poedit-ը թարգմանությունների դյուրին խմբագ
 msgid "Catalogs Manager"
 msgstr "Գրացուցակների կառավար"
 
-msgid "Check for Updates..."
-msgstr "Ստուգել թարմացումները..."
+msgid "Check for Updates…"
+msgstr "Ստուգել թարմացումները…"
 
 msgid "&Edit"
 msgstr "&Խմբագրել"
@@ -401,6 +395,7 @@ msgstr "Չափորոշել"
 msgid "Bring All to Front"
 msgstr "Պահել բոլորը առջևում"
 
+#. TRANSLATORS:File kind displayed in Finder/Explorer
 msgid "PO Translation"
 msgstr "PO թարգմանություն"
 
@@ -414,80 +409,12 @@ msgid ""
 "The file may be either corrupted or in a format not recognized by Poedit."
 msgstr "Ֆայլը կարող է վնասված լինել կամ ոչ Poedit-ի ձևաչափով:"
 
-msgid "&Undo"
-msgstr "&Հետարկել"
-
-msgid "&Redo"
-msgstr "&Կրկնակել"
-
-msgid "Cu&t"
-msgstr "Կտրե&լ"
-
-msgid "Cut"
-msgstr "Կտրել"
-
-msgid "Copy"
-msgstr "Պատճենել"
-
-msgid "&Paste"
-msgstr "&Տեղադրել"
-
-msgid "Paste"
-msgstr "Տեղադրել"
-
-msgid "&Delete"
-msgstr "&Ջնջել"
-
-msgid "Select &All"
-msgstr "Նշել &բոլորը"
-
-msgid "Select All"
-msgstr "Նշել բոլորը"
-
-#. TRANSLATORS: Keyboard shortcut for display in Windows menus
-#. TRANSLATORS: This is the key shortcut used in menus on Windows, some languages call them differently
-msgid "Ctrl+"
-msgstr "Ctrl+"
-
-#. TRANSLATORS: Keyboard shortcut for display in Windows menus
-#. TRANSLATORS: This is the key shortcut used in menus on Windows, some languages call them differently
-msgid "Alt+"
-msgstr "Alt+"
-
-#. TRANSLATORS: Keyboard shortcut for display in Windows menus
-msgid "Shift+"
-msgstr "Shift+"
-
-#. TRANSLATORS: Keyboard shortcut for display in Windows menus
-msgid "Enter"
-msgstr "Enter"
-
-#. TRANSLATORS: Keyboard shortcut for display in Windows menus
-msgid "Up"
-msgstr "Up"
-
-#. TRANSLATORS: Keyboard shortcut for display in Windows menus
-msgid "Down"
-msgstr "Down"
-
-#. TRANSLATORS: Keyboard shortcut, must correspond to translation of "Ctrl+"
-msgid "ctrl"
-msgstr "ctrl"
-
-#. TRANSLATORS: Keyboard shortcut, must correspond to translation of "Alt+"
-msgid "alt"
-msgstr "alt"
-
-#. TRANSLATORS: Keyboard shortcut, must correspond to translation of "Shift+"
-msgid "shift"
-msgstr "shift"
-
-msgid "You can't drop more than one file on Poedit window."
-msgstr "Չեք կարող գցել մեկ ֆայլից ավելին Poedit-ի պատուհանում:"
+msgid "You can’t drop more than one file on Poedit window."
+msgstr "Չեք կարող գցել մեկ ֆայլից ավելի Poedit-ի պատուհանում:"
 
 #, c-format
-msgid "File '%s' is not a message catalog."
-msgstr "'%s' ֆայլը հաղորդագրության գրացուցակ չէ:"
+msgid "File “%s” is not a translation file."
+msgstr "“%s” ֆայլը թարգմանության ֆայլ չէ:"
 
 msgid "Poedit"
 msgstr "Poedit"
@@ -497,31 +424,6 @@ msgstr "&Ֆայլ"
 
 msgid "&Go"
 msgstr "&Անցնել"
-
-msgid "Source text:"
-msgstr "Սկզբնական տեքստ."
-
-msgid "Singular:"
-msgstr "Եզակի."
-
-msgid "Plural:"
-msgstr "Հոգնակի."
-
-msgid "Translation:"
-msgstr "Թարգմանություն."
-
-msgid ""
-"POT files are only templates and don’t contain any translations themselves.\n"
-"To make a translation, create a new PO file based on the template."
-msgstr ""
-"POT ֆայլերը միայն նմուշներ են և չեն պարունակում որևէ թարգմանություն:\n"
-"Թարգմանություն ստեղծելու համար ստեղծեք նոր PO ֆայլ:"
-
-msgid "Create New Translation"
-msgstr "Ստեղծել նոր թարգմանություն"
-
-msgid "Create new translation"
-msgstr "Ստեղծել նոր թարգմանություն"
 
 #. TRANSLATORS: %s is language name in its basic form (as you
 #. would see e.g. in a list of supported languages). You may need
@@ -541,38 +443,35 @@ msgstr "Գրացուցակը փոփոխվել է: Պահպանե՞լ փոփոխ�
 msgid "Save changes"
 msgstr "Պահպանել փոփոխությունները"
 
-msgid "Your changes will be lost if you don't save them."
+msgid "Your changes will be lost if you don’t save them."
 msgstr "Եթե չպահպանեք փոփոխությունները, ապա կկորցնեք դրանք:"
 
 msgid "Save"
 msgstr "Պահպանել"
 
-msgid "Don't save"
+msgid "Do&n’t save"
+msgstr "Չ&պահպանել"
+
+msgid "Don’t Save"
 msgstr "Չպահպանել"
 
-msgid "Don't Save"
-msgstr "Չպահպանել"
+msgid "Save as…"
+msgstr "Պահպանել որպես…"
 
-msgid "Save as..."
-msgstr "Պահպանել որպես..."
-
-msgid "Compile to..."
+msgid "Compile to…"
 msgstr "Կազմարկել առ՝"
 
 msgid "Compiled Translation Files"
 msgstr "Թարգմանության կազմարկված ֆայլեր"
 
-msgid "Export as..."
-msgstr "Արտահանել որպես..."
+msgid "Export as…"
+msgstr "Արտահանել որպես…"
 
 msgid "HTML Files"
 msgstr "HTML ֆայլեր"
 
 msgid "Open catalog template"
 msgstr "Բացել գրացուցակի նմուշը"
-
-msgid "Updating catalog"
-msgstr "Գրացուցակի թարմացում"
 
 msgid "Source code not available."
 msgstr "Սկզբնական կոդը հասանելի չէ"
@@ -651,25 +550,32 @@ msgstr[1] ""
 msgid "The translation is ready for use."
 msgstr "Թարգմանությունը պատրաստ է:"
 
-msgid "Context:"
-msgstr "Համատեքստ."
+msgid "Warnings have been disabled."
+msgstr "Զգուշացումներն անջատված են:"
+
+msgid ""
+"If you disabled the warnings because of excessive false positives, please "
+"consider sending a sample file to help@poedit.net to help improve them."
+msgstr ""
+"Եթե զգուշացումներն անջատել եք հաճախակի կեղծ տագնապների համար, խնդրում ենք "
+"օրինակի ֆայլը ուղարկել մեզ help@poedit.net հասցեով՝ դրանք լավարկելու համար:"
 
 #, c-format
 msgid "Poedit automatically fixed invalid content in the file “%s”."
-msgstr "Poedit-ը ինքնաբար ուղղել է սխալ բովանդակությունը “%s” ֆայլում:"
+msgstr "Poedit-ը ինքնաբար ուղղել է սխալ բովանդակությունը «%s» ֆայլում:"
 
 msgid ""
 "The file contained duplicate items, which is not allowed in PO files and "
 "would prevent the file from being used. Poedit fixed the issue, but you "
-"should review translations of any items marked as fuzzy and correct them if "
-"necessary."
+"should review translations of any items marked as needing work and correct "
+"them if necessary."
 msgstr ""
-"Ֆայլը պարունակում է կրկնօրինակված միավորներ, որոնք թույլատրված չեն PO "
-"ֆայլերում և կարող են խափանել ֆայլի օգտագործումը: Poedit-ը ուղղում է խնդիրը, "
-"բայց դուք պետք է վերանայեք թարգմանությունները, որոնք նշված են որպես անորոշ և "
+"Ֆայլը պարունակում է կրկնօրինակ միույթներ, որոնք թույլատրված չեն PO ֆայլերում "
+"և կարող են կանխել ֆայլի օգտագործումը: Poedit-ը ուղղել է այդ խնդիրը, բայց "
+"դուք պետք է ստուգեք թարգմանությունները, որոնք նշված են որպես ոչ վերջնական և "
 "անհրաժեշտության դեպքում ուղղեք դրանք:"
 
-msgid "Language of the translation isn't set."
+msgid "Language of the translation isn’t set."
 msgstr "Թարգմանության լեզուն նշված չէ:"
 
 msgid "Set Language"
@@ -696,7 +602,7 @@ msgid "Fix language"
 msgstr "Ուղղել լեզուն"
 
 msgid ""
-"This catalog has entries with plural forms, but doesn't have Plural-Forms "
+"This catalog has entries with plural forms, but doesn’t have Plural-Forms "
 "header configured."
 msgstr ""
 "Այս գրացուցակը ունի գրառումներ հոգնակի ձևով, բայց հոգնակի ձևերը կազմաձևված "
@@ -704,7 +610,7 @@ msgstr ""
 
 msgid ""
 "Entries in this catalog have different plural forms count from what "
-"catalog's Plural-Forms header says"
+"catalog’s Plural-Forms header says"
 msgstr ""
 "Այս գրացուցակի գրառումները ունեն այլ հոգնակի ձևեր, ինչ գրացուցակի հոգնակի "
 "ձևերի գլխագիրն է"
@@ -736,7 +642,7 @@ msgid "Review"
 msgstr "Վերանայել"
 
 #, c-format
-msgid "Error loading message catalog file '%s'."
+msgid "Error loading message catalog file “%s”."
 msgstr "Սխալ՝ '%s' գրացուցակը բեռնելիս:"
 
 #, c-format
@@ -765,9 +671,6 @@ msgstr "(չպահպանված)"
 msgid " (modified)"
 msgstr "(փոփոխված)"
 
-msgid "Go"
-msgstr "Անցնել"
-
 #, c-format
 msgid "Failed to update translation memory: %s"
 msgstr "Հնարավոր չեղավ թարմացնել թարգմանության հիշողությունը. %s"
@@ -791,75 +694,16 @@ msgstr "Պահել"
 msgid "Purge"
 msgstr "Մաքրել"
 
-msgid "Fill missing translations from TM"
-msgstr "Լցնել թարգմանությունները ԹՀ-ից"
-
-msgid "Only fill in exact matches"
-msgstr "Լցնել միայն ճիշտ համընկնումներով"
-
-msgid ""
-"By default, inaccurate results are filled in as well and marked as fuzzy. "
-"Check this option to only include accurate matches."
-msgstr ""
-"Հիմնականում ոչ ճշգրիտ արդյունքները լցվում են և նշվում որպես անորոշ: Նշեք այս "
-"ընտրանքը, եթե ցանկանում եք առավել ճշգրիտ թարգմանություն ստանալ:"
-
-msgid "Don’t mark exact matches as fuzzy"
-msgstr "Չնշել ճիշտ համընկնումները որպես անորոշ"
-
-msgid ""
-"Only enable if you trust the quality of your TM. By default, all matches "
-"from the TM are marked as fuzzy and should be reviewed."
-msgstr ""
-"Միացրեք, եթե միայն վստահում եք Ձեր ԹՀ-ի թարգմանության որակին: Ըստ ծրագրայինի "
-"բոլոր համապատասխանությունները ԹՀ-ից կնշվեն որպես անորոշ և վերանայելու կարիք "
-"կլինի:"
-
-msgid "Fill"
-msgstr "Լցնել"
-
-#, c-format
-msgid "%d entry was filled from the translation memory."
-msgid_plural "%d entries were filled from the translation memory."
-msgstr[0] "%d գրառում լցվել է թարգմանության հիշողությունից:"
-msgstr[1] "%d գրառումներ լցվել են թարգմանության հիշողությունից:"
-
-msgid ""
-"The translations were marked as fuzzy, because they may be inaccurate. You "
-"should review them for correctness."
-msgstr ""
-"Թարգմանությունները նշվել են որպես անորոշ, քանի որ հնարավոր է դրանք ճիշտ "
-"չլինեն: Վերանայեք դրանք:"
-
-msgid "No entries could be filled from the translation memory."
-msgstr "Որևէ գրառում չի կարող լցվել թարգմանության հիշողությունից:"
-
-msgid ""
-"The TM doesn’t contain any strings similar to the content of this file. It "
-"is only effective for semi-automatic translations after Poedit learns enough "
-"from files that you translated manually."
-msgstr ""
-"ԹՀ-ը չի պարունակում այս բովանդակությանը համապատասխանող որևէ տող: Սա օգտակար "
-"է ինքնաբար թարգմանելու համար, եթե միայն Poedit-ը սովորում է մեծ քանակությամբ "
-"թարգմանություններ, որոնք դուք ձեռքով եք կատարել:"
-
-msgid "Translating"
-msgstr "Թարգմանություն"
-
-msgid "Filling missing translations from TM..."
-msgstr "Բացակայող թարգմանությունների լցոնում ԹՀ-ից... "
-
-#, c-format
-msgid "Translated %u string"
-msgid_plural "Translated %u strings"
-msgstr[0] "Թարգմանված է %u տող"
-msgstr[1] "Թարգմանված է %u տող"
-
 msgid "Copy from source text"
 msgstr "Պատճենել սկզբնական տեքստից"
 
 msgid "Copy from Source Text"
 msgstr "Պատճենել սկզբնական տեքստից"
+
+#. TRANSLATORS: This is the key shortcut used in menus on Windows, some languages call them differently
+#. TRANSLATORS: Keyboard shortcut for display in Windows menus
+msgid "Ctrl+"
+msgstr "Ctrl+"
 
 msgid "Clear translation"
 msgstr "Մաքրել թարգմանությունը"
@@ -876,33 +720,13 @@ msgstr "Խմբագրել մեկնաբանությունը"
 msgid "References:"
 msgstr "Հղումներ:"
 
-msgid "Everything"
-msgstr "Ամենը"
-
-#, c-format
-msgid "Form %i"
-msgstr "%i-ից"
-
-msgid "Singular"
-msgstr "Եզակի"
-
-msgid "Zero"
-msgstr "Զրո"
-
-msgid "One"
-msgstr "Մեկ"
-
-msgid "Two"
-msgstr "Երկու"
-
-msgid "Plural"
-msgstr "Հոգնակի"
-
-msgid "Other"
-msgstr "Այլ"
-
 msgid "&Bookmarks"
 msgstr "&Էջանիշեր"
+
+#. TRANSLATORS: This is the key shortcut used in menus on Windows, some languages call them differently
+#. TRANSLATORS: Keyboard shortcut for display in Windows menus
+msgid "Alt+"
+msgstr "Alt+"
 
 #, c-format
 msgid "Set bookmark %i"
@@ -932,11 +756,92 @@ msgstr "Թաքցնել Վիճակի գոտին"
 msgid "Show Status Bar"
 msgstr "Ցուցադրել Վիճակի գոտին"
 
+msgid "Source text:"
+msgstr "Սկզբնական տեքստ."
+
+msgid "Singular:"
+msgstr "Եզակի."
+
+msgid "Plural:"
+msgstr "Հոգնակի."
+
+msgid "Translation:"
+msgstr "Թարգմանություն."
+
+msgid "Pre-translated"
+msgstr "Նախաթարգմանված"
+
+msgid "Needs Work"
+msgstr "Վերջնական չէ"
+
+#. TRANSLATORS: This indicates that the string's translation isn't final
+#. and has known problems.  For example, it might be machine translated or
+#. fuzzy matched from an older string. The translation should be short and
+#. convey this. If it's problematic to translate it, "Needs review" is
+#. acceptable substitute, but note that the meaning is subtly different:
+#. "needs review" implies that somebody else should review the string after
+#. I am done with it (i.e. consider it good), while "needs work" implies I
+#. need to return to it and finish the translation.
+msgid "Needs work"
+msgstr "Վերջնական չէ"
+
+msgid ""
+"POT files are only templates and don’t contain any translations themselves.\n"
+"To make a translation, create a new PO file based on the template."
+msgstr ""
+"POT ֆայլերը միայն նմուշներ են և չեն պարունակում որևէ թարգմանություն:\n"
+"Թարգմանություն ստեղծելու համար ստեղծեք նոր PO ֆայլ:"
+
+msgid "Create New Translation"
+msgstr "Ստեղծել նոր թարգմանություն"
+
+msgid "Create new translation"
+msgstr "Ստեղծել նոր թարգմանություն"
+
+msgid "Everything"
+msgstr "Ամենը"
+
+#, c-format
+msgid "Form %i"
+msgstr "%i-ից"
+
+#, c-format
+msgid "Form %i (unused)"
+msgstr "Ձև %i (չօգտագործված)"
+
+msgid "Singular"
+msgstr "Եզակի"
+
+msgid "Zero"
+msgstr "Զրո"
+
+msgid "One"
+msgstr "Մեկ"
+
+msgid "Two"
+msgstr "Երկու"
+
+msgid "Plural"
+msgstr "Հոգնակի"
+
+msgid "Other"
+msgstr "Այլ"
+
+#, c-format
+msgid "%s Format"
+msgstr "%s ձևաչափ"
+
+#. TRANSLATORS: %s is replaced with language name, e.g. "PHP" or "C", so "PHP Format" etc."
+#, c-format
+msgid "%s format"
+msgstr "%s ձևաչափ"
+
 msgid "Source text"
 msgstr "Սկզբնական տեքստ"
 
-msgid "Translation"
-msgstr "Թարգմանություն"
+#, c-format
+msgid "Translation — %s"
+msgstr "Թարգմանություն՝ %s"
 
 msgid "ID"
 msgstr "ID"
@@ -949,11 +854,11 @@ msgid "unknown language"
 msgstr "անհայտ լեզու"
 
 #, c-format
-msgid "Translation — %s"
-msgstr "Թարգմանություն՝ %s"
+msgid "Failed command: %s"
+msgstr "Ձախողված հրաման. %s"
 
-msgid "Error:"
-msgstr "Սխալ."
+msgid "Failed to merge gettext catalogs."
+msgstr "Հնարավոր չեղավ ձուլել gettext գրացուցակները:"
 
 msgid "Source file"
 msgstr "Սկզբնական ֆայլը"
@@ -1005,11 +910,14 @@ msgstr "Գտնել մեկնաբանություններում"
 msgid "Close"
 msgstr "Փակել"
 
-msgid "Replace All"
-msgstr "Փոխարինել բոլորը"
+msgid "Replace &All"
+msgstr "Փոխարինել &բոլորը"
 
-msgid "Replace all"
-msgstr "Փոխարինել բոլորը"
+msgid "Replace &all"
+msgstr "Փոխարինել &բոլորը"
+
+msgid "&Replace"
+msgstr "&Փոխարինել"
 
 msgid "< &Previous"
 msgstr "« &Նախորդ"
@@ -1048,11 +956,8 @@ msgstr "Ընդամենը"
 msgid "Untrans"
 msgstr "Չթարգմանված"
 
-msgid "Fuzzy"
-msgstr "Անորոշ"
-
-msgid "Bad Tokens"
-msgstr "Վատ նշաններ"
+msgid "Errors"
+msgstr "Սխալներ"
 
 msgid "Last modified"
 msgstr "Վերջին փոփոխումը"
@@ -1147,29 +1052,31 @@ msgstr "Գլխավոր"
 msgid "Use translation memory"
 msgstr "Օգտ. թարգմանության հիշողությունը"
 
-msgid "Learn From Files..."
-msgstr "Սովորել ֆայլերից..."
+msgid "Manage…"
+msgstr "Կառավարել…"
 
-msgid "Learn from files..."
-msgstr "Սովորել ֆայլերից..."
+#. TRANSLATORS: Followed by "match translations within the file" or "pre-translate from TM"
+msgid "When updating from sources"
+msgstr "Սկզբնականից արդիացնելիս"
 
-#. TRANSLATORS: This is a button that deletes everything in the translation memory (i.e. clears/resets it).
-msgid "Reset"
-msgstr "Վերակայել"
+#. TRANSLATORS: Preceded by "When updating from sources"
+msgid "fuzzy match within the file"
+msgstr "ոչ վերջնականի համընկնում ֆայլում"
 
-msgid "Consult TM when updating from sources"
-msgstr "Դիմել ԹՀ-ին՝ սկզբնականից թարմացնելիս"
+#. TRANSLATORS: Preceded by "When updating from sources"
+msgid "pre-translate from TM"
+msgstr "նախաթարգմանել TM-ից"
 
 msgid ""
-"If enabled, Poedit will try to fill in new entries using your previous\n"
-"translations stored in the translation memory. If the TM is\n"
-"near-empty, it will not be very effective. The more translations\n"
-"you edit and the larger the TM grows, the better it gets."
+"Poedit can attempt to fill in new entries from only previous translations in "
+"the file or from your entire translation memory. Using the TM won’t be very "
+"effective if it’s near-empty, but it will get better as you add more "
+"translations to it."
 msgstr ""
-"Եթե միացված է, ապա Poedit-ը կփորձի լցնել նոր գրառումները թարգմանության\n"
-"հիշողությունում առկա Ձեր նախորդ թարգմանություններով: Եթե ԹՀ-ը\n"
-"դատարկ է, ապա սա օգտակար չի լինի: Ինչքան շատ թարգմանություններ եք\n"
-"խմբագրում, այնքան աճում է ԹՀ-ը:"
+"Poedit-ը կարող է փորձել լրացնել նոր գրառումները միայն նախորդ "
+"թարգմանություններից այս ֆայլում կամ թարգմանության ձեր հիշողությունից: TM-ի "
+"օգտագործումը արդյունավետ չի լինի, եթե այն գրեթե դատարկ է, բայց կլավարկվի "
+"թարգմանություններ ավելացնելու ընթացքում:"
 
 msgid "Stored translations:"
 msgstr "Պահված թարգմանություններ՝"
@@ -1177,17 +1084,62 @@ msgstr "Պահված թարգմանություններ՝"
 msgid "Database size on disk:"
 msgstr "Շտեմարանի չափը՝"
 
+msgid "Import Translation Files…"
+msgstr "Ներմուծել թարգմանության ֆայլերը…"
+
+msgid "Import translation files…"
+msgstr "Ներմուծել թարգմանության ֆայլերը…"
+
+msgid "Import From TMX…"
+msgstr "Ներմուծել TMX-ից…"
+
+msgid "Import from TMX…"
+msgstr "Ներմուծել TMX-ից…"
+
+msgid "Export To TMX…"
+msgstr "Արտահանել TMX…"
+
+msgid "Export to TMX…"
+msgstr "Արտահանել TMX…"
+
+#. TRANSLATORS: This is a button that deletes everything in the translation memory (i.e. clears/resets it).
+msgid "Reset"
+msgstr "Վերակայել"
+
 msgid "Select translation files to import"
 msgstr "Ընտրեք ներմուծվող ֆայլերը"
 
 msgid "Translation Memory"
 msgstr "Թարգմանության հիշողություն (ԹՀ)"
 
-msgid "Importing translations..."
-msgstr "Թարգմանությունների ներմուծում..."
+msgid "Importing translations…"
+msgstr "Թարգմանությունների ներմուծում…"
 
-msgid "Finalizing..."
-msgstr "Ամփոփում..."
+msgid "Finalizing…"
+msgstr "Ամփոփում…"
+
+msgid "Select TMX files to import"
+msgstr "Ընտրեք TMX ֆայլերը՝ ներմուծելու համար"
+
+msgid "TMX Files"
+msgstr "TMX ֆայլեր"
+
+#, c-format
+msgid "Importing translation memory from “%s” failed."
+msgstr "Թարգմանության հիշողության ներմուծումը «%s»-ից ձախողվեց:"
+
+msgid "Import error"
+msgstr "Ներմուծելու սխալ"
+
+msgid "Exporting translations…"
+msgstr "Թարգմանությունների արտահանում…"
+
+#, c-format
+msgid "Exporting translation memory to “%s” failed."
+msgstr "Թարգմանության հիշողության արտահանումը “%s” ձախողվեց:"
+
+msgid "Export error"
+msgstr "Արտահանելու սխալ"
 
 msgid "Reset translation memory"
 msgstr "Վերակայել թարգմանության հիշողությունը"
@@ -1205,7 +1157,7 @@ msgstr ""
 msgid "Cancel"
 msgstr "Չեղարկել"
 
-#. TRANSLATORS: This is abbreviation of "Translation Memory" used in Preferences on OS X.
+#. TRANSLATORS: This is abbreviation of "Translation Memory" used in Preferences on macOS.
 #. Long text looks weird there, too short (like TM) too, but less so. "General" is about ideal
 #. length there.
 msgid "TM"
@@ -1219,11 +1171,24 @@ msgstr ""
 "սկզբնական կոդի ֆայլերում և դուրս բերելու դրանք, որպեսզի հնարավոր լինի "
 "թարգմանել:"
 
-msgid "New"
-msgstr "Նոր"
+msgid "Custom Extractors:"
+msgstr "Ընտրովի դուրս բերում."
 
-msgid "Edit"
-msgstr "Խմբագրել"
+msgid "Custom extractors:"
+msgstr "Ընտրովի դուրս բերում."
+
+msgid "Edit…"
+msgstr "Խմբագրել…"
+
+msgid "GNU gettext"
+msgstr "GNU gettext"
+
+msgid ""
+"Supports all programming languages recognized by GNU gettext tools (PHP, C/C+"
+"+, C#, Perl, Python, Java, JavaScript and others)."
+msgstr ""
+"Աջակցում է ծրագրավորման բոլոր լեզուները՝ ճանաչված GNU gettext գործիքների "
+"կողմից (PHP, C/C++, C#, Perl, Python, Java, JavaScript և այլն):"
 
 msgid "Delete extractor"
 msgstr "Ջնջել արտահանիչը"
@@ -1280,10 +1245,80 @@ msgstr "Պահել առկա ֆայլերի ձևաչափումը"
 msgid "Advanced"
 msgstr "Ընդլայնված"
 
-#. TRANSLATORS: Title of the preferences window on Windows and Linux. "%s" is replaced with "Poedit" when running.
+msgid "Pre-translating…"
+msgstr "Նախաթարգմանություն..."
+
 #, c-format
-msgid "%s Preferences"
-msgstr "%s-ի կարգավորումները"
+msgid "Pre-translated %u string"
+msgid_plural "Pre-translated %u strings"
+msgstr[0] "Նախաթարգմանված %u տող"
+msgstr[1] "Նախաթարգմանված %u տողեր"
+
+#. TRANSLATORS: This is a somewhat common term describing the action where
+#. you apply the translation memory and/or machine translation to all of the
+#. strings you're translating as the first step, followed by correcting,
+#. improving etc., i.e. actually translating the strings. This may be tricky
+#. to express in other languages as simply as in English, but please try to
+#. keep it similarly concise. Please try to avoid, if possible, describing it
+#. as "auto-translation" and similar, because such terminology would mislead
+#. some users into thinking it's all that needs to be done (spoken from
+#. experience). "Pre-translate" nicely expresses that it's only the step done
+#. *before* actual translation.
+msgid "Pre-translate"
+msgstr "Նախաթարգմանել"
+
+msgid "Only fill in exact matches"
+msgstr "Լցնել միայն ճիշտ համընկնումներով"
+
+msgid ""
+"By default, inaccurate results are filled in as well and marked as needing "
+"work. Check this option to only include accurate matches."
+msgstr ""
+"Ըստ լռելյայնի, ոչ ճիշտ արդյունքները լցվում են և նշվում որպես ոչ վերջնական: "
+"Նշեք այս ընտրանքը՝ միայն ճիշտ համընկնումները ներառելու համար:"
+
+msgid "Don’t mark exact matches as needing work"
+msgstr "Չնշել ճիշտ համընկնումները որպես ոչ վերջնական"
+
+msgid ""
+"Only enable if you trust the quality of your TM. By default, all matches "
+"from the TM are marked as needing work and should be reviewed before use."
+msgstr ""
+"Միացրեք, եթե միայն վստահում եք ձեր TM-ի որակին: Ըստ լռելյայնի, TM-ից բոլոր "
+"համընկնումները կնշվեն որպես ոչ վերջնական աշխատանք և պետք է ստուգվեն:"
+
+msgid ""
+"Pre-translation automatically finds exact or fuzzy matches for untranslated "
+"strings in the translation memory and fills in their translations."
+msgstr ""
+"Նախաթարգմանությունը ինքնաբար գտնում է ճիշտ կամ ոչ վերջնական համընկնումները "
+"չթարգմանված տողերի համար թարգմանության հիշողությունում և լցնում է դրանց "
+"թարգմանություններում:"
+
+#, c-format
+msgid "%d entry was pre-translated."
+msgid_plural "%d entries were pre-translated."
+msgstr[0] "%d գրառումը նախաթարգմանվել է:"
+msgstr[1] "%d գրառումները նախաթարգմանվել են:"
+
+msgid ""
+"The translations were marked as needing work, because they may be "
+"inaccurate. You should review them for correctness."
+msgstr ""
+"Թարգմանությունները նշվել են որպես ոչ վերջնական, քանի որ դրանք, հնարավոր է, "
+"ճիշտ չեն: Դուք պետք է ստուգեք դրանք:"
+
+msgid "No entries could be pre-translated."
+msgstr "Նախաթարգմանելու համար գրառումներ չկան"
+
+msgid ""
+"The TM doesn’t contain any strings similar to the content of this file. It "
+"is only effective for semi-automatic translations after Poedit learns enough "
+"from files that you translated manually."
+msgstr ""
+"ԹՀ-ը չի պարունակում այս բովանդակությանը համապատասխանող որևէ տող: Սա օգտակար "
+"է ինքնաբար թարգմանելու համար, եթե միայն Poedit-ը սովորում է մեծ քանակությամբ "
+"թարգմանություններ, որոնք դուք ձեռքով եք կատարել:"
 
 msgid ""
 "<big>Drag and Drop Folders Here</big>\n"
@@ -1303,23 +1338,23 @@ msgstr ""
 "\n"
 "կամ օգտագործեք + կոճակը"
 
-msgid "Add Folders..."
-msgstr "Հավելել թղթապանակներ..."
+msgid "Add Folders…"
+msgstr "Հավելել թղթապանակներ…"
 
-msgid "Add folders..."
-msgstr "Հավելել թղթապանակներ..."
+msgid "Add folders…"
+msgstr "Հավելել թղթապանակներ…"
 
-msgid "Add Files..."
-msgstr "Հավելել ֆայլեր..."
+msgid "Add Files…"
+msgstr "Հավելել ֆայլեր…"
 
-msgid "Add files..."
-msgstr "Հավելել ֆայլեր..."
+msgid "Add files…"
+msgstr "Հավելել ֆայլեր…"
 
-msgid "Add Wildcard..."
-msgstr "Հավելել դերանշան..."
+msgid "Add Wildcard…"
+msgstr "Հավելել դերանշան…"
 
-msgid "Add wildcard..."
-msgstr "Հավելել դերանշան..."
+msgid "Add wildcard…"
+msgstr "Հավելել դերանշան…"
 
 msgid "Paths"
 msgstr "Ուղիներ"
@@ -1327,11 +1362,29 @@ msgstr "Ուղիներ"
 msgid "Excluded paths"
 msgstr "Բացառված ուղիներ"
 
+msgid "Advanced extraction settings"
+msgstr "Դուրս բերելու ընդլայնված կարգավորումներ"
+
+msgid "Extract notes for translators from:"
+msgstr "Դուրս բերել նշումները թարգմանիչների համար հետևյալից՝"
+
+msgid "Comments prefixed with:"
+msgstr "Մեկնաբանություններ նախանծանցով՝"
+
+msgid "All comments"
+msgstr "Բոլոր մեկնաբանությունները"
+
+msgid "Additional xgettext flags:"
+msgstr "Լրացուցիչ xgettext դրոշակներ."
+
 msgid "Additional keywords"
 msgstr "Լրացուցիչ հիմնաբառեր"
 
 msgid "Name of the project the translation is for"
 msgstr "Թարգմանության նախագծի անունը"
+
+msgid "Team name and email address or URL"
+msgstr "Թիմի անունը և էլ. փոստը կամ URL-ն"
 
 msgid "e.g. nplurals=2; plural=(n > 1);"
 msgstr "օրինակ՝ nplurals=2; plural=(n > 1);"
@@ -1341,6 +1394,47 @@ msgstr "UTF-8 (խորհուրդ է տրվում)"
 
 msgid "Please save the file first. This section cannot be edited until then."
 msgstr "Խնդրում ենք նախ պահպանել ֆայլը:"
+
+msgid "Not all plural forms are translated."
+msgstr "Ոչ բոլոր հոգնակի ձևերն են թարգմանված:"
+
+msgid "The translation should start as a sentence."
+msgstr "Թարգմանությունը պետք է սկսի որպես նախադասություն:"
+
+msgid "The translation should start with a lowercase character."
+msgstr "Նախադասությունը պետք է սկսվի փոքրատառ գրանշանով:"
+
+msgid "The translation doesn’t start with a space."
+msgstr "Թարգմանությունը չի սկսվում բացատով:"
+
+msgid "The translation starts with a space, but the source text doesn’t."
+msgstr "Թարգմանությունը սկսվում է բացատով, բայց սկզբնական գրվածքը՝ ոչ:"
+
+msgid "The translation is missing a newline at the end."
+msgstr "Թարգմանությունում բաց է թողնված նոր տողը վերջում:"
+
+msgid "The translation ends with a newline, but the source text doesn’t."
+msgstr "Թարգմանությունը վերջանում է նոր տողով, բայց սկզբնական գրվածքը՝ ոչ:"
+
+msgid "The translation is missing a space at the end."
+msgstr "Թարգմանության վերջում բացակայում է բացատը:"
+
+msgid "The translation ends with a space, but the source text doesn’t."
+msgstr "Թարգմանությունը վերջանում է բացատով, բայց սկզբնական գրվածքը՝ ոչ:"
+
+#, c-format
+msgid "The translation should end with “%s”."
+msgstr "Թարգմանությունը պետք է վերջանա “%s”-ով:"
+
+#, c-format
+msgid "The translation should not end with “%s”."
+msgstr "Թարգմանությունը չպետք է վերջանա “%s”-ով:"
+
+#, c-format
+msgid "The translation ends with “%s”, but the source text ends with “%s”."
+msgstr ""
+"Թարգմանությունը վերջանում է “%s”-ով, բայց սկզբնական գրվածքը վերջանում է “%s”-"
+"ով:"
 
 msgid "Comment:"
 msgstr "Մեկնաբանություն."
@@ -1354,8 +1448,14 @@ msgstr "Մ&աքրել"
 msgid "Clear the comment"
 msgstr "Մաքրել մեկնաբանությունը"
 
+msgid "New"
+msgstr "Նոր"
+
 msgid "Create new translations project"
 msgstr "Ստեղծել թարգմանության նոր նախագիծ"
+
+msgid "Edit"
+msgstr "Խմբագրել"
 
 msgid "Edit the project"
 msgstr "Խմբագրել նախագիծը"
@@ -1381,26 +1481,26 @@ msgstr "Ընտրել"
 msgid "Add directory to the list"
 msgstr "Գրացուցակը հավելել ցանկում"
 
-msgid "&New..."
-msgstr "&Նոր..."
+msgid "&New…"
+msgstr "&Նոր…"
 
-msgid "New from &POT/PO file..."
-msgstr "Նոր &POT/PO ֆայլից..."
+msgid "New from &POT/PO file…"
+msgstr "Նոր &POT/PO ֆայլից…"
 
-msgid "New From &POT/PO File..."
-msgstr "Նոր &POT/PO ֆայլից..."
+msgid "New From &POT/PO File…"
+msgstr "Նոր &POT/PO ֆայլից…"
 
-msgid "&Open..."
-msgstr "&Բացել..."
+msgid "&Open…"
+msgstr "&Բացել…"
 
 msgid "Open Recent"
 msgstr "Բացել վերջինը"
 
-msgid "Open from Crowdin..."
-msgstr "Բացել Crowdin-ից..."
+msgid "Open from Crowdin…"
+msgstr "Բացել Crowdin-ից…"
 
-msgid "Open From Crowdin..."
-msgstr "Բացել Crowdin-ից..."
+msgid "Open From Crowdin…"
+msgstr "Բացել Crowdin-ից…"
 
 msgid "&Close"
 msgstr "&Փակել"
@@ -1408,23 +1508,23 @@ msgstr "&Փակել"
 msgid "&Save"
 msgstr "&Պահպանել"
 
-msgid "Save &as..."
-msgstr "Պահպանել &որպես..."
+msgid "Save &as…"
+msgstr "Պահպանել &որպես…"
 
-msgid "Save &As..."
-msgstr "Պահպանել &որպես..."
+msgid "Save &As…"
+msgstr "Պահպանել &որպես…"
 
-msgid "Compile to MO..."
-msgstr "Կազմարկել MO-ի..."
+msgid "Compile to MO…"
+msgstr "Կազմարկել MO-ի…"
 
-msgid "E&xport as HTML..."
-msgstr "Ա&րտահանել որպես HTML..."
+msgid "E&xport as HTML…"
+msgstr "Ա&րտահանել որպես HTML…"
 
-msgid "Check for updates..."
-msgstr "Ստուգել թարմացումները..."
+msgid "Check for updates…"
+msgstr "Ստուգել թարմացումները…"
 
-msgid "&Preferences..."
-msgstr "&Կարգավորումներ"
+msgid "&Preferences…"
+msgstr "&Կարգավորումներ…"
 
 msgid "Catalogs &manager"
 msgstr "Գրացուցակների &կառավար"
@@ -1444,11 +1544,11 @@ msgstr "Պատճենել հոգնակիից"
 msgid "Copy From Singular"
 msgstr "Պատճենել եզակիից"
 
-msgid "Translation is &fuzzy"
-msgstr "Թարգմանությունը &անորոշ է"
+msgid "Translation needs &work"
+msgstr "Թարգմանությունը վերջնական &չէ"
 
-msgid "Translation Is &Fuzzy"
-msgstr "Թարգմանությունը &անորոշ է"
+msgid "Translation Needs &Work"
+msgstr "Թարգմանությունը վերջնական &չէ"
 
 msgid "Edit &comment"
 msgstr "Խմբագրել &մեկնաբանությունը"
@@ -1459,17 +1559,11 @@ msgstr "Խմբագրել &մեկնաբանությունը"
 msgid "Suggestions"
 msgstr "Առաջարկություններ"
 
-msgid "&Show references"
-msgstr "&Ցուցադրել հղումները"
+msgid "&Find…"
+msgstr "&Գտնել…"
 
-msgid "&Show References"
-msgstr "&Ցուցադրել հղումները"
-
-msgid "&Find..."
-msgstr "&Գտնել..."
-
-msgid "Replace..."
-msgstr "Փոխարինել..."
+msgid "Replace…"
+msgstr "Փոխարինել…"
 
 msgid "Find next"
 msgstr "Գտնել հաջորդը"
@@ -1477,8 +1571,8 @@ msgstr "Գտնել հաջորդը"
 msgid "Find previous"
 msgstr "Գտնել նախորդը"
 
-msgid "Find and Replace..."
-msgstr "Գտնել և փոխարինել..."
+msgid "Find and Replace…"
+msgstr "Գտնել և փոխարինել…"
 
 msgid "Find Next"
 msgstr "Գտնել հաջորդը"
@@ -1489,11 +1583,17 @@ msgstr "Գտնել նախորդը"
 msgid "&Preferences"
 msgstr "&Կարգավորումներ"
 
-msgid "Display entry &IDs"
-msgstr "Ցուցադրել գրառումների &ID-ները"
+msgid "Show string &ID"
+msgstr "Ցուցադրել տողի &ID-ին"
 
-msgid "Display Entry &IDs"
-msgstr "Ցուցադրել գրառումների &ID-ները"
+msgid "Show String &ID"
+msgstr "Ցուցադրել տողի &ID-ին"
+
+msgid "Show warnings"
+msgstr "Ցուցադրել զգուշացումները"
+
+msgid "Show Warnings"
+msgstr "Ցուցադրել զգուշացումները"
 
 msgid "Sort by &file order"
 msgstr "Խմբավորել ըստ &ֆայլի կարգի"
@@ -1531,6 +1631,12 @@ msgstr "&Նախ չթարգմանվածները"
 msgid "&Untranslated Entries First"
 msgstr "&Նախ չթարգմանվածները"
 
+msgid "&Show references"
+msgstr "&Ցուցադրել հղումները"
+
+msgid "&Show References"
+msgstr "&Ցուցադրել հղումները"
+
 msgid "Show sidebar"
 msgstr "Ցուցադրել կողագոտին"
 
@@ -1540,26 +1646,23 @@ msgstr "Ցուցադրել վիճակի գոտին"
 msgid "C&atalog"
 msgstr "Գ&րացուցակ"
 
-msgid "&Update from sources"
-msgstr "&Թարմացնել սկզբնականից"
+msgid "&Update from source code"
+msgstr "&Արդիացնել սկզբնականից"
 
-msgid "&Update from Sources"
-msgstr "&Թարմացնել սկզբնականից"
+msgid "&Update from Source Code"
+msgstr "&Արդիացնել սկզբնականից"
 
-msgid "Update from &POT file..."
-msgstr "Թարմացնել &POT ֆայլից..."
+msgid "Update from &POT file…"
+msgstr "Թարմացնել &POT ֆայլից…"
 
-msgid "Update from &POT File..."
-msgstr "Թարմացնել &POT ֆայլից..."
+msgid "Update from &POT File…"
+msgstr "Թարմացնել &POT ֆայլից…"
 
 msgid "Sync with Crowdin"
 msgstr "Սինք Crowdin-ի հետ"
 
-msgid "Fill missing translations from &TM..."
-msgstr "Լցնել բացակայող թարգմանությունները &ԹՀ-ից..."
-
-msgid "Fill Missing Translations from &TM..."
-msgstr "Լցնել բացակայող թարգմանությունները &ԹՀ-ից..."
+msgid "Pre-&translate…"
+msgstr "Նախա&թարգմանություն…"
 
 msgid "&Purge deleted translations"
 msgstr "&Մաքրել ջնջված թարգմանությունները"
@@ -1573,8 +1676,8 @@ msgstr "&Վավերացնել թարգմանությունները"
 msgid "&Validate Translations"
 msgstr "&Վավերացնել թարգմանությունները"
 
-msgid "&Properties..."
-msgstr "&Հատկություններ"
+msgid "&Properties…"
+msgstr "&Հատկություններ…"
 
 msgid "&Done and next"
 msgstr "&Պատրաստ է և հաջորդը"
@@ -1697,7 +1800,10 @@ msgstr "Գրացուցակի հատկությունները"
 msgid "Project name and version:"
 msgstr "Նախագծի անունը և տարբեակը."
 
-msgid "Plural Forms:"
+msgid "Language team:"
+msgstr "Լեզվի թիմը."
+
+msgid "Plural forms:"
 msgstr "Հոգնակի ձևեր."
 
 msgid "Use default rules for this language"
@@ -1712,14 +1818,20 @@ msgstr "Մանրամասներ հոգնակի ձևերի մասին"
 msgid "Charset:"
 msgstr "Կոդավորում."
 
-msgid "Team:"
-msgstr "Թիմ."
+msgid "Advanced Extraction Settings…"
+msgstr "Դուրս բերելու ընդլայնված կարգավորումներ…"
 
-msgid "Team's email address:"
-msgstr "Թիմի էլ. փոստը."
+msgid "Advanced extraction settings…"
+msgstr "Դուրս բերելու ընդլայնված կարգավորումներ…"
+
+msgid "Translation Properties"
+msgstr "Թարգմանության հատկությունները"
 
 msgid "Translation properties"
 msgstr "Թարգմանության հատկություններ"
+
+msgid "Sources Paths"
+msgstr "Սկզբնականների ուղիները"
 
 msgid "Sources paths"
 msgstr "Սկզբնական ուղիներ"
@@ -1729,6 +1841,9 @@ msgstr "Հանել տեքստը սկզբնական ֆայլից հետևյալ �
 
 msgid "Base path:"
 msgstr "Հիմնական ուղին."
+
+msgid "Sources Keywords"
+msgstr "Սկզբնականների հիմնաբառերը"
 
 msgid "Sources keywords"
 msgstr "Սկզբնականի հիմնաբառեր"
@@ -1740,6 +1855,12 @@ msgstr ""
 "Օգտ. այս հիմնաբառերը (գործառույթի անունները)՝ ճանաչելու համար թարգմանվող "
 "տողերը\n"
 "սկզբնական ֆայլում."
+
+msgid "Also use default keywords for supported languages"
+msgstr "Նաև օգտագործեք լռելյայն հիմնաբառեր՝ աջակցվող լեզուների համար"
+
+msgid "Learn About Gettext Keywords"
+msgstr "Իմացեք Gettext Keywords-ի մասին"
 
 msgid "Learn about gettext keywords"
 msgstr "Մանրամասներ gettext հիմնաբառի մասին"
@@ -1782,14 +1903,17 @@ msgstr "Վավերացնել"
 msgid "Check for errors in the translation"
 msgstr "Ստուգել թարգմանության սխալները"
 
-msgid "Update"
-msgstr "Թարմացնել"
+msgid "Update from code"
+msgstr "Արդիացնել կոդից"
+
+msgid "Update from Code"
+msgstr "Արդիացնել կոդից"
 
 msgid "Update catalog - synchronize it with sources"
 msgstr "Թարմացնել գրացուցակը՝ համաժամեցնել այն սկզբնականի հետ"
 
-msgid "Toggled if selected string has fuzzy translation"
-msgstr "Փոխանջատել, եթե ընտրված տողը ունի անորոշ թարգմանություն"
+msgid "Sidebar"
+msgstr "Կողագոտի"
 
 msgid "Show or hide the sidebar"
 msgstr "Ցուցադրել կամ թաքցնել կողագոտին"
@@ -1799,11 +1923,11 @@ msgid "Previous source text:"
 msgstr "Նախորդ սկզբնական տեքստը."
 
 msgid ""
-"The old source text (before it changed during an update) that the fuzzy "
-"translation corresponds to."
+"The old source text (before it changed during an update) that the now-"
+"inaccurate translation corresponds to."
 msgstr ""
-"Հին սկզբնական տեքստը (մինչև այն փոխվել է թարմացնելու ընթացքում), որը "
-"համապատասխանում է անորոշ թարգմանության:"
+"Հին սկզբնական գրվածքը (մինչև արդիացման ընթացքում դրա փոխվելը), որը այժմ ոչ "
+"ճիշտ է:"
 
 msgid "Notes for translators:"
 msgstr "Նշում թարգմանողի համար."
@@ -1814,6 +1938,12 @@ msgstr "Հավելել մեկնաբանություն"
 msgid "Add Comment"
 msgstr "Հավելել մեկնաբանություն"
 
+msgid "Delete From Translation Memory"
+msgstr "Ջնջել Թարգմանության հիշողությունից"
+
+msgid "Delete from translation memory"
+msgstr "Ջնջել Թարգմանության հիշողությունից"
+
 msgid "Translation suggestions:"
 msgstr "Թարգմանության առաջարկություններ."
 
@@ -1821,62 +1951,41 @@ msgstr "Թարգմանության առաջարկություններ."
 msgid "No matches found"
 msgstr "Չկան համապատասխանություններ"
 
-#. TRANSLATORS: This is shown when no translation suggestions can be found in the TM (OS X, Linux).
+#. TRANSLATORS: This is shown when no translation suggestions can be found in the TM (macOS, Linux).
 msgid "No Matches Found"
 msgstr "Չկան համապատասխանություններ"
 
 msgid "This string was found in Poedit’s translation memory."
 msgstr "Այս տողը գտնվել է Poedit-ի թարգմանության հիշողությունում:"
 
-#, c-format
-msgid "(New: %i, obsolete: %i)"
-msgstr "(Նոր՝ %i, հնացած՝ %i)"
+msgid "The TMX file is malformed."
+msgstr "TMX ֆայլը այլակերպված է"
+
+msgid "No translations were found in the TMX file."
+msgstr "Թարգմանություններ չկան TMX ֆայլում:"
 
 #, c-format
-msgid "Importing translations: %d"
-msgstr "Թարգմանությունների ներմուծում. %d"
-
-msgid "Poedit Update"
-msgstr "Poedit-ի թարմացում"
-
-msgid "Preparing migration..."
-msgstr "Տեղափոխման նախապատրաստում..."
+msgid "Translation memory database is corrupted: %s (%d)."
+msgstr "Թարգմանության հիշողության շտեմարանը վնասված է՝ %s (%d):"
 
 #, c-format
-msgid "Migration exit status: %d"
-msgstr "Տեղափոխման ելքի վիճակ. %d"
-
-msgid "Poedit needs to convert your translation memory to a new format."
-msgstr "Poedit-ը պետք է փոխարկի Ձեր թարգմանության հիշողությունը նոր ձևաչափի:"
-
-msgid ""
-"This must be done before Poedit can start. It may take a few minutes if you "
-"have lots of translations stored, but should normally be much faster."
-msgstr "Դա պետք է անել մինչև Poedit-ը բացելը: Կարող է տևել մի քանի րոպե:"
-
-msgid "Proceed"
-msgstr "Ընթացք"
-
-msgid "Translation memory migration failed."
-msgstr "Թարգմանության հիշողության տեղափոխումը ձախողվեց:"
-
-#, c-format
-msgid ""
-"Your translation memory data couldn't be migrated. The error was:\n"
-"\n"
-"%s\n"
-"Please email help@poedit.net and we’ll get it fixed."
-msgstr ""
-"Ձեր թարգմանության հիշողության տվյալը չի կարող տեղափոխվել: Սխալը՝ \n"
-"\n"
-"%s\n"
-"Խնդրում ենք գրել մեզ help@poedit.net հասցեով:"
+msgid "Translation memory error: %s (%d)."
+msgstr "Թարգմանության հիշողության սխալ. %s (%d):"
 
 msgid "Cannot create temporary directory."
 msgstr "Հնարավոր չեղավ ստեղծել ժամանակավոր գրացուցակ:"
 
 msgid "Welcome to Poedit"
 msgstr "Բարի գալուստ Poedit"
+
+#. TRANSLATORS: This is version information in about dialog, "%s" will be
+#. version number when used
+#, c-format
+msgid "Version %s"
+msgstr "Տարբերակ՝ %s"
+
+msgid "Edit a Translation"
+msgstr "Խմբագրել թարգմանությունը"
 
 msgid "Edit a translation"
 msgstr "Խմբագրել թարգմանություն"
@@ -1889,8 +1998,11 @@ msgid ""
 "it."
 msgstr "Վերցնել առկա PO ֆայլ կամ POT նմուշ և ստեղծել նոր թարգմանություն:"
 
-msgid "Collaborate on a translation with Crowdin"
-msgstr "Համագործակցել թարգմանության հարցում Crowdin-ի հետ"
+msgid "Collaborate on a Translation with Others"
+msgstr "Համագործակցել թարգմանելու հարցում ուրիշների հետ"
+
+msgid "Collaborate on a translation with others"
+msgstr "Համագործակցել թարգմանության հարցում ուրիշների հետ"
 
 msgid ""
 "Download a file from Crowdin project, translate and sync your changes back."
@@ -1903,16 +2015,17 @@ msgid "There are no translations. That’s unusual."
 msgstr "Թարգմանություններ չկան: Դա նորմալ չէ:"
 
 msgid ""
-"Translatable entries aren't added manually in the Gettext system, but are "
+"Translatable entries aren’t added manually in the Gettext system, but are "
 "automatically extracted\n"
 "from source code. This way, they stay up to date and accurate.\n"
 "Translators typically use PO template files (POTs) prepared for them by the "
 "developer."
 msgstr ""
-"Թարգմանվող գրառումները չեն ավելացվել ձեռքով Gettext համակարգում, բայց "
+"Թարգմանելի գրառումները ձեռքով չեն ավելացվել Gettext համակարգում, բայց "
 "ինքնաբար դուրս են բերվել\n"
-"սկզբնական կոդից: Այս ճանապարհով դրանք մնում են թարմ և ճիշտ:\n"
-"Թարգմանողները սովորաբար օգտագործում են PO նմուշի ֆայլերը (POT-երը):"
+"աղբյուր կոդից: Այս ճանապարհով դրանք մնում են արդիացված և ճիշտ:\n"
+"Թարգմանիչները սովորաբար օգտագործում են PO ձևանմուշի ֆայլեր ((POT-եր), որոնք "
+"նրանց համար նախապատրաստվել են մշակողների կողմից:"
 
 msgid "(Learn more about GNU gettext)"
 msgstr "(Մանրամասներ GNU gettext-ի մասին)"
@@ -1941,3 +2054,186 @@ msgstr "Սինք"
 
 msgid "Synchronize the translation with Crowdin"
 msgstr "Համաժամեցնել թարգմանությունը Crowdin-ին"
+
+#. TRANSLATORS: This is titlebar of about dialog, "%s" is application name
+#. ("Poedit" here, but please use "%s")
+#, c-format
+msgid "About %s"
+msgstr "%s ծրագրի մասին"
+
+#. TRANSLATORS: Title of the preferences window on Windows and Linux. "%s" is replaced with "Poedit" when running.
+#, c-format
+msgid "%s Preferences"
+msgstr "%s-ի կարգավորումները"
+
+#. TRANSLATORS: macOS item in app menu
+msgid "Services"
+msgstr "Ծառայություններ"
+
+#. TRANSLATORS: macOS item in app menu, %s is replaced with "Poedit"
+#, c-format
+msgid "Hide %s"
+msgstr "Թաքցնել %s-ը"
+
+#. TRANSLATORS: macOS item in app menu
+msgid "Hide Others"
+msgstr "Թաքցնել ուրիշները"
+
+#. TRANSLATORS: macOS item in app menu
+msgid "Show All"
+msgstr "Ցուցադրել բոլորը"
+
+#. TRANSLATORS: macOS item in app menu, %s is replaced with "Poedit"
+#, c-format
+msgid "Quit %s"
+msgstr "Փակել %s-ը"
+
+#. TRANSLATORS: macOS item in app menu
+msgid "Preferences…"
+msgstr "Կարգավորումներ…"
+
+msgid "Preferences..."
+msgstr "Կարգավորումներ..."
+
+#. TRANSLATORS: Title of a category in Windows task menu (right-click icon in taskbar)
+msgid "Recent"
+msgstr "Վերջինը"
+
+#. TRANSLATORS: Title of a category in Windows task menu (right-click icon in taskbar)
+msgid "Frequent"
+msgstr "Հաճախակի"
+
+msgid "&Apply"
+msgstr "&Գործադրել"
+
+msgid "Apply"
+msgstr "Գործադրել"
+
+msgid "&Back"
+msgstr "&Հետ"
+
+msgid "Back"
+msgstr "Հետ"
+
+msgid "&Cancel"
+msgstr "&Չեղարկել"
+
+msgid "&Clear"
+msgstr "&Մաքրել"
+
+msgid "Clear"
+msgstr "Մաքրել"
+
+msgid "Copy"
+msgstr "Պատճենել"
+
+msgid "Cu&t"
+msgstr "Կտրե&լ"
+
+msgid "Cut"
+msgstr "Կտրել"
+
+msgid "&Delete"
+msgstr "&Ջնջել"
+
+msgid "&Quit"
+msgstr "&Փակել"
+
+msgid "File"
+msgstr "Ֆայլ"
+
+msgid "Help"
+msgstr "Օգնություն"
+
+msgid "&New"
+msgstr "&Նոր"
+
+msgid "&No"
+msgstr "&Ոչ"
+
+msgid "No"
+msgstr "Ոչ"
+
+msgid "&OK"
+msgstr "&Լավ"
+
+msgid "Open…"
+msgstr "Բացել…"
+
+msgid "&Open..."
+msgstr "&Բացել..."
+
+msgid "Open..."
+msgstr "Բացել..."
+
+msgid "&Paste"
+msgstr "&Տեղադրել"
+
+msgid "Paste"
+msgstr "Տեղադրել"
+
+msgid "Preferences"
+msgstr "Կարգավորումներ"
+
+msgid "&Redo"
+msgstr "&Կրկնակել"
+
+msgid "Refresh"
+msgstr "Թարմացնել"
+
+msgid "&Save as"
+msgstr "&Պահպանել որպես"
+
+msgid "Save as"
+msgstr "Պահպանել որպես"
+
+msgid "Select &All"
+msgstr "Նշել &բոլորը"
+
+msgid "Select All"
+msgstr "Նշել բոլորը"
+
+msgid "&Undo"
+msgstr "&Հետարկել"
+
+msgid "&Yes"
+msgstr "&Այո"
+
+msgid "Yes"
+msgstr "Այո"
+
+#. TRANSLATORS: Keyboard shortcut for display in Windows menus
+msgid "Shift+"
+msgstr "Shift+"
+
+#. TRANSLATORS: Keyboard shortcut for display in Windows menus
+msgid "Enter"
+msgstr "Enter"
+
+#. TRANSLATORS: Keyboard shortcut for display in Windows menus
+msgid "Up"
+msgstr "Up"
+
+#. TRANSLATORS: Keyboard shortcut for display in Windows menus
+msgid "Down"
+msgstr "Down"
+
+#. TRANSLATORS: Keyboard shortcut for display in Windows menus
+msgid "Left"
+msgstr "Ձախ"
+
+#. TRANSLATORS: Keyboard shortcut for display in Windows menus
+msgid "Right"
+msgstr "Աջ"
+
+#. TRANSLATORS: Keyboard shortcut, must correspond to translation of "Ctrl+"
+msgid "ctrl"
+msgstr "ctrl"
+
+#. TRANSLATORS: Keyboard shortcut, must correspond to translation of "Alt+"
+msgid "alt"
+msgstr "alt"
+
+#. TRANSLATORS: Keyboard shortcut, must correspond to translation of "Shift+"
+msgid "shift"
+msgstr "shift"

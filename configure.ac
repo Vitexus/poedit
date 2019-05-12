@@ -2,12 +2,11 @@ dnl Process this file with autoconf to produce a configure script.
 
 AC_PREREQ(2.59)
 
-AC_INIT([poedit], [2.0beta1], [help@poedit.net])
-PACKAGE_SHORT_VERSION=2.0
-AC_SUBST(PACKAGE_SHORT_VERSION)
+AC_INIT([poedit], [2.2.1], [help@poedit.net])
 
 AC_CONFIG_AUX_DIR([admin])
-AC_CONFIG_SRCDIR([poedit.desktop])
+AC_CONFIG_MACRO_DIR([admin])
+AC_CONFIG_SRCDIR([net.poedit.Poedit.desktop])
 
 AC_CANONICAL_BUILD
 AC_CANONICAL_HOST
@@ -119,9 +118,9 @@ AS_IF([test "x$have_cpprest" = "xyes"],
       ])
 AM_CONDITIONAL([HAVE_CPPREST], [test "x$have_cpprest" != "xno"])
 
+AC_CHECK_HEADERS([nlohmann/json.hpp])
 
-
-WX_CONFIG_CHECK([3.0.1], [WXFOUND=1], [WXFOUND=0], [$WXLIBS_USED], [--unicode])
+WX_CONFIG_CHECK([3.0.3], [WXFOUND=1], [WXFOUND=0], [$WXLIBS_USED], [--unicode])
 
 if test "$WXFOUND" != 1; then
     AC_MSG_ERROR([
@@ -223,6 +222,16 @@ PKG_CHECK_MODULES([LUCENE], [liblucene++ >= 3.0.5],
         ])
 
 
+PKG_CHECK_MODULES([PUGIXML], [pugixml >= 1.9],
+        [
+            CXXFLAGS="$CXXFLAGS $PUGIXML_CFLAGS -DHAVE_PUGIXML"
+            AC_SUBST(PUGIXML_LIBS)
+        ],
+        [
+            dnl use bundled copy
+        ])
+
+
 dnl Check for Compact Language Detector 2
 dnl (used for better language detection and for non-English source languages)
 AC_ARG_WITH([cld2],
@@ -270,7 +279,7 @@ if test "x$GXX" == "xyes"; then
     AX_CXX_CHECK_FLAG([-Wextra],[],[], [CXXFLAGS="$CXXFLAGS -Wextra"])
 fi
 
-CXXFLAGS="$CXXFLAGS $DEBUG_FLAGS \"-DPOEDIT_PREFIX=\\\"$prefix\\\"\""
+CXXFLAGS="$CXXFLAGS $DEBUG_FLAGS -DwxNO_UNSAFE_WXSTRING_CONV=1 \"-DPOEDIT_PREFIX=\\\"$prefix\\\"\""
 
 
 
@@ -299,3 +308,18 @@ Enabled features:
     * language detection:             $have_cld2
     * crowdin integration:            $have_cpprest
 "
+
+if test "x$have_cld2" != "xyes" -o "x$have_cpprest" != "xyes" ; then
+    echo "
+
+    !!! WARNING !!!
+
+    Your are building a limited version of Poedit without some important
+    features (see above). This makes Poedit harder to use and is strongly
+    advised against.
+
+    !!! WARNING !!!
+
+    "
+fi
+

@@ -1,4 +1,158 @@
 
+Version 2.2.1
+-------------
+
+- Improved highlighting of HTML and placeholders.
+- File references are now supported in XLIFF.
+- [Linux] Compatibility fixes for Wayland, wxGTK 3.0 and dark themes.
+
+
+Version 2.2
+-----------
+
+- Support for editing XLIFF (both 1.2 and 2) files.
+- Fixes for correct handling of dark themes, including on macOS Mojave.
+- [Linux] Improved appearance with GTK+ 3.
+- [Linux] Updated AppData and desktop files to use reverse DNS naming.
+
+
+Version 2.1.1
+-------------
+
+- Fixed breakage of some localizations on macOS.
+
+
+Version 2.1
+-----------
+
+- Added import and export of translation memory as TMX files.
+- Added ability to delete bad translations from the TM.
+- TM now has limited support for plural forms (only nplurals<=2).
+- Improved handling plural form rules. CLDR is now used as the data source and
+  expressions are checked for equivalence before warning about unusual forms.
+
+
+Version 2.0.9
+-------------
+
+- Improved dark theme supports (still not perfect).
+- Fix broken list rendering of RTL text on Windows.
+
+
+Version 2.0.8
+-------------
+
+- Add CakePHP support.
+- QA warnings and RTL fixes.
+- Make TM reset work when the index is corrupted.
+
+
+Version 2.0.7
+-------------
+
+- Fix mangled non-English gettext error messages.
+- Add inline explanation of custom extractors syntax.
+
+
+Version 2.0.6
+-------------
+
+- Fix hanging with certain rare (non-UTF8, non-ASCII msgids) PO files.
+
+
+Version 2.0.5
+-------------
+
+- [macOS] Fixed crashing bug on macOS.
+- [Windows] Improved HiDPI support.
+- Assorted bugfixes.
+
+
+Version 2.0.4
+-------------
+
+- Added support for Crowdin branches.
+- Poedit now remembers your pre-translation settings.
+
+
+Version 2.0.3
+-------------
+
+- Much faster loading and saving of large PO files.
+- Fixed frequent false positives in QA warnings for German, Japanese, Arabic
+  and translations with reordered brackets.
+- Fixed issues with suggestions not showing up in the sidebar if the user had
+  an unusually tall editing area set up.
+- Fixed assert when opening a PO file on Linux.
+
+
+Version 2.0.2
+-------------
+
+- Unusual whitespace (2+ spaces) in the middle of strings is now highlighted.
+- Strings with warnings are now put at the top together with errors.
+- Fixed crash when clicking on an item with plurals in a POT file.
+- Added --line command line argument to open a file at specified item.
+
+
+Version 2.0.1
+-------------
+
+- Restored compatibility with Zend Framework and its .phtml extension.
+- Fixed keyboard navigation between plurals.
+- Fixed false positives in punctuation warnings (quotes, Chinese).
+- [Linux] Mostly fixed compatibility with wxGTK 3.0.2.
+- [macOS] Fixed crash with Vietnamese input method.
+- [Windows] Fixed disappearing menu with HiDPI >200% zoom.
+- [Windows] Fixed settings-related crash.
+- [Windows] Fixed Ctrl+A handling.
+
+IMPORTANT NOTE TO DISTRIBUTION MAINTAINERS:
+Poedit is affected by a bug in wxGTK 3.0.2 that cannot be worked around in user
+code, requiring this patch to wxGTK to be applied:
+https://github.com/wxWidgets/wxWidgets/commit/ed88188be7e97a0503f3471f7b0452740b732902
+
+
+Version 2.0
+-----------
+
+- Revamped user interface.
+- Syntax highlighting for markup and special characters.
+- Warnings are now shown for common translation mistakes.
+- More robust pre-translation (previous "Fill missing translations from TM").
+- "Fuzzy" was renamed "Needs work" thorough to be more accessible to
+  gettext non-experts.
+- xgettext invocation can now be customized on per-file basis.
+- Files opened from Crowdin now auto-sync on save.
+- New Linux icon.
+- Many small improvements all over.
+
+
+Version 1.8.12
+--------------
+
+- Fixed previous msgid display.
+- Fixed Find to correctly highlight text with "whole words only" enabled.
+- [Windows] Fixed to accelerators and suggestions interaction with selection.
+- Poedit now passes --previous to msgmerge.
+
+
+Version 1.8.11
+--------------
+
+- [macOS] Fixed opening files by double-clicking them in Finder.
+- Fixed handling of sr_RS locale.
+
+
+Version 1.8.10
+--------------
+
+- Added support for X-Source-Language header.
+- [macOS] Improved macOS Sierra compatibility.
+- [Windows] Fixed Open in Editor button that didn't work in some cases.
+- [UNIX] Added AppData file.
+
+
 Version 1.8.9
 -------------
 

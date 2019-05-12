@@ -1,7 +1,7 @@
 /*
  *  This file is part of Poedit (https://poedit.net)
  *
- *  Copyright (C) 2016 Vaclav Slavik
+ *  Copyright (C) 2016-2017 Vaclav Slavik
  *
  *  Permission is hereby granted, free of charge, to any person obtaining a
  *  copy of this software and associated documentation files (the "Software"),
@@ -28,7 +28,12 @@
 
 #include "str_helpers.h"
 
-#include "json/src/json.hpp"
+#ifdef HAVE_NLOHMANN_JSON_HPP
+ #include <nlohmann/json.hpp>
+#else
+ #include "../deps/json/single_include/nlohmann/json.hpp"
+#endif
+
 using json = nlohmann::json;
 
 

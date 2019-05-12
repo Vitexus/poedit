@@ -1,7 +1,7 @@
 /*
  *  This file is part of Poedit (https://poedit.net)
  *
- *  Copyright (C) 2014-2016 Vaclav Slavik
+ *  Copyright (C) 2014-2019 Vaclav Slavik
  *
  *  Permission is hereby granted, free of charge, to any person obtaining a
  *  copy of this software and associated documentation files (the "Software"),
@@ -26,8 +26,11 @@
 #ifndef Poedit_customcontrols_h
 #define Poedit_customcontrols_h
 
+#include "concurrency.h"
 #include "language.h"
 
+#include <wx/bmpbuttn.h>
+#include <wx/statbmp.h>
 #include <wx/stattext.h>
 #include <wx/hyperlink.h>
 #include <wx/xrc/xmlres.h>
@@ -42,12 +45,7 @@ class WXDLLIMPEXP_ADV wxActivityIndicator;
 class HeadingLabel : public wxStaticText
 {
 public:
-    HeadingLabel(wxWindow *parent, const wxString& label)
-        : wxStaticText(parent, wxID_ANY, label)
-    {
-        SetFont(GetFont().Bold());
-    }
-
+    HeadingLabel(wxWindow *parent, const wxString& label);
 };
 
 // Label that auto-wraps itself to fit surrounding control's width.
@@ -69,7 +67,7 @@ protected:
     Language m_language;
 };
 
-/// Like AutoWrappingText, but allows selecting (OS X) or at least copying (Windows)
+/// Like AutoWrappingText, but allows selecting (macOS) or at least copying (Windows)
 /// the text too.
 class SelectableAutoWrappingText : public AutoWrappingText
 {
@@ -81,7 +79,7 @@ public:
 /** 
     Longer, often multiline, explanation label used to provide more information
     about the effects of some less obvious settings. Typeset using smaller font
-    on OS X and grey appearance. Auto-wraps itself to fit surrounding control's
+    on macOS and grey appearance. Auto-wraps itself to fit surrounding control's
     width.
  */
 class ExplanationLabel : public AutoWrappingText
@@ -136,7 +134,12 @@ public:
 class ActivityIndicator : public wxWindow
 {
 public:
-    ActivityIndicator(wxWindow *parent);
+    enum Flags
+    {
+        Centered = 1,
+    };
+
+    ActivityIndicator(wxWindow *parent, int flags = 0);
 
     /// Start indicating, with optional progress label.
     void Start(const wxString& msg = "");
@@ -151,14 +154,24 @@ public:
     bool IsRunning() const { return m_running; }
 
     /// Convenience function for showing error message in the indicator
-    std::function<void(std::exception_ptr)> HandleError;
+    std::function<void(dispatch::exception_ptr)> HandleError;
 
-    bool HasTransparentBackground() override { return true;  }
+    bool HasTransparentBackground() override { return true; }
 
 private:
+    void UpdateLayoutAfterTextChange();
+
     bool m_running;
     wxActivityIndicator *m_spinner;
     wxStaticText *m_label, *m_error;
+};
+
+
+// A bit nicer (macOS) and easier to use image button
+class ImageButton : public wxBitmapButton
+{
+public:
+    ImageButton(wxWindow *parent, const wxBitmap& bmp);
 };
 
 #endif // Poedit_customcontrols_h

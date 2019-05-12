@@ -3,13 +3,14 @@
                                     Poedit
                                  ------------
 
-              a cross-platform gettext catalogs editing tool
+                      a cross-platform translations editor
 
 
  About
 =======
 
-This program is GUI frontend to GNU gettext utilities (win32 version
+This program is a simple translations editor for PO and XLIFF files. It also
+serves as a GUI frontend to more GNU gettext utilities (win32 version
 is part of the distribution) and catalogs editor/source code parser. It helps
 with translating application into another language. For details on principles
 of the solution used, see GNU gettext documentation or wxWidgets' wxLocale
@@ -19,8 +20,11 @@ class reference.
  Installing
 ============
 
-Binary easily-installable packages are provided for Windows and OS X and are
-part of many Linux distributions.
+Easily-installable prebuilt binaries are provided for Windows and macOS and
+available from https://poedit.net/download.
+
+Official binaries for Linux are available as a Snap at https://snapcraft.io/poedit
+Most Linux distributions also include native Poedit packages.
 
 
  Installing from sources
@@ -29,7 +33,7 @@ part of many Linux distributions.
 Requirements:
 
   * Boost
-  * Unicode build of wxWidgets library, version >= 3.0 (see http://www.wxwidgets.org)
+  * Unicode build of wxWidgets library, version >= 3.0.3 (see http://www.wxwidgets.org)
   * ICU
   * LucenePlusPlus
   * If on Unix, GtkSpell for spell checking support
@@ -53,21 +57,21 @@ You must have the dependencies installed in a location configure will find,
 e.g. by setting CPPFLAGS and LDFLAGS appropriately.
 
 
- OS X
-------
+ macOS
+-------
 
-You need a full git checkout to build on OS X; see below for details.
+You need a full git checkout to build on macOS; see below for details.
 
-After checkout, use the Poedit.xcworkspace workspace and Xcode 6 to build
-Poedit.
+After checkout, use the Poedit.xcworkspace workspace and the latest version of
+Xcode to build Poedit.
 
-There are some additional dependencies on tools not included with OS X.
-They can be installed with Homebrew and macosx/Brewfile:
+There are some additional dependencies on tools not included with macOS.
+They can be installed with Homebrew and macos/Brewfile:
 
-    brew bundle macosx/
+    brew bundle --file=macos/Brewfile
 
 
- Windows using Visual Studio 2015
+ Windows using Visual Studio 2017
 ----------------------------------
 
 You need a full git checkout to build on Windows; see below for details.
@@ -93,22 +97,19 @@ closing, run the following command:
 On Linux and other Unices, only a subset of submodules is necessary, so you can
 save some time and disk space by checking out only them:
 
-    git submodule update --init src/json
+    git submodule update --init deps/json deps/pugixml
 
-If you get the sources directly from the Git repository, some generated files
-are not present. You have to run the ./bootstrap script to create them. After
-that, continue according to the instructions above.
+When building for Unix/Linux, if you get the sources directly from the Git
+repository, some generated files are not present. You have to run the
+./bootstrap script to create them. After that, continue according to the
+instructions above.
 
 The ./bootstrap script requires some additional tools to be installed:
 
  * AsciiDoc, xsltproc and xmlto to generate the manual page
- * Bakefile, to generate Windows makefiles/projects
- * ImageMagick and png2icns from libicns to generate icons in Windows and
-   OS X native formats
+ * gettext tools to create .mo files
 
-If you don't have any of the dependencies, ./bootstrap will print errors, but
-will continue to run. In other words, if you don't need e.g. Windows stuff, you
-can ignore Windows-specific dependencies.
+On macOS and Windows, bootstrapping is not needed.
 
 
  License
@@ -121,7 +122,7 @@ license text).
 See the COPYING file for details on program's licensing and the
 icons/README file for details on the icons.
 
-Win32 and Mac OS X versions contain GNU gettext binaries. They are distributed
+Windows and macOS versions contain GNU gettext binaries. They are distributed
 under the GNU General Public License and their source code is available from
 http://www.gnu.org/software/gettext or, if you have difficulties getting them
 from there, email me for a copy of the sources.

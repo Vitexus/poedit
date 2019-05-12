@@ -1,7 +1,7 @@
-﻿/*
+/*
  *  This file is part of Poedit (https://poedit.net)
  *
- *  Copyright (C) 2015-2016 Vaclav Slavik
+ *  Copyright (C) 2015-2019 Vaclav Slavik
  *
  *  Permission is hereby granted, free of charge, to any person obtaining a
  *  copy of this software and associated documentation files (the "Software"),
@@ -57,29 +57,55 @@ void LoadPNGImage(wxImage& img, const wxString& filename)
     }
 }
 
-bool LoadAndScale(wxImage& img, const wxString& name)
+} // anonymous namespace
+
+wxImage LoadScaledBitmap(const wxString& name)
 {
     const wxString filename(name + ".png");
     if (!wxFileExists(filename))
-        return false;
+        return wxNullImage;
+
+    wxImage img;
 
 #ifdef NEEDS_MANUAL_HIDPI
-    if (HiDPIScalingFactor() > 1.0)
+    // On Windows, arbitrary scaling factors are possible and "ugly" values like 125%
+    // or 150% scaling are not only possible, but common. It is unrealistic to provide
+    // custom-drawn bitmaps for all of them, so we make do with a basic set of 100%/@1x,
+    // 200%/@2x (used on macOS too) and one more for 150%/@1.5x for Windows use.
+    // To eliminate smudged scaling artifacts, we use these fixed sizes even for zoom
+    // factors in-between (such as the very common 125% or less common 175%). This looks
+    // better and the size difference is negligible.
+    auto const screenScaling = HiDPIScalingFactor();
+    if (screenScaling > 1.25)
     {
-        double imgScale = HiDPIScalingFactor();
+        if (screenScaling <= 1.75)  // @1.5x is reasonable 
+        {
+            const wxString filename_15x(name + "@1.5x.png");
+            if (wxFileExists(filename_15x))
+            {
+                LoadPNGImage(img, filename_15x);
+                if (img.IsOk())
+                    return img;
+            }
+        }
+
+        double imgScale = screenScaling;
         const wxString filename_2x(name + "@2x.png");
         if (wxFileExists(filename_2x))
         {
             LoadPNGImage(img, filename_2x);
-            if (HiDPIScalingFactor() == 2.0)
-                return true;
+            if (screenScaling > 1.75 && screenScaling <= 2.50)  // @2x is reasonable
+                return img;
             else
                 imgScale /= 2.0;
         }
-        else
+        else  // fall back to upscaled @1x
         {
             LoadPNGImage(img, filename);
         }
+
+        if (!img.IsOk())
+            return wxNullImage;
 
         wxImageResizeQuality quality;
         if (imgScale == 2.0)
@@ -89,34 +115,11 @@ bool LoadAndScale(wxImage& img, const wxString& name)
         else
             quality = wxIMAGE_QUALITY_BICUBIC;
         img.Rescale(img.GetWidth() * imgScale, img.GetHeight() * imgScale, quality);
-        return true;
+        return img;
     }
-    // else: load normally
+    // else if screenScaling <= 1.25: @1x size is good enough, load normally
 #endif
 
     LoadPNGImage(img, filename);
-    return true;
-}
-
-} // anonymous namespace
-
-
-wxBitmap LoadScaledBitmap(const wxString& name, bool mirror, int padding)
-{
-    wxImage img;
-    if (!LoadAndScale(img, name))
-        return wxNullBitmap;
-
-    if (padding)
-    {
-        int pad = PX(padding);
-        auto sz = img.GetSize();
-        sz.IncBy(pad * 2);
-        img.Resize(sz, wxPoint(pad, pad));
-    }
-
-    if (mirror)
-        return wxBitmap(img.Mirror());
-    else
-        return wxBitmap(img);
+    return img;
 }

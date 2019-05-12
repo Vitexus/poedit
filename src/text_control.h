@@ -1,7 +1,7 @@
-﻿/*
+/*
  *  This file is part of Poedit (https://poedit.net)
  *
- *  Copyright (C) 1999-2016 Vaclav Slavik
+ *  Copyright (C) 1999-2019 Vaclav Slavik
  *
  *  Permission is hereby granted, free of charge, to any person obtaining a
  *  copy of this software and associated documentation files (the "Software"),
@@ -37,7 +37,7 @@
 /**
     Text control with some Poedit-specific customizations:
     
-    - Allow setting text programatically, without user-input processing (OS X)
+    - Allow setting text programatically, without user-input processing (macOS)
     - Disable user-usable rich text support
     - Stylistic tweaks (padding and such)
     - Generic undo/redo implementation for GTK
@@ -46,7 +46,7 @@
 class CustomizedTextCtrl : public wxTextCtrl
 {
 public:
-    static const int ALWAYS_USED_STYLE = wxTE_MULTILINE | wxTE_RICH2;
+    static const int ALWAYS_USED_STYLE = wxTE_MULTILINE | wxTE_RICH2 | wxTE_NOHIDESEL;
 
     CustomizedTextCtrl(wxWindow *parent, wxWindowID winid, long style = 0);
 
@@ -60,13 +60,16 @@ public:
     void SaveSnapshot();
 #endif
 
+#ifdef __WXMSW__
+    WXDWORD MSWGetStyle(long style, WXDWORD *exstyle) const override;
+#endif
+
 protected:
 #ifdef __WXOSX__
     void DoSetValue(const wxString& value, int flags) override;
     wxString DoGetValue() const override;
 #endif
 
-#if defined(__WXMSW__) || defined(__WXGTK__)
     bool DoCopy();
     void OnCopy(wxClipboardTextEvent& event);
     void OnCut(wxClipboardTextEvent& event);
@@ -74,7 +77,6 @@ protected:
 
     virtual wxString DoCopyText(long from, long to);
     virtual void DoPasteText(long from, long to, const wxString& s);
-#endif // __WXMSW__/__WXGTK__
 
 #ifdef __WXGTK__
     struct Snapshot
@@ -104,6 +106,7 @@ public:
     ~AnyTranslatableTextCtrl();
 
     void SetLanguage(const Language& lang);
+    void SetSyntaxHighlighter(SyntaxHighlighterPtr syntax) { m_syntax = syntax; }
 
     // Set and get control's text as plain/raw text, with no escaping or formatting.
     // This is the "true" representation, with e.g newlines included. The version
@@ -117,25 +120,20 @@ public:
     static wxString UnescapePlainText(const wxString& s);
 
 protected:
-#if defined(__WXMSW__) || defined(__WXGTK__)
     wxString DoCopyText(long from, long to) override;
     void DoPasteText(long from, long to, const wxString& s) override;
-#endif
+
+    void DoSetValue(const wxString& value, int flags) override;
 
 #ifdef __WXMSW__
-    void DoSetValue(const wxString& value, int flags) override;
     void UpdateRTLStyle();
 #endif // __WXMSW__
-
-#ifdef __WXGTK__
-    void DoSetValue(const wxString& value, int flags) override;
-#endif
 
 protected:
     void HighlightText();
 
     class Attributes;
-    SyntaxHighlighter m_syntax;
+    SyntaxHighlighterPtr m_syntax;
     std::unique_ptr<Attributes> m_attrs;
     Language m_language;
 };
@@ -164,6 +162,10 @@ protected:
 
 #ifdef __WXOSX__
     void DoSetValue(const wxString& value, int flags) override;
+#endif
+
+#ifdef __WXMSW__
+    void DoEnable(bool enable) override;
 #endif
 
     bool m_lastKeyWasReturn;

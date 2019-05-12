@@ -1,7 +1,7 @@
 /*
  *  This file is part of Poedit (https://poedit.net)
  *
- *  Copyright (C) 2010-2016 Vaclav Slavik
+ *  Copyright (C) 2010-2019 Vaclav Slavik
  *
  *  Permission is hereby granted, free of charge, to any person obtaining a
  *  copy of this software and associated documentation files (the "Software"),
@@ -32,6 +32,8 @@
     #endif
 #endif
 
+#include <map>
+
 #include <wx/arrstr.h>
 #include <wx/filename.h>
 #include <wx/string.h>
@@ -52,17 +54,17 @@
 #endif
 
 #ifdef __WXOSX__
-    #define OSX_OR_OTHER(msw, other) msw
+    #define MACOS_OR_OTHER(mac, other) mac
 #else
-    #define OSX_OR_OTHER(msw, other) other
+    #define MACOS_OR_OTHER(mac, other) other
 #endif
 
 #ifdef __WXOSX__
     #define BORDER_WIN(dir, n) Border(dir, 0)
-    #define BORDER_OSX(dir, n) Border(dir, n)
+    #define BORDER_MACOS(dir, n) Border(dir, n)
 #else
     #define BORDER_WIN(dir, n) Border(dir, n)
-    #define BORDER_OSX(dir, n) Border(dir, 0)
+    #define BORDER_MACOS(dir, n) Border(dir, 0)
 #endif
 
 
@@ -89,34 +91,41 @@ wxString EscapeMarkup(const wxString& str);
 // Encoding and decoding a string with C escape sequences:
 
 template<typename T>
-inline T EscapeCString(const T& str)
+inline void EscapeCStringInplace(T& str)
 {
-    T out;
-    out.reserve(str.length());
-    for (wchar_t c: str)
+    for (typename T::iterator i = str.begin(); i != str.end(); ++i)
     {
-        switch (c)
+        switch ((wchar_t)*i)
         {
-            case '"' : out += L"\\\"";  break;
-            case '\a': out += L"\\a";   break;
-            case '\b': out += L"\\b";   break;
-            case '\f': out += L"\\f";   break;
-            case '\n': out += L"\\n";   break;
-            case '\r': out += L"\\r";   break;
-            case '\t': out += L"\\t";   break;
-            case '\v': out += L"\\v";   break;
-            case '\\': out += L"\\\\";  break;
+            case '"' :           i = ++str.insert(i, '\\'); break;
+            case '\a': *i = 'a'; i = ++str.insert(i, '\\'); break;
+            case '\b': *i = 'b'; i = ++str.insert(i, '\\'); break;
+            case '\f': *i = 'f'; i = ++str.insert(i, '\\'); break;
+            case '\n': *i = 'n'; i = ++str.insert(i, '\\'); break;
+            case '\r': *i = 'r'; i = ++str.insert(i, '\\'); break;
+            case '\t': *i = 't'; i = ++str.insert(i, '\\'); break;
+            case '\v': *i = 'v'; i = ++str.insert(i, '\\'); break;
+            case '\\':           i = ++str.insert(i, '\\'); break;
             default:
-                out += c;
                 break;
         }
     }
+}
+
+template<typename T>
+inline T EscapeCString(const T& str)
+{
+    T out(str);
+    EscapeCStringInplace(out);
     return out;
 }
 
 template<typename T>
 inline T UnescapeCString(const T& str)
 {
+    if (str.find('\\') == T::npos)
+        return str;
+
     T out;
     out.reserve(str.length());
     for (auto i = str.begin(); i != str.end(); ++i)
@@ -182,6 +191,17 @@ inline wxFileName CommonDirectory(const T& a)
 }
 
 
+inline wxString MaskForType(const char *extensions, const wxString& description, bool showExt = true)
+{
+    (void)showExt;
+#ifdef __WXMSW__
+    if (showExt)
+        return wxString::Format("%s (%s)|%s", description, extensions, extensions);
+    else
+#endif
+        return wxString::Format("%s|%s", description, extensions);
+}
+
 
 // ----------------------------------------------------------------------
 // TempDirectory
@@ -208,7 +228,7 @@ public:
     static void KeepFiles(bool keep = true) { ms_keepFiles = keep; }
 
 private:
-    int m_counter;
+    std::map<wxString, int> m_counters;
     wxString m_dir;
 
     static bool ms_keepFiles;

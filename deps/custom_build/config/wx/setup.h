@@ -11,6 +11,13 @@
 #ifndef _WX_SETUP_H_
 #define _WX_SETUP_H_
 
+#ifdef __WXMAC_XCODE__
+// while configure based builds have the flags prepended, we must do this here
+// for xcode based builds
+#include "wx/osx/config_xcode.h"
+#endif
+
+#define wxUSE_PRIVATE_FONTS 0
 /* --- start common options --- */
 // ----------------------------------------------------------------------------
 // global settings
@@ -56,6 +63,28 @@
 //
 // Recommended setting: 0
 #define wxDIALOG_UNIT_COMPATIBILITY   0
+
+// Provide unsafe implicit conversions in wxString to "const char*" or
+// "std::string" (depending on wxUSE_STD_STRING_CONV_IN_WXSTRING value).
+//
+// Default is 1 but only for compatibility reasons, it is recommended to set
+// this to 0 because converting wxString to a narrow (non-Unicode) string may
+// fail unless a locale using UTF-8 encoding is used, which is never the case
+// under MSW, for example, hence such conversions can result in silent data
+// loss.
+//
+// Recommended setting: 0
+#define wxUSE_UNSAFE_WXSTRING_CONV 0
+
+// If set to 1, enables "reproducible builds", i.e. build output should be
+// exactly the same if the same build is redone again. As using __DATE__ and
+// __TIME__ macros clearly makes the build irreproducible, setting this option
+// to 1 disables their use in the library code.
+//
+// Default is 0
+//
+// Recommended setting: 0
+#define wxUSE_REPRODUCIBLE_BUILD 1
 
 // ----------------------------------------------------------------------------
 // debugging settings
@@ -517,7 +546,7 @@
 // Default is 1
 //
 // Recommended setting: 1
-#define wxUSE_FSWATCHER     1
+#define wxUSE_FSWATCHER     0
 
 // Setting wxUSE_CONFIG to 1 enables the use of wxConfig and related classes
 // which allow the application to store its settings in the persistent
@@ -582,10 +611,10 @@
 #define wxUSE_FILESYSTEM    1
 
 // Set to 1 to enable virtual ZIP filesystem (requires wxUSE_FILESYSTEM)
-#define wxUSE_FS_ZIP        1
+#define wxUSE_FS_ZIP        0
 
 // Set to 1 to enable virtual archive filesystem (requires wxUSE_FILESYSTEM)
-#define wxUSE_FS_ARCHIVE    1
+#define wxUSE_FS_ARCHIVE    0
 
 // Set to 1 to enable virtual Internet filesystem (requires wxUSE_FILESYSTEM)
 #define wxUSE_FS_INET       0
@@ -597,11 +626,12 @@
 #define wxUSE_ZIPSTREAM     0
 
 // Set to 1 to compile wxTarInput/OutputStream classes.
-#define wxUSE_TARSTREAM     0
+#define wxUSE_TARSTREAM     1
 
 // Set to 1 to compile wxZlibInput/OutputStream classes. Also required by
 // wxUSE_LIBPNG
 #define wxUSE_ZLIB          1
+#define wxUSE_ZLIB_H_IN_PATH
 
 // If enabled, the code written by Apple will be used to write, in a portable
 // way, float on the disk. See extended.c for the license which is different
@@ -710,7 +740,7 @@
 // Default is 1
 //
 // Recommended setting: 1
-#define wxUSE_AUI       1
+#define wxUSE_AUI       0
 
 // Use wxWidget's Ribbon classes for interfaces
 //
@@ -846,7 +876,7 @@
 // Default is 1
 //
 // Recommended setting: 1 (may be set to 0)
-#define wxUSE_TIPWINDOW    1
+#define wxUSE_TIPWINDOW    0
 
 // Each of the settings below corresponds to one wxWidgets control. They are
 // all switched on by default but may be disabled if you are sure that your
@@ -943,7 +973,7 @@
 // Default is 1.
 //
 // Recommended setting: 1
-#define wxUSE_LISTBOOK 1
+#define wxUSE_LISTBOOK 0
 
 // wxChoicebook control is similar to wxNotebook but uses wxChoice instead of
 // the tabs
@@ -951,7 +981,7 @@
 // Default is 1.
 //
 // Recommended setting: 1
-#define wxUSE_CHOICEBOOK 1
+#define wxUSE_CHOICEBOOK 0
 
 // wxTreebook control is similar to wxNotebook but uses wxTreeCtrl instead of
 // the tabs
@@ -959,7 +989,7 @@
 // Default is 1.
 //
 // Recommended setting: 1
-#define wxUSE_TREEBOOK 1
+#define wxUSE_TREEBOOK 0
 
 // wxToolbook control is similar to wxNotebook but uses wxToolBar instead of
 // tabs
@@ -975,7 +1005,7 @@
 // Default is 1.
 //
 // Recommended setting: 1 (but can be set to 0 if you don't need it)
-#define wxUSE_TASKBARICON 1
+#define wxUSE_TASKBARICON 0
 
 // wxGrid class
 //
@@ -991,7 +1021,7 @@
 // Default is 1.
 //
 // Recommended setting: 1 (it doesn't cost almost anything)
-#define wxUSE_MINIFRAME 1
+#define wxUSE_MINIFRAME 0
 
 // wxComboCtrl and related classes: combobox with custom popup window and
 // not necessarily a listbox.
@@ -1009,14 +1039,14 @@
 //
 // Recommended setting: 1 but can be safely set to 0, except where it is
 //                      needed as a base class for generic wxBitmapComboBox.
-#define wxUSE_ODCOMBOBOX 1
+#define wxUSE_ODCOMBOBOX 0
 
 // wxBitmapComboBox is a combobox that can have images in front of text items.
 //
 // Default is 1.
 //
 // Recommended setting: 1 but can be safely set to 0
-#define wxUSE_BITMAPCOMBOBOX 1
+#define wxUSE_BITMAPCOMBOBOX 0
 
 // wxRearrangeCtrl is a wxCheckListBox with two buttons allowing to move items
 // up and down in it. It is also used as part of wxRearrangeDialog.
@@ -1025,7 +1055,7 @@
 //
 // Recommended setting: 1 but can be safely set to 0 (currently used only by
 // wxHeaderCtrl)
-#define wxUSE_REARRANGECTRL 1
+#define wxUSE_REARRANGECTRL 0
 
 #define wxUSE_ADDREMOVECTRL 0
 
@@ -1057,7 +1087,7 @@
 // the GTK+ stock icons replaces it so it is normally not necessary.
 //
 // Recommended setting: 1 but can be turned off to reduce the library size.
-#define wxUSE_ARTPROVIDER_TANGO 1
+#define wxUSE_ARTPROVIDER_TANGO 0
 
 // Hotkey support (currently Windows only)
 #define wxUSE_HOTKEY 1
@@ -1097,7 +1127,7 @@
 //
 // Recommended setting: 1 (but can be disabled without problems as nothing
 // depends on it)
-#define wxUSE_INFOBAR       1
+#define wxUSE_INFOBAR       0
 
 // Use wxMenu, wxMenuBar, wxMenuItem.
 //
@@ -1188,7 +1218,7 @@
 
 // wxBusyInfo displays window with message when app is busy. Works in same way
 // as wxBusyCursor
-#define wxUSE_BUSYINFO      1
+#define wxUSE_BUSYINFO      0
 
 // Use single/multiple choice dialogs.
 //
@@ -1221,7 +1251,7 @@
 // Default is 1
 //
 // Recommended setting: 1 (but may be safely set to 0)
-#define wxUSE_FINDREPLDLG       1
+#define wxUSE_FINDREPLDLG       0
 
 // Use font picker dialog
 //
@@ -1245,19 +1275,19 @@
 #define wxUSE_NATIVE_PROGRESSDLG 1
 
 // support for startup tips (wxShowTip &c)
-#define wxUSE_STARTUP_TIPS 1
+#define wxUSE_STARTUP_TIPS 0
 
 // text entry dialog and wxGetTextFromUser function
 #define wxUSE_TEXTDLG 1
 
 // number entry dialog
-#define wxUSE_NUMBERDLG 1
+#define wxUSE_NUMBERDLG 0
 
 // splash screen class
-#define wxUSE_SPLASH 1
+#define wxUSE_SPLASH 0
 
 // wizards
-#define wxUSE_WIZARDDLG 1
+#define wxUSE_WIZARDDLG 0
 
 // Compile in wxAboutBox() function showing the standard "About" dialog.
 //
@@ -1326,7 +1356,7 @@
 //
 // Recommended setting: 1 (wxHTML is great!), set to 0 if you want compile a
 // smaller library.
-#define wxUSE_HTML          1
+#define wxUSE_HTML          0
 
 // Setting wxUSE_GLCANVAS to 1 enables OpenGL support. You need to have OpenGL
 // headers and libraries to be able to compile the library with wxUSE_GLCANVAS
@@ -1347,7 +1377,7 @@
 //
 // Recommended setting: 1, set to 0 if you want compile a
 // smaller library.
-#define wxUSE_RICHTEXT       1
+#define wxUSE_RICHTEXT       0
 
 // ----------------------------------------------------------------------------
 // Data transfer
@@ -1383,7 +1413,11 @@
 // Default is 0.
 //
 // Recommended setting (at present): 0
-#define wxUSE_ACCESSIBILITY 0
+#ifdef __WXMSW__
+    #define wxUSE_ACCESSIBILITY 1
+#else
+    #define wxUSE_ACCESSIBILITY 0
+#endif
 
 // ----------------------------------------------------------------------------
 // miscellaneous settings
@@ -1402,7 +1436,7 @@
 
 #define wxUSE_IPC         1
                                 // 0 for no interprocess comms
-#define wxUSE_HELP        1
+#define wxUSE_HELP        0
                                 // 0 for no help facility
 
 // Should we use MS HTML help for wxHelpController? If disabled, neither
@@ -1470,7 +1504,11 @@
 #define wxUSE_IMAGE         1
 
 // Set to 1 for PNG format support (requires libpng). Also requires wxUSE_ZLIB.
-#define wxUSE_LIBPNG        1
+#ifdef __WXOSX__
+    #define wxUSE_LIBPNG        0
+#else
+    #define wxUSE_LIBPNG        1
+#endif
 
 // Set to 1 for JPEG format support (requires libjpeg)
 #define wxUSE_LIBJPEG       0
@@ -1750,6 +1788,12 @@
 // make sure we have the proper dispatcher for the console event loop
 #define wxUSE_SELECT_DISPATCHER 1
 #define wxUSE_EPOLL_DISPATCHER 0
+
+// set to 1 if you have older code that still needs icon refs
+#define wxOSX_USE_ICONREF 0
+
+// set to 0 if you have code that has problems with the new bitmap implementation
+#define wxOSX_BITMAP_NATIVE_ACCESS 1
 
 #define wxUSE_XTEST 0
 

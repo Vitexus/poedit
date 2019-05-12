@@ -2,44 +2,84 @@ msgid ""
 msgstr ""
 "Project-Id-Version: poedit\n"
 "Report-Msgid-Bugs-To: help@poedit.net\n"
-"POT-Creation-Date: 2016-08-01 19:26+0200\n"
-"PO-Revision-Date: 2016-05-24 10:04-0400\n"
+"POT-Creation-Date: 2018-10-07 13:14+0200\n"
+"PO-Revision-Date: 2019-01-14 16:32\n"
 "Last-Translator: vslavik <vaclav@slavik.io>\n"
 "Language-Team: Lithuanian\n"
 "Language: lt_LT\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"Plural-Forms: nplurals=3; plural=(n%10==1 && n%100!=11 ? 0 : n%10>=2 && (n"
-"%100<10 || n%100>=20) ? 1 : 2);\n"
+"Plural-Forms: nplurals=4; plural=(n%10==1 && (n%100>19 || n%100<11) ? 0 : (n"
+"%10>=2 && n%10<=9) && (n%100>19 || n%100<11) ? 1 : n%1!=0 ? 2: 3);\n"
 "X-Generator: crowdin.com\n"
 "X-Crowdin-Project: poedit\n"
 "X-Crowdin-Language: lt\n"
 "X-Crowdin-File: /locales/poedit.pot\n"
 
 msgid "Hide this notification message"
-msgstr "Slėpti šį perspėjimą"
+msgstr "Slėpti šį pranešimą"
 
-msgid "Don't Show Again"
-msgstr "Daugiau Neberodyti"
+msgid "Don’t Show Again"
+msgstr "Daugiau neberodyti"
 
-msgid "Don't show again"
+msgid "Don’t show again"
 msgstr "Daugiau neberodyti"
 
 #, c-format
-msgid "%i line of file '%s' was not loaded correctly."
-msgid_plural "%i lines of file '%s' were not loaded correctly."
-msgstr[0] ""
-msgstr[1] ""
-msgstr[2] ""
+msgid "(New: %i, obsolete: %i)"
+msgstr "(Naujas: %i, senasis: %i)"
+
+msgid "Updating catalog"
+msgstr "Atnaujinamas katalogas"
+
+msgid "Collecting source files…"
+msgstr "Renkama iš pradinių failų…"
+
+msgid "Extracting translatable strings…"
+msgstr "Išgaunamos verstinos eilutės…"
+
+msgid "Failed to load extracted catalog."
+msgstr "Nepavyko įkelti ištrauktų katalogų."
+
+msgid "Merging differences…"
+msgstr "Suliejami skirtumai…"
 
 #, c-format
-msgid "Line %d of file '%s' is corrupted (not valid %s data)."
-msgstr ""
+msgid "“%s” is not a valid POT file."
+msgstr "„%s“ nėra tinkamas POT failas."
 
 #, c-format
-msgid "Malformed header: '%s'"
+msgid "Malformed header: “%s”"
 msgstr "Netinkama antraštė: „%s“"
+
+msgid "PO Translation Files"
+msgstr "PO vertimų failai"
+
+msgid "POT Translation Templates"
+msgstr "POT vertimų šablonai"
+
+msgid "XLIFF Translation Files"
+msgstr "XLIFF vertimų failai"
+
+msgid "All Translation Files"
+msgstr "Visi vertimų failai"
+
+#, c-format
+msgid "File “%s” is in unsupported format."
+msgstr "“%s” failas yra nepalaikomo formato."
+
+#, c-format
+msgid "%i line of file “%s” was not loaded correctly."
+msgid_plural "%i lines of file “%s” were not loaded correctly."
+msgstr[0] "Nepavyko perskaityti %i eilutės iš failo „%s“."
+msgstr[1] "Nepavyko perskaityti %i eilučių iš failo „%s“."
+msgstr[2] "Nepavyko perskaityti %i eilutės iš failo „%s“."
+msgstr[3] "Nepavyko perskaityti %i eilučių iš failo „%s“."
+
+#, c-format
+msgid "Line %d of file “%s” is corrupted (not valid %s data)."
+msgstr "Eilutė %d iš failo „%s“ sugadinta (netinkami %s duomenys)."
 
 msgid ""
 "Broken catalog file: singular form msgstr used together with msgid_plural"
@@ -58,20 +98,20 @@ msgstr ""
 "būti sugadinti."
 
 #, c-format
-msgid "Couldn't load file %s, it is probably corrupted."
+msgid "Couldn’t load file %s, it is probably corrupted."
 msgstr "Nepavyko įkrauti failo %s, jis greičiausiai sugadintas."
 
 #, c-format
 msgid ""
-"File '%s' is read-only and cannot be saved.\n"
+"File “%s” is read-only and cannot be saved.\n"
 "Please save it under different name."
 msgstr ""
 "Failas „%s“ skirtas tik skaitymui ir negali būti išsaugotas.\n"
 "Išsaugokite duomenis kitu vardu."
 
 #, c-format
-msgid "Couldn't save file %s."
-msgstr "Nepavyko įrašyti failo %s."
+msgid "Couldn’t save file %s."
+msgstr "Nepavyko išsaugoti failo %s."
 
 msgid ""
 "There was a problem formatting the file nicely (but it was saved all right)."
@@ -79,33 +119,29 @@ msgstr "Kilo bėdų gražiai formatuojant failą (bet jis buvo išsaugotas)."
 
 #, c-format
 msgid ""
-"The catalog couldn't be saved in '%s' charset as specified in catalog "
+"The catalog couldn’t be saved in “%s” charset as specified in catalog "
 "settings.\n"
 "\n"
 "It was saved in UTF-8 instead and the setting was modified accordingly."
 msgstr ""
-"Išsaugoti katalogo „%s“ koduote nepavyko.\n"
+"Išsaugoti katalogo „%s“ su pasirinkta koduote nepavyko.\n"
 "\n"
 "Jis buvo išsaugotas UTF-8 koduote ir nustatymas atitinkamai pakeistas."
 
 msgid "Error saving catalog"
 msgstr "Klaida išsaugant katalogą"
 
-msgid "PO Translation Files"
-msgstr ""
-
-msgid "POT Translation Templates"
-msgstr ""
-
-msgid "All Translation Files"
-msgstr ""
-
-msgid "Merging differences..."
-msgstr "Suliejami skirtumai..."
+#, c-format
+msgid "Error loading file “%s”: %s."
+msgstr "Klaida įkeliant failą \"%s\": %s."
 
 #, c-format
-msgid "'%s' is not a valid POT file."
-msgstr "„%s“ nėra tinkamas POT failas."
+msgid "unsupported XLIFF version (%s)"
+msgstr "nepalaikoma XLIFF versija (%s)"
+
+#. TRANSLATORS: Shown as error if a translation of XLIFF markup is not valid XML
+msgid "Broken markup in translation string."
+msgstr "Klaidingai suformatuota vertimo eilutė."
 
 msgid "(Use default language)"
 msgstr "(Naudoti numatytąją kalbą)"
@@ -117,21 +153,37 @@ msgid "Language selection"
 msgstr "Kalbos pasirinkimas"
 
 msgid "You must restart Poedit for this change to take effect."
-msgstr "Šis pakeitimas įsigalios paleidus Poedit iš naujo."
+msgstr "Šis pakeitimas įsigalios paleidus „Poedit“ iš naujo."
+
+msgid "Syncing"
+msgstr "Sinchronizuojama"
+
+#. TRANSLATORS: %s is a cloud destination, e.g. "Crowdin" or ftp.wordpress.com etc.
+#, c-format
+msgid "Syncing with %s…"
+msgstr "Sinchronizuojama su %s…"
+
+#. TRANSLATORS: %s is a cloud destination, e.g. "Crowdin" or ftp.wordpress.com etc.
+#, c-format
+msgid "Syncing with %s failed."
+msgstr "Sinchronizavimas su %s nepavyko."
+
+msgid "Syncing error"
+msgstr "Susinchronizuoti nepavyko"
 
 msgid "Downloading translations is disabled in this project."
-msgstr ""
+msgstr "Vertimų atsiuntimas šiame projekte yra išjungtas."
 
 msgid "Not authorized, please sign in again."
-msgstr ""
+msgstr "Nesankcionuota, prašome prisijungti dar kartą."
 
 msgid ""
 "Crowdin is an online localization management platform and collaborative "
 "translation tool. Poedit can seamlessly sync PO files managed at Crowdin."
 msgstr ""
-"Crowdin yra internetinė lokalizavimo valdymo platforma ir vertimų "
-"bendradarbiavimo priemonė. Poedit gali sklandžiai sinchronizuoti PO failus "
-"esančius Crowdin sistemoje."
+"„Crowdin“ yra internetinė lokalizavimo valdymo platforma ir vertimų "
+"bendradarbiavimo priemonė. „Poedit“ gali sklandžiai sinchronizuoti PO "
+"failus, esančius „Crowdin“ sistemoje."
 
 msgid "Sign In"
 msgstr "Prisijungti"
@@ -146,25 +198,25 @@ msgid "Sign out"
 msgstr "Atsijungti"
 
 msgid "Waiting for authentication…"
-msgstr ""
+msgstr "Laukiama tapatybės nustatymo…"
 
 msgid "Updating user information…"
-msgstr ""
+msgstr "Atnaujinama naudotojo informacija…"
 
 msgid "Signed in as:"
 msgstr "Prisijungęs kaip:"
 
 msgid "Learn More About Crowdin"
-msgstr "Sužinokite daugiau apie Crowdin"
+msgstr "Sužinokite daugiau apie „Crowdin“"
 
 msgid "Learn more about Crowdin"
-msgstr "Sužinokite daugiau apie Crowdin"
+msgstr "Sužinokite daugiau apie „Crowdin“"
 
 msgid "Sign in to Crowdin"
-msgstr "Prisijungti prie Crowdin"
+msgstr "Prisijungti prie „Crowdin“"
 
 msgid "Open Crowdin translation"
-msgstr "Atidaryti Crowdin vertimą"
+msgstr "Atverti „Crowdin“ vertimą"
 
 msgid "Project:"
 msgstr "Projektas:"
@@ -176,61 +228,41 @@ msgid "File:"
 msgstr "Failas:"
 
 msgid "No translation projects listed in your Crowdin account."
-msgstr "Jūsų Crowdin paskyroje nėra vertimo projektų."
+msgstr "Jūsų „Crowdin“ paskyroje nėra vertimo projektų."
 
 msgid "This project has no files that can be translated in Poedit."
 msgstr ""
+"Projektas neturi jokių failų, kuriuos būtų galima išversti su „Poedit“."
 
 msgid "This file can only be edited in Crowdin’s web interface."
-msgstr "Šį failą galima redaguoti tik per Crowdin tinklalapį."
+msgstr "Šį failą galima redaguoti tik per „Crowdin“ tinklalapį."
 
 msgid "Downloading latest translations…"
 msgstr "Atsiunčiami naujausi vertimai…"
 
-msgid "Syncing with Crowdin"
-msgstr "Sinchronizuojama su Crowdin"
-
 msgid "Syncing with Crowdin failed."
-msgstr "Sinchronizacija su Crowdin nepavyko."
+msgstr "Sinchronizacija su „Crowdin“ nepavyko."
 
 msgid "Crowdin error"
-msgstr "Crowdin klaida"
+msgstr "„Crowdin“ klaida"
 
 msgid "Uploading translations…"
-msgstr "Įkeliami vertimai..."
+msgstr "Įkeliami vertimai…"
 
 msgid "&Copy"
 msgstr "&Kopijuoti"
 
 msgid "Learn more"
-msgstr "Sužinokite daugiau"
+msgstr "Sužinoti daugiau"
 
 msgid "Learn More"
 msgstr "Sužinoti daugiau"
 
-#, c-format
-msgid "Failed command: %s"
-msgstr "Nepavykus komanda: %s"
-
-msgid "Failed to merge gettext catalogs."
-msgstr "Sujungti gettext katalogų nepavyko."
-
-msgid "Scanning files..."
-msgstr "Peržiūrimi failai..."
-
-#. TRANSLATORS: '%s' is replaced with the kind of the files (e.g. C++, PHP, ...)
-#, c-format
-msgid "Parsing %s files..."
-msgstr "Apdorojami %s failai..."
-
-msgid "Failed to load extracted catalog."
-msgstr "Nepavyko įkelti ištrauktų katalogų"
-
 msgid "&Help"
-msgstr "Ž&inynas"
+msgstr "&Žinynas"
 
 msgid "MO files can’t be directly edited in Poedit."
-msgstr ""
+msgstr "MO failai negali būti tiesiogiai redaguojami „Poedit“ programoje."
 
 msgid "Error opening file"
 msgstr "Klaida atidarant failą"
@@ -239,78 +271,43 @@ msgid ""
 "Please open and edit the corresponding PO file instead. When you save it, "
 "the MO file will be updated as well."
 msgstr ""
+"Vietoje to atsiverskite ir redaguokite atitinkamą PO failą. Kai jį "
+"išsaugosite, MO failas taip pat bus atnaujintas."
 
-msgid "don't delete temporary files (for debugging)"
+msgid "don’t delete temporary files (for debugging)"
 msgstr "netrinti laikinų failų (derinimui)"
 
 msgid "handle a poedit:// URI"
-msgstr ""
+msgstr "vykdyti poedit:// URI"
+
+msgid "go to item at given line number"
+msgstr "pereiti prie eilutės numeriu"
 
 msgid "Failed to communicate with Poedit process."
-msgstr ""
+msgstr "Nepavyko susisiekti su „Poedit“ procesu."
 
 #, c-format
 msgid "Unhandled exception occurred: %s"
-msgstr ""
-
-msgid "Unhandled exception occurred."
-msgstr ""
+msgstr "Įvyko neapdorojama išimtinė situacija: %s"
 
 msgid "Open catalog"
 msgstr "Atverti katalogą"
 
 #, c-format
-msgid "File '%s' doesn't exist."
-msgstr "Failo „%s“ nėra."
-
-#. TRANSLATORS: This is titlebar of about dialog, "%s" is application name
-#. ("Poedit" here, but please use "%s")
-#, c-format
-msgid "About %s"
-msgstr "Apie %s"
-
-#. TRANSLATORS: This is version information in about dialog, "%s" will be
-#. version number when used
-#, c-format
-msgid "Version %s"
-msgstr "Versija %s"
-
-#. TRANSLATORS: OS X item in app menu
-msgid "Services"
-msgstr ""
-
-#. TRANSLATORS: OS X item in app menu, %s is replaced with "Poedit"
-#, c-format
-msgid "Hide %s"
-msgstr ""
-
-#. TRANSLATORS: OS X item in app menu
-msgid "Hide Others"
-msgstr ""
-
-#. TRANSLATORS: OS X item in app menu
-msgid "Show All"
-msgstr ""
-
-#. TRANSLATORS: OS X item in app menu, %s is replaced with "Poedit"
-#, c-format
-msgid "Quit %s"
-msgstr ""
-
-msgid "Preferences..."
-msgstr ""
+msgid "File “%s” doesn’t exist."
+msgstr "Failas \"%s\" neegzistuoja."
 
 msgid "Poedit is an easy to use translations editor."
-msgstr "Poedit yra lengvai naudojamas vertimų redaktorius."
+msgstr "„Poedit“ yra lengvai naudojamas vertimų redaktorius."
 
 msgid "Catalogs Manager"
 msgstr "Katalogų tvarkyklė"
 
-msgid "Check for Updates..."
-msgstr "Tikrinti, ar yra atnaujinimų..."
+msgid "Check for Updates…"
+msgstr "Tikrinti, ar yra atnaujinimų…"
 
 msgid "&Edit"
-msgstr "&Keisti"
+msgstr "&Taisa"
 
 msgid "Undo"
 msgstr "Atšaukti"
@@ -388,7 +385,7 @@ msgid "&View"
 msgstr "&Rodymas"
 
 msgid "Enter Full Screen"
-msgstr ""
+msgstr "Visas ekranas"
 
 msgid "Window"
 msgstr "Langas"
@@ -400,8 +397,9 @@ msgid "Zoom"
 msgstr "Priartinti"
 
 msgid "Bring All to Front"
-msgstr ""
+msgstr "Viską rodyti priekyje"
 
+#. TRANSLATORS:File kind displayed in Finder/Explorer
 msgid "PO Translation"
 msgstr "PO vertimas"
 
@@ -414,82 +412,14 @@ msgstr "Netinkamas failas"
 msgid ""
 "The file may be either corrupted or in a format not recognized by Poedit."
 msgstr ""
-"Failas gali būti sugadintas arba tokio formato kurio Poedit nesupranta."
+"Failas gali būti sugadintas arba tokio formato, kurio „Poedit“ nesupranta."
 
-msgid "&Undo"
-msgstr "&Atšaukti"
-
-msgid "&Redo"
-msgstr "&Pakartoti"
-
-msgid "Cu&t"
-msgstr "Iškirp%ti"
-
-msgid "Cut"
-msgstr "Iškirpti"
-
-msgid "Copy"
-msgstr "Kopijuoti"
-
-msgid "&Paste"
-msgstr ""
-
-msgid "Paste"
-msgstr "Įklijuoti"
-
-msgid "&Delete"
-msgstr ""
-
-msgid "Select &All"
-msgstr ""
-
-msgid "Select All"
-msgstr "Pažymėti viską"
-
-#. TRANSLATORS: Keyboard shortcut for display in Windows menus
-#. TRANSLATORS: This is the key shortcut used in menus on Windows, some languages call them differently
-msgid "Ctrl+"
-msgstr "Ctrl+"
-
-#. TRANSLATORS: Keyboard shortcut for display in Windows menus
-#. TRANSLATORS: This is the key shortcut used in menus on Windows, some languages call them differently
-msgid "Alt+"
-msgstr "Alt+"
-
-#. TRANSLATORS: Keyboard shortcut for display in Windows menus
-msgid "Shift+"
-msgstr "Shift+"
-
-#. TRANSLATORS: Keyboard shortcut for display in Windows menus
-msgid "Enter"
-msgstr "Enter"
-
-#. TRANSLATORS: Keyboard shortcut for display in Windows menus
-msgid "Up"
-msgstr "Aukštyn"
-
-#. TRANSLATORS: Keyboard shortcut for display in Windows menus
-msgid "Down"
-msgstr "Žemyn"
-
-#. TRANSLATORS: Keyboard shortcut, must correspond to translation of "Ctrl+"
-msgid "ctrl"
-msgstr "ctrl"
-
-#. TRANSLATORS: Keyboard shortcut, must correspond to translation of "Alt+"
-msgid "alt"
-msgstr "alt"
-
-#. TRANSLATORS: Keyboard shortcut, must correspond to translation of "Shift+"
-msgid "shift"
-msgstr "shift"
-
-msgid "You can't drop more than one file on Poedit window."
-msgstr "Negalite užvilkti daugiau nei vieno failo ant Poedit lango."
+msgid "You can’t drop more than one file on Poedit window."
+msgstr "Negalite užvilkti daugiau nei vieno failo ant „Poedit“ lango."
 
 #, c-format
-msgid "File '%s' is not a message catalog."
-msgstr "„%s“ nėra pranešimų katalogo failas."
+msgid "File “%s” is not a translation file."
+msgstr "\"%s\" failas nėra vertimų failas."
 
 msgid "Poedit"
 msgstr "Poedit"
@@ -500,36 +430,13 @@ msgstr "&Failas"
 msgid "&Go"
 msgstr "&Eiti"
 
-msgid "Source text:"
-msgstr "Išeities tekstas:"
-
-msgid "Singular:"
-msgstr "Vienaskaita:"
-
-msgid "Plural:"
-msgstr "Daugiskaita:"
-
-msgid "Translation:"
-msgstr "Vertimas:"
-
-msgid ""
-"POT files are only templates and don’t contain any translations themselves.\n"
-"To make a translation, create a new PO file based on the template."
-msgstr ""
-
-msgid "Create New Translation"
-msgstr "Sukurti naują vertimą"
-
-msgid "Create new translation"
-msgstr "Sukurti naują vertimą"
-
 #. TRANSLATORS: %s is language name in its basic form (as you
 #. would see e.g. in a list of supported languages). You may need
 #. to rephrase it, e.g. to an equivalent of "for language %s".
 #, c-format
 msgid ""
 "Spellchecking is disabled, because the dictionary for %s isn’t installed."
-msgstr ""
+msgstr "Rašybos tikrinimas yra išjungtas, nes nėra įdiegtas %s žodynas."
 
 msgid "Install"
 msgstr "Įdiegti"
@@ -538,31 +445,31 @@ msgid "Catalog modified. Do you want to save changes?"
 msgstr "Katalogas pakeistas. Ar norite išsaugoti pakeitimus?"
 
 msgid "Save changes"
-msgstr "Įrašyti pakeitimus"
+msgstr "Išsaugoti pakeitimus"
 
-msgid "Your changes will be lost if you don't save them."
-msgstr "Jūsų pakeitimai bus prarasti, jei jų neišsaugosite."
+msgid "Your changes will be lost if you don’t save them."
+msgstr "Prarasite atliktus pakeitimus, jei jų neišsaugosite."
 
 msgid "Save"
-msgstr "Įrašyti"
+msgstr "Išsaugoti"
 
-msgid "Don't save"
-msgstr "Neįrašyti"
+msgid "Do&n’t save"
+msgstr "&Neišsaugoti"
 
-msgid "Don't Save"
-msgstr "Neįrašyti"
+msgid "Don’t Save"
+msgstr "Neišsaugoti"
 
-msgid "Save as..."
-msgstr "Įrašyti kaip..."
+msgid "Save as…"
+msgstr "Išsaugoti kaip…"
 
-msgid "Compile to..."
-msgstr "Kompiliuoti į..."
+msgid "Compile to…"
+msgstr "Kompiliuoti į…"
 
 msgid "Compiled Translation Files"
 msgstr "Kompiliuoti vertimo failai"
 
-msgid "Export as..."
-msgstr "Eksportuoti kaip..."
+msgid "Export as…"
+msgstr "Eksportuoti kaip…"
 
 msgid "HTML Files"
 msgstr "HTML failai"
@@ -570,11 +477,8 @@ msgstr "HTML failai"
 msgid "Open catalog template"
 msgstr "Atverti katalogo šabloną"
 
-msgid "Updating catalog"
-msgstr "Atnaujinamas katalogas"
-
 msgid "Source code not available."
-msgstr ""
+msgstr "Pradinis kodas neprieinamas."
 
 msgid "Updating failed"
 msgstr "Atnaujinti nepavyko"
@@ -583,6 +487,8 @@ msgid ""
 "Translations couldn’t be updated from the source code, because no code was "
 "found in the location specified in the catalog’s Properties."
 msgstr ""
+"Vertimo negalima atnaujinti iš pradinių tekstų, nes katalogo parametruose "
+"nurodytoje vietoje nerasta jokių tekstų."
 
 msgid "Entries in the catalog are probably incorrect."
 msgstr "Katalogo įrašai gali būti neteisingi."
@@ -597,7 +503,8 @@ msgid "%d issue with the translation found."
 msgid_plural "%d issues with the translation found."
 msgstr[0] "Rasta %d vertimo problema."
 msgstr[1] "Rastos %d vertimo problemos."
-msgstr[2] "Rasta %d vertimo problemų."
+msgstr[2] "Rasta %d vertimo problemos."
+msgstr[3] "Rasta %d vertimo problemų."
 
 msgid "Validation results"
 msgstr "Patvirtinimo rezultatai"
@@ -645,26 +552,39 @@ msgid_plural ""
 "The translation is ready for use, but %d entries are not translated yet."
 msgstr[0] "Vertimas paruoštas naudoti, bet %d įrašas dar neišverstas."
 msgstr[1] "Vertimas paruoštas naudoti, bet %d įrašai dar neišversti."
-msgstr[2] "Vertimas paruoštas naudoti, bet %d įrašų dar neišversta."
+msgstr[2] "Vertimas paruoštas naudoti, bet %d įrašo dar neišversta."
+msgstr[3] "Vertimas paruoštas naudoti, bet %d įrašų dar neišversta."
 
 msgid "The translation is ready for use."
 msgstr "Vertimas paruoštas naudoti."
 
-msgid "Context:"
-msgstr "Kontekstas:"
+msgid "Warnings have been disabled."
+msgstr "Įspėjimų rodymas išjungtas."
+
+msgid ""
+"If you disabled the warnings because of excessive false positives, please "
+"consider sending a sample file to help@poedit.net to help improve them."
+msgstr ""
+"Jei išjungėte perspėjimus dėl didelio klaidingų suveikimų skaičiaus, prašome "
+"atsiųsti adresu help@poedit.net failą su pavyzdžiais, kad padėtume "
+"patobulinti šią funkciją."
 
 #, c-format
 msgid "Poedit automatically fixed invalid content in the file “%s”."
-msgstr ""
+msgstr "„Poedit“ automatiškai ištaisė neteisingą turinį faile „%s“."
 
 msgid ""
 "The file contained duplicate items, which is not allowed in PO files and "
 "would prevent the file from being used. Poedit fixed the issue, but you "
-"should review translations of any items marked as fuzzy and correct them if "
-"necessary."
+"should review translations of any items marked as needing work and correct "
+"them if necessary."
 msgstr ""
+"Faile buvo pasikartojančių elementų, kas yra neleidžiama PO failuose ir "
+"kurie neleistų naudoti failo. „Poedit“ išsprendė problemą, bet jūs "
+"turėtumėte patikrinti vertimus pažymėtus žyma „Reikia peržiūrėti“ ir, jei "
+"reikia, juos pataisyti."
 
-msgid "Language of the translation isn't set."
+msgid "Language of the translation isn’t set."
 msgstr "Nenustatyta vertimo kalba."
 
 msgid "Set Language"
@@ -678,9 +598,11 @@ msgid ""
 "Suggestions are not available if the translation language is not set "
 "correctly. Other features, such as plural forms, may be affected as well."
 msgstr ""
+"Pasiūlymai negalimi, jei netinkamai nustatyta vertimo kalba. Tai taip pat "
+"gali turėti įtakos ir kitoms savybėms, pvz.: daugiskaitos formoms."
 
 msgid "Language of the translation is the same as source language."
-msgstr ""
+msgstr "Vertimo kalba yra tokia pati kaip originalo kalba."
 
 msgid "Fix Language"
 msgstr "Pataisyti kalbą"
@@ -689,18 +611,18 @@ msgid "Fix language"
 msgstr "Pataisyti kalbą"
 
 msgid ""
-"This catalog has entries with plural forms, but doesn't have Plural-Forms "
+"This catalog has entries with plural forms, but doesn’t have Plural-Forms "
 "header configured."
 msgstr ""
-"Šio katalogo įrašai su daugiskaitos formomis, bet neturi sukonfigūruotos "
-"Plurar-Forms antraštės."
+"Šiame kataloge yra įrašų su daugiskaitos formomis, bet nėra sukonfigūruotos "
+"daugiskaitos formų antraštės."
 
 msgid ""
 "Entries in this catalog have different plural forms count from what "
-"catalog's Plural-Forms header says"
+"catalog’s Plural-Forms header says"
 msgstr ""
-"Šio katalogo daugiskaitos formų įrašų ne tiek kiek jų nurodo „Plurar-Forms“ "
-"antraštė"
+"Šio katalogo daugiskaitos formų įrašų yra ne tiek kiek jų nurodyta "
+"daugiskaitos formų antraštėse"
 
 msgid "Required header Plural-Forms is missing."
 msgstr "Trūksta būtinos „Plurar-Forms“ antraštės."
@@ -727,12 +649,12 @@ msgid "Review"
 msgstr "Peržiūrėti"
 
 #, c-format
-msgid "Error loading message catalog file '%s'."
-msgstr "Klaida įkeliant katalogo failą „%s“."
+msgid "Error loading message catalog file “%s”."
+msgstr "Klaida įkeliant pranešimų katalogo failą „%s“."
 
 #, c-format
 msgid "Translated: %d of %d (%d %%)"
-msgstr ""
+msgstr "Išversta: %d iš %d (%d %%)"
 
 #, c-format
 msgid "Remaining: %d"
@@ -744,22 +666,21 @@ msgid_plural "%d errors"
 msgstr[0] "%d klaida"
 msgstr[1] "%d klaida"
 msgstr[2] "%d klaidos"
+msgstr[3] "%d klaidų"
 
 #, c-format
 msgid "%d entry"
 msgid_plural "%d entries"
-msgstr[0] ""
-msgstr[1] ""
-msgstr[2] ""
+msgstr[0] "%d įrašas"
+msgstr[1] "%d įrašai"
+msgstr[2] "%d įrašo"
+msgstr[3] "%d įrašų"
 
 msgid " (unsaved)"
 msgstr " (neišsaugota)"
 
 msgid " (modified)"
 msgstr " (pakeista)"
-
-msgid "Go"
-msgstr "Pirmyn"
 
 #, c-format
 msgid "Failed to update translation memory: %s"
@@ -785,72 +706,16 @@ msgstr "Palikti"
 msgid "Purge"
 msgstr "Išvalyti"
 
-msgid "Fill missing translations from TM"
-msgstr ""
-
-msgid "Only fill in exact matches"
-msgstr ""
-
-msgid ""
-"By default, inaccurate results are filled in as well and marked as fuzzy. "
-"Check this option to only include accurate matches."
-msgstr ""
-
-msgid "Don’t mark exact matches as fuzzy"
-msgstr ""
-
-msgid ""
-"Only enable if you trust the quality of your TM. By default, all matches "
-"from the TM are marked as fuzzy and should be reviewed."
-msgstr ""
-
-msgid "Fill"
-msgstr "Užpildyti"
-
-#, c-format
-msgid "%d entry was filled from the translation memory."
-msgid_plural "%d entries were filled from the translation memory."
-msgstr[0] "%d įrašas buvo užpildytas vertimu iš vertimų atminties."
-msgstr[1] "%d įrašai buvo užpildyti vertimu iš vertimų atminties."
-msgstr[2] "%d įrašų buvo užpildyta vertimu iš vertimų atminties."
-
-msgid ""
-"The translations were marked as fuzzy, because they may be inaccurate. You "
-"should review them for correctness."
-msgstr ""
-"Vertimai buvo pažymėti kaip neaiškūs, nes jie gali būti netikslūs. "
-"Turėtumėte juos peržiūrėti."
-
-msgid "No entries could be filled from the translation memory."
-msgstr "Nebuvo ką pridėti iš vertimų atminties."
-
-msgid ""
-"The TM doesn’t contain any strings similar to the content of this file. It "
-"is only effective for semi-automatic translations after Poedit learns enough "
-"from files that you translated manually."
-msgstr ""
-"Vertimo atmintyje nėra eilučių panašių į šio failo turinį. Tai efektyvu tik "
-"pusiau automatiniam vertimui, kai Poedit pakankamai išmoks iš jūsų rankiniu "
-"būdu verstų failų."
-
-msgid "Translating"
-msgstr "Verčiama"
-
-msgid "Filling missing translations from TM..."
-msgstr "Vertimais užpildomi trūkstami vertimai iš vertimų atminties..."
-
-#, c-format
-msgid "Translated %u string"
-msgid_plural "Translated %u strings"
-msgstr[0] ""
-msgstr[1] ""
-msgstr[2] ""
-
 msgid "Copy from source text"
-msgstr "Kopijuoti iš išeities tekstų"
+msgstr "Kopijuoti iš pradinių tekstų"
 
 msgid "Copy from Source Text"
-msgstr "Kopijuoti iš išeities tekstų"
+msgstr "Kopijuoti iš pradinių tekstų"
+
+#. TRANSLATORS: This is the key shortcut used in menus on Windows, some languages call them differently
+#. TRANSLATORS: Keyboard shortcut for display in Windows menus
+msgid "Ctrl+"
+msgstr "Ctrl+"
 
 msgid "Clear translation"
 msgstr "Valyti vertimą"
@@ -859,13 +724,91 @@ msgid "Clear Translation"
 msgstr "Valyti vertimą"
 
 msgid "Edit comment"
-msgstr "Keisti komentarą"
+msgstr "Redaguoti komentarą"
 
 msgid "Edit Comment"
-msgstr "Keisti komentarą"
+msgstr "Redaguoti komentarą"
 
 msgid "References:"
 msgstr "Nuorodos:"
+
+msgid "&Bookmarks"
+msgstr "Ž&ymės"
+
+#. TRANSLATORS: This is the key shortcut used in menus on Windows, some languages call them differently
+#. TRANSLATORS: Keyboard shortcut for display in Windows menus
+msgid "Alt+"
+msgstr "Alt+"
+
+#, c-format
+msgid "Set bookmark %i"
+msgstr "Nustatyti žymę %i"
+
+#, c-format
+msgid "Go to bookmark %i"
+msgstr "Pereiti į žymę %i"
+
+#, c-format
+msgid "Set Bookmark %i"
+msgstr "Nustatyti žymę %i"
+
+#, c-format
+msgid "Go to Bookmark %i"
+msgstr "Pereiti į žymę %i"
+
+msgid "Hide Sidebar"
+msgstr "Slėpti šoninę juostą"
+
+msgid "Show Sidebar"
+msgstr "Rodyti šoninę juostą"
+
+msgid "Hide Status Bar"
+msgstr "Slėpti būsenos juostą"
+
+msgid "Show Status Bar"
+msgstr "Rodyti būsenos juostą"
+
+msgid "Source text:"
+msgstr "Pradinis tekstas:"
+
+msgid "Singular:"
+msgstr "Vienaskaita:"
+
+msgid "Plural:"
+msgstr "Daugiskaita:"
+
+msgid "Translation:"
+msgstr "Vertimas:"
+
+msgid "Pre-translated"
+msgstr "Išversta preliminariai"
+
+msgid "Needs Work"
+msgstr "Būtina peržiūrėti"
+
+#. TRANSLATORS: This indicates that the string's translation isn't final
+#. and has known problems.  For example, it might be machine translated or
+#. fuzzy matched from an older string. The translation should be short and
+#. convey this. If it's problematic to translate it, "Needs review" is
+#. acceptable substitute, but note that the meaning is subtly different:
+#. "needs review" implies that somebody else should review the string after
+#. I am done with it (i.e. consider it good), while "needs work" implies I
+#. need to return to it and finish the translation.
+msgid "Needs work"
+msgstr "Būtina peržiūrėti"
+
+msgid ""
+"POT files are only templates and don’t contain any translations themselves.\n"
+"To make a translation, create a new PO file based on the template."
+msgstr ""
+"POT failai yra tik šablonai ir savyje neturi jokių vertimų.\n"
+"Norėdami atlikti vertimą, sukurkite naują PO failą pagal šabloną."
+
+msgid "Create New Translation"
+msgstr "Sukurti naują vertimą"
+
+msgid "Create new translation"
+msgstr "Sukurti naują vertimą"
 
 msgid "Everything"
 msgstr "Viskas"
@@ -873,6 +816,10 @@ msgstr "Viskas"
 #, c-format
 msgid "Form %i"
 msgstr "Forma %i"
+
+#, c-format
+msgid "Form %i (unused)"
+msgstr "Forma %i (nenaudojama)"
 
 msgid "Singular"
 msgstr "Vienaskaita"
@@ -892,74 +839,53 @@ msgstr "Daugiskaita"
 msgid "Other"
 msgstr "Kita"
 
-msgid "&Bookmarks"
-msgstr "Ž&ymelės"
-
 #, c-format
-msgid "Set bookmark %i"
-msgstr ""
+msgid "%s Format"
+msgstr "%s Formatas"
 
+#. TRANSLATORS: %s is replaced with language name, e.g. "PHP" or "C", so "PHP Format" etc."
 #, c-format
-msgid "Go to bookmark %i"
-msgstr ""
-
-#, c-format
-msgid "Set Bookmark %i"
-msgstr ""
-
-#, c-format
-msgid "Go to Bookmark %i"
-msgstr ""
-
-msgid "Hide Sidebar"
-msgstr ""
-
-msgid "Show Sidebar"
-msgstr ""
-
-msgid "Hide Status Bar"
-msgstr ""
-
-msgid "Show Status Bar"
-msgstr ""
+msgid "%s format"
+msgstr "%s formatas"
 
 msgid "Source text"
-msgstr "Išeities tekstas"
+msgstr "Pradinis tekstas"
 
-msgid "Translation"
-msgstr "Vertimas"
+#, c-format
+msgid "Translation — %s"
+msgstr "Vertimas - %s"
 
 msgid "ID"
 msgstr "ID"
 
 #, c-format
 msgid "Source text — %s"
-msgstr "Šaltinio tekstas — %s"
+msgstr "Pradinis tekstas — %s"
 
 msgid "unknown language"
 msgstr "nežinoma kalba"
 
 #, c-format
-msgid "Translation — %s"
-msgstr "Vertimas - %s"
+msgid "Failed command: %s"
+msgstr "Nepavykus komanda: %s"
 
-msgid "Error:"
-msgstr "Klaida:"
+msgid "Failed to merge gettext catalogs."
+msgstr "Nepavyko sujungti „gettext“ katalogų."
 
 msgid "Source file"
-msgstr "Išeities failas"
+msgstr "Pradinis failas"
 
 msgid "Source file occurrence:"
-msgstr "Išeities failas pasikartojimai:"
+msgstr "Pradinio failo pasikartojimai:"
 
 msgid "Open in Editor"
-msgstr "Atversti redaktoriuje"
+msgstr "Atverti redaktoriuje"
 
 msgid "Open in editor"
-msgstr "Atversti redaktoriuje"
+msgstr "Atverti redaktoriuje"
 
 msgid "No references for the selected item."
-msgstr ""
+msgstr "Nėra nuorodų į pasirinktą elementą."
 
 #, c-format
 msgid "Error opening file %s!"
@@ -976,16 +902,16 @@ msgid "Options"
 msgstr "Parinktys"
 
 msgid "Ignore case"
-msgstr ""
+msgstr "Nepaisyti raidžių dydžio"
 
 msgid "Wrap around"
-msgstr "Nekelti teksto aplink"
+msgstr "Ieškoti ratu"
 
 msgid "Whole words only"
 msgstr "Tik pilnus žodžius"
 
 msgid "Find in source texts"
-msgstr ""
+msgstr "Ieškoti pradiniuose tekstuose"
 
 msgid "Find in translations"
 msgstr "Ieškoti vertime"
@@ -996,23 +922,26 @@ msgstr "Ieškoti komentaruose"
 msgid "Close"
 msgstr "Užverti"
 
-msgid "Replace All"
-msgstr "Pakeisti viską"
+msgid "Replace &All"
+msgstr "Pakeisti &viską"
 
-msgid "Replace all"
-msgstr "Pakeisti viską"
+msgid "Replace &all"
+msgstr "Pakeisti &viską"
+
+msgid "&Replace"
+msgstr "&Pakeisti"
 
 msgid "< &Previous"
-msgstr "< &Ansktesnis"
+msgstr "< &Ankstesnis"
 
 msgid "&Next >"
-msgstr "&Sekantis >"
+msgstr "&Kitas >"
 
 msgid "String to find"
 msgstr "Ieškoma eilutė"
 
 msgid "Replacement string"
-msgstr ""
+msgstr "Pakeitimo eilutė"
 
 #, c-format
 msgid "Cannot execute program: %s"
@@ -1028,7 +957,7 @@ msgid "Language of the translation:"
 msgstr "Vertimo kalba:"
 
 msgid "Poedit - Catalogs manager"
-msgstr "Poedit - katalogų tvarkyklė"
+msgstr "„Poedit“ - katalogų tvarkyklė"
 
 msgid "Catalog"
 msgstr "Katalogas"
@@ -1039,11 +968,8 @@ msgstr "Iš viso"
 msgid "Untrans"
 msgstr "Neverstos"
 
-msgid "Fuzzy"
-msgstr "Neaiškus"
-
-msgid "Bad Tokens"
-msgstr "Netaisyklingi skirtukai"
+msgid "Errors"
+msgstr "Klaidos"
 
 msgid "Last modified"
 msgstr "Paskutinis pakeitimas"
@@ -1089,9 +1015,11 @@ msgid ""
 "Your name and email address are only used to set the Last-Translator header "
 "of GNU gettext files."
 msgstr ""
+"Jūsų el. pašto adresas ir vardas bus naudojami tik paskutinio vertėjo "
+"nurodymui „GNU gettext“ failų antraštėse."
 
 msgid "Editing"
-msgstr "Keitimas"
+msgstr "Taisymas"
 
 msgid "Automatically compile MO file when saving"
 msgstr "Automatiškai kompiliuoti MO failą išsaugant"
@@ -1100,7 +1028,7 @@ msgid "Show summary after catalog update"
 msgstr "Atnaujinus katalogą, rodyti suvestinę"
 
 msgid "Check spelling"
-msgstr "Tikrinti _rašybą"
+msgstr "Tikrinti rašybą"
 
 msgid "Always change focus to text input field"
 msgstr "Visada aktyvuoti teksto įvedimo lauką"
@@ -1118,46 +1046,49 @@ msgid "Appearance"
 msgstr "Išvaizda"
 
 msgid "Use custom list font:"
-msgstr ""
+msgstr "Sąrašui naudoti savo šriftą:"
 
 msgid "Use custom text fields font:"
-msgstr ""
+msgstr "Įvedimo laukams naudoti savo šriftą:"
 
 msgid "Change UI language"
 msgstr "Keisti programos kalbą"
 
 #. TRANSLATORS: This is a note appended to "Check spelling" when running on older Windows versions
 msgid "(requires Windows 8 or newer)"
-msgstr ""
+msgstr "(būtina Windows 8 arba naujesnė versija)"
 
 msgid "General"
 msgstr "Bendra"
 
 msgid "Use translation memory"
-msgstr "Naudoti vertimo atminties pasiūlymus"
+msgstr "Naudoti vertimų atminties pasiūlymus"
 
-msgid "Learn From Files..."
-msgstr "Mokytis iš failų..."
+msgid "Manage…"
+msgstr "Tvarkyti…"
 
-msgid "Learn from files..."
-msgstr ""
+#. TRANSLATORS: Followed by "match translations within the file" or "pre-translate from TM"
+msgid "When updating from sources"
+msgstr "Atnaujinant iš šaltinių"
 
-#. TRANSLATORS: This is a button that deletes everything in the translation memory (i.e. clears/resets it).
-msgid "Reset"
-msgstr "Iš naujo"
+#. TRANSLATORS: Preceded by "When updating from sources"
+msgid "fuzzy match within the file"
+msgstr "parinkti panašų vertimą iš paties failo"
 
-msgid "Consult TM when updating from sources"
-msgstr "Atnaujinant iš šaltinių tikrininti vertimų atmintyje"
+#. TRANSLATORS: Preceded by "When updating from sources"
+msgid "pre-translate from TM"
+msgstr "versti preliminariai iš VA"
 
 msgid ""
-"If enabled, Poedit will try to fill in new entries using your previous\n"
-"translations stored in the translation memory. If the TM is\n"
-"near-empty, it will not be very effective. The more translations\n"
-"you edit and the larger the TM grows, the better it gets."
+"Poedit can attempt to fill in new entries from only previous translations in "
+"the file or from your entire translation memory. Using the TM won’t be very "
+"effective if it’s near-empty, but it will get better as you add more "
+"translations to it."
 msgstr ""
-"Jei įjungta, Poedit pabandys užpildyti naujus įrašus senais iš\n"
-"vertimo atminties. Jei vertimo atmintis negausi iš to bus maža\n"
-"naudos. Kuo daugiau verčiate, tuo greičiau auga vertimų atmintis."
+"„Poedit“ gali bandyti užpildyti naujus įrašus tik iš ankstesnių šio failo "
+"vertimų arba iš visos jūsų vertimų atminties. VA naudojimas nebus labai "
+"efektyvus jei ji bus beveik tuščia, bet jis taps vis efektyvesnis kai tik "
+"pridėsite daugiau vertimų į ją."
 
 msgid "Stored translations:"
 msgstr "Išsaugoti vertimai:"
@@ -1165,33 +1096,80 @@ msgstr "Išsaugoti vertimai:"
 msgid "Database size on disk:"
 msgstr "Duomenų bazės dydis diske:"
 
+msgid "Import Translation Files…"
+msgstr "Importuoti vertimų failus…"
+
+msgid "Import translation files…"
+msgstr "Importuoti vertimų failus…"
+
+msgid "Import From TMX…"
+msgstr "Importuoti iš TMX…"
+
+msgid "Import from TMX…"
+msgstr "Importuoti iš TMX…"
+
+msgid "Export To TMX…"
+msgstr "Eksportuoti į TMX…"
+
+msgid "Export to TMX…"
+msgstr "Eksportuoti į TMX…"
+
+#. TRANSLATORS: This is a button that deletes everything in the translation memory (i.e. clears/resets it).
+msgid "Reset"
+msgstr "Iš naujo"
+
 msgid "Select translation files to import"
 msgstr "Pasirinkite kokius vertimo failus importuosite"
 
 msgid "Translation Memory"
-msgstr "Vertimo atmintis"
+msgstr "Vertimų atmintis"
 
-msgid "Importing translations..."
-msgstr "Importuojamai vertimai..."
+msgid "Importing translations…"
+msgstr "Importuojami vertimai…"
 
-msgid "Finalizing..."
-msgstr "Užbaigiama..."
+msgid "Finalizing…"
+msgstr "Užbaigiama…"
+
+msgid "Select TMX files to import"
+msgstr "Pasirinkite kokius TMX importuosite"
+
+msgid "TMX Files"
+msgstr "TMX failai"
+
+#, c-format
+msgid "Importing translation memory from “%s” failed."
+msgstr "Vertimų atminties importas iš „%s“ nepavyko."
+
+msgid "Import error"
+msgstr "Importavimo klaida"
+
+msgid "Exporting translations…"
+msgstr "Eksportuojami vertimai…"
+
+#, c-format
+msgid "Exporting translation memory to “%s” failed."
+msgstr "Vertimų atminties eksportas į „%s“ nepavyko."
+
+msgid "Export error"
+msgstr "Eksporto klaida"
 
 msgid "Reset translation memory"
-msgstr ""
+msgstr "Atkurti vertimų atmintį"
 
 msgid "Are you sure you want to reset the translation memory?"
-msgstr ""
+msgstr "Ar tikrai norite atkurti vertimų atmintį?"
 
 msgid ""
 "Resetting the translation memory will irrevocably delete all stored "
 "translations from it. You can’t undo this operation."
 msgstr ""
+"Vertimų atminties atkūrimas negrįžtamai panaikins visus saugomus vertimus iš "
+"jos. Negalėsite atšaukti šios operacijos."
 
 msgid "Cancel"
 msgstr "Atsisakyti"
 
-#. TRANSLATORS: This is abbreviation of "Translation Memory" used in Preferences on OS X.
+#. TRANSLATORS: This is abbreviation of "Translation Memory" used in Preferences on macOS.
 #. Long text looks weird there, too short (like TM) too, but less so. "General" is about ideal
 #. length there.
 msgid "TM"
@@ -1201,28 +1179,43 @@ msgid ""
 "Source code extractors are used to find translatable strings in the source "
 "code files and extract them so that they can be translated."
 msgstr ""
+"Pradinio teksto ištraukėjai naudojami verstinų eilučių suradimui pradiniuose "
+"failuose bei išgavimui taip, kad jas būtų galima išversti."
 
-msgid "New"
-msgstr "Naujas"
+msgid "Custom Extractors:"
+msgstr "Savi ištraukėjai:"
 
-msgid "Edit"
-msgstr "Keisti"
+msgid "Custom extractors:"
+msgstr "Savi ištraukėjai:"
+
+msgid "Edit…"
+msgstr "Redaguoti…"
+
+msgid "GNU gettext"
+msgstr "„GNU gettext“"
+
+msgid ""
+"Supports all programming languages recognized by GNU gettext tools (PHP, C/C+"
+"+, C#, Perl, Python, Java, JavaScript and others)."
+msgstr ""
+"Palaiko visas programavimo kalbas, kurias atpažįsta „GNU gettext“ įrankiai "
+"(PHP, C/C++, C#, Perl, Python, Java, JavaScript ir kitas)."
 
 msgid "Delete extractor"
-msgstr ""
+msgstr "Pašalinti ištraukėją"
 
 #, c-format
 msgid "Are you sure you want to delete the “%s” extractor?"
-msgstr ""
+msgstr "Ar tikrai norite pašalinti „%s“ ištraukėją?"
 
 msgid "Extractors"
-msgstr ""
+msgstr "Ištraukėjai"
 
 msgid "Accounts"
 msgstr "Paskyros"
 
 msgid "Automatically check for updates"
-msgstr ""
+msgstr "Automatiškai tikrinti, ar yra atnaujinimų"
 
 msgid "Include beta versions"
 msgstr "Įtraukti beta versijas"
@@ -1231,6 +1224,8 @@ msgid ""
 "Beta versions contain the latest new features and improvements, but may be a "
 "bit less stable."
 msgstr ""
+"Beta versijos turi naujausias funkcijas ir patobulinimus, bet gali būti šiek "
+"tiek mažiau stabilios."
 
 msgid "Updates"
 msgstr "Atnaujinimai"
@@ -1239,9 +1234,11 @@ msgid ""
 "These settings affect internal formatting of PO files. Adjust them if you "
 "have specific requirements e.g. because of version control."
 msgstr ""
+"Šie parametrai turi įtakos vidiniam PO failų formatavimui. Koreguokite juos, "
+"jei turite specifinių reikalavimų, pvz., dėl versijų valdymo."
 
 msgid "Line endings:"
-msgstr ""
+msgstr "Eilučių pabaigos:"
 
 msgid "Unix (recommended)"
 msgstr "Unix (rekomenduojama)"
@@ -1251,60 +1248,159 @@ msgstr "Windows"
 
 #. TRANSLATORS: Followed by text control for entering number; wraps text at given width
 msgid "Wrap at:"
-msgstr ""
+msgstr "Kelti:"
 
 msgid "Preserve formatting of existing files"
-msgstr ""
+msgstr "Išlaikyti esamą failų formatavimą"
 
 msgid "Advanced"
-msgstr ""
+msgstr "Papildomai"
 
-#. TRANSLATORS: Title of the preferences window on Windows and Linux. "%s" is replaced with "Poedit" when running.
+msgid "Pre-translating…"
+msgstr "Verčiama preliminariai…"
+
 #, c-format
-msgid "%s Preferences"
+msgid "Pre-translated %u string"
+msgid_plural "Pre-translated %u strings"
+msgstr[0] "Preliminariai išversta %u eilutė"
+msgstr[1] "Preliminariai išverstos %u eilutės"
+msgstr[2] "Preliminariai išversta %u eilutės"
+msgstr[3] "Preliminariai išversta %u eilučių"
+
+#. TRANSLATORS: This is a somewhat common term describing the action where
+#. you apply the translation memory and/or machine translation to all of the
+#. strings you're translating as the first step, followed by correcting,
+#. improving etc., i.e. actually translating the strings. This may be tricky
+#. to express in other languages as simply as in English, but please try to
+#. keep it similarly concise. Please try to avoid, if possible, describing it
+#. as "auto-translation" and similar, because such terminology would mislead
+#. some users into thinking it's all that needs to be done (spoken from
+#. experience). "Pre-translate" nicely expresses that it's only the step done
+#. *before* actual translation.
+msgid "Pre-translate"
+msgstr "Versti preliminariai"
+
+msgid "Only fill in exact matches"
+msgstr "Užpildyti tik jei pilnai atitinka"
+
+msgid ""
+"By default, inaccurate results are filled in as well and marked as needing "
+"work. Check this option to only include accurate matches."
 msgstr ""
+"Pagal numatytuosius nustatymus netikslūs rezultatai taip pat užpildomi ir "
+"pažymimi „Reikia peržiūrėti“ žyma. Įjunkite šią parinktį, kad įtrauktumėte "
+"tik tikslius atitikmenis."
+
+msgid "Don’t mark exact matches as needing work"
+msgstr "Nežymėti „Reikia peržiūrėti“ jei pilnai atitinka"
+
+msgid ""
+"Only enable if you trust the quality of your TM. By default, all matches "
+"from the TM are marked as needing work and should be reviewed before use."
+msgstr ""
+"Įjunkite tik, jei pasitikite savo VA kokybe. Pagal numatytuosius nustatymus "
+"visi VA pasiūlyti atitikmenys pažymimi „Reikia peržiūrėti“ žyma ir prieš "
+"naudojimą turi būti peržiūrėti."
+
+msgid ""
+"Pre-translation automatically finds exact or fuzzy matches for untranslated "
+"strings in the translation memory and fills in their translations."
+msgstr ""
+"Preliminarus vertimas randa tikslius arba panašius atitikmenis neišverstoms "
+"eilutėms vertimo atmintyje ir automatiškai užpildo jų vertimus."
+
+#, c-format
+msgid "%d entry was pre-translated."
+msgid_plural "%d entries were pre-translated."
+msgstr[0] "%d eilutė preliminariai išversta."
+msgstr[1] "%d eilutės preliminariai išverstos."
+msgstr[2] "%d eilutės preliminariai išversta."
+msgstr[3] "%d eilučių preliminariai išversta."
+
+msgid ""
+"The translations were marked as needing work, because they may be "
+"inaccurate. You should review them for correctness."
+msgstr ""
+"Vertimai buvo pažymėti kaip tobulintini, nes gali būti netikslūs. Turėtumėte "
+"peržiūrėti jų teisingumą."
+
+msgid "No entries could be pre-translated."
+msgstr "Nėra eilučių, kurias galima preliminariai išversti."
+
+msgid ""
+"The TM doesn’t contain any strings similar to the content of this file. It "
+"is only effective for semi-automatic translations after Poedit learns enough "
+"from files that you translated manually."
+msgstr ""
+"Vertimų atmintyje nėra eilučių panašių į šio failo turinį. Tai efektyvu tik "
+"pusiau automatiniam vertimui, kai „Poedit“ pakankamai išmoks iš jūsų "
+"rankiniu būdu verstų failų."
 
 msgid ""
 "<big>Drag and Drop Folders Here</big>\n"
 "\n"
 "or use the + button"
 msgstr ""
+"<big>Nutempkite čia aplankus</big>\n"
+"\n"
+"arba naudokite „+“ mygtuką"
 
 msgid ""
 "<big>Drag and drop folders here</big>\n"
 "\n"
 "or use the + button"
 msgstr ""
+"<big>Nutempkite čia aplankus</big>\n"
+"\n"
+"arba naudokite „+“ mygtuką"
 
-msgid "Add Folders..."
-msgstr "Pridėti aplankus..."
+msgid "Add Folders…"
+msgstr "Pridėti aplankus…"
 
-msgid "Add folders..."
-msgstr "Pridėti aplankus..."
+msgid "Add folders…"
+msgstr "Pridėti aplankus…"
 
-msgid "Add Files..."
-msgstr "Pridėti failus..."
+msgid "Add Files…"
+msgstr "Pridėti failus…"
 
-msgid "Add files..."
-msgstr "Pridėti failus..."
+msgid "Add files…"
+msgstr "Pridėti failus…"
 
-msgid "Add Wildcard..."
-msgstr ""
+msgid "Add Wildcard…"
+msgstr "Pridėti pakaitos simbolį…"
 
-msgid "Add wildcard..."
-msgstr ""
+msgid "Add wildcard…"
+msgstr "Pridėti pakaitos simbolį…"
 
 msgid "Paths"
 msgstr "Keliai"
 
 msgid "Excluded paths"
-msgstr ""
+msgstr "Ignoruojami keliai"
+
+msgid "Advanced extraction settings"
+msgstr "Išplėstiniai ištraukimo parametrai"
+
+msgid "Extract notes for translators from:"
+msgstr "Išgauti pastabas vertėjams iš:"
+
+msgid "Comments prefixed with:"
+msgstr "Komentarų su priešdėliu:"
+
+msgid "All comments"
+msgstr "Visų komentarų"
+
+msgid "Additional xgettext flags:"
+msgstr "Papildomos „xgettext“ žymos:"
 
 msgid "Additional keywords"
 msgstr "Papildomi raktažodžiai"
 
 msgid "Name of the project the translation is for"
 msgstr "Projekto vardas kuriam skirtas vertimas"
+
+msgid "Team name and email address or URL"
+msgstr "Komandos vardas ir el. pašto adresas arba URL"
 
 msgid "e.g. nplurals=2; plural=(n > 1);"
 msgstr "pvz. nplurals=2; plural=(n > 1);"
@@ -1314,8 +1410,48 @@ msgstr "UTF-8 (rekomenduojama)"
 
 msgid "Please save the file first. This section cannot be edited until then."
 msgstr ""
-"Prašom pirma išsaugoti failą. Kol neišsaugosite šio skyriaus bus negalima "
-"redaguoti."
+"Pirma išsaugokite failą. Šio skyriaus nebus galima redaguoti kol "
+"neišsaugosite."
+
+msgid "Not all plural forms are translated."
+msgstr "Ne visos daugiskaitos formos išverstos."
+
+msgid "The translation should start as a sentence."
+msgstr "Vertimas turėtų prasidėti kaip sakinys."
+
+msgid "The translation should start with a lowercase character."
+msgstr "Vertimas turėtų prasidėti mažąja raide."
+
+msgid "The translation doesn’t start with a space."
+msgstr "Vertimas neprasideda tarpo simboliu."
+
+msgid "The translation starts with a space, but the source text doesn’t."
+msgstr "Vertimas prasideda tarpo simboliu, bet pradiniame tekste taip nėra."
+
+msgid "The translation is missing a newline at the end."
+msgstr "Vertimo pabaigoje trūksta naujos eilutės simbolio."
+
+msgid "The translation ends with a newline, but the source text doesn’t."
+msgstr ""
+"Vertimas baigiasi naujos eilutės simboliu, bet pradiniame tekste taip nėra."
+
+msgid "The translation is missing a space at the end."
+msgstr "Vertimo pabaigoje trūksta tarpo simbolio."
+
+msgid "The translation ends with a space, but the source text doesn’t."
+msgstr "Vertimas baigiasi tarpo simboliu, bet pradiniame tekste taip nėra."
+
+#, c-format
+msgid "The translation should end with “%s”."
+msgstr "Vertimas turi baigtis „%s“."
+
+#, c-format
+msgid "The translation should not end with “%s”."
+msgstr "Vertimas neturi baigtis „%s“."
+
+#, c-format
+msgid "The translation ends with “%s”, but the source text ends with “%s”."
+msgstr "Vertimas baigiasi „%s“, o pradinis tekstas - „%s“."
 
 msgid "Comment:"
 msgstr "Komentaras:"
@@ -1329,11 +1465,17 @@ msgstr "Iš&valyti"
 msgid "Clear the comment"
 msgstr "Išvalyti komentarą"
 
+msgid "New"
+msgstr "Naujas"
+
 msgid "Create new translations project"
 msgstr "Sukurti naują vertimų projektą"
 
+msgid "Edit"
+msgstr "Redaguoti"
+
 msgid "Edit the project"
-msgstr "Keisti projektą"
+msgstr "Redaguoti projektą"
 
 msgid "Delete the project"
 msgstr "Pašalinti projektą"
@@ -1345,7 +1487,7 @@ msgid "Update all catalogs in the project"
 msgstr "Atnaujinti visus projekto katalogus"
 
 msgid "Edit project"
-msgstr "Keisti projektą"
+msgstr "Redaguoti projektą"
 
 msgid "Project name:"
 msgstr "Projekto pavadinimas:"
@@ -1356,50 +1498,50 @@ msgstr "Naršyti"
 msgid "Add directory to the list"
 msgstr "Į sąrašą pridėti aplanką"
 
-msgid "&New..."
-msgstr "&Naujas..."
+msgid "&New…"
+msgstr "&Naujas…"
 
-msgid "New from &POT/PO file..."
-msgstr "Naujas iš &POT/PO failo..."
+msgid "New from &POT/PO file…"
+msgstr "Naujas iš &POT/PO failo…"
 
-msgid "New From &POT/PO File..."
-msgstr "Naujas iš &POT/PO failo..."
+msgid "New From &POT/PO File…"
+msgstr "Naujas iš &POT/PO failo…"
 
-msgid "&Open..."
-msgstr "&Atversti..."
+msgid "&Open…"
+msgstr "&Atverti…"
 
 msgid "Open Recent"
-msgstr "Atversti paskutinį"
+msgstr "Atverti paskiausiai naudotą"
 
-msgid "Open from Crowdin..."
-msgstr "Atversti iš Crowdin..."
+msgid "Open from Crowdin…"
+msgstr "Atverti iš „Crowdin“…"
 
-msgid "Open From Crowdin..."
-msgstr "Atversti iš Crowdin..."
+msgid "Open From Crowdin…"
+msgstr "Atverti iš „Crowdin“…"
 
 msgid "&Close"
 msgstr "&Užverti"
 
 msgid "&Save"
-msgstr "&Išsaugoti"
+msgstr "Iš&saugoti"
 
-msgid "Save &as..."
-msgstr "Įrašyti &kaip..."
+msgid "Save &as…"
+msgstr "Išsaugoti k&aip…"
 
-msgid "Save &As..."
-msgstr "Įrašyti &kaip..."
+msgid "Save &As…"
+msgstr "Išsaugoti k&aip…"
 
-msgid "Compile to MO..."
-msgstr "Kompiliuoti į MO..."
+msgid "Compile to MO…"
+msgstr "Kompiliuoti į MO…"
 
-msgid "E&xport as HTML..."
-msgstr "E&kportuoti kaip HTML..."
+msgid "E&xport as HTML…"
+msgstr "E&ksportuoti kaip HTML…"
 
-msgid "Check for updates..."
-msgstr "Tikrinti, ar yra atnaujinimų..."
+msgid "Check for updates…"
+msgstr "Tikrinti, ar yra atnaujinimų…"
 
-msgid "&Preferences..."
-msgstr "&Nustatymai..."
+msgid "&Preferences…"
+msgstr "&Nustatymai…"
 
 msgid "Catalogs &manager"
 msgstr "Katalogų &tvarkyklė"
@@ -1414,37 +1556,31 @@ msgid "Quit"
 msgstr "Baigti darbą"
 
 msgid "Copy from singular"
-msgstr ""
+msgstr "Kopijuoti iš vienaskaitos"
 
 msgid "Copy From Singular"
-msgstr ""
+msgstr "Kopijuoti iš vienaskaitos"
 
-msgid "Translation is &fuzzy"
-msgstr "&Neaiškus vertimas"
+msgid "Translation needs &work"
+msgstr "Vertimą būtina tobulinti"
 
-msgid "Translation Is &Fuzzy"
-msgstr "&Neaiškus vertimas"
+msgid "Translation Needs &Work"
+msgstr "Vertimą būtina tobulinti"
 
 msgid "Edit &comment"
-msgstr "&Keisti komentarą"
+msgstr "Redaguoti &komentarą"
 
 msgid "Edit &Comment"
-msgstr "Keisti &komentarą"
+msgstr "Redaguoti &komentarą"
 
 msgid "Suggestions"
 msgstr "Pasiūlymai"
 
-msgid "&Show references"
-msgstr "&Rodyti nuorodas"
+msgid "&Find…"
+msgstr "&Rasti…"
 
-msgid "&Show References"
-msgstr "&Rodyti nuorodas"
-
-msgid "&Find..."
-msgstr "&Ieškoti..."
-
-msgid "Replace..."
-msgstr "Pakeisti..."
+msgid "Replace…"
+msgstr "Sukeisti…"
 
 msgid "Find next"
 msgstr "Surasti kitą"
@@ -1452,8 +1588,8 @@ msgstr "Surasti kitą"
 msgid "Find previous"
 msgstr "Surasti ankstesnį"
 
-msgid "Find and Replace..."
-msgstr ""
+msgid "Find and Replace…"
+msgstr "Rasti ir pakeisti…"
 
 msgid "Find Next"
 msgstr "Surasti kitą"
@@ -1464,41 +1600,47 @@ msgstr "Surasti ankstesnį"
 msgid "&Preferences"
 msgstr "&Nustatymai"
 
-msgid "Display entry &IDs"
-msgstr "Rodyti įrašų &identifikatorius"
+msgid "Show string &ID"
+msgstr "Rodyti eilutės &ID"
 
-msgid "Display Entry &IDs"
-msgstr "Rodyti įrašų &identifikatorius"
+msgid "Show String &ID"
+msgstr "Rodyti eilutės &ID"
+
+msgid "Show warnings"
+msgstr "Rodyti įspėjimus"
+
+msgid "Show Warnings"
+msgstr "Rodyti įspėjimus"
 
 msgid "Sort by &file order"
-msgstr "Rikiuoti pagal &failų eilę"
+msgstr "Rikiuoti pagal eiliškumą &faile"
 
 msgid "Sort by &File Order"
-msgstr "Rikiuoti pagal &Failų eilę"
+msgstr "Rikiuoti pagal eiliškumą &faile"
 
 msgid "Sort by &source"
-msgstr "Rikiuoti pagal &šaltinį"
+msgstr "Rikiuoti pagal „&Pradinis tekstas“"
 
 msgid "Sort by &Source"
-msgstr "Rikiuoti pagal &Šaltinį"
+msgstr "Rikiuoti pagal „&Pradinis tekstas“"
 
 msgid "Sort by &translation"
-msgstr "Rikiuoti pagal &vertimą"
+msgstr "Rikiuoti pagal „&Vertimas“"
 
 msgid "Sort by &Translation"
-msgstr "Rikiuoti pagal &vertimą"
+msgstr "Rikiuoti pagal „&Vertimas“"
 
 msgid "&Group by context"
-msgstr ""
+msgstr "&Grupuoti pagal kontekstą"
 
 msgid "&Group By Context"
-msgstr ""
+msgstr "&Grupuoti pagal kontekstą"
 
 msgid "Entries with errors first"
-msgstr ""
+msgstr "Iš pradžių, įrašai su klaidomis"
 
 msgid "Entries with Errors First"
-msgstr ""
+msgstr "Iš pradžių, įrašai su klaidomis"
 
 msgid "&Untranslated entries first"
 msgstr "&Pirmiausia neišversti įrašai"
@@ -1506,35 +1648,38 @@ msgstr "&Pirmiausia neišversti įrašai"
 msgid "&Untranslated Entries First"
 msgstr "&Pirmiausia neišversti įrašai"
 
+msgid "&Show references"
+msgstr "&Rodyti nuorodas"
+
+msgid "&Show References"
+msgstr "&Rodyti nuorodas"
+
 msgid "Show sidebar"
-msgstr ""
+msgstr "Rodyti šoninę juostą"
 
 msgid "Show status bar"
-msgstr ""
+msgstr "Rodyti būsenos juostą"
 
 msgid "C&atalog"
 msgstr "K&atalogas"
 
-msgid "&Update from sources"
-msgstr "&Atnaujinti iš išeities tekstų"
+msgid "&Update from source code"
+msgstr "Atna&ujinti iš pradinių tekstų"
 
-msgid "&Update from Sources"
-msgstr "&Atnaujinti iš išeities tekstų"
+msgid "&Update from Source Code"
+msgstr "Atna&ujinti iš pradinių tekstų"
 
-msgid "Update from &POT file..."
-msgstr "Atnaujinti iš &POT failo..."
+msgid "Update from &POT file…"
+msgstr "Atnaujinti iš &POT failo…"
 
-msgid "Update from &POT File..."
-msgstr "Atnaujinti iš &POT failo..."
+msgid "Update from &POT File…"
+msgstr "Atnaujinti iš &POT failo…"
 
 msgid "Sync with Crowdin"
-msgstr "Sinchronizuoti su Crowdin"
+msgstr "Sinchronizuoti su „Crowdin“"
 
-msgid "Fill missing translations from &TM..."
-msgstr ""
-
-msgid "Fill Missing Translations from &TM..."
-msgstr ""
+msgid "Pre-&translate…"
+msgstr "Vers&ti preliminariai…"
 
 msgid "&Purge deleted translations"
 msgstr "&Pašalinti ištrintus vertimus"
@@ -1543,13 +1688,13 @@ msgid "&Purge Deleted Translations"
 msgstr "&Pašalinti ištrintus vertimus"
 
 msgid "&Validate translations"
-msgstr "&Tvirtinti vertimą"
+msgstr "Pa&tikrinti vertimą"
 
 msgid "&Validate Translations"
-msgstr "&Tvirtinti vertimą"
+msgstr "Pa&tikrinti vertimą"
 
-msgid "&Properties..."
-msgstr "&Savybės..."
+msgid "&Properties…"
+msgstr "&Savybės…"
 
 msgid "&Done and next"
 msgstr "&Atlikta ir toliau"
@@ -1564,10 +1709,10 @@ msgid "&Previous Translation"
 msgstr "&Ankstesnis vertimas"
 
 msgid "&Next translation"
-msgstr ""
+msgstr "&Kitas vertimas"
 
 msgid "&Next Translation"
-msgstr ""
+msgstr "&Kitas vertimas"
 
 msgid "P&revious unfinished"
 msgstr "&Ankstesnis nebaigtas"
@@ -1582,37 +1727,37 @@ msgid "Ne&xt Unfinished"
 msgstr "&Kitas nebaigtas"
 
 msgid "Previous plural form"
-msgstr ""
+msgstr "Ankstesnė daugiskaitos forma"
 
 msgid "Previous Plural Form"
-msgstr ""
+msgstr "Ankstesnė daugiskaitos forma"
 
 msgid "Next plural form"
-msgstr ""
+msgstr "Kita daugiskaitos forma"
 
 msgid "Next Plural Form"
-msgstr ""
+msgstr "Kita daugiskaitos forma"
 
 msgid "&Online help"
-msgstr "&Pagalba internete"
+msgstr "&Žinynas internete"
 
 msgid "&Online Help"
-msgstr "&Pagalba internete"
+msgstr "&Žinynas internete"
 
 msgid "&GNU gettext manual"
-msgstr "&GNU gettext žinynas"
+msgstr "„&GNU gettext“ vadovas"
 
 msgid "&GNU gettext Manual"
-msgstr "&GNU Gettext žinynas"
+msgstr "„&GNU gettext“ vadovas"
 
 msgid "&About Poedit"
-msgstr "&Apie Poedit"
+msgstr "&Apie „Poedit“"
 
 msgid "&About"
 msgstr "&Apie"
 
 msgid "Extractor setup"
-msgstr ""
+msgstr "Ištraukėjo nuostatos"
 
 msgid "List of extensions separated by semicolons (e.g. *.cpp;*.h):"
 msgstr "Plėtinių, atskirtų kabliataškiais, sąrašas (pvz., *.cpp;*.h):"
@@ -1621,7 +1766,7 @@ msgid "Invocation:"
 msgstr "Iškvietimas:"
 
 msgid "Command to extract translations:"
-msgstr ""
+msgstr "Vertimų išgavimo komanda:"
 
 msgid ""
 "This is the command used to launch the extractor.\n"
@@ -1629,6 +1774,10 @@ msgid ""
 "of keywords, %F to list of input files,\n"
 "%C to charset flag (see below)."
 msgstr ""
+"Tai yra komanda, paleidžianti pradinio teksto ištraukėją.\n"
+"%o bus pakeistas išvesties failo pavadinimu, %K raktažodžių\n"
+"sąrašu, %F įvesties failų sąrašu, \n"
+"%C koduotės žymomis (žiūrėti aukščiau)."
 
 msgid "An item in keywords list:"
 msgstr "Elementas raktažodžių sąraše:"
@@ -1652,7 +1801,7 @@ msgstr ""
 "kiekvienam duomenų failui. %f išplės į failo pavadinimą."
 
 msgid "Source code charset:"
-msgstr "Išeities tekstų koduotė:"
+msgstr "Pradinių tekstų koduotė:"
 
 #, c-format
 msgid ""
@@ -1668,51 +1817,69 @@ msgstr "Katalogo savybės"
 msgid "Project name and version:"
 msgstr "Projekto pavadinimas ir versija:"
 
-msgid "Plural Forms:"
+msgid "Language team:"
+msgstr "Vertėjų komanda:"
+
+msgid "Plural forms:"
 msgstr "Daugiskaitos formos:"
 
 msgid "Use default rules for this language"
 msgstr "Šiai kalbai naudoti numatytąsias taisykles"
 
 msgid "Use custom expression"
-msgstr "Naudoti pasirinktines išraiškas"
+msgstr "Naudoti savo išraišką"
 
 msgid "Learn about plural forms"
-msgstr "Sužinkokite apie daugiskaitos formas"
+msgstr "Sužinokite apie daugiskaitos formas"
 
 msgid "Charset:"
 msgstr "Koduotė:"
 
-msgid "Team:"
-msgstr "Komanda:"
+msgid "Advanced Extraction Settings…"
+msgstr "Išplėstiniai ištraukimo parametrai…"
 
-msgid "Team's email address:"
-msgstr "Komandos el. paštas:"
+msgid "Advanced extraction settings…"
+msgstr "Išplėstiniai ištraukimo parametrai…"
+
+msgid "Translation Properties"
+msgstr "Vertimo savybės"
 
 msgid "Translation properties"
 msgstr "Vertimo savybės"
 
+msgid "Sources Paths"
+msgstr "Pradinių failų keliai"
+
 msgid "Sources paths"
-msgstr "Išeities failų keliai"
+msgstr "Pradinių failų keliai"
 
 msgid "Extract text from source files in the following directories:"
-msgstr "Eksportuoti tekstą iš išeities failų esančių šiuose aplankaluose:"
+msgstr "Išgauti tekstą iš pradinių failų esančių šiuose aplankaluose:"
 
 msgid "Base path:"
 msgstr "Pagrindinis kelias:"
 
+msgid "Sources Keywords"
+msgstr "Pradinių failų raktažodžiai"
+
 msgid "Sources keywords"
-msgstr "Išeities failų raktažodžiai"
+msgstr "Pradinių failų raktažodžiai"
 
 msgid ""
 "Use these keywords (function names) to recognize translatable strings\n"
 "in source files:"
 msgstr ""
 "Be standartinių, naudokite šiuos raktažodžius (funkcijų pavadinimus),\n"
-"verstinų išeities tekstuose eilučių atpažinimui:"
+"verstinų eilučių atpažinimui pradiniuose tekstuose:"
+
+msgid "Also use default keywords for supported languages"
+msgstr "Taip pat palaikomoms kalboms naudoti numatytuosius raktažodžius"
+
+msgid "Learn About Gettext Keywords"
+msgstr "Sužinokite daugiau apie „Gettext“ raktažodžius"
 
 msgid "Learn about gettext keywords"
-msgstr "Sužinokite daugiau apie gettext raktažodžius"
+msgstr "Sužinokite daugiau apie „gettext“ raktažodžius"
 
 msgid "Update summary"
 msgstr "Atnaujinti santrauką"
@@ -1721,8 +1888,9 @@ msgid ""
 "These strings were found in the sources but were not in the catalog.\n"
 "Poedit will add them to the catalog now."
 msgstr ""
-"Šios eilutės buvo rastos išeities tekstuose, tačiau neįtrauktos į katalogą.\n"
-"Dabar Poedit jas įtrauks į katalogą."
+"Šios eilutės buvo rastos pradiniuose tekstuose, tačiau neįtrauktos į "
+"katalogą.\n"
+"„Poedit“ dabar jas įtrauks į katalogą."
 
 msgid "New strings"
 msgstr "Naujos eilutės"
@@ -1731,8 +1899,8 @@ msgid ""
 "These strings are no longer in the sources.\n"
 "Poedit will remove them from the catalog now."
 msgstr ""
-"Šių eilučių išeities tekstuose nebeliko.\n"
-"Dabar Poedit jas ištrins iš katalogo."
+"Šių eilučių nebeliko pradiniuose tekstuose.\n"
+"„Poedit“ dabar jas pašalins iš katalogo."
 
 msgid "Obsolete strings"
 msgstr "Seni žodžiai"
@@ -1747,31 +1915,36 @@ msgid "Save catalog"
 msgstr "Išsaugoti katalogą"
 
 msgid "Validate"
-msgstr "Patvirtinti"
+msgstr "Patikrinti"
 
 msgid "Check for errors in the translation"
 msgstr "Tikrinti ar nėra vertimo klaidų"
 
-msgid "Update"
-msgstr "Atnaujinti"
+msgid "Update from code"
+msgstr "Atnaujinti iš pradinių tekstų"
+
+msgid "Update from Code"
+msgstr "Atnaujinti iš pradinių tekstų"
 
 msgid "Update catalog - synchronize it with sources"
-msgstr "Atnaujinti katalogą - sinchronizuoti jį su išeities tekstais"
+msgstr "Atnaujinti katalogą - sinchronizuoti jį su pradiniais tekstais"
 
-msgid "Toggled if selected string has fuzzy translation"
-msgstr "Įjungtas, jei pasirinktos eilutės vertimas yra neaiškus"
+msgid "Sidebar"
+msgstr "Šoninė juosta"
 
 msgid "Show or hide the sidebar"
-msgstr ""
+msgstr "Rodyti ar slėpti šoninę juostą"
 
 #. TRANSLATORS: "Previous" as in used in the past, now replaced with newer.
 msgid "Previous source text:"
-msgstr "Ankstesnis šaltinio tekstas:"
+msgstr "Ankstesnis pradinis tekstas:"
 
 msgid ""
-"The old source text (before it changed during an update) that the fuzzy "
-"translation corresponds to."
+"The old source text (before it changed during an update) that the now-"
+"inaccurate translation corresponds to."
 msgstr ""
+"Senasis pradinis tekstas (prieš atnaujinimą), kuris atitinka neteisingą "
+"vertimą."
 
 msgid "Notes for translators:"
 msgstr "Pastabos vertėjams:"
@@ -1782,6 +1955,12 @@ msgstr "Pridėti komentarą"
 msgid "Add Comment"
 msgstr "Pridėti komentarą"
 
+msgid "Delete From Translation Memory"
+msgstr "Ištrinti iš vertimų atminties"
+
+msgid "Delete from translation memory"
+msgstr "Ištrinti iš vertimų atminties"
+
 msgid "Translation suggestions:"
 msgstr "Vertimų siūlymai:"
 
@@ -1789,67 +1968,44 @@ msgstr "Vertimų siūlymai:"
 msgid "No matches found"
 msgstr "Atitikmenų nerasta"
 
-#. TRANSLATORS: This is shown when no translation suggestions can be found in the TM (OS X, Linux).
+#. TRANSLATORS: This is shown when no translation suggestions can be found in the TM (macOS, Linux).
 msgid "No Matches Found"
 msgstr "Atitikmenų nerasta"
 
 msgid "This string was found in Poedit’s translation memory."
-msgstr ""
+msgstr "Ši eilutė buvo rasta „Poedit“ vertimų atmintyje."
+
+msgid "The TMX file is malformed."
+msgstr "TMX failas yra neteisingas."
+
+msgid "No translations were found in the TMX file."
+msgstr "TMX faile nerasta vertimų."
 
 #, c-format
-msgid "(New: %i, obsolete: %i)"
-msgstr ""
+msgid "Translation memory database is corrupted: %s (%d)."
+msgstr "Sugadinta vertimų atminties duomenų bazė: %s (%d)."
 
 #, c-format
-msgid "Importing translations: %d"
-msgstr "Importuojuomi vertimai: %d"
-
-msgid "Poedit Update"
-msgstr "Poedit atnaujinimas"
-
-msgid "Preparing migration..."
-msgstr "Ruošiamasi perkėlimui..."
-
-#, c-format
-msgid "Migration exit status: %d"
-msgstr "Migracijos išėjimo būsena: %d"
-
-msgid "Poedit needs to convert your translation memory to a new format."
-msgstr "Poedit turi konvertuoti jūsų vertimo atmintį į naują formatą."
-
-msgid ""
-"This must be done before Poedit can start. It may take a few minutes if you "
-"have lots of translations stored, but should normally be much faster."
-msgstr ""
-"Tai turi būti atlikta prieš paleidžiant Poedit. Tai gali užtrukti jei turite "
-"daug vertimų, bet paprastai tai ilgai netrunka."
-
-msgid "Proceed"
-msgstr "Tęsti"
-
-msgid "Translation memory migration failed."
-msgstr "Vertimų atminties migravimas nepavyko."
-
-#, c-format
-msgid ""
-"Your translation memory data couldn't be migrated. The error was:\n"
-"\n"
-"%s\n"
-"Please email help@poedit.net and we’ll get it fixed."
-msgstr ""
-"Vertimų atminties duombazės perkelti nepavyko. Klaida:\n"
-"\n"
-"%s\n"
-"Praneškite apie tai help@poedit.net ir mes tai ištaisysime."
+msgid "Translation memory error: %s (%d)."
+msgstr "Vertimų atminties klaida: %s (%d)."
 
 msgid "Cannot create temporary directory."
 msgstr "Sukurti laikino aplanko nepavyko."
 
 msgid "Welcome to Poedit"
-msgstr "Jus sveikina Poedit"
+msgstr "Jus sveikina „Poedit“"
+
+#. TRANSLATORS: This is version information in about dialog, "%s" will be
+#. version number when used
+#, c-format
+msgid "Version %s"
+msgstr "Versija %s"
+
+msgid "Edit a Translation"
+msgstr "Redaguoti vertimą"
 
 msgid "Edit a translation"
-msgstr "Keisti vertimą"
+msgstr "Redaguoti vertimą"
 
 msgid "Open an existing PO file and edit the translation."
 msgstr "Atverti egzistuojantį PO failą ir redaguoti vertimą."
@@ -1859,36 +2015,39 @@ msgid ""
 "it."
 msgstr "Paimti esamą PO ar POT failą ir sukurti iš jo naują vertimą."
 
-msgid "Collaborate on a translation with Crowdin"
-msgstr "Bendradarbiauti vertime per Crowdin"
+msgid "Collaborate on a Translation with Others"
+msgstr "Versti kartu su kitais vertėjais"
+
+msgid "Collaborate on a translation with others"
+msgstr "Versti kartu su kitais vertėjais"
 
 msgid ""
 "Download a file from Crowdin project, translate and sync your changes back."
 msgstr ""
-"Atsisiųsti failą iš Crowdin projekto, versti ir sinchronizuoti pakeitimus "
+"Atsisiųsti failą iš „Crowdin“ projekto, versti ir sinchronizuoti pakeitimus "
 "atgal."
 
 msgid "What is Crowdin?"
-msgstr "Kas yra Crowdin?"
+msgstr "Kas yra „Crowdin“?"
 
 msgid "There are no translations. That’s unusual."
 msgstr "Nėra vertimų. Neįprasta."
 
 msgid ""
-"Translatable entries aren't added manually in the Gettext system, but are "
+"Translatable entries aren’t added manually in the Gettext system, but are "
 "automatically extracted\n"
 "from source code. This way, they stay up to date and accurate.\n"
 "Translators typically use PO template files (POTs) prepared for them by the "
 "developer."
 msgstr ""
-"Gettexxt sistemoje verčiami įrašai nėra pridedami rankiniu būdu, bet "
+"„Gettext“ sistemoje įrašai vertimui nėra pridedami rankiniu būdu, bet "
 "automatiškai išgaunami\n"
-"iš pradinio kodo. Tokiu būdu jie lieka naujausi ir tikslūs.\n"
+"iš pradinio teksto. Tokiu būdu jie lieka naujausi ir tikslūs.\n"
 "Vertėjai paprastai naudoja PO šablono failus (POT), kuriuos sukuria programų "
 "autoriai."
 
 msgid "(Learn more about GNU gettext)"
-msgstr "(Sužinokite daugiau apie GNU gettext)"
+msgstr "(Sužinokite daugiau apie „GNU gettext“)"
 
 msgid "The simplest way to fill this catalog is to update it from a POT:"
 msgstr "Paprasčiausias būdas užpildyti šį katalogą yra atnaujinti jį iš POT:"
@@ -1901,16 +2060,199 @@ msgstr "Paimti verčiamas eilutes iš esamo POT šablono."
 
 msgid ""
 "You can also extract translatable strings directly from the source code:"
-msgstr "Taipogi galite ištraukti veričiamas eilutes tiesiai iš pradinio kodo:"
+msgstr "Taipogi galite išgauti verstinas eilutes tiesiai iš pradinių tekstų:"
 
 msgid "Extract from sources"
-msgstr "Išskleisti iš šaltinių"
+msgstr "Išgauti iš pradinių tekstų"
 
 msgid "Configure source code extraction in Properties."
-msgstr "Pradinio kodo ištraukimą galite sukonfigūruoti savybėse."
+msgstr "Pradinių tekstų ištraukimą sukonfigūruokite Nustatymuose."
 
 msgid "Sync"
 msgstr "Sinchronizuoti"
 
 msgid "Synchronize the translation with Crowdin"
-msgstr "Sinchronizuoti vertimą su Crowdin"
+msgstr "Sinchronizuoti vertimą su „Crowdin“"
+
+#. TRANSLATORS: This is titlebar of about dialog, "%s" is application name
+#. ("Poedit" here, but please use "%s")
+#, c-format
+msgid "About %s"
+msgstr "Apie %s"
+
+#. TRANSLATORS: Title of the preferences window on Windows and Linux. "%s" is replaced with "Poedit" when running.
+#, c-format
+msgid "%s Preferences"
+msgstr "%s nuostatos"
+
+#. TRANSLATORS: macOS item in app menu
+msgid "Services"
+msgstr "Paslaugos"
+
+#. TRANSLATORS: macOS item in app menu, %s is replaced with "Poedit"
+#, c-format
+msgid "Hide %s"
+msgstr "Slėpti %s"
+
+#. TRANSLATORS: macOS item in app menu
+msgid "Hide Others"
+msgstr "Slėpti kitus"
+
+#. TRANSLATORS: macOS item in app menu
+msgid "Show All"
+msgstr "Rodyti visus"
+
+#. TRANSLATORS: macOS item in app menu, %s is replaced with "Poedit"
+#, c-format
+msgid "Quit %s"
+msgstr "Baigti %s darbą"
+
+#. TRANSLATORS: macOS item in app menu
+msgid "Preferences…"
+msgstr "Nustatymai…"
+
+msgid "Preferences..."
+msgstr "Nuostatos..."
+
+#. TRANSLATORS: Title of a category in Windows task menu (right-click icon in taskbar)
+msgid "Recent"
+msgstr "Paskiausiai naudoti"
+
+#. TRANSLATORS: Title of a category in Windows task menu (right-click icon in taskbar)
+msgid "Frequent"
+msgstr "Dažnai naudoti"
+
+msgid "&Apply"
+msgstr "&Taikyti"
+
+msgid "Apply"
+msgstr "Taikyti"
+
+msgid "&Back"
+msgstr "&Atgal"
+
+msgid "Back"
+msgstr "Atgal"
+
+msgid "&Cancel"
+msgstr "&Atsisakyti"
+
+msgid "&Clear"
+msgstr "&Išvalyti"
+
+msgid "Clear"
+msgstr "Išvalyti"
+
+msgid "Copy"
+msgstr "Kopijuoti"
+
+msgid "Cu&t"
+msgstr "Iškirp&ti"
+
+msgid "Cut"
+msgstr "Iškirpti"
+
+msgid "&Delete"
+msgstr "&Ištrinti"
+
+msgid "&Quit"
+msgstr "&Baigti darbą"
+
+msgid "File"
+msgstr "Failas"
+
+msgid "Help"
+msgstr "Žinynas"
+
+msgid "&New"
+msgstr "&Naujas"
+
+msgid "&No"
+msgstr "&Ne"
+
+msgid "No"
+msgstr "Ne"
+
+msgid "&OK"
+msgstr "&Gerai"
+
+msgid "Open…"
+msgstr "Atverti…"
+
+msgid "&Open..."
+msgstr "&Atverti..."
+
+msgid "Open..."
+msgstr "Atverti..."
+
+msgid "&Paste"
+msgstr "Į&dėti"
+
+msgid "Paste"
+msgstr "Įklijuoti"
+
+msgid "Preferences"
+msgstr "Nuostatos"
+
+msgid "&Redo"
+msgstr "&Pakartoti"
+
+msgid "Refresh"
+msgstr "Įkelti iš naujo"
+
+msgid "&Save as"
+msgstr "Iš&saugoti kaip"
+
+msgid "Save as"
+msgstr "Išsaugoti kaip"
+
+msgid "Select &All"
+msgstr "Žymėti &viską"
+
+msgid "Select All"
+msgstr "Pažymėti viską"
+
+msgid "&Undo"
+msgstr "&Atšaukti"
+
+msgid "&Yes"
+msgstr "&Taip"
+
+msgid "Yes"
+msgstr "Taip"
+
+#. TRANSLATORS: Keyboard shortcut for display in Windows menus
+msgid "Shift+"
+msgstr "Shift+"
+
+#. TRANSLATORS: Keyboard shortcut for display in Windows menus
+msgid "Enter"
+msgstr "Enter"
+
+#. TRANSLATORS: Keyboard shortcut for display in Windows menus
+msgid "Up"
+msgstr "Aukštyn"
+
+#. TRANSLATORS: Keyboard shortcut for display in Windows menus
+msgid "Down"
+msgstr "Žemyn"
+
+#. TRANSLATORS: Keyboard shortcut for display in Windows menus
+msgid "Left"
+msgstr "Kairė"
+
+#. TRANSLATORS: Keyboard shortcut for display in Windows menus
+msgid "Right"
+msgstr "Dešinė"
+
+#. TRANSLATORS: Keyboard shortcut, must correspond to translation of "Ctrl+"
+msgid "ctrl"
+msgstr "ctrl"
+
+#. TRANSLATORS: Keyboard shortcut, must correspond to translation of "Alt+"
+msgid "alt"
+msgstr "alt"
+
+#. TRANSLATORS: Keyboard shortcut, must correspond to translation of "Shift+"
+msgid "shift"
+msgstr "shift"

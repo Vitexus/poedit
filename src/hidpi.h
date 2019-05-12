@@ -1,7 +1,7 @@
-﻿/*
+/*
  *  This file is part of Poedit (https://poedit.net)
  *
- *  Copyright (C) 2015-2016 Vaclav Slavik
+ *  Copyright (C) 2015-2019 Vaclav Slavik
  *
  *  Permission is hereby granted, free of charge, to any person obtaining a
  *  copy of this software and associated documentation files (the "Software"),
@@ -27,8 +27,10 @@
 #define Poedit_hidpi_h
 
 #include <wx/defs.h>
+#include <wx/font.h>
+
 class WXDLLIMPEXP_FWD_BASE wxString;
-class WXDLLIMPEXP_FWD_CORE wxBitmap;
+class WXDLLIMPEXP_FWD_CORE wxImage;
 
 #ifdef __WXMSW__
     #define NEEDS_MANUAL_HIDPI 1
@@ -36,23 +38,29 @@ class WXDLLIMPEXP_FWD_CORE wxBitmap;
 
 #ifdef NEEDS_MANUAL_HIDPI
 
-// Scaling factor against "normal" DPI (2.0 would be OS X's "Retina" scaling)
+// Scaling factor against "normal" DPI (2.0 would be macOS's "Retina" scaling)
 extern double g_pxScalingFactor;
 
 /// Returns current scaling factor.
 inline double HiDPIScalingFactor() { return g_pxScalingFactor; }
+
+/// Is the current mode HiDPI?
+inline bool IsHiDPI() { return g_pxScalingFactor > 1.0; }
 
 /**
     Use this macro to wrap pixel dimensions to scale them accordingly to the
     current DPI setting.
  */
 #define PX(x) (int(((x) * g_pxScalingFactor) + 0.5))
-#define PXDefaultBorder PX(wxSizerFlags::GetDefaultBorder())
-#define PXBorder(dir) Border(dir, PX(wxSizerFlags::GetDefaultBorder()))
-#define PXDoubleBorder(dir) Border(dir, PX(2 * wxSizerFlags::GetDefaultBorder()))
 
-/// Tweak notebook tab label to look good
-inline wxString PXNotebookTab(const wxString& label) { return HiDPIScalingFactor() < 1.5 ? label : " " + label + " "; }
+#if wxCHECK_VERSION(3,1,0)
+    #define PXDefaultBorder wxSizerFlags::GetDefaultBorder()
+#else
+    #define PXDefaultBorder PX(wxSizerFlags::GetDefaultBorder())
+#endif
+
+#define PXBorder(dir) Border(dir, PXDefaultBorder)
+#define PXDoubleBorder(dir) Border(dir, 2 * PXDefaultBorder)
 
 /// Initializes HiDPI code, should be called early in OnInit.
 void InitHiDPIHandling();
@@ -62,13 +70,29 @@ void InitHiDPIHandling();
 #define PXDefaultBorder wxSizerFlags::GetDefaultBorder()
 #define PXBorder(dir) Border(dir)
 #define PXDoubleBorder(dir) DoubleBorder(dir)
-#define PXNotebookTab(label) (label)
 inline void InitHiDPIHandling() {}
 inline double HiDPIScalingFactor() { return 1.0; }
 #endif
 
 #define PXBorderAll() PXBorder(wxALL)
 #define PXDoubleBorderAll() PXDoubleBorder(wxALL)
+
+
+/// Fine-tuned creation of smaller fonts
+inline wxFont SmallerFont(const wxFont& font)
+{
+#ifdef __WXMSW__
+    // wxFont::Smaller() is uses precise fractional font sizes, which looks 
+    // ugly in low-DPI and small font sizes.
+    if (!IsHiDPI())
+    {
+        wxFont f(font);
+        f.SetPointSize(int(f.GetPointSize() / 1.2f + 0.5));
+        return f;
+    }
+#endif
+    return font.Smaller();
+}
 
 
 /**
@@ -80,6 +104,6 @@ inline double HiDPIScalingFactor() { return 1.0; }
 
     Note that @a name is given *without* the ".png" extension.
  */
-extern wxBitmap LoadScaledBitmap(const wxString& name, bool mirror, int padding = 0);
+extern wxImage LoadScaledBitmap(const wxString& name);
 
 #endif // Poedit_hidpi_h

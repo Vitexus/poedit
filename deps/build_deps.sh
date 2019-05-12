@@ -2,11 +2,28 @@
 
 set -e
 
-if [ "$1" = clean ] ; then
+if [ "$2" = clean ] ; then
     if [ ! -z "$DEPS_BUILD_DIR" ] ; then
         rm -rf "$DEPS_BUILD_DIR"/*
     fi
     exit
+fi
+
+# Include Homebrew binaries on PATH if not there yet:
+PATH="$PATH:/usr/local/bin"
+
+# Fake Java binaries so that gettext configure script doesn't invoke the system ones:
+mkdir -p "$DEPS_BUILD_DIR/helpers"
+touch "$DEPS_BUILD_DIR"/helpers/{java,javac}
+chmod +x "$DEPS_BUILD_DIR"/helpers/{java,javac}
+PATH="$DEPS_BUILD_DIR/helpers:$PATH"
+
+if [ -d /usr/local/opt/ccache/libexec ] ; then
+    CC=/usr/local/opt/ccache/libexec/clang
+    CXX=/usr/local/opt/ccache/libexec/clang++
+else
+    CC=clang
+    CXX=clang++
 fi
 
 if [ "$CONFIGURATION" = "Debug" ] ; then
@@ -26,8 +43,14 @@ CONFIGURATION = $CONFIGURATION
 top_srcdir = `pwd`
 builddir = $DEPS_BUILD_DIR
 
+cc = $CC
+cxx = $CXX
+
 cflags_config = $cflags_config
 ldflags_config = $ldflags_config
 EOT
 
-ninja
+# don't produce error if the build is stopped for other reasons
+trap 'exit 0' INT
+
+ninja $1

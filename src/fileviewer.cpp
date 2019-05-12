@@ -1,7 +1,7 @@
 /*
  *  This file is part of Poedit (https://poedit.net)
  *
- *  Copyright (C) 1999-2016 Vaclav Slavik
+ *  Copyright (C) 1999-2019 Vaclav Slavik
  *
  *  Permission is hereby granted, free of charge, to any person obtaining a
  *  copy of this software and associated documentation files (the "Software"),
@@ -63,6 +63,8 @@ FileViewer *FileViewer::GetAndActivate()
     if (!ms_instance)
         ms_instance = new FileViewer(nullptr);
     ms_instance->Show();
+    if (ms_instance->IsIconized())
+        ms_instance->Iconize(false);
     ms_instance->Raise();
     return ms_instance;
 }
@@ -121,7 +123,7 @@ FileViewer::FileViewer(wxWindow*)
 
 #ifdef __WXOSX__
     wxAcceleratorEntry entries[] = {
-        { wxACCEL_CMD,  'W', wxID_CLOSE }
+        { wxACCEL_CMD, 'W', wxID_CLOSE }
     };
     wxAcceleratorTable accel(WXSIZEOF(entries), entries);
     SetAcceleratorTable(accel);
@@ -324,7 +326,8 @@ void FileViewer::ShowReferences(CatalogPtr catalog, CatalogItemPtr item, int def
     if (m_basePath.empty())
         m_basePath = wxPathOnly(catalog->GetFileName());
 
-    m_references = item->GetReferences();
+    if (item)
+        m_references = item->GetReferences();
 
     m_file->Clear();
     m_file->Enable(m_references.size() > 1);
@@ -347,7 +350,7 @@ void FileViewer::SelectReference(const wxString& ref)
     const wxFileName filename = GetFilename(ref);
     if (!filename.IsOk())
     {
-        ShowError(wxString::Format(_("Error opening file %s!"), filename.GetFullPath()));
+        ShowError(wxString::Format(_("Error opening file %s!"), ref.BeforeLast(':')));
         m_openInEditor->Disable();
         return;
     }
@@ -359,7 +362,7 @@ void FileViewer::SelectReference(const wxString& ref)
          !file.Open(filename.GetFullPath()) ||
          !file.ReadAll(&data, wxConvAuto()) )
     {
-        ShowError(wxString::Format(_("Error opening file %s!"), filename.GetFullPath()));
+        ShowError(wxString::Format(_("Error opening file %s!"), ref.BeforeLast(':')));
         m_openInEditor->Disable();
         return;
     }

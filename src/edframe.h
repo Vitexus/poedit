@@ -1,7 +1,7 @@
 /*
  *  This file is part of Poedit (https://poedit.net)
  *
- *  Copyright (C) 1999-2016 Vaclav Slavik
+ *  Copyright (C) 1999-2019 Vaclav Slavik
  *
  *  Permission is hereby granted, free of charge, to any person obtaining a
  *  copy of this software and associated documentation files (the "Software"),
@@ -36,10 +36,6 @@
 
 class WXDLLIMPEXP_FWD_CORE wxSplitterWindow;
 class WXDLLIMPEXP_FWD_CORE wxSplitterEvent;
-class WXDLLIMPEXP_FWD_CORE wxTextCtrl;
-class WXDLLIMPEXP_FWD_CORE wxGauge;
-class WXDLLIMPEXP_FWD_CORE wxNotebook;
-class WXDLLIMPEXP_FWD_CORE wxStaticText;
 
 #include "catalog.h"
 #include "gexecute.h"
@@ -53,18 +49,12 @@ class WXDLLIMPEXP_FWD_CORE wxStaticText;
   typedef wxFrame PoeditFrameBase;
 #endif
 
-class ListHandler;
-class TextctrlHandler;
-class TransTextctrlHandler;
-class SourceTextCtrl;
-class TranslationTextCtrl;
-
 class PoeditFrame;
 class AttentionBar;
-class ErrorBar;
 class FindFrame;
 class MainToolbar;
 class Sidebar;
+class EditingArea;
 
 /** This class provides main editing frame. It handles user's input
     and provides frontend to catalog editing engine. Nothing fancy.
@@ -79,7 +69,7 @@ class PoeditFrame : public PoeditFrameBase
 
             \param catalog filename of catalog to open.
          */
-        static PoeditFrame *Create(const wxString& catalog);
+        static PoeditFrame *Create(const wxString& catalog, int lineno = 0);
 
         /** Public constructor functions. Creates and shows frame
             without catalog or other content.
@@ -93,7 +83,7 @@ class PoeditFrame : public PoeditFrameBase
 
         /// Opens given file in this frame. Asks user for permission first
         /// if there's unsaved document.
-        void OpenFile(const wxString& filename);
+        void OpenFile(const wxString& filename, int lineno = 0);
 
         /** Returns pointer to existing instance of PoeditFrame that currently
             exists and edits \a catalog. If no such frame exists, returns NULL.
@@ -112,6 +102,8 @@ class PoeditFrame : public PoeditFrameBase
         /// Returns true if any windows (with documents) are open
         static bool HasAnyWindow() { return !ms_instances.empty(); }
 
+        static int GetOpenWindowsCount() { return (int)ms_instances.size(); }
+
         ~PoeditFrame();
 
         /// Reads catalog, refreshes controls, takes ownership of catalog.
@@ -129,13 +121,13 @@ class PoeditFrame : public PoeditFrameBase
 
         /// Did the user modify the catalog?
         bool IsModified() const { return m_modified; }
+
+        void MarkAsModified();
+
         /** Updates catalog and sets m_modified flag. Updates from POT
             if \a pot_file is not empty and from sources otherwise.
          */
         bool UpdateCatalog(const wxString& pot_file = wxEmptyString);
-
-
-        virtual void DoGiveHelp(const wxString& text, bool show);
 
         void UpdateAfterPreferencesChange();
         static void UpdateAllAfterPreferencesChange();
@@ -146,20 +138,20 @@ class PoeditFrame : public PoeditFrameBase
         /// Returns currently selected (edited) item
         CatalogItemPtr GetCurrentItem() const;
 
-        /// Flags for UpdateToTextCtrl()
-        enum UpdateToTextCtrlFlags
-        {
-            /// Change to textctrl should be undoable by the user
-            UndoableEdit = 0x01,
-            /// Change is due to item change, discard undo buffer
-            ItemChanged = 0x02
-        };
-
         /// Puts text from catalog & listctrl to textctrls.
         void UpdateToTextCtrl(int flags);
 
         /// Puts text from textctrls to catalog & listctrl.
-        void UpdateFromTextCtrl();
+        void OnUpdatedFromTextCtrl(CatalogItemPtr item, bool statsChanged);
+
+        wxString GetFileName() const
+            { return m_catalog ? m_catalog->GetFileName() : wxString(); }
+        wxString GetFileNamePartOfTitle() const
+            { return m_fileNamePartOfTitle; }
+
+    protected:
+        // Don't show help in status bar, it's not common to do these days:
+        void DoGiveHelp(const wxString& /*help*/, bool /*show*/) override {}
 
     private:
         /** Ctor.
@@ -187,11 +179,11 @@ class PoeditFrame : public PoeditFrameBase
         void EnsureContentView(Content type);
         void EnsureAppropriateContentView();
         wxWindow* CreateContentViewPO(Content type);
-        void CreateContentViewEditControls(wxWindow *p, wxBoxSizer *panelSizer);
-        void CreateContentViewTemplateControls(wxWindow *p, wxBoxSizer *panelSizer);
         wxWindow* CreateContentViewWelcome();
         wxWindow* CreateContentViewEmptyPO();
         void DestroyContentView();
+
+        void PlaceInitialFocus(int lineno = 0);
 
         typedef std::set<PoeditFrame*> PoeditFramesList;
         static PoeditFramesList ms_instances;
@@ -214,7 +206,7 @@ class PoeditFrame : public PoeditFrameBase
         wxWindowPtr<wxMessageDialog> CreateAskAboutSavingDialog();
 
         // implements opening of files, without asking user
-        void DoOpenFile(const wxString& filename);
+        void DoOpenFile(const wxString& filename, int lineno = 0);
 
         /// Updates statistics in statusbar.
         void UpdateStatusBar();
@@ -234,7 +226,7 @@ class PoeditFrame : public PoeditFrameBase
 
         // navigation to another item in the list
         typedef bool (*NavigatePredicate)(const CatalogItemPtr& item);
-        long NavigateGetNextItem(const long start, int step, NavigatePredicate predicate, bool wrap, CatalogItemPtr *out_item);
+        int NavigateGetNextItem(const int start, int step, NavigatePredicate predicate, bool wrap, CatalogItemPtr *out_item);
         void Navigate(int step, NavigatePredicate predicate, bool wrap);
         void OnDoneAndNext(wxCommandEvent&);
         void OnPrev(wxCommandEvent&);
@@ -277,8 +269,8 @@ private:
         void OnUpdateSmartUpdate(wxUpdateUIEvent& event);
 
         void OnValidate(wxCommandEvent& event);
-        void OnListSel(wxListEvent& event);
-        void OnListRightClick(wxMouseEvent& event);
+        void OnListSel(wxDataViewEvent& event);
+        void OnListRightClick(wxDataViewEvent& event);
         void OnListFocus(wxFocusEvent& event);
         void OnSplitterSashMoving(wxSplitterEvent& event);
         void OnSidebarSplitterSashMoving(wxSplitterEvent& event);
@@ -290,6 +282,7 @@ private:
         void OnRightClick(wxCommandEvent& event);
         void OnFuzzyFlag(wxCommandEvent& event);
         void OnIDsFlag(wxCommandEvent& event);
+        void OnToggleWarnings(wxCommandEvent& event);
         void OnCopyFromSource(wxCommandEvent& event);
         void OnCopyFromSingular(wxCommandEvent& event);
         void OnClearTranslation(wxCommandEvent& event);
@@ -325,17 +318,7 @@ private:
 #endif
 
         void OnSuggestion(wxCommandEvent& event);
-        void OnAutoTranslateAll(wxCommandEvent& event);
-
-        enum AutoTranslateFlags
-        {
-            AutoTranslate_OnlyExact       = 0x01,
-            AutoTranslate_ExactNotFuzzy   = 0x02,
-            AutoTranslate_OnlyGoodQuality = 0x04
-        };
-        bool AutoTranslateCatalog(int *matchesCount, int flags);
-        template<typename T>
-        bool AutoTranslateCatalog(int *matchesCount, const T& range, int flags);
+        void OnPreTranslateAll(wxCommandEvent& event);
 
         void OnPurgeDeleted(wxCommandEvent& event);
 
@@ -350,12 +333,11 @@ private:
 
         void OnSize(wxSizeEvent& event);
 
-        void ShowPluralFormUI(bool show = true);
-
         void RecreatePluralTextCtrls();
 
         template<typename TFunctor>
-        void ReportValidationErrors(int errors, Catalog::CompilationStatus mo_compilation_status,
+        void ReportValidationErrors(Catalog::ValidationResults validation,
+                                    Catalog::CompilationStatus mo_compilation_status,
                                     bool from_save, bool other_file_saved,
                                     TFunctor completionHandler);
 
@@ -371,31 +353,21 @@ private:
     private:
         CatalogPtr m_catalog;
 
-        wxString GetFileName() const
-            { return m_catalog ? m_catalog->GetFileName() : wxString(); }
         bool m_fileExistsOnDisk;
+
+        wxString m_fileNamePartOfTitle;
 
         std::unique_ptr<MainToolbar> m_toolbar;
 
         CatalogItemPtr m_pendingHumanEditedItem;
 
-        wxPanel *m_bottomPanel;
+        EditingArea *m_editingArea;
         wxSplitterWindow *m_splitter;
         wxSplitterWindow *m_sidebarSplitter;
         PoeditListCtrl *m_list;
-        wxStaticText *m_labelContext;
-        ErrorBar *m_errorBar;
-        SourceTextCtrl *m_textOrig, *m_textOrigPlural;
-        TranslationTextCtrl *m_textTrans;
-        std::vector<TranslationTextCtrl*> m_textTransPlural;
-        TranslationTextCtrl *m_textTransSingularForm;
-        wxNotebook *m_pluralNotebook;
-        wxStaticText *m_labelSingular, *m_labelPlural;
 #ifndef __WXOSX__
         wxMenu *m_menuForHistory;
 #endif
-
-        wxFont m_normalGuiFont, m_boldGuiFont;
 
         AttentionBar *m_attentionBar;
         Sidebar *m_sidebar;
@@ -404,12 +376,7 @@ private:
         bool m_modified;
         bool m_hasObsoleteItems;
         bool m_displayIDs;
-        bool m_dontAutoclearFuzzyStatus;
         bool m_setSashPositionsWhenMaximized;
-
-        friend class ListHandler;
-        friend class TextctrlHandler;
-        friend class TransTextctrlHandler;
 };
 
 
