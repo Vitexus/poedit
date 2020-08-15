@@ -1,7 +1,7 @@
 /*
  *  This file is part of Poedit (https://poedit.net)
  *
- *  Copyright (C) 2016-2019 Vaclav Slavik
+ *  Copyright (C) 2016-2020 Vaclav Slavik
  *
  *  Permission is hereby granted, free of charge, to any person obtaining a
  *  copy of this software and associated documentation files (the "Software"),
@@ -38,10 +38,15 @@
 #include <wx/msw/uxtheme.h>
 #endif
 
+#ifdef __WXGTK3__
+#include <gtk/gtk.h>
+#endif
 
 #ifdef __WXOSX__
 
 #import <AppKit/AppKit.h>
+#import <QuartzCore/QuartzCore.h>
+
 #include "StyleKit.h"
 
 // ---------------------------------------------------------------------
@@ -52,8 +57,9 @@
 
 @property NSColor* onColor;
 @property NSColor* labelOffColor;
+@property BOOL isDarkMode;
 @property SwitchButton *parent;
-@property double animationPosition;
+@property (nonatomic) double animationPosition;
 
 @end
 
@@ -79,7 +85,8 @@
 {
     [super sizeToFit];
     NSSize size = self.frame.size;
-    size.width += 32;
+    size.width += 40;
+    size.height += 2;
     [self setFrameSize:size];
 }
 
@@ -90,11 +97,28 @@
                                 onColor:self.onColor
                           labelOffColor:self.labelOffColor
                                   label:self.title
-                         togglePosition:self.animationPosition];
+                         togglePosition:self.animationPosition
+                             isDarkMode:self.isDarkMode];
+}
+
+- (void)setAnimationPosition:(double)animationPosition
+{
+    _animationPosition = animationPosition;
+    self.needsDisplay = YES;
+}
+
++ (id)defaultAnimationForKey:(NSString *)key
+{
+    if ([key isEqualToString:@"animationPosition"])
+        return [CABasicAnimation animation];
+
+    return [super defaultAnimationForKey:key];
 }
 
 - (void)setState:(NSInteger)state
 {
+    if (state == self.state)
+        return;
     [super setState:state];
     self.animationPosition = (state == NSOnState) ? 1.0 : 0.0;
 }
@@ -102,7 +126,19 @@
 - (void)controlAction:(id)sender
 {
     #pragma unused(sender)
-    self.animationPosition = (self.state == NSOnState) ? 1.0 : 0.0;
+    double target = (self.state == NSOnState) ? 1.0 : 0.0;
+    if (@available(macOS 10.12, *))
+    {
+        [NSAnimationContext runAnimationGroup:^(NSAnimationContext *context)
+        {
+            context.duration = 0.1;
+            self.animator.animationPosition = target;
+        }];
+    }
+    else
+    {
+        self.animationPosition = target;
+    }
     _parent->SendToggleEvent();
 }
 
@@ -120,10 +156,11 @@ public:
 
     NSView *View() const { return m_view; }
 
-    void SetColors(const wxColour& on, const wxColour& offLabel)
+    void SetColors(const wxColour& on, const wxColour& offLabel, bool isDarkMode)
     {
         m_view.onColor = on.OSXGetNSColor();
         m_view.labelOffColor = offLabel.OSXGetNSColor();
+        m_view.isDarkMode = isDarkMode;
     }
 
     void SetValue(bool value)
@@ -154,7 +191,7 @@ SwitchButton::~SwitchButton()
 
 void SwitchButton::SetColors(const wxColour& on, const wxColour& offLabel)
 {
-    m_impl->SetColors(on, offLabel);
+    m_impl->SetColors(on, offLabel, ColorScheme::GetWindowMode(this) == ColorScheme::Dark);
 }
 
 void SwitchButton::SetValue(bool value)
@@ -203,6 +240,25 @@ void SwitchButton::SetColors(const wxColour& on, const wxColour& offLabel)
 #ifdef __WXMSW__
     m_clrOn = on;
     m_clrOffLabel = offLabel;
+#endif
+
+#ifdef __WXGTK3__
+    static const char *css_style = R"(
+        * {
+            padding: 0;
+            margin: 0;
+            font-weight: bold;
+            font-size: 80%;
+            color: %s;
+        }
+
+        *:checked {
+            color: %s;
+        }
+    )";
+    auto css_on = on.GetAsString(wxC2S_CSS_SYNTAX);
+    auto css_off = offLabel.GetAsString(wxC2S_CSS_SYNTAX);
+    GTKApplyCssStyle(wxString::Format(css_style, css_off, css_on).utf8_str());
 #endif
 }
 
@@ -382,9 +438,35 @@ TranslucentButton::TranslucentButton(wxWindow *parent, wxWindowID winid, const w
 TranslucentButton::TranslucentButton(wxWindow *parent, wxWindowID winid, const wxString& label)
 {
     wxButton::Create(parent, winid, label);
+
 #ifdef __WXMSW__
-    if (IsWindows10OrGreater() && ColorScheme::GetAppMode() != ColorScheme::Dark)
-        SetBackgroundColour(ColorScheme::GetBlendedOn(::Color::TranslucentButton, parent));
+    if (IsWindows10OrGreater())
+    {
+        ColorScheme::SetupWindowColors(this, [=]
+        {
+            if (ColorScheme::GetAppMode() == ColorScheme::Light)
+                SetBackgroundColour(ColorScheme::GetBlendedOn(::Color::TranslucentButton, parent));
+            else
+                SetBackgroundColour(GetDefaultAttributes().colBg);
+        });
+    }
+#endif
+
+#ifdef __WXGTK3__
+    GTKApplyCssStyle(R"(
+        * {
+            background-image: none;
+            background-color: rgba(255,255,255,0.5);
+            color: rgba(0,0,0,0.7);
+            text-shadow: none;
+            border-color: rgba(0,0,0,0.3);
+            border-image: none;
+            border-radius: 2;
+        }
+        *:hover {
+            background-color: rgba(255,255,255,0.7);
+        }
+    )");
 #endif
 }
 

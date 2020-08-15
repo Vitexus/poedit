@@ -2,19 +2,20 @@ msgid ""
 msgstr ""
 "Project-Id-Version: poedit\n"
 "Report-Msgid-Bugs-To: help@poedit.net\n"
-"POT-Creation-Date: 2018-10-07 13:14+0200\n"
-"PO-Revision-Date: 2018-10-07 10:41\n"
-"Last-Translator: vslavik <vaclav@slavik.io>\n"
+"POT-Creation-Date: 2020-07-18 14:48+0200\n"
+"PO-Revision-Date: 2020-08-10 16:17\n"
+"Last-Translator: \n"
 "Language-Team: Thai\n"
 "Language: th_TH\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=1; plural=0;\n"
-"X-Generator: crowdin.com\n"
 "X-Crowdin-Project: poedit\n"
+"X-Crowdin-Project-ID: 53425\n"
 "X-Crowdin-Language: th\n"
 "X-Crowdin-File: /locales/poedit.pot\n"
+"X-Crowdin-File-ID: 3\n"
 
 msgid "Hide this notification message"
 msgstr "ซ่อนข้อความแจ้งเตือนนี้"
@@ -59,14 +60,14 @@ msgid "POT Translation Templates"
 msgstr "แม่แบบการแปล POT"
 
 msgid "XLIFF Translation Files"
-msgstr ""
+msgstr "ไฟล์แปลภาษา XLIFF"
 
 msgid "All Translation Files"
 msgstr "ไฟล์การแปลทั้งหมด"
 
 #, c-format
 msgid "File “%s” is in unsupported format."
-msgstr ""
+msgstr "ยังไม่สนับสนุนไฟล์ “%s”"
 
 #, c-format
 msgid "%i line of file “%s” was not loaded correctly."
@@ -125,24 +126,24 @@ msgstr "ข้อผิดผลาดในการบันทึกแค็
 
 #, c-format
 msgid "Error loading file “%s”: %s."
-msgstr ""
+msgstr "ผิดพลาดในการโหลดไฟล์ “%s”: %s."
 
 #, c-format
 msgid "unsupported XLIFF version (%s)"
-msgstr ""
+msgstr "ไม่สนับสนุนไฟล์ XLIFF รุ่น (%s)"
 
 #. TRANSLATORS: Shown as error if a translation of XLIFF markup is not valid XML
 msgid "Broken markup in translation string."
-msgstr ""
+msgstr "มาร์กอัปใช้งานไม่ได้ในการแปลสตริง"
 
 msgid "(Use default language)"
 msgstr "(ใช้ภาษาเริ่มต้น)"
 
-msgid "Select your preferred language"
-msgstr "เลือกภาษาที่คุณต้องการ"
-
 msgid "Language selection"
 msgstr "การเลือกภาษา"
+
+msgid "Select your preferred language"
+msgstr "เลือกภาษาที่คุณต้องการ"
 
 msgid "You must restart Poedit for this change to take effect."
 msgstr "คุณต้องเริ่ม Poedit ใหม่เพื่อให้การเปลี่ยนแปลงมีผล"
@@ -163,11 +164,14 @@ msgstr "การซิงค์กับ %s ล้มเหลว"
 msgid "Syncing error"
 msgstr "ข้อผิดพลาดการซิงค์"
 
-msgid "Downloading translations is disabled in this project."
-msgstr "การดาวน์โหลดการแปลถูกปิดใช้งานในโครงการนี้"
+msgid "JSON request error"
+msgstr ""
 
 msgid "Not authorized, please sign in again."
 msgstr "ไม่ได้รับอนุญาต โปรดเข้าสู่ระบบอีกครั้ง"
+
+msgid "Downloading translations is disabled in this project."
+msgstr "การดาวน์โหลดการแปลถูกปิดใช้งานในโครงการนี้"
 
 msgid ""
 "Crowdin is an online localization management platform and collaborative "
@@ -194,9 +198,6 @@ msgstr "กำลังรอการรับรองความถูกต
 msgid "Updating user information…"
 msgstr "กำลังอัปเดตข้อมูลผู้ใช้…"
 
-msgid "Signed in as:"
-msgstr "ลงชื่อเข้าใช้ในชื่อ:"
-
 msgid "Learn More About Crowdin"
 msgstr "เรียนรู้เพิ่มเติมเกี่ยวกับ Crowdin"
 
@@ -205,6 +206,9 @@ msgstr "เรียนรู้เพิ่มเติมเกี่ยวก
 
 msgid "Sign in to Crowdin"
 msgstr "เข้าสู่ระบบ Crowdin"
+
+msgid "File"
+msgstr "ไฟล์"
 
 msgid "Open Crowdin translation"
 msgstr "เปิดการแปล Crowdin"
@@ -215,17 +219,11 @@ msgstr "โครงการ:"
 msgid "Language:"
 msgstr "ภาษา:"
 
-msgid "File:"
-msgstr "ไฟล์:"
+msgid "Signed in as:"
+msgstr "ลงชื่อเข้าใช้ในชื่อ:"
 
 msgid "No translation projects listed in your Crowdin account."
 msgstr "ไม่มีโครงการแปลที่ระบุไว้ในบัญชี Crowdin ของคุณ"
-
-msgid "This project has no files that can be translated in Poedit."
-msgstr "โครงการนี้ไม่มีไฟล์ที่สามารถแปลใน Poedit ได้"
-
-msgid "This file can only be edited in Crowdin’s web interface."
-msgstr "ไฟล์นี้สามารถแก้ไขได้ในอินเทอร์เฟซเว็บของ Crowdin เท่านั้น"
 
 msgid "Downloading latest translations…"
 msgstr "กำลังดาวน์โหลดการแปลล่าสุด…"
@@ -285,7 +283,7 @@ msgstr "เปิดแค็ตตาล็อก"
 msgid "File “%s” doesn’t exist."
 msgstr "ไม่มีไฟล์ \"%s\" อยู่"
 
-msgid "Poedit is an easy to use translations editor."
+msgid "Poedit is an easy to use translation editor."
 msgstr "Poedit เป็นโปรแกรมแก้ไขการแปลที่ง่ายต่อการใช้งาน"
 
 msgid "Catalogs Manager"
@@ -391,22 +389,22 @@ msgstr "นำทั้งหมดมาด้านหน้า"
 msgid "PO Translation"
 msgstr "การแปล PO"
 
+msgid ""
+"The file may be either corrupted or in a format not recognized by Poedit."
+msgstr "ไฟล์อาจจะเสียหาย หรืออยู่ในรูปแบบที่ Poedit ไม่รู้จัก"
+
 msgid "The file cannot be opened."
 msgstr "ไม่สามารถเปิดไฟล์"
 
 msgid "Invalid file"
 msgstr "ไฟล์ไม่ถูกต้อง"
 
-msgid ""
-"The file may be either corrupted or in a format not recognized by Poedit."
-msgstr "ไฟล์อาจจะเสียหาย หรืออยู่ในรูปแบบที่ Poedit ไม่รู้จัก"
-
 msgid "You can’t drop more than one file on Poedit window."
 msgstr "คุณไม่สามารถวางไฟล์มากกว่าหนึ่งไฟล์ในหน้าต่าง Poedit"
 
 #, c-format
 msgid "File “%s” is not a translation file."
-msgstr ""
+msgstr "ไฟล์ “%s” ไม่ใช่ไฟล์ในการแปล"
 
 msgid "Poedit"
 msgstr "Poedit"
@@ -477,6 +475,22 @@ msgstr ""
 "ไม่สามารถอัพเดตการแปลจากซอร์สโค้ดได้ เนื่องจากไม่พบโค้ดใดๆ "
 "ในตำแหน่งที่ระบุในคุณสมบัติของแค็ตตาล็อก"
 
+msgid "Permission denied."
+msgstr "สิทธิ์การใช้งานถูกปฏิเสธ!"
+
+msgid ""
+"You don’t have permission to read source code files from the location "
+"specified in the catalog’s Properties."
+msgstr "คุณไม่ได้รับอนุญาตให้อ่านไฟล์รหัสต้นฉบับจากตำแหน่งที่ระบุในคุณสมบัติของแคตตาล็อก"
+
+#. TRANSLATORS: The System Preferences etc. references macOS system settings and should be translated EXACTLY as in the OS. If you don't use macOS and can't check, leave it untranslated.
+msgid ""
+"If you previously denied access to your files, you can allow it in System "
+"Preferences > Security & Privacy > Privacy > Files & Folders."
+msgstr ""
+"หากก่อนหน้านี้คุณถูกปฏิเสธการเข้าถึงไฟล์ของคุณ คุณสามารถอนุญาตได้ในการตั้งค่าระบบ> "
+"ความปลอดภัยและความเป็นส่วนตัว> ความเป็นส่วนตัว> ไฟล์และโฟลเดอร์"
+
 msgid "Entries in the catalog are probably incorrect."
 msgstr "รายการในแค็ตตาล็อกอาจไม่ถูกต้อง"
 
@@ -539,6 +553,15 @@ msgid ""
 "If you disabled the warnings because of excessive false positives, please "
 "consider sending a sample file to help@poedit.net to help improve them."
 msgstr ""
+"หากคุณปิดการใช้งานคำเตือนเนื่องจากมีผลบวกปลอมมากเกินไปโปรดลองส่งไฟล์ตัวอย่างไปที่ "
+"help@poedit.net เพื่อช่วยในการปรับปรุง"
+
+msgid "Send Feedback"
+msgstr "ส่งข้อเสนอแนะ"
+
+#. TRANSLATORS: This is a button to send email with feedback when clicked
+msgid "Send feedback"
+msgstr "ส่งข้อเสนอแนะ"
 
 #, c-format
 msgid "Poedit automatically fixed invalid content in the file “%s”."
@@ -1869,8 +1892,8 @@ msgstr "อัพเดตจากโค้ด"
 msgid "Update from Code"
 msgstr "อัพเดตจากโค้ด"
 
-msgid "Update catalog - synchronize it with sources"
-msgstr "อัพเดตแค็ตตาล็อก - ซิงค์กับไฟล์ต้นฉบับ"
+msgid "Update from source code"
+msgstr "อัพเดตจากซอร์สโค้ด"
 
 msgid "Sidebar"
 msgstr "แถบด้านข้าง"
@@ -1941,7 +1964,7 @@ msgstr "ยินดีต้อนรับสู่ Poedit"
 #. version number when used
 #, c-format
 msgid "Version %s"
-msgstr "เวอร์ชั่น %s"
+msgstr "รุ่น %s"
 
 msgid "Edit a Translation"
 msgstr "แก้ไขการแปล"
@@ -2096,9 +2119,6 @@ msgstr "&ลบ"
 
 msgid "&Quit"
 msgstr "&ออก"
-
-msgid "File"
-msgstr "ไฟล์"
 
 msgid "Help"
 msgstr "วิธีใช้"

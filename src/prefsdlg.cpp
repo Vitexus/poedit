@@ -1,7 +1,7 @@
 /*
  *  This file is part of Poedit (https://poedit.net)
  *
- *  Copyright (C) 2000-2019 Vaclav Slavik
+ *  Copyright (C) 2000-2020 Vaclav Slavik
  *
  *  Permission is hereby granted, free of charge, to any person obtaining a
  *  copy of this software and associated documentation files (the "Software"),
@@ -403,9 +403,7 @@ public:
         mergeSizer->Add(m_mergeBehavior, wxSizerFlags().Center().BORDER_MACOS(wxTOP, PX(1)).BORDER_WIN(wxBOTTOM, 1));
         sizer->Add(mergeSizer, wxSizerFlags().PXBorder(wxTOP|wxBOTTOM));
 
-        auto explainTxt = _(L"Poedit can attempt to fill in new entries from only previous translations in "
-                            L"the file or from your entire translation memory. Using the TM won’t be very effective if "
-                            L"it’s near-empty, but it will get better as you add more translations to it.");
+        auto explainTxt = _(L"Poedit can attempt to fill in new entries from only previous translations in the file or from your entire translation memory. Using the TM won’t be very effective if it’s near-empty, but it will get better as you add more translations to it.");
         auto explain = new ExplanationLabel(this, explainTxt);
         sizer->Add(explain, wxSizerFlags().Expand().Border(wxLEFT, PX(ExplanationLabel::CHECKBOX_INDENT)));
 
@@ -724,20 +722,13 @@ public:
 
         // FIXME: Neither wxBORDER_ flag produces correct results on macOS or Windows, would need to paint manually
         auto listPanel = new wxPanel(this, wxID_ANY, wxDefaultPosition, wxDefaultSize, wxTAB_TRAVERSAL | MSW_OR_OTHER(wxBORDER_SIMPLE, wxBORDER_SUNKEN));
-#ifdef __WXOSX__
-        // FIXME: In dark mode, listbox color is special and requires NSBox to be rendered correctly
-        if (ColorScheme::GetWindowMode(this) != ColorScheme::Dark)
-#endif
-        {
-            listPanel->SetBackgroundColour(wxSystemSettings::GetColour(wxSYS_COLOUR_LISTBOX));
-        }
+
         auto listSizer = new wxBoxSizer(wxVERTICAL);
         listPanel->SetSizer(listSizer);
 
         CreateBuiltinExtractorsUI(listPanel, listSizer);
 
         auto customExLabel = new wxStaticText(listPanel, wxID_ANY, MSW_OR_OTHER(_("Custom extractors:"), _("Custom Extractors:")));
-        customExLabel->SetForegroundColour(ExplanationLabel::GetTextColor());
 #ifdef __WXOSX__
         customExLabel->SetWindowVariant(wxWINDOW_VARIANT_SMALL);
 #endif
@@ -765,8 +756,8 @@ public:
         m_delete = new wxBitmapButton(this, wxID_ANY, wxArtProvider::GetBitmap("list-remove"), wxDefaultPosition, wxSize(PX(19),PX(19)));
         int editButtonStyle = wxBU_EXACTFIT;
 #elif defined(__WXGTK__)
-        m_new = new wxBitmapButton(this, wxID_ANY, wxArtProvider::GetBitmap("list-add"), wxDefaultPosition, wxDefaultSize, wxNO_BORDER);
-        m_delete = new wxBitmapButton(this, wxID_ANY, wxArtProvider::GetBitmap("list-remove"), wxDefaultPosition, wxDefaultSize, wxNO_BORDER);
+        m_new = new wxBitmapButton(this, wxID_ANY, wxArtProvider::GetBitmap("list-add@symbolic"), wxDefaultPosition, wxDefaultSize, wxNO_BORDER);
+        m_delete = new wxBitmapButton(this, wxID_ANY, wxArtProvider::GetBitmap("list-remove@symbolic"), wxDefaultPosition, wxDefaultSize, wxNO_BORDER);
         int editButtonStyle = wxBU_EXACTFIT | wxBORDER_NONE;
 #endif
         m_edit = new wxButton(this, wxID_ANY, _(L"Edit…"), wxDefaultPosition, wxSize(-1, MSW_OR_OTHER(PX(19), -1)), editButtonStyle);
@@ -787,6 +778,24 @@ public:
 
         sizer->AddSpacer(PX(1));
         sizer->Add(buttonSizer, wxSizerFlags().BORDER_MACOS(wxLEFT, PX(1)));
+
+        ColorScheme::SetupWindowColors(this, [=]
+        {
+            customExLabel->SetForegroundColour(ExplanationLabel::GetTextColor());
+
+#ifdef __WXOSX__
+            // FIXME: In dark mode, listbox color is special and requires NSBox to
+            //        be rendered correctly, so we just use normal background for now:
+            if (ColorScheme::GetWindowMode(this) == ColorScheme::Dark)
+            {
+                listPanel->SetBackgroundColour(listPanel->GetDefaultAttributes().colBg);
+            }
+            else
+#endif
+            {
+                listPanel->SetBackgroundColour(wxSystemSettings::GetColour(wxSYS_COLOUR_LISTBOX));
+            }
+        });
 
         m_new->Bind(wxEVT_BUTTON, &ExtractorsPageWindow::OnNewExtractor, this);
         m_edit->Bind(wxEVT_BUTTON, &ExtractorsPageWindow::OnEditExtractor, this);

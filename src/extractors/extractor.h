@@ -1,7 +1,7 @@
 /*
  *  This file is part of Poedit (https://poedit.net)
  *
- *  Copyright (C) 2017-2019 Vaclav Slavik
+ *  Copyright (C) 2017-2020 Vaclav Slavik
  *
  *  Permission is hereby granted, free of charge, to any person obtaining a
  *  copy of this software and associated documentation files (the "Software"),
@@ -28,6 +28,7 @@
 
 #include <map>
 #include <memory>
+#include <stdexcept>
 #include <set>
 #include <vector>
 
@@ -48,6 +49,22 @@ struct SourceCodeSpec
 
     // additional keys from the headers
     std::map<wxString, wxString> XHeaders;
+};
+
+enum class ExtractionError
+{
+    Unspecified,
+    NoSourcesFound,
+    PermissionDenied
+};
+
+class ExtractionException : public std::runtime_error
+{
+public:
+    ExtractionException(ExtractionError error_)
+        : std::runtime_error("extraction error"), error(error_) {}
+
+    ExtractionError error;
 };
 
 
@@ -77,6 +94,8 @@ public:
         don't contain translations.
 
         The returned list is guaranteed to be sorted by operator<
+
+        May throw ExtractionException.
      */
     static FilesList CollectAllFiles(const SourceCodeSpec& sources);
 

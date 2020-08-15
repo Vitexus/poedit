@@ -1,7 +1,7 @@
 /*
  *  This file is part of Poedit (https://poedit.net)
  *
- *  Copyright (C) 1999-2019 Vaclav Slavik
+ *  Copyright (C) 1999-2020 Vaclav Slavik
  *
  *  Permission is hereby granted, free of charge, to any person obtaining a
  *  copy of this software and associated documentation files (the "Software"),
@@ -493,6 +493,9 @@ void Catalog::CreateNewHeader(const Catalog::HeaderData& pot_header)
     HeaderData &dt = Header();
     dt = pot_header;
 
+    if ( !dt.RevisionDate.empty() )
+        dt.RevisionDate = GetCurrentTimeString();
+
     // UTF-8 should be used by default no matter what the POT uses
     dt.Charset = "UTF-8";
 
@@ -532,14 +535,16 @@ int Catalog::FindItemIndexByLine(int lineno)
 
 int Catalog::SetBookmark(int id, Bookmark bookmark)
 {
-    int result = (bookmark==NO_BOOKMARK)?-1:m_header.Bookmarks[bookmark];
+    int previous = (bookmark==NO_BOOKMARK)?-1:m_header.Bookmarks[bookmark];
+    if (previous >= (int)m_items.size())
+        previous = -1;
 
     // unset previous bookmarks, if any
     Bookmark bk = m_items[id]->GetBookmark();
     if (bk != NO_BOOKMARK)
         m_header.Bookmarks[bk] = -1;
-    if (result > -1)
-        m_items[result]->SetBookmark(NO_BOOKMARK);
+    if (previous > -1)
+        m_items[previous]->SetBookmark(NO_BOOKMARK);
 
     // set new bookmark
     m_items[id]->SetBookmark(bookmark);
@@ -547,7 +552,7 @@ int Catalog::SetBookmark(int id, Bookmark bookmark)
         m_header.Bookmarks[bookmark] = id;
 
     // return id of previous item for that bookmark
-    return result;
+    return previous;
 }
 
 
@@ -887,10 +892,12 @@ wxString CatalogItem::GetFormatFlag() const
     if (pos == wxString::npos)
         return wxString();
     auto space = m_moreFlags.find_last_of(" \t", pos);
-    if (space == wxString::npos)
-        return m_moreFlags.substr(0, pos);
-    else
-        return m_moreFlags.substr(space+1, pos-space-1);
+    auto format = (space == wxString::npos)
+                    ? m_moreFlags.substr(0, pos)
+                    : m_moreFlags.substr(space+1, pos-space-1);
+    if (format.StartsWith("no-"))
+        return wxString();
+    return format;
 }
 
 void CatalogItem::SetFuzzy(bool fuzzy)

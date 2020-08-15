@@ -1,7 +1,7 @@
 ﻿;
 ;   This file is part of Poedit (https://poedit.net)
 ;
-;   Copyright (C) 1999-2019 Vaclav Slavik
+;   Copyright (C) 1999-2020 Vaclav Slavik
 ;
 ;   Permission is hereby granted, free of charge, to any person obtaining a
 ;   copy of this software and associated Docsumentation files (the "Software"),
@@ -30,11 +30,11 @@
 
 #include "../" + CONFIG + "/git_build_number.h"
 
-#define VERSION          "2.2.1"
+#define VERSION          "2.4.1"
 #define VERSION_WIN      VERSION + "." + Str(POEDIT_GIT_BUILD_NUMBER)
 
 #ifndef CRT_REDIST
-#define CRT_REDIST       GetEnv("VCToolsRedistDir") + "\x86\Microsoft.VC141.CRT"
+#define CRT_REDIST       GetEnv("VCToolsRedistDir") + "\x86\Microsoft.VC142.CRT"
 #endif
 #ifndef UCRT_REDIST
 #define UCRT_REDIST       GetEnv("UniversalCRTSdkDir") + "\Redist\" + GetEnv("UCRTVersion") + "\ucrt\DLLs\x86"
@@ -47,7 +47,6 @@ OutputDir=win32\distrib-{#CONFIG}-{#VERSION}
 AppName=Poedit
 AppVerName=Poedit {#VERSION}
 
-PrivilegesRequired=none
 ChangesAssociations=true
 AlwaysShowComponentsList=false
 SourceDir=..
@@ -69,7 +68,7 @@ InternalCompressLevel=ultra
 AppID={{68EB2C37-083A-4303-B5D8-41FA67E50B8F}
 VersionInfoVersion={#VERSION_WIN}
 VersionInfoTextVersion={#VERSION}
-AppCopyright=Copyright © 1999-2019 Vaclav Slavik
+AppCopyright=Copyright © 1999-2020 Vaclav Slavik
 AppPublisher=Vaclav Slavik
 AppSupportURL=https://poedit.net/support
 AppUpdatesURL=https://poedit.net/download
@@ -79,6 +78,7 @@ UninstallDisplayIcon={app}\Poedit.exe
 UninstallDisplayName=Poedit
 MinVersion=0,6.1.7600
 WizardSmallImageFile=artwork\windows\installer_wizard_image.bmp
+WizardStyle=modern
 AppPublisherURL=https://poedit.net/
 DisableProgramGroupPage=true
 
@@ -87,7 +87,7 @@ SignTool={#SIGNTOOL}
 #endif
 VersionInfoCompany=Vaclav Slavik
 VersionInfoDescription=Poedit Installer
-VersionInfoCopyright=Copyright © 1999-2019 Vaclav Slavik
+VersionInfoCopyright=Copyright © 1999-2020 Vaclav Slavik
 VersionInfoProductName=Poedit
 VersionInfoProductVersion={#VERSION_WIN}
 VersionInfoProductTextVersion={#VERSION}
@@ -97,7 +97,6 @@ DisableDirPage=auto
 Source: {#CONFIG}\Poedit.exe; DestDir: {app}; Flags: ignoreversion
 Source: {#CONFIG}\*.dll; DestDir: {app}; Flags: ignoreversion
 Source: {#CONFIG}\icudt*.dat; DestDir: {app}
-Source: deps\gettext\COPYING; DestDir: {app}\Docs; DestName: GNU_Gettext_COPYING.txt
 Source: COPYING; DestDir: {app}\Docs; DestName: Copying.txt
 Source: NEWS; DestDir: {app}\Docs; DestName: News.txt
 Source: {#CRT_REDIST}\*.dll; DestDir: {app}
@@ -159,7 +158,7 @@ Root: HKCR; Subkey: "poedit\DefaultIcon"; ValueType: "string"; ValueData: "{app}
 Root: HKCR; Subkey: "poedit\shell\open\command"; ValueType: "string"; ValueData: """{app}\Poedit.exe"" --handle-poedit-uri ""%1"""; Flags: uninsdeletekey noerror
 
 [Icons]
-Name: {commonprograms}\Poedit; Filename: {app}\Poedit.exe; WorkingDir: {app}; IconIndex: 0; Comment: Translations editor.
+Name: {commonprograms}\Poedit; Filename: {app}\Poedit.exe; WorkingDir: {app}; IconIndex: 0; Comment: Translation editor.
 
 [Run]
 Filename: {app}\Poedit.exe; WorkingDir: {app}; Description: {cm:OpenAfterInstall}; Flags: postinstall nowait skipifsilent runasoriginaluser
@@ -171,9 +170,6 @@ UseAbsolutePaths=false
 Name: {app}\Docs
 Name: {app}\Resources
 Name: {app}\Translations
-
-[Messages]
-BeveledLabel=https://poedit.net
 
 [ThirdParty]
 CompileLogMethod=append
@@ -189,16 +185,13 @@ Name: "dutch"; MessagesFile: "compiler:Languages\Dutch.isl"
 Name: "finnish"; MessagesFile: "compiler:Languages\Finnish.isl"
 Name: "french"; MessagesFile: "compiler:Languages\French.isl"
 Name: "german"; MessagesFile: "compiler:Languages\German.isl"
-Name: "greek"; MessagesFile: "compiler:Languages\Greek.isl"
 Name: "hebrew"; MessagesFile: "compiler:Languages\Hebrew.isl"
-Name: "hungarian"; MessagesFile: "compiler:Languages\Hungarian.isl"
 Name: "italian"; MessagesFile: "compiler:Languages\Italian.isl"
 Name: "japanese"; MessagesFile: "compiler:Languages\Japanese.isl"
 Name: "norwegian"; MessagesFile: "compiler:Languages\Norwegian.isl"
 Name: "polish"; MessagesFile: "compiler:Languages\Polish.isl"
 Name: "portuguese"; MessagesFile: "compiler:Languages\Portuguese.isl"
 Name: "russian"; MessagesFile: "compiler:Languages\Russian.isl"
-Name: "serbiancyrillic"; MessagesFile: "compiler:Languages\SerbianCyrillic.isl"
 Name: "slovenian"; MessagesFile: "compiler:Languages\Slovenian.isl"
 Name: "spanish"; MessagesFile: "compiler:Languages\Spanish.isl"
 Name: "turkish"; MessagesFile: "compiler:Languages\Turkish.isl"
@@ -215,16 +208,13 @@ dutch.OpenAfterInstall=Poedit starten na installatie
 finnish.OpenAfterInstall=Avaa Poedit asentamisen jälkeen
 french.OpenAfterInstall=Ouvrir Poedit après l'installation
 german.OpenAfterInstall=Poedit nach Abschluss der Installation öffnen
-greek.OpenAfterInstall=Άνοιξε το Poedit μετά την εγκατάσταση
 hebrew.OpenAfterInstall=פתח את Poedit לאחר ההתקנה
-hungarian.OpenAfterInstall=Poedit megnyitása telepítés után
 italian.OpenAfterInstall=Apri Poedit dopo l'installazione
 japanese.OpenAfterInstall=インストール後 Poedit を開く
 norwegian.OpenAfterInstall=Åpne Poedit etter installasjon
 polish.OpenAfterInstall=Otwórz program Poedit po zakończeniu instalacji
 portuguese.OpenAfterInstall=Abrir Poedit após a instalação
 russian.OpenAfterInstall=Открыть Poedit после окончания установки
-serbiancyrillic.OpenAfterInstall=Отвори Poedit након инсталације
 slovenian.OpenAfterInstall=Po namestitvi odpri Poedit
 spanish.OpenAfterInstall=Abrir Poedit tras la instalación
 turkish.OpenAfterInstall=Kurulumdan sonra Poedit'i aç

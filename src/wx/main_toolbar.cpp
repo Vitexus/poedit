@@ -1,7 +1,7 @@
 /*
  *  This file is part of Poedit (https://poedit.net)
  *
- *  Copyright (C) 2014-2019 Vaclav Slavik
+ *  Copyright (C) 2014-2020 Vaclav Slavik
  *
  *  Permission is hereby granted, free of charge, to any person obtaining a
  *  copy of this software and associated documentation files (the "Software"),
@@ -84,7 +84,7 @@ public:
         if (on)
         {
             tool->SetLabel(_("Sync"));
-            tool->SetShortHelp(_("Synchronize the translation with Crowdin"));
+            m_tb->SetToolShortHelp(m_idUpdate, _("Synchronize the translation with Crowdin"));
             #ifdef __WXGTK3__
             SetIcon(4 , "poedit-sync-symbolic");
             #else
@@ -97,7 +97,7 @@ public:
         else
         {
             tool->SetLabel(MSW_OR_OTHER(_("Update from code"), _("Update from Code")));
-            tool->SetShortHelp(_("Update catalog - synchronize it with sources"));
+            m_tb->SetToolShortHelp(m_idUpdate, _("Update from source code"));
             #ifdef __WXGTK3__
             SetIcon(4 , "poedit-update-symbolic");
             #else

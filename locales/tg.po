@@ -2,19 +2,20 @@ msgid ""
 msgstr ""
 "Project-Id-Version: poedit\n"
 "Report-Msgid-Bugs-To: help@poedit.net\n"
-"POT-Creation-Date: 2018-10-07 13:14+0200\n"
-"PO-Revision-Date: 2019-01-14 16:34\n"
-"Last-Translator: vslavik <vaclav@slavik.io>\n"
+"POT-Creation-Date: 2020-07-18 14:48+0200\n"
+"PO-Revision-Date: 2020-07-18 12:48\n"
+"Last-Translator: \n"
 "Language-Team: Tajik\n"
 "Language: tg_TJ\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=(n > 1);\n"
-"X-Generator: crowdin.com\n"
 "X-Crowdin-Project: poedit\n"
+"X-Crowdin-Project-ID: 53425\n"
 "X-Crowdin-Language: tg\n"
 "X-Crowdin-File: /locales/poedit.pot\n"
+"X-Crowdin-File-ID: 3\n"
 
 msgid "Hide this notification message"
 msgstr "Хабари огоҳии зеринро пинҳон кунед"
@@ -149,11 +150,11 @@ msgstr "Қайди вайроншуда дар сатри тарҷумавӣ."
 msgid "(Use default language)"
 msgstr "(Истифодаи забони асосӣ)"
 
-msgid "Select your preferred language"
-msgstr "Забони дилхоҳро интихоб кунед"
-
 msgid "Language selection"
 msgstr "Интихоби забон"
+
+msgid "Select your preferred language"
+msgstr "Забони дилхоҳро интихоб кунед"
 
 msgid "You must restart Poedit for this change to take effect."
 msgstr "Барои татбиқ кардани тағйирот, шумо бояд барномаро аз нав оғоз кунед."
@@ -174,11 +175,14 @@ msgstr "Ҳамоҳангсозӣ бо %s иҷро нашуд."
 msgid "Syncing error"
 msgstr "Хатои ҳамоҳангсозӣ"
 
-msgid "Downloading translations is disabled in this project."
-msgstr "Боргирии тарҷумаҳо барои ин лоиҳа ғайрифаъол шуд."
+msgid "JSON request error"
+msgstr ""
 
 msgid "Not authorized, please sign in again."
 msgstr "Ворид нашуд, лутфан аз нав ворид шавед."
+
+msgid "Downloading translations is disabled in this project."
+msgstr "Боргирии тарҷумаҳо барои ин лоиҳа ғайрифаъол шуд."
 
 msgid ""
 "Crowdin is an online localization management platform and collaborative "
@@ -206,9 +210,6 @@ msgstr "Дар ҳоли интизори санҷиши ҳаққоният…"
 msgid "Updating user information…"
 msgstr "Дар ҳоли навсозии маълумоти корбар…"
 
-msgid "Signed in as:"
-msgstr "Ворид шуд ҳамчун:"
-
 msgid "Learn More About Crowdin"
 msgstr "Маълумоти бештар дар бораи Crowdin"
 
@@ -217,6 +218,9 @@ msgstr "Маълумоти бештар дар бораи Crowdin"
 
 msgid "Sign in to Crowdin"
 msgstr "Ворид шудан ба Crowdin"
+
+msgid "File"
+msgstr "Файл"
 
 msgid "Open Crowdin translation"
 msgstr "Кушодани тарҷума дар Crowdin"
@@ -227,21 +231,12 @@ msgstr "Лоиҳа:"
 msgid "Language:"
 msgstr "Забон:"
 
-msgid "File:"
-msgstr "Файл:"
+msgid "Signed in as:"
+msgstr "Ворид шуд ҳамчун:"
 
 msgid "No translation projects listed in your Crowdin account."
 msgstr ""
 "Дар ҳисоби Crowdin-и шумо ягон лоиҳаи тарҷума дар рӯйхат вуҷуд надорад."
-
-msgid "This project has no files that can be translated in Poedit."
-msgstr ""
-"Ин лоиҳа ягон файле, ки матавонад дар Poedit тарҷума карда шавад, вуҷуд "
-"надорад."
-
-msgid "This file can only be edited in Crowdin’s web interface."
-msgstr ""
-"Ин файл метавонад танҳо дар интерфейси веби Crowdin таҳрир карда шавад."
 
 msgid "Downloading latest translations…"
 msgstr "Дар ҳоли боргирии тарҷумаҳои навтарин…"
@@ -303,7 +298,7 @@ msgstr "Кушодани файл"
 msgid "File “%s” doesn’t exist."
 msgstr "Файли “%s” вуҷуд надорад."
 
-msgid "Poedit is an easy to use translations editor."
+msgid "Poedit is an easy to use translation editor."
 msgstr "Барномаи Poedit барои тарҷумаи файлҳо хеле осон аст."
 
 msgid "Catalogs Manager"
@@ -409,17 +404,17 @@ msgstr "Ҳамаро ба пеш гузоред"
 msgid "PO Translation"
 msgstr "Тарҷумаи PO"
 
-msgid "The file cannot be opened."
-msgstr "Файл кушода намешавад."
-
-msgid "Invalid file"
-msgstr "Файли нодуруст"
-
 msgid ""
 "The file may be either corrupted or in a format not recognized by Poedit."
 msgstr ""
 "Эҳтимол аст, ки файл вайрон шудааст ё дар формате мебошад, ки бо Poedit "
 "дастгирӣ намешавад."
+
+msgid "The file cannot be opened."
+msgstr "Файл кушода намешавад."
+
+msgid "Invalid file"
+msgstr "Файли нодуруст"
 
 msgid "You can’t drop more than one file on Poedit window."
 msgstr "Шумо зиёда аз як файл ба равзанаи Poedit гузошта наметавонед."
@@ -497,6 +492,20 @@ msgstr ""
 "Тарҷумаҳо аз рамзи манбаъ навсозӣ карда намешаванд, зеро ки ягон рамз дар "
 "макони муайяншуда дар хусусиятҳои файл ёфт нашуд."
 
+msgid "Permission denied."
+msgstr ""
+
+msgid ""
+"You don’t have permission to read source code files from the location "
+"specified in the catalog’s Properties."
+msgstr ""
+
+#. TRANSLATORS: The System Preferences etc. references macOS system settings and should be translated EXACTLY as in the OS. If you don't use macOS and can't check, leave it untranslated.
+msgid ""
+"If you previously denied access to your files, you can allow it in System "
+"Preferences > Security & Privacy > Privacy > Files & Folders."
+msgstr ""
+
 msgid "Entries in the catalog are probably incorrect."
 msgstr "Вурудҳои файл эҳтимол нодуруст ҳастанд."
 
@@ -572,6 +581,13 @@ msgstr ""
 "Агар шумо огоҳиоро ба сабаби пайдоиши зиёд хатоҳои эҳтимолӣ ғайрифаъол "
 "созед, лутфан, барои такмили низом файли намунавиро ба help@poedit.net "
 "фиристонед."
+
+msgid "Send Feedback"
+msgstr ""
+
+#. TRANSLATORS: This is a button to send email with feedback when clicked
+msgid "Send feedback"
+msgstr ""
 
 #, c-format
 msgid "Poedit automatically fixed invalid content in the file “%s”."
@@ -1935,8 +1951,8 @@ msgstr "Навсозӣ кардан аз рамз"
 msgid "Update from Code"
 msgstr "Навсозӣ кардан аз рамз"
 
-msgid "Update catalog - synchronize it with sources"
-msgstr "Файлро навсозӣ кунед - бо файли аслӣ ҳамоҳанг созед"
+msgid "Update from source code"
+msgstr "Навсозӣ аз манбаи рамз"
 
 msgid "Sidebar"
 msgstr "Навори ҷонибӣ"
@@ -2170,9 +2186,6 @@ msgstr "&Нест кардан"
 
 msgid "&Quit"
 msgstr "&Баромад"
-
-msgid "File"
-msgstr "Файл"
 
 msgid "Help"
 msgstr "Кумак"

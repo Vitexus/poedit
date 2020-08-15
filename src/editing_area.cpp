@@ -1,7 +1,7 @@
 /*
  *  This file is part of Poedit (https://poedit.net)
  *
- *  Copyright (C) 1999-2019 Vaclav Slavik
+ *  Copyright (C) 1999-2020 Vaclav Slavik
  *
  *  Permission is hereby granted, free of charge, to any person obtaining a
  *  copy of this software and associated documentation files (the "Software"),
@@ -125,7 +125,7 @@ public:
             const wxCoord minMSize = GetSizeInMajorDir(minSize);
             // If there's not enough space, make shrinkable item proportional,
             // it will be resized under its minimal size then.
-            m_shrinkable->SetProportion(totalSize < minMSize ? 10000 : 0);
+            m_shrinkable->SetProportion(totalSize > 20 && totalSize < minMSize ? 10000 : 0);
         }
 
         wxBoxSizer::RepositionChildren(minSize);
@@ -139,7 +139,7 @@ public:
             const wxCoord minSize = GetSizeInMajorDir(m_calculatedMinSize);
             // If there's not enough space, make shrinkable item proportional,
             // it will be resized under its minimal size then.
-            m_shrinkable->SetProportion(totalSize < minSize ? 10000 : 0);
+            m_shrinkable->SetProportion(totalSize > 20 && totalSize < minSize ? 10000 : 0);
         }
 
         wxBoxSizer::RecalcSizes();
@@ -203,11 +203,6 @@ public:
         m_label->SetWindowVariant(wxWINDOW_VARIANT_SMALL);
 #endif
 
-#ifdef __WXMSW__
-        SetBackgroundColour(parent->GetBackgroundColour());
-#endif
-        SetColor(fg, bg);
-
         auto sizer = new wxBoxSizer(wxHORIZONTAL);
         sizer->Add(m_label, wxSizerFlags(1).Center().Border(wxALL, PX(2)));
 #ifdef __WXMSW__
@@ -217,6 +212,16 @@ public:
         SetSizer(sizer);
 
         Bind(wxEVT_PAINT, &TagLabel::OnPaint, this);
+
+        SetColor(fg, bg);
+
+        ColorScheme::SetupWindowColors(this, [=]
+        {
+        #ifdef __WXMSW__
+            SetBackgroundColour(ColorScheme::Get(Color::EditingThickSeparator));
+        #endif
+            UpdateColor();
+        });
     }
 
     void SetLabel(const wxString& text) override
@@ -227,15 +232,9 @@ public:
 
     void SetColor(Color fg, Color bg)
     {
-        m_fg = ColorScheme::GetBlendedOn(fg, this, bg);
-        m_bg = ColorScheme::GetBlendedOn(bg, this);
-
-        m_label->SetForegroundColour(m_fg);
-#ifdef __WXMSW__
-        m_label->SetBackgroundColour(m_bg);
-        if (m_icon)
-            m_icon->SetBackgroundColour(m_bg);
-#endif
+        m_fgSym = fg;
+        m_bgSym = bg;
+        UpdateColor();
     }
 
     void SetIcon(const wxBitmap& icon)
@@ -247,7 +246,7 @@ public:
             {
                 m_icon = new wxStaticBitmap(this, wxID_ANY, icon);
 #ifdef __WXMSW__
-                m_icon->SetBackgroundColour(m_bg);
+                ColorScheme::SetupWindowColors(m_icon, [=]{ m_icon->SetBackgroundColour(m_bg); });
 #endif
                 sizer->Insert(0, m_icon, wxSizerFlags().Center().Border(wxLEFT, PX(2)));
             }
@@ -262,6 +261,19 @@ public:
     }
 
 protected:
+    void UpdateColor()
+    {
+        m_fg = ColorScheme::GetBlendedOn(m_fgSym, this, m_bgSym);
+        m_bg = ColorScheme::GetBlendedOn(m_bgSym, this);
+
+        m_label->SetForegroundColour(m_fg);
+#ifdef __WXMSW__
+        m_label->SetBackgroundColour(m_bg);
+        if (m_icon)
+            m_icon->SetBackgroundColour(m_bg);
+#endif
+    }
+
 #if wxCHECK_VERSION(3,1,1)
     void DoSetToolTipText(const wxString &tip) override
     {
@@ -298,6 +310,7 @@ private:
         }
     }
 
+    Color m_fgSym, m_bgSym;
     wxColour m_fg, m_bg;
     wxStaticText *m_label;
     wxStaticBitmap *m_icon;
@@ -360,7 +373,6 @@ EditingArea::EditingArea(wxWindow *parent, PoeditListCtrl *associatedList, Mode 
     SetDoubleBuffered(true);
 #endif
 
-    SetBackgroundColour(ColorScheme::Get(Color::EditingBackground));
     Bind(wxEVT_PAINT, &EditingArea::OnPaint, this);
 
     m_labelSource = new wxStaticText(this, -1, _("Source text:"));
@@ -383,13 +395,11 @@ EditingArea::EditingArea(wxWindow *parent, PoeditListCtrl *associatedList, Mode 
     m_labelSingular = new wxStaticText(this, -1, _("Singular:"));
     m_labelSingular->SetWindowVariant(wxWINDOW_VARIANT_SMALL);
     m_labelSingular->SetFont(m_labelSingular->GetFont().Bold());
-    m_labelSingular->SetForegroundColour(ColorScheme::Get(Color::SecondaryLabel));
     m_textOrig = new SourceTextCtrl(this, wxID_ANY);
 
     m_labelPlural = new wxStaticText(this, -1, _("Plural:"));
     m_labelPlural->SetWindowVariant(wxWINDOW_VARIANT_SMALL);
     m_labelPlural->SetFont(m_labelPlural->GetFont().Bold());
-    m_labelPlural->SetForegroundColour(ColorScheme::Get(Color::SecondaryLabel));
     m_textOrigPlural = new SourceTextCtrl(this, wxID_ANY);
 
     auto *sizer = new wxBoxSizer(wxVERTICAL);
@@ -416,6 +426,16 @@ EditingArea::EditingArea(wxWindow *parent, PoeditListCtrl *associatedList, Mode 
         CreateEditControls(sizer);
 
     SetupTextCtrlSizes();
+
+    ColorScheme::SetupWindowColors(this, [=]
+    {
+        SetBackgroundColour(ColorScheme::Get(Color::EditingBackground));
+    #ifdef __WXMSW__
+        m_labelSource->SetBackgroundColour(ColorScheme::Get(Color::EditingThickSeparator));
+    #endif
+        m_labelSingular->SetForegroundColour(ColorScheme::Get(Color::SecondaryLabel));
+        m_labelPlural->SetForegroundColour(ColorScheme::Get(Color::SecondaryLabel));
+    });
 }
 
 
@@ -457,8 +477,7 @@ void EditingArea::CreateEditControls(wxBoxSizer *sizer)
 #ifdef __WXOSX__
     m_fuzzy->SetWindowVariant(wxWINDOW_VARIANT_SMALL);
 #endif
-    m_fuzzy->SetColors(ColorScheme::Get(Color::FuzzySwitch), ColorScheme::Get(Color::FuzzySwitchInactive));
-    transLineSizer->Add(m_fuzzy, wxSizerFlags().Expand().Border(wxTOP, MSW_OR_OTHER(IsHiDPI() ? PX(1) : 0, 0)));
+    transLineSizer->Add(m_fuzzy, wxSizerFlags().Center().Border(wxTOP, MSW_OR_OTHER(IsHiDPI() ? PX(1) : 0, 0)));
     transLineSizer->AddSpacer(PX(4));
 
     m_textTrans = new TranslationTextCtrl(this, wxID_ANY);
@@ -468,9 +487,6 @@ void EditingArea::CreateEditControls(wxBoxSizer *sizer)
 
     m_pluralNotebook = new wxNotebook(this, -1, wxDefaultPosition, wxDefaultSize, wxNB_NOPAGETHEME);
     m_pluralNotebook->SetWindowVariant(wxWINDOW_VARIANT_SMALL);
-#ifdef __WXMSW__
-    m_pluralNotebook->SetBackgroundColour(GetBackgroundColour());
-#endif
 
     sizer->Add(transLineSizer, wxSizerFlags().Expand().Border(wxLEFT|wxTOP, PX(6)));
     sizer->AddSpacer(PX(6));
@@ -478,6 +494,16 @@ void EditingArea::CreateEditControls(wxBoxSizer *sizer)
     sizer->Add(m_pluralNotebook, wxSizerFlags(1).Expand().Border(wxTOP, PX(4)));
 
     ShowPluralFormUI(false);
+
+    ColorScheme::SetupWindowColors(this, [=]
+    {
+        m_fuzzy->SetColors(ColorScheme::Get(Color::FuzzySwitch), ColorScheme::Get(Color::FuzzySwitchInactive));
+    #ifdef __WXMSW__
+        m_pluralNotebook->SetBackgroundColour(ColorScheme::Get(Color::EditingBackground));
+        m_labelTrans->SetBackgroundColour(ColorScheme::Get(Color::EditingThickSeparator));
+        m_fuzzy->SetBackgroundColour(ColorScheme::Get(Color::EditingThickSeparator));
+    #endif
+    });
 
     m_textTrans->Bind(wxEVT_TEXT, [=](wxCommandEvent& e){ e.Skip(); UpdateFromTextCtrl(); });
 
@@ -512,7 +538,6 @@ void EditingArea::CreateTemplateControls(wxBoxSizer *panelSizer)
 #ifdef __WXOSX__
     explain->SetWindowVariant(wxWINDOW_VARIANT_SMALL);
 #endif
-    explain->SetForegroundColour(ExplanationLabel::GetTextColor());
 
     auto button = new wxButton(win, XRCID("button_new_from_this_pot"), MSW_OR_OTHER(_("Create new translation"), _("Create New Translation")));
 
@@ -525,7 +550,13 @@ void EditingArea::CreateTemplateControls(wxBoxSizer *panelSizer)
 
     panelSizer->Add(win, 1, wxEXPAND);
 
-    win->Bind(wxEVT_PAINT, [win](wxPaintEvent&){
+    ColorScheme::SetupWindowColors(win, [=]
+    {
+        explain->SetForegroundColour(ColorScheme::Get(Color::SecondaryLabel));
+    });
+
+    win->Bind(wxEVT_PAINT, [win](wxPaintEvent&)
+    {
         wxPaintDC dc(win);
         auto clr = ColorScheme::Get(Color::EditingSeparator);
         dc.SetPen(clr);
@@ -557,24 +588,35 @@ EditingArea::~EditingArea()
 void EditingArea::OnPaint(wxPaintEvent&)
 {
     wxPaintDC dc(this);
-    auto width = GetClientSize().x;
+    auto width = dc.GetSize().x;
+#ifdef __WXOSX__
+    width += 1; // correct for half-pixel undrawn part on the right side
+#endif
 
     const int paddingTop = MACOS_OR_OTHER(dc.GetContentScaleFactor() > 1.0 ? PX(5) : PX(6), PX(6));
     const int paddingBottom = PX(5);
 
-    auto clr = ColorScheme::Get(Color::EditingSeparator);
-    dc.SetPen(clr);
-    dc.SetBrush(clr);
+    auto bg = ColorScheme::Get(Color::EditingThickSeparator);
+    dc.SetPen(bg);
+    dc.SetBrush(bg);
+    if (m_labelSource)
+    {
+        dc.DrawRectangle(0, 0, width, m_labelSource->GetPosition().y + m_labelSource->GetSize().y + paddingBottom);
+    }
+    if (m_labelTrans)
+    {
+        dc.DrawRectangle(0, m_labelTrans->GetPosition().y - paddingTop, width, paddingTop + m_labelTrans->GetSize().y + paddingBottom);
+    }
 
     if (m_labelTrans)
     {
         dc.DrawRectangle(0, m_labelTrans->GetPosition().y - paddingTop, width, PX(1));
+        dc.DrawRectangle(0, m_labelTrans->GetPosition().y + m_labelTrans->GetSize().y + paddingBottom, width, PX(1));
     }
 
-    auto clrs = ColorScheme::Get(Color::EditingSubtleSeparator);
-    dc.SetPen(clrs);
-    dc.SetBrush(clrs);
-
+    auto clr = ColorScheme::Get(Color::EditingSeparator);
+    dc.SetPen(clr);
+    dc.SetBrush(clr);
     if (m_labelSource)
     {
         dc.DrawRectangle(0, m_labelSource->GetPosition().y + m_labelSource->GetSize().y + paddingBottom, width, PX(1));
@@ -582,6 +624,7 @@ void EditingArea::OnPaint(wxPaintEvent&)
 
     if (m_labelTrans)
     {
+        dc.DrawRectangle(0, m_labelTrans->GetPosition().y - paddingTop, width, PX(1));
         dc.DrawRectangle(0, m_labelTrans->GetPosition().y + m_labelTrans->GetSize().y + paddingBottom, width, PX(1));
     }
 }
@@ -1013,4 +1056,10 @@ void EditingArea::ChangeFocusedPluralTab(int offset)
     else if (prevFocus)
         prevFocus->SetFocus();
 #endif
+}
+
+
+int EditingArea::GetTopRowHeight() const
+{
+    return m_tagContext->GetContainingSizer()->GetSize().y;
 }

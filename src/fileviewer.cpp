@@ -1,7 +1,7 @@
 /*
  *  This file is part of Poedit (https://poedit.net)
  *
- *  Copyright (C) 1999-2019 Vaclav Slavik
+ *  Copyright (C) 1999-2020 Vaclav Slavik
  *
  *  Permission is hereby granted, free of charge, to any person obtaining a
  *  copy of this software and associated documentation files (the "Software"),
@@ -101,7 +101,11 @@ FileViewer::FileViewer(wxWindow*)
     sizer->Add(m_text, 1, wxEXPAND);
 
     m_error = new wxStaticText(panel, wxID_ANY, "");
-    m_error->SetForegroundColour(ExplanationLabel::GetTextColor());
+    ColorScheme::SetupWindowColors(m_error, [=]
+    {
+        m_error->SetForegroundColour(ColorScheme::Get(Color::SecondaryLabel));
+    });
+
     m_error->SetFont(m_error->GetFont().Larger().Larger());
     sizer->Add(m_error, wxSizerFlags(1).Center().Border(wxTOP|wxBOTTOM, PX(80)));
 

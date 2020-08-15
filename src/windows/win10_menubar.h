@@ -1,7 +1,7 @@
 /*
  *  This file is part of Poedit (https://poedit.net)
  *
- *  Copyright (C) 2016-2019 Vaclav Slavik
+ *  Copyright (C) 2016-2020 Vaclav Slavik
  *
  *  Permission is hereby granted, free of charge, to any person obtaining a
  *  copy of this software and associated documentation files (the "Software"),
@@ -42,6 +42,8 @@ public:
                                 const wxString& name = wxFrameNameStr);
 
     wxPoint GetClientAreaOrigin() const override;
+
+    wxWindow* FindFocusNoMenu();
 
     bool MSWTranslateMessage(WXMSG *msg) override;
     WXLRESULT MSWWindowProc(WXUINT message, WXWPARAM wParam, WXLPARAM lParam) override;

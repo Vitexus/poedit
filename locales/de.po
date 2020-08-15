@@ -2,19 +2,20 @@ msgid ""
 msgstr ""
 "Project-Id-Version: poedit\n"
 "Report-Msgid-Bugs-To: help@poedit.net\n"
-"POT-Creation-Date: 2018-10-07 13:14+0200\n"
-"PO-Revision-Date: 2019-01-14 16:31\n"
-"Last-Translator: vslavik <vaclav@slavik.io>\n"
+"POT-Creation-Date: 2020-07-18 14:48+0200\n"
+"PO-Revision-Date: 2020-07-18 12:47\n"
+"Last-Translator: \n"
 "Language-Team: German\n"
 "Language: de_DE\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
-"X-Generator: crowdin.com\n"
 "X-Crowdin-Project: poedit\n"
+"X-Crowdin-Project-ID: 53425\n"
 "X-Crowdin-Language: de\n"
 "X-Crowdin-File: /locales/poedit.pot\n"
+"X-Crowdin-File-ID: 3\n"
 
 msgid "Hide this notification message"
 msgstr "Diese Benachrichtigung nicht anzeigen"
@@ -149,11 +150,11 @@ msgstr "Fehlerhaftes Markup in Übersetzungszeichenkette."
 msgid "(Use default language)"
 msgstr "(Standardsprache verwenden)"
 
-msgid "Select your preferred language"
-msgstr "Bitte wählen Sie Ihre bevorzugte Sprache aus"
-
 msgid "Language selection"
 msgstr "Sprachauswahl"
+
+msgid "Select your preferred language"
+msgstr "Bitte wählen Sie Ihre bevorzugte Sprache aus"
 
 msgid "You must restart Poedit for this change to take effect."
 msgstr "Sie müssen Poedit neu starten, damit diese Änderung wirksam wird."
@@ -174,11 +175,14 @@ msgstr "Fehler beim Synchronisieren mit %s."
 msgid "Syncing error"
 msgstr "Fehler bei der Synchronisierung"
 
-msgid "Downloading translations is disabled in this project."
-msgstr "Herunterladen von Übersetzungen ist in diesem Projekt deaktiviert."
+msgid "JSON request error"
+msgstr ""
 
 msgid "Not authorized, please sign in again."
 msgstr "Nicht autorisiert, bitte melden Sie sich erneut an."
+
+msgid "Downloading translations is disabled in this project."
+msgstr "Herunterladen von Übersetzungen ist in diesem Projekt deaktiviert."
 
 msgid ""
 "Crowdin is an online localization management platform and collaborative "
@@ -206,9 +210,6 @@ msgstr "Auf Authentifizierung warten …"
 msgid "Updating user information…"
 msgstr "Benutzerinformationen werden aktualisiert …"
 
-msgid "Signed in as:"
-msgstr "Angemeldet als:"
-
 msgid "Learn More About Crowdin"
 msgstr "Erfahren Sie mehr über Crowdin"
 
@@ -217,6 +218,9 @@ msgstr "Erfahren Sie mehr über Crowdin"
 
 msgid "Sign in to Crowdin"
 msgstr "Bei Crowdin anmelden"
+
+msgid "File"
+msgstr "Datei"
 
 msgid "Open Crowdin translation"
 msgstr "Crowdin-Übersetzung öffnen"
@@ -227,20 +231,11 @@ msgstr "Projekt:"
 msgid "Language:"
 msgstr "Sprache:"
 
-msgid "File:"
-msgstr "Datei:"
+msgid "Signed in as:"
+msgstr "Angemeldet als:"
 
 msgid "No translation projects listed in your Crowdin account."
 msgstr "Es sind keine Übersetzungsprojekte in Ihrem Crowdin-Konto gelistet."
-
-msgid "This project has no files that can be translated in Poedit."
-msgstr ""
-"In diesem Projekt befinden sich keine Dateien, die mit Poedit übersetzt "
-"werden können."
-
-msgid "This file can only be edited in Crowdin’s web interface."
-msgstr ""
-"Diese Datei kann nur in der Weboberfläche von Crowdin bearbeitet werden."
 
 msgid "Downloading latest translations…"
 msgstr "Neueste Übersetzungen werden heruntergeladen …"
@@ -302,8 +297,8 @@ msgstr "Katalog öffnen"
 msgid "File “%s” doesn’t exist."
 msgstr "Datei »%s« existiert nicht."
 
-msgid "Poedit is an easy to use translations editor."
-msgstr "Poedit ist ein einfach zu benutzender Übersetzungseditor."
+msgid "Poedit is an easy to use translation editor."
+msgstr "Poedit ist ein einfach zu bedienender Übersetzungseditor."
 
 msgid "Catalogs Manager"
 msgstr "Katalogverwaltung"
@@ -408,17 +403,17 @@ msgstr "Alle in den Vordergrund bringen"
 msgid "PO Translation"
 msgstr "PO-Übersetzung"
 
-msgid "The file cannot be opened."
-msgstr "Die Datei kann nicht geöffnet werden."
-
-msgid "Invalid file"
-msgstr "Ungültige Datei"
-
 msgid ""
 "The file may be either corrupted or in a format not recognized by Poedit."
 msgstr ""
 "Die Datei ist entweder beschädigt oder Poedit konnte das Format nicht "
 "erkennen."
+
+msgid "The file cannot be opened."
+msgstr "Die Datei kann nicht geöffnet werden."
+
+msgid "Invalid file"
+msgstr "Ungültige Datei"
 
 msgid "You can’t drop more than one file on Poedit window."
 msgstr "Sie können nicht mehr als eine Datei ins Poedit-Fenster ziehen."
@@ -498,6 +493,25 @@ msgstr ""
 "Übersetzungen konnten nicht aus dem Quellcode aktualisiert werden, weil kein "
 "Quellcode an dem in den Katalogeinstellungen angegebenen Ort gefunden wurde."
 
+msgid "Permission denied."
+msgstr "Zugriff verweigert."
+
+msgid ""
+"You don’t have permission to read source code files from the location "
+"specified in the catalog’s Properties."
+msgstr ""
+"Sie haben keine Berechtigung, Quellcode-Dateien von dem in den "
+"Katalogeigenschaften angegebenen Ort zu lesen."
+
+#. TRANSLATORS: The System Preferences etc. references macOS system settings and should be translated EXACTLY as in the OS. If you don't use macOS and can't check, leave it untranslated.
+msgid ""
+"If you previously denied access to your files, you can allow it in System "
+"Preferences > Security & Privacy > Privacy > Files & Folders."
+msgstr ""
+"Wenn Sie den Zugriff auf Ihre Dateien zuvor verweigert haben, können Sie ihn "
+"hier erlauben: Systemeinstellungen > Sicherheit > Datenschutz > Dateien & "
+"Ordner."
+
 msgid "Entries in the catalog are probably incorrect."
 msgstr "Katalogeinträge sind möglicherweise ungültig."
 
@@ -576,6 +590,13 @@ msgstr ""
 "Wenn Sie die Warnungen aufgrund übermäßiger falsch positiver Meldungen "
 "deaktiviert haben, ziehen Sie bitte die Sendung einer Musterdatei an "
 "help@poedit.net in Betracht, um zu helfen, sie zu verbessern."
+
+msgid "Send Feedback"
+msgstr "Rückmeldung senden"
+
+#. TRANSLATORS: This is a button to send email with feedback when clicked
+msgid "Send feedback"
+msgstr "Rückmeldung senden"
 
 #, c-format
 msgid "Poedit automatically fixed invalid content in the file “%s”."
@@ -938,7 +959,7 @@ msgid "Replace &all"
 msgstr "&Alle ersetzen"
 
 msgid "&Replace"
-msgstr "E&rsetzen"
+msgstr "Erset&zen"
 
 msgid "< &Previous"
 msgstr "< &Zurück"
@@ -1398,7 +1419,7 @@ msgid "Extract notes for translators from:"
 msgstr "Anmerkungen für Übersetzer extrahieren aus:"
 
 msgid "Comments prefixed with:"
-msgstr "Anmerkungen mit Präfix:"
+msgstr "Kommentare mit Präfix:"
 
 msgid "All comments"
 msgstr "Alle Kommentare"
@@ -1468,7 +1489,7 @@ msgstr "Die Übersetzung sollte nicht mit »%s« enden."
 
 #, c-format
 msgid "The translation ends with “%s”, but the source text ends with “%s”."
-msgstr "Die Übersetzung endet mit »%s«, aber der Quelltext endet mit »%s«."
+msgstr "Die Übersetzung endet mit »%s«, der Quelltext allerdings mit »%s«."
 
 msgid "Comment:"
 msgstr "Kommentar:"
@@ -1945,8 +1966,8 @@ msgstr "Aktualisieren aus Quellcode"
 msgid "Update from Code"
 msgstr "Aktualisieren aus Quellcode"
 
-msgid "Update catalog - synchronize it with sources"
-msgstr "Katalog aktualisieren – mit Quellen synchronisieren"
+msgid "Update from source code"
+msgstr "Aktualisieren aus Quellcode"
 
 msgid "Sidebar"
 msgstr "Seitenleiste"
@@ -2181,9 +2202,6 @@ msgstr "&Löschen"
 
 msgid "&Quit"
 msgstr "&Beenden"
-
-msgid "File"
-msgstr "Datei"
 
 msgid "Help"
 msgstr "Hilfe"

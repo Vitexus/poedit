@@ -1,7 +1,7 @@
 /*
  *  This file is part of Poedit (https://poedit.net)
  *
- *  Copyright (C) 1999-2019 Vaclav Slavik
+ *  Copyright (C) 1999-2020 Vaclav Slavik
  *
  *  Permission is hereby granted, free of charge, to any person obtaining a
  *  copy of this software and associated documentation files (the "Software"),
@@ -115,6 +115,7 @@ bool PreTranslateCatalog(wxWindow *window, CatalogPtr catalog, const T& range, i
     progress.SetGaugeMax((int)operations.size());
 
     int matches = 0;
+    time_t last_refresh = 0;
     for (auto& op: operations)
     {
         if (!progress.UpdateGauge())
@@ -123,9 +124,17 @@ bool PreTranslateCatalog(wxWindow *window, CatalogPtr catalog, const T& range, i
         if (op.get())
         {
             matches++;
-            progress.UpdateMessage(wxString::Format(wxPLURAL("Pre-translated %u string", "Pre-translated %u strings", matches), matches));
+            // Don't update the UI too often, because it is slow due to UpdateMessage()
+            // forcing repaint:
+            time_t time_now = time(NULL);
+            if (time_now != last_refresh)
+            {
+                progress.UpdateMessage(wxString::Format(wxPLURAL("Pre-translated %u string", "Pre-translated %u strings", matches), matches));
+                last_refresh = time_now;
+            }
         }
     }
+    progress.UpdateMessage(wxString::Format(wxPLURAL("Pre-translated %u string", "Pre-translated %u strings", matches), matches));
 
     if (matchesCount)
         *matchesCount = matches;

@@ -1,7 +1,7 @@
 /*
  *  This file is part of Poedit (https://poedit.net)
  *
- *  Copyright (C) 2014-2019 Vaclav Slavik
+ *  Copyright (C) 2014-2020 Vaclav Slavik
  *
  *  Permission is hereby granted, free of charge, to any person obtaining a
  *  copy of this software and associated documentation files (the "Software"),
@@ -31,12 +31,46 @@
 #include "concurrency.h"
 #include "json.h"
 
+#include <wx/filename.h>
+
 #include <exception>
 #include <map>
 #include <memory>
 #include <string>
 
 class http_client;
+
+
+/**
+    File downloaded using http_client::download().
+
+    The file is stored on disk in a unique temporary directory using filename
+    corresponding to the URL.
+
+    The temporary directory and the file exist only for the lifetime of the
+    downloaded_file object and are deleted after destructions. You must read the
+    file or move it elsewhere before that.
+ */
+class downloaded_file
+{
+public:
+    downloaded_file(const std::string& filename = "");
+    ~downloaded_file();
+
+    /// Return location of the temporary file
+    wxFileName filename() const;
+
+    /// Move the file to a different location
+    void move_to(const wxFileName& target);
+
+private:
+    class impl;
+    // would prefer unique_ptr and movable-only downloaded_file class,
+    // but pplx concurrency runtime in VC++ can't hold movable-only results
+    // (https://github.com/microsoft/cpprestsdk/pull/47)
+    std::shared_ptr<impl> m_impl;
+};
+
 
 /// Abstract base class for encoded body data
 class http_body_data
@@ -50,6 +84,21 @@ public:
 
     /// Returns generated body of the request.
     virtual std::string body() const = 0;
+};
+
+/// Stores unspecified binary data
+class octet_stream_data : public http_body_data
+{
+public:
+    octet_stream_data(const std::string& body) : m_body(body) {};
+
+    /// Content-Type header to use with the data.
+    std::string content_type() const override { return "application/octet-stream"; };
+
+    /// Returns generated body of the request.
+    std::string body() const override { return m_body; };
+private:
+    std::string m_body;
 };
 
 /// Stores POSTed data (RFC 1867)
@@ -113,6 +162,8 @@ public:
         default_flags = 0
     };
 
+    using headers = std::vector<std::pair<std::string, std::string>>;
+
     /**
         Creates an instance of the client object.
         
@@ -129,26 +180,26 @@ public:
     static void set_ui_language(const std::string& lang);
 #endif
 
-    /// Return true if the server is reachable, i.e. client is online
-    bool is_reachable() const;
-
     /// Sets Authorization header to be used in all requests
     void set_authorization(const std::string& auth);
 
     /// Perform a GET request at the given URL
-    dispatch::future<json> get(const std::string& url);
+    dispatch::future<json> get(const std::string& url, const headers& hdrs = headers());
+
+    /// Perform a GET request and store the body in a file.
+    dispatch::future<downloaded_file> download(const std::string& url, const headers& hdrs = headers());
 
     /**
-        Perform a GET request and store the body in a file.
-        
-        Returned response's body won't be accessible in any way from @a handler.
+        Convenience variant of download() for downloading without having full http_client.
+
+        This is useful e.g. when downloading from unknown host. @a url is absolute URL.
      */
-    dispatch::future<void> download(const std::string& url, const std::wstring& output_file);
+    static dispatch::future<downloaded_file> download_from_anywhere(const std::string& url, const headers& hdrs = headers());
 
     /**
         Perform a POST request with multipart/form-data formatted @a params.
      */
-    dispatch::future<json> post(const std::string& url, const http_body_data& data);
+    dispatch::future<json> post(const std::string& url, const http_body_data& data, const headers& hdrs = headers());
 
 
     // Helper for encoding text as URL-encoded UTF-8
@@ -179,6 +230,22 @@ protected:
          or to modify the response.
      */
     virtual void on_error_response(int& /*statusCode*/, std::string& /*message*/) {};
+
+private:
+    class impl;
+    std::unique_ptr<impl> m_impl;
+};
+
+/// Monitor if networking is available
+class http_reachability
+{
+public:
+    /// Creates an instance of the monitor object.
+    http_reachability(const std::string& url);
+    ~http_reachability();
+
+    /// Return true if the host is reachable, i.e. client is online
+    bool is_reachable() const;
 
 private:
     class impl;

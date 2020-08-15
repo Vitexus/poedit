@@ -4,7 +4,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Poedit 1.6\n"
 "Report-Msgid-Bugs-To: help@poedit.net\n"
-"POT-Creation-Date: 2018-10-07 13:14+0200\n"
+"POT-Creation-Date: 2020-07-18 14:48+0200\n"
 "PO-Revision-Date: 2008-03-03 14:41+0200\n"
 "Last-Translator: Alaksandar Navicki <zolak@lacinka.org>\n"
 "Language-Team: \n"
@@ -141,11 +141,11 @@ msgstr ""
 msgid "(Use default language)"
 msgstr "(Užyj zmoŭčanuju movu)"
 
-msgid "Select your preferred language"
-msgstr ""
-
 msgid "Language selection"
 msgstr "Vybar movy"
+
+msgid "Select your preferred language"
+msgstr ""
 
 msgid "You must restart Poedit for this change to take effect."
 msgstr "Kab źmieny byli zachavanyja, treba ŭruchomić prahramu Poedit znoŭ."
@@ -166,10 +166,13 @@ msgstr ""
 msgid "Syncing error"
 msgstr ""
 
-msgid "Downloading translations is disabled in this project."
+msgid "JSON request error"
 msgstr ""
 
 msgid "Not authorized, please sign in again."
+msgstr ""
+
+msgid "Downloading translations is disabled in this project."
 msgstr ""
 
 msgid ""
@@ -195,9 +198,6 @@ msgstr ""
 msgid "Updating user information…"
 msgstr ""
 
-msgid "Signed in as:"
-msgstr ""
-
 msgid "Learn More About Crowdin"
 msgstr ""
 
@@ -205,6 +205,9 @@ msgid "Learn more about Crowdin"
 msgstr ""
 
 msgid "Sign in to Crowdin"
+msgstr ""
+
+msgid "File"
 msgstr ""
 
 msgid "Open Crowdin translation"
@@ -216,16 +219,10 @@ msgstr ""
 msgid "Language:"
 msgstr "Mova:"
 
-msgid "File:"
+msgid "Signed in as:"
 msgstr ""
 
 msgid "No translation projects listed in your Crowdin account."
-msgstr ""
-
-msgid "This project has no files that can be translated in Poedit."
-msgstr ""
-
-msgid "This file can only be edited in Crowdin’s web interface."
 msgstr ""
 
 msgid "Downloading latest translations…"
@@ -287,7 +284,7 @@ msgstr "Adčyni kataloh"
 msgid "File “%s” doesn’t exist."
 msgstr ""
 
-msgid "Poedit is an easy to use translations editor."
+msgid "Poedit is an easy to use translation editor."
 msgstr ""
 
 #, fuzzy
@@ -397,14 +394,14 @@ msgstr ""
 msgid "PO Translation"
 msgstr "Pierakład"
 
+msgid ""
+"The file may be either corrupted or in a format not recognized by Poedit."
+msgstr ""
+
 msgid "The file cannot be opened."
 msgstr ""
 
 msgid "Invalid file"
-msgstr ""
-
-msgid ""
-"The file may be either corrupted or in a format not recognized by Poedit."
 msgstr ""
 
 msgid "You can’t drop more than one file on Poedit window."
@@ -484,6 +481,20 @@ msgid ""
 "found in the location specified in the catalog’s Properties."
 msgstr ""
 
+msgid "Permission denied."
+msgstr ""
+
+msgid ""
+"You don’t have permission to read source code files from the location "
+"specified in the catalog’s Properties."
+msgstr ""
+
+#. TRANSLATORS: The System Preferences etc. references macOS system settings and should be translated EXACTLY as in the OS. If you don't use macOS and can't check, leave it untranslated.
+msgid ""
+"If you previously denied access to your files, you can allow it in System "
+"Preferences > Security & Privacy > Privacy > Files & Folders."
+msgstr ""
+
 msgid "Entries in the catalog are probably incorrect."
 msgstr "Zapisy ŭ katalohu vierahodna niapravilnyja."
 
@@ -552,6 +563,13 @@ msgstr ""
 msgid ""
 "If you disabled the warnings because of excessive false positives, please "
 "consider sending a sample file to help@poedit.net to help improve them."
+msgstr ""
+
+msgid "Send Feedback"
+msgstr ""
+
+#. TRANSLATORS: This is a button to send email with feedback when clicked
+msgid "Send feedback"
 msgstr ""
 
 #, c-format
@@ -1929,8 +1947,8 @@ msgstr ""
 msgid "Update from Code"
 msgstr ""
 
-msgid "Update catalog - synchronize it with sources"
-msgstr "Aktualizuj kataloh – synchranizuj jaho z krynicami"
+msgid "Update from source code"
+msgstr ""
 
 msgid "Sidebar"
 msgstr ""
@@ -2163,9 +2181,6 @@ msgid "&Delete"
 msgstr "Vydal"
 
 msgid "&Quit"
-msgstr ""
-
-msgid "File"
 msgstr ""
 
 msgid "Help"

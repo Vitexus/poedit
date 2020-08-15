@@ -1,7 +1,7 @@
 /*
  *  This file is part of Poedit (https://poedit.net)
  *
- *  Copyright (C) 1999-2019 Vaclav Slavik
+ *  Copyright (C) 1999-2020 Vaclav Slavik
  *
  *  Permission is hereby granted, free of charge, to any person obtaining a
  *  copy of this software and associated documentation files (the "Software"),
@@ -103,6 +103,9 @@ public:
 
     /// Move focused tab to prev(-1) or next(+1)
     void ChangeFocusedPluralTab(int offset);
+
+    /// Returns height of the source line at the top with issues shown
+    int GetTopRowHeight() const;
 
     // Semi-private use (TODO: get rid of them)
     SourceTextCtrl *Ctrl_Original() const { return m_textOrig; }

@@ -2,19 +2,20 @@ msgid ""
 msgstr ""
 "Project-Id-Version: poedit\n"
 "Report-Msgid-Bugs-To: help@poedit.net\n"
-"POT-Creation-Date: 2018-10-07 13:14+0200\n"
-"PO-Revision-Date: 2018-10-07 10:41\n"
-"Last-Translator: vslavik <vaclav@slavik.io>\n"
+"POT-Creation-Date: 2020-07-18 14:48+0200\n"
+"PO-Revision-Date: 2020-07-18 12:46\n"
+"Last-Translator: \n"
 "Language-Team: Albanian\n"
 "Language: sq_AL\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
-"X-Generator: crowdin.com\n"
 "X-Crowdin-Project: poedit\n"
+"X-Crowdin-Project-ID: 53425\n"
 "X-Crowdin-Language: sq\n"
 "X-Crowdin-File: /locales/poedit.pot\n"
+"X-Crowdin-File-ID: 3\n"
 
 msgid "Hide this notification message"
 msgstr "Fshihe këtë mesazh njoftimi"
@@ -39,7 +40,7 @@ msgid "Extracting translatable strings…"
 msgstr "Po përftohen vargje të përkthyeshëm…"
 
 msgid "Failed to load extracted catalog."
-msgstr "Dështoi ngarkimi i katalogut të përftuar."
+msgstr "S’u arrit të ngarkohej katalogu i përftuar."
 
 msgid "Merging differences…"
 msgstr "Po përzihen dallimet…"
@@ -59,14 +60,14 @@ msgid "POT Translation Templates"
 msgstr "Gjedhe Përkthimi POT"
 
 msgid "XLIFF Translation Files"
-msgstr ""
+msgstr "Kartela XLIFF Përkthimi"
 
 msgid "All Translation Files"
 msgstr "Krejt Kartelat e Përkthimit"
 
 #, c-format
 msgid "File “%s” is in unsupported format."
-msgstr ""
+msgstr "Kartela “%s” është në një format të pambuluar."
 
 #, c-format
 msgid "%i line of file “%s” was not loaded correctly."
@@ -135,24 +136,24 @@ msgstr "Gabim në ruajtje katalogu"
 
 #, c-format
 msgid "Error loading file “%s”: %s."
-msgstr ""
+msgstr "Gabim gjatë ngarkimit të kartelës “%s”: %s."
 
 #, c-format
 msgid "unsupported XLIFF version (%s)"
-msgstr ""
+msgstr "version XLIFF i pambuluar (%s)"
 
 #. TRANSLATORS: Shown as error if a translation of XLIFF markup is not valid XML
 msgid "Broken markup in translation string."
-msgstr ""
+msgstr "Markup i dëmtuar në varg përkthimi."
 
 msgid "(Use default language)"
 msgstr "(Përdor gjuhë parazgjedhje)"
 
-msgid "Select your preferred language"
-msgstr "Përzgjidhni gjuhën tuaj të parapëlqyer"
-
 msgid "Language selection"
 msgstr "Përzgjedhje gjuhe"
+
+msgid "Select your preferred language"
+msgstr "Përzgjidhni gjuhën tuaj të parapëlqyer"
 
 msgid "You must restart Poedit for this change to take effect."
 msgstr "Duhet të rinisni Poedit-in, pa të hyjnë në fuqi ndryshimet."
@@ -173,11 +174,14 @@ msgstr "Njëkohësimi me %s dështoi."
 msgid "Syncing error"
 msgstr "Gabim njëkohësimi"
 
-msgid "Downloading translations is disabled in this project."
-msgstr "Shkarkimi i përkthimeve është i çaktivizuar për këtë projekt."
+msgid "JSON request error"
+msgstr ""
 
 msgid "Not authorized, please sign in again."
 msgstr "Jo i autorizuar, ju lutemi, ribëni hyrjen."
+
+msgid "Downloading translations is disabled in this project."
+msgstr "Shkarkimi i përkthimeve është i çaktivizuar për këtë projekt."
 
 msgid ""
 "Crowdin is an online localization management platform and collaborative "
@@ -205,9 +209,6 @@ msgstr "Po pritet për mirëfilltësim…"
 msgid "Updating user information…"
 msgstr "Po përditësohen të dhëna mbi përdoruesin…"
 
-msgid "Signed in as:"
-msgstr "I futur si:"
-
 msgid "Learn More About Crowdin"
 msgstr "Mësoni Më Tepër Mbi Crowdin-in"
 
@@ -216,6 +217,9 @@ msgstr "Mësoni më tepër mbi Crowdin-in"
 
 msgid "Sign in to Crowdin"
 msgstr "Hyni në Crowdin"
+
+msgid "File"
+msgstr "Kartelë"
 
 msgid "Open Crowdin translation"
 msgstr "Hape përkthimin në Crowdin"
@@ -226,17 +230,11 @@ msgstr "Projekt:"
 msgid "Language:"
 msgstr "Gjuhë:"
 
-msgid "File:"
-msgstr "Kartelë:"
+msgid "Signed in as:"
+msgstr "I futur si:"
 
 msgid "No translation projects listed in your Crowdin account."
 msgstr "Pa projekte përkthimi në llogarinë tuaj Crowdin."
-
-msgid "This project has no files that can be translated in Poedit."
-msgstr "Ky projekt s’ka kartela që mund të përkthehen nën Poedit."
-
-msgid "This file can only be edited in Crowdin’s web interface."
-msgstr "Kjo kartelë mund të përpunohet te ndërfaqja web e Crowdin-it."
 
 msgid "Downloading latest translations…"
 msgstr "Po shkarkohen përkthimet më të reja…"
@@ -285,7 +283,7 @@ msgid "go to item at given line number"
 msgstr "shko tek objekti në rreshtin me numrin e dhënë"
 
 msgid "Failed to communicate with Poedit process."
-msgstr "Dështoi komunikimi me procesin Poedit."
+msgstr "S’u arrit të komunikohej me procesin Poedit."
 
 #, c-format
 msgid "Unhandled exception occurred: %s"
@@ -298,7 +296,7 @@ msgstr "Hap katalog"
 msgid "File “%s” doesn’t exist."
 msgstr "Kartela “%s” s’ekziston."
 
-msgid "Poedit is an easy to use translations editor."
+msgid "Poedit is an easy to use translation editor."
 msgstr "Poedit është një përpunues përkthimesh i lehtë për t’u përdorur."
 
 msgid "Catalogs Manager"
@@ -404,23 +402,23 @@ msgstr "Sill Gjithçka Përpara"
 msgid "PO Translation"
 msgstr "Përkthimi në trajtë PO"
 
+msgid ""
+"The file may be either corrupted or in a format not recognized by Poedit."
+msgstr ""
+"Kartela mund të jetë ose e dëmtuar, ose në një format të panjohur nga Poedit."
+
 msgid "The file cannot be opened."
 msgstr "Kartela s’hapet dot."
 
 msgid "Invalid file"
 msgstr "Kartelë e pavlefshme"
 
-msgid ""
-"The file may be either corrupted or in a format not recognized by Poedit."
-msgstr ""
-"Kartela mund të jetë ose e dëmtuar, ose në një format të panjohur nga Poedit."
-
 msgid "You can’t drop more than one file on Poedit window."
 msgstr "S’mund të jepni më tepër se një kartelë te dritarja Poedit."
 
 #, c-format
 msgid "File “%s” is not a translation file."
-msgstr ""
+msgstr "Kartela “%s” s’është kartelë përkthimesh."
 
 msgid "Poedit"
 msgstr "Poedit"
@@ -429,7 +427,7 @@ msgid "&File"
 msgstr "&Kartelë"
 
 msgid "&Go"
-msgstr "&Shko"
+msgstr "&Lëvizje"
 
 #. TRANSLATORS: %s is language name in its basic form (as you
 #. would see e.g. in a list of supported languages). You may need
@@ -457,7 +455,7 @@ msgid "Save"
 msgstr "Ruaje"
 
 msgid "Do&n’t save"
-msgstr ""
+msgstr "&Mos e ruaj"
 
 msgid "Don’t Save"
 msgstr "Mos e Ruaj"
@@ -492,6 +490,24 @@ msgid ""
 msgstr ""
 "S’u përditësuan dot përkthimet që prej kodit burim, ngaqë s’u gjet kod në "
 "vendin e treguar te Vetitë e katalogut."
+
+msgid "Permission denied."
+msgstr "Leje e mohuar."
+
+msgid ""
+"You don’t have permission to read source code files from the location "
+"specified in the catalog’s Properties."
+msgstr ""
+"S’keni leje të lexoni kartela kodi burim prej vendit të dhënë te Vetitë e "
+"katalogut."
+
+#. TRANSLATORS: The System Preferences etc. references macOS system settings and should be translated EXACTLY as in the OS. If you don't use macOS and can't check, leave it untranslated.
+msgid ""
+"If you previously denied access to your files, you can allow it in System "
+"Preferences > Security & Privacy > Privacy > Files & Folders."
+msgstr ""
+"Nëse ju është mohuar më herët hyrje te kartelat tuaja, mund ta lejoni që nga "
+"Parapëlqime Sistemi > Siguri & Privatësi > Privatësi > Kartela & Dosje."
 
 msgid "Entries in the catalog are probably incorrect."
 msgstr "Ka mundësi të ketë zëra të pasaktë në katalog."
@@ -557,12 +573,22 @@ msgid "The translation is ready for use."
 msgstr "Përkthimi është gati për përdorim."
 
 msgid "Warnings have been disabled."
-msgstr ""
+msgstr "Sinjalizimet janë çaktivizuar."
 
 msgid ""
 "If you disabled the warnings because of excessive false positives, please "
 "consider sending a sample file to help@poedit.net to help improve them."
 msgstr ""
+"Nëse i keni çaktivizuar sinjalizimet për shkak teprie mesazhesh të rreme "
+"gabimi, ju lutemi, shihni mundësinë e dërgimit të një kartele shembull te "
+"help@poedit.net për të ndihmuar në përmirësimin e tyre."
+
+msgid "Send Feedback"
+msgstr "Dërgoni Mendime"
+
+#. TRANSLATORS: This is a button to send email with feedback when clicked
+msgid "Send feedback"
+msgstr "Dërgoni mendime"
 
 #, c-format
 msgid "Poedit automatically fixed invalid content in the file “%s”."
@@ -676,7 +702,7 @@ msgstr " (i ndryshuar)"
 
 #, c-format
 msgid "Failed to update translation memory: %s"
-msgstr "Dështoi përditësimi i kujtesës së përkthimeve: %s"
+msgstr "S’u arrit të përditësohej kujtesë përkthimesh: %s"
 
 msgid "Purge deleted translations"
 msgstr "Spastroji përkthimet e fshira"
@@ -711,10 +737,10 @@ msgid "Ctrl+"
 msgstr "Ctrl+"
 
 msgid "Clear translation"
-msgstr "Pastroje përkthimin"
+msgstr "Spastroje përkthimin"
 
 msgid "Clear Translation"
-msgstr "Pastroje Përkthimin"
+msgstr "Spastroje Përkthimin"
 
 msgid "Edit comment"
 msgstr "Përpunoni koment"
@@ -739,7 +765,7 @@ msgstr "Caktoni faqerojtës %i"
 
 #, c-format
 msgid "Go to bookmark %i"
-msgstr "Shkoni te faqerojtësi %i"
+msgstr "Shko te faqerojtësi %i"
 
 #, c-format
 msgid "Set Bookmark %i"
@@ -747,7 +773,7 @@ msgstr "Caktoni Faqerojtës %i"
 
 #, c-format
 msgid "Go to Bookmark %i"
-msgstr "Shkoni te Faqerojtësi %i"
+msgstr "Shko te Faqerojtësi %i"
 
 msgid "Hide Sidebar"
 msgstr "Fshihe Anështyllën"
@@ -812,7 +838,7 @@ msgstr "Forma %i"
 
 #, c-format
 msgid "Form %i (unused)"
-msgstr ""
+msgstr "Formular %i (i papërdorur)"
 
 msgid "Singular"
 msgstr "Njëjës"
@@ -863,7 +889,7 @@ msgid "Failed command: %s"
 msgstr "Urdhri që dështoi: %s"
 
 msgid "Failed to merge gettext catalogs."
-msgstr "Dështoi përzierja e katalogëve gettext."
+msgstr "S’u arrit të përziheshin katalogë gettext."
 
 msgid "Source file"
 msgstr "Kartelë burim"
@@ -1059,7 +1085,7 @@ msgid "Use translation memory"
 msgstr "Përdor kujtesë përkthimesh"
 
 msgid "Manage…"
-msgstr ""
+msgstr "Administroni…"
 
 #. TRANSLATORS: Followed by "match translations within the file" or "pre-translate from TM"
 msgid "When updating from sources"
@@ -1092,22 +1118,22 @@ msgid "Database size on disk:"
 msgstr "Madhësi baze të dhënash në disk:"
 
 msgid "Import Translation Files…"
-msgstr ""
+msgstr "Importoni Kartela Përkthimi…"
 
 msgid "Import translation files…"
-msgstr ""
+msgstr "Importoni kartela përkthimi…"
 
 msgid "Import From TMX…"
-msgstr ""
+msgstr "Importoni Prej TMX…"
 
 msgid "Import from TMX…"
-msgstr ""
+msgstr "Importoni prej TMX…"
 
 msgid "Export To TMX…"
-msgstr ""
+msgstr "Eksportoni Në TMX…"
 
 msgid "Export to TMX…"
-msgstr ""
+msgstr "Eksportoni në TMX…"
 
 #. TRANSLATORS: This is a button that deletes everything in the translation memory (i.e. clears/resets it).
 msgid "Reset"
@@ -1126,27 +1152,27 @@ msgid "Finalizing…"
 msgstr "Po përfundohet…"
 
 msgid "Select TMX files to import"
-msgstr ""
+msgstr "Përzgjidhni kartela TMX për importim"
 
 msgid "TMX Files"
-msgstr ""
+msgstr "Kartela TMX"
 
 #, c-format
 msgid "Importing translation memory from “%s” failed."
-msgstr ""
+msgstr "Importimi i kujtesës së përkthimeve nga “%s” dështoi."
 
 msgid "Import error"
-msgstr ""
+msgstr "Gabim importimi"
 
 msgid "Exporting translations…"
-msgstr ""
+msgstr "Po eksportohen përkthime…"
 
 #, c-format
 msgid "Exporting translation memory to “%s” failed."
-msgstr ""
+msgstr "Eksportimi i kujtesës së përkthimeve në “%s” dështoi."
 
 msgid "Export error"
-msgstr ""
+msgstr "Gabim eksportimi"
 
 msgid "Reset translation memory"
 msgstr "Të zerohet kujtesa e përkthimeve"
@@ -1451,13 +1477,13 @@ msgid "OK"
 msgstr "OK"
 
 msgid "C&lear"
-msgstr "&Pastroje"
+msgstr "&Spastroje"
 
 msgid "Clear the comment"
-msgstr "Pastroje komentin"
+msgstr "Spastroje komentin"
 
 msgid "New"
-msgstr "I ri"
+msgstr "E re"
 
 msgid "Create new translations project"
 msgstr "Krijoni projekt të ri përkthimi"
@@ -1490,13 +1516,13 @@ msgid "Add directory to the list"
 msgstr "Shtoni drejtori te lista"
 
 msgid "&New…"
-msgstr "I &ri…"
+msgstr "E &re…"
 
 msgid "New from &POT/PO file…"
-msgstr "I ri prej kartele &POT/PO…"
+msgstr "E re prej kartele &POT/PO…"
 
 msgid "New From &POT/PO File…"
-msgstr "I ri prej Kartele &POT/PO…"
+msgstr "E re prej Kartele &POT/PO…"
 
 msgid "&Open…"
 msgstr "&Hapni…"
@@ -1592,16 +1618,16 @@ msgid "&Preferences"
 msgstr "&Parapëlqime"
 
 msgid "Show string &ID"
-msgstr ""
+msgstr "Shfaq &ID vargu"
 
 msgid "Show String &ID"
-msgstr ""
+msgstr "Shfaq &ID Vargu"
 
 msgid "Show warnings"
-msgstr ""
+msgstr "Shfaq sinjalizime"
 
 msgid "Show Warnings"
-msgstr ""
+msgstr "Shfaq Sinjalizime"
 
 msgid "Sort by &file order"
 msgstr "Renditi sipas rendi &kartelash"
@@ -1628,7 +1654,7 @@ msgid "&Group By Context"
 msgstr "&Grupoji Sipas Kontekstit"
 
 msgid "Entries with errors first"
-msgstr "Së pari zërat me  gabime"
+msgstr "Së pari zërat me gabime"
 
 msgid "Entries with Errors First"
 msgstr "Së Pari Zërat me Gabime"
@@ -1655,10 +1681,10 @@ msgid "C&atalog"
 msgstr "&Katalog"
 
 msgid "&Update from source code"
-msgstr ""
+msgstr "&Përditësoje prej kodi burim"
 
 msgid "&Update from Source Code"
-msgstr ""
+msgstr "&Përditësoje prej Kodi Burim"
 
 msgid "Update from &POT file…"
 msgstr "Përditësojeni prej kartele &POT…"
@@ -1715,7 +1741,7 @@ msgid "Ne&xt unfinished"
 msgstr "Pas&uesi i pambaruar"
 
 msgid "Ne&xt Unfinished"
-msgstr "Pas&uesi i pambaruar"
+msgstr "Pas&uesi i Pambaruar"
 
 msgid "Previous plural form"
 msgstr "Forma e mëparshme e shumësit"
@@ -1900,7 +1926,7 @@ msgid "(0 new, 0 obsolete)"
 msgstr "(0 të rinj, 0 të vjetruar)"
 
 msgid "Open"
-msgstr "Hape"
+msgstr "Hap"
 
 msgid "Save catalog"
 msgstr "Ruaje katalogun"
@@ -1912,13 +1938,13 @@ msgid "Check for errors in the translation"
 msgstr "Kontrolloni për gabime te përkthimi"
 
 msgid "Update from code"
-msgstr ""
+msgstr "Përditësoje prej kodi"
 
 msgid "Update from Code"
-msgstr ""
+msgstr "Përditësoje prej Kodi"
 
-msgid "Update catalog - synchronize it with sources"
-msgstr "Përditëso katalogun - njëkohësoje me burimet"
+msgid "Update from source code"
+msgstr "Përditësoje prej kodi burim"
 
 msgid "Sidebar"
 msgstr "Anështyllë"
@@ -1947,10 +1973,10 @@ msgid "Add Comment"
 msgstr "Shtoni Koment"
 
 msgid "Delete From Translation Memory"
-msgstr ""
+msgstr "Fshije Prej Kujtesës së Përkthimeve"
 
 msgid "Delete from translation memory"
-msgstr ""
+msgstr "Fshije prej kujtesës së përkthimeve"
 
 msgid "Translation suggestions:"
 msgstr "Sugjerime përkthimi:"
@@ -1967,18 +1993,18 @@ msgid "This string was found in Poedit’s translation memory."
 msgstr "Ky varg u gjet në kujtesën e përkthimeve të Poedit-it."
 
 msgid "The TMX file is malformed."
-msgstr ""
+msgstr "Kartela TMX është e keqformuar."
 
 msgid "No translations were found in the TMX file."
-msgstr ""
+msgstr "S’u gjetën përkthime te kartel TMX."
 
 #, c-format
 msgid "Translation memory database is corrupted: %s (%d)."
-msgstr ""
+msgstr "Baza e të dhënave të kujtesës së përkthimeve është dëmtuar: %s (%d)."
 
 #, c-format
 msgid "Translation memory error: %s (%d)."
-msgstr ""
+msgstr "Gabim kujtese përkthimesh: %s (%d)."
 
 msgid "Cannot create temporary directory."
 msgstr "S’krijohet dot drejtori e përkohshme."
@@ -2133,10 +2159,10 @@ msgid "&Cancel"
 msgstr "&Anuloje"
 
 msgid "&Clear"
-msgstr "&Pastroje"
+msgstr "&Spastroje"
 
 msgid "Clear"
-msgstr "Pastroje"
+msgstr "Spastroje"
 
 msgid "Copy"
 msgstr "Kopjoje"
@@ -2152,9 +2178,6 @@ msgstr "&Fshije"
 
 msgid "&Quit"
 msgstr "&Mbylle"
-
-msgid "File"
-msgstr "Kartelë"
 
 msgid "Help"
 msgstr "Ndihmë"

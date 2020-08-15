@@ -1,7 +1,7 @@
 /*
  *  This file is part of Poedit (https://poedit.net)
  *
- *  Copyright (C) 2017-2019 Vaclav Slavik
+ *  Copyright (C) 2017-2020 Vaclav Slavik
  *
  *  Permission is hereby granted, free of charge, to any person obtaining a
  *  copy of this software and associated documentation files (the "Software"),
@@ -154,10 +154,21 @@ public:
 
     bool CheckString(CatalogItemPtr item, const wxString& source, const wxString& translation) override
     {
+        if (m_lang == "th" || m_lang == "lo" || m_lang == "km" || m_lang == "my")
+        {
+            // For Thai, Lao, Khmer and Burmese,
+            // the punctuation rules are so different that these checks don't
+            // apply at all (with the possible exception of quote marks - TODO).
+            // It's better to skip them than to spam the user with bogus warnings
+            // on _everything_.
+            // See https://www.ccjk.com/punctuation-rule-for-bahasa-vietnamese-and-thai/
+            return false;
+        }
+
         const UChar32 s_last = source.Last();
         const UChar32 t_last = translation.Last();
-        const bool s_punct = u_ispunct(s_last);
-        const bool t_punct = u_ispunct(t_last);
+        const bool s_punct = IsPunctuation(s_last);
+        const bool t_punct = IsPunctuation(t_last);
 
         if (u_getIntPropertyValue(s_last, UCHAR_BIDI_PAIRED_BRACKET_TYPE) == U_BPT_CLOSE ||
             u_getIntPropertyValue(t_last, UCHAR_BIDI_PAIRED_BRACKET_TYPE) == U_BPT_CLOSE)
@@ -227,6 +238,13 @@ public:
     }
 
 private:
+    bool IsPunctuation(UChar32 c) const
+    {
+        return u_hasBinaryProperty(c, UCHAR_TERMINAL_PUNCTUATION) ||
+               u_hasBinaryProperty(c, UCHAR_QUOTATION_MARK) ||
+               c == L'…'; // somehow U+2026 ellipsis is not terminal punctuation
+    }
+
     bool IsEquivalent(UChar32 src, UChar32 trans) const
     {
         if (src == trans)

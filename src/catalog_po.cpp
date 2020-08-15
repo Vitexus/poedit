@@ -1,7 +1,7 @@
 /*
  *  This file is part of Poedit (https://poedit.net)
  *
- *  Copyright (C) 1999-2019 Vaclav Slavik
+ *  Copyright (C) 1999-2020 Vaclav Slavik
  *
  *  Permission is hereby granted, free of charge, to any person obtaining a
  *  copy of this software and associated documentation files (the "Software"),
@@ -26,6 +26,7 @@
 #include "catalog_po.h"
 
 #include "configuration.h"
+#include "errors.h"
 #include "extractors/extractor.h"
 #include "gexecute.h"
 #include "qa_checks.h"
@@ -909,11 +910,17 @@ bool POCatalog::Load(const wxString& po_file, int flags)
     // now that the catalog is loaded, update its items with the bookmarks
     for (unsigned i = BOOKMARK_0; i < BOOKMARK_LAST; i++)
     {
-        if (m_header.Bookmarks[i] != -1 &&
-            m_header.Bookmarks[i] < (int)m_items.size())
+        if (m_header.Bookmarks[i] == -1)
+            continue;
+
+        if (m_header.Bookmarks[i] < (int)m_items.size())
         {
             m_items[m_header.Bookmarks[i]]->SetBookmark(
                     static_cast<Bookmark>(i));
+        }
+        else // invalid bookmark
+        {
+            m_header.Bookmarks[i] = -1;
         }
     }
 
@@ -1180,7 +1187,16 @@ bool POCatalog::Save(const wxString& po_file, bool save_mo,
         return false;
     }
 
-    validation_results = DoValidate(po_file_temp);
+    try
+    {
+        validation_results = DoValidate(po_file_temp);
+    }
+    catch (...)
+    {
+        // DoValidate may fail catastrophically if app bundle is damaged, but
+        // that shouldn't prevent Poedit from trying to save user's file.
+        wxLogError("%s", DescribeCurrentException());
+    }
 
     // Now that the file was written, run msgcat to re-format it according
     // to the usual format. This is a (barely) passable fix for #25 until
@@ -1602,17 +1618,27 @@ bool POCatalog::FixDuplicateItems()
 }
 
 
-Catalog::ValidationResults POCatalog::Validate()
+Catalog::ValidationResults POCatalog::Validate(bool wasJustLoaded)
 {
-    TempDirectory tmpdir;
-    if ( !tmpdir.IsOk() )
-        return ValidationResults();
+    if (!HasCapability(Catalog::Cap::Translations))
+        return ValidationResults();  // no errors in POT files
 
-    wxString tmp_po = tmpdir.CreateFileName("validated.po");
-    if ( !DoSaveOnly(tmp_po, wxTextFileType_Unix) )
-        return ValidationResults();
+    if (wasJustLoaded)
+    {
+        return DoValidate(GetFileName());
+    }
+    else
+    {
+        TempDirectory tmpdir;
+        if ( !tmpdir.IsOk() )
+            return ValidationResults();
 
-    return DoValidate(tmp_po);
+        wxString tmp_po = tmpdir.CreateFileName("validated.po");
+        if ( !DoSaveOnly(tmp_po, wxTextFileType_Unix) )
+            return ValidationResults();
+
+        return DoValidate(tmp_po);
+    }
 }
 
 Catalog::ValidationResults POCatalog::DoValidate(const wxString& po_file)
@@ -1692,10 +1718,10 @@ bool POCatalog::UpdateFromPOT(POCatalogPtr pot, bool replace_header)
     return true;
 }
 
-POCatalogPtr POCatalog::CreateFromPOT(const wxString& pot_file)
+POCatalogPtr POCatalog::CreateFromPOT(POCatalogPtr pot)
 {
     POCatalogPtr c = std::make_shared<POCatalog>();
-    if (c->UpdateFromPOT(pot_file, /*replace_header=*/true))
+    if (c->UpdateFromPOT(pot, /*replace_header=*/true))
         return c;
     else
         return nullptr;

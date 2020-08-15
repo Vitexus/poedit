@@ -2,9 +2,9 @@ msgid ""
 msgstr ""
 "Project-Id-Version: poedit\n"
 "Report-Msgid-Bugs-To: help@poedit.net\n"
-"POT-Creation-Date: 2018-10-07 13:14+0200\n"
-"PO-Revision-Date: 2019-01-14 16:30\n"
-"Last-Translator: vslavik <vaclav@slavik.io>\n"
+"POT-Creation-Date: 2020-07-18 14:48+0200\n"
+"PO-Revision-Date: 2020-07-18 12:46\n"
+"Last-Translator: \n"
 "Language-Team: Arabic\n"
 "Language: ar_SA\n"
 "MIME-Version: 1.0\n"
@@ -12,10 +12,11 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=6; plural=(n==0 ? 0 : n==1 ? 1 : n==2 ? 2 : n%100>=3 "
 "&& n%100<=10 ? 3 : n%100>=11 && n%100<=99 ? 4 : 5);\n"
-"X-Generator: crowdin.com\n"
 "X-Crowdin-Project: poedit\n"
+"X-Crowdin-Project-ID: 53425\n"
 "X-Crowdin-Language: ar\n"
 "X-Crowdin-File: /locales/poedit.pot\n"
+"X-Crowdin-File-ID: 3\n"
 
 msgid "Hide this notification message"
 msgstr "أخفِ رسالة الإخطار هذه"
@@ -67,7 +68,7 @@ msgstr "كلّ ملفّات التّرجمة"
 
 #, c-format
 msgid "File “%s” is in unsupported format."
-msgstr ""
+msgstr "صيغة الملف غير مدعومة بنسبة \"%s\"."
 
 #, c-format
 msgid "%i line of file “%s” was not loaded correctly."
@@ -133,30 +134,30 @@ msgstr "خطأ عند حفظ الكتالوج"
 
 #, c-format
 msgid "Error loading file “%s”: %s."
-msgstr ""
+msgstr "خطأ فى تحميل الملف ”%s”:‏ %s."
 
 #, c-format
 msgid "unsupported XLIFF version (%s)"
-msgstr ""
+msgstr "نسخة   من XLIFF غير معتمدة(%s)"
 
 #. TRANSLATORS: Shown as error if a translation of XLIFF markup is not valid XML
 msgid "Broken markup in translation string."
-msgstr ""
+msgstr "خطأ في الترميز في جملة الترجمة."
 
 msgid "(Use default language)"
 msgstr "(استخدم اللغة الافتراضيّة)"
 
-msgid "Select your preferred language"
-msgstr "اختر لغتك المفضّلة"
-
 msgid "Language selection"
 msgstr "حدّد اللّغة"
+
+msgid "Select your preferred language"
+msgstr "اختر لغتك المفضّلة"
 
 msgid "You must restart Poedit for this change to take effect."
 msgstr "عليك إعادة تشغيل Poedit لتطبيق التّعديلات."
 
 msgid "Syncing"
-msgstr "يزامن"
+msgstr "جارٍ المزامنة"
 
 #. TRANSLATORS: %s is a cloud destination, e.g. "Crowdin" or ftp.wordpress.com etc.
 #, c-format
@@ -171,11 +172,14 @@ msgstr "فشلت المزامنة مع %s."
 msgid "Syncing error"
 msgstr "خطأ في المزامنة"
 
-msgid "Downloading translations is disabled in this project."
-msgstr "عُطِّل تنزيل التّرجمات لهذا المشروع."
+msgid "JSON request error"
+msgstr ""
 
 msgid "Not authorized, please sign in again."
 msgstr "غير مستوثق، رجاء لِج ثانية."
+
+msgid "Downloading translations is disabled in this project."
+msgstr "عُطِّل تنزيل التّرجمات لهذا المشروع."
 
 msgid ""
 "Crowdin is an online localization management platform and collaborative "
@@ -202,9 +206,6 @@ msgstr "ينتظر الاستيثاق…"
 msgid "Updating user information…"
 msgstr "يحدّث معلومات المستخدم…"
 
-msgid "Signed in as:"
-msgstr "والج كَ‍:"
-
 msgid "Learn More About Crowdin"
 msgstr "اطّلع على المزيد عن «كراودِن»"
 
@@ -213,6 +214,9 @@ msgstr "اطّلع على المزيد عن «كراودِن»"
 
 msgid "Sign in to Crowdin"
 msgstr "لِج إلى «كراودِن»"
+
+msgid "File"
+msgstr "ملفّ"
 
 msgid "Open Crowdin translation"
 msgstr "افتح ترجمة «كراودِن»"
@@ -223,17 +227,11 @@ msgstr "المشروع:"
 msgid "Language:"
 msgstr "اللّغة:"
 
-msgid "File:"
-msgstr "الملفّ:"
+msgid "Signed in as:"
+msgstr "والج كَ‍:"
 
 msgid "No translation projects listed in your Crowdin account."
 msgstr "لا مشاريع ترجمة موجودة في حسابك على «كراودِن»."
-
-msgid "This project has no files that can be translated in Poedit."
-msgstr "ليس في هذا المشروع ملفّات يمكن ترجمتها في Poedit."
-
-msgid "This file can only be edited in Crowdin’s web interface."
-msgstr "يمكن تحرير هذا الملفّ فقط في واجهة «كراودِن» على الوبّ."
 
 msgid "Downloading latest translations…"
 msgstr "ينزّل أحدث التّرجمات…"
@@ -294,7 +292,7 @@ msgstr "افتح كتالوجًا"
 msgid "File “%s” doesn’t exist."
 msgstr "الملفّ ”%s“ غير موجود."
 
-msgid "Poedit is an easy to use translations editor."
+msgid "Poedit is an easy to use translation editor."
 msgstr "«محرِّر Po» هو محرّر ترجمات سهل الاستخدام."
 
 msgid "Catalogs Manager"
@@ -400,22 +398,22 @@ msgstr "اجلب الكلّ إلى الأمام"
 msgid "PO Translation"
 msgstr "ترجمة PO"
 
+msgid ""
+"The file may be either corrupted or in a format not recognized by Poedit."
+msgstr "لربّما يكون الملفّ تالفًا أو بنسق لا يفهمه Poedit."
+
 msgid "The file cannot be opened."
 msgstr "تعذّر فتح الملفّ."
 
 msgid "Invalid file"
 msgstr "الملفّ غير صالح"
 
-msgid ""
-"The file may be either corrupted or in a format not recognized by Poedit."
-msgstr "لربّما يكون الملفّ تالفًا أو بنسق لا يفهمه Poedit."
-
 msgid "You can’t drop more than one file on Poedit window."
 msgstr "لا يمكنك إسقاط أكثر من ملف واحد في Poedit."
 
 #, c-format
 msgid "File “%s” is not a translation file."
-msgstr ""
+msgstr "الملف \"%s\" ليس ملف ترجمة. "
 
 msgid "Poedit"
 msgstr "محرّر Po"
@@ -450,7 +448,7 @@ msgid "Save"
 msgstr "احفظ"
 
 msgid "Do&n’t save"
-msgstr ""
+msgstr "لا تحفظ"
 
 msgid "Don’t Save"
 msgstr "لا تحفظ"
@@ -485,6 +483,22 @@ msgid ""
 msgstr ""
 "تعذّر تحديث التّرجمات من الكود المصدريّ بسبب عدم العثور على كود المكان المحدّد "
 "في تفضيلات الكتالوج."
+
+msgid "Permission denied."
+msgstr "الإذن مرفوض."
+
+msgid ""
+"You don’t have permission to read source code files from the location "
+"specified in the catalog’s Properties."
+msgstr "لا يوجد لديك الإذن لقرائة ملف المصدر من الموقع المحدد في خواص الدليل."
+
+#. TRANSLATORS: The System Preferences etc. references macOS system settings and should be translated EXACTLY as in the OS. If you don't use macOS and can't check, leave it untranslated.
+msgid ""
+"If you previously denied access to your files, you can allow it in System "
+"Preferences > Security & Privacy > Privacy > Files & Folders."
+msgstr ""
+"إذا لم يسمح لك بالدخول سابقا الى ملفاتك فيمكنك ذلك في System Preferences > "
+"Security & Privacy > Privacy > Files & Folders."
 
 msgid "Entries in the catalog are probably incorrect."
 msgstr "قد تكون المدخلات في الكتالوج غير صالحة."
@@ -551,12 +565,21 @@ msgid "The translation is ready for use."
 msgstr "التّرجمة جاهزة لاستخدامها."
 
 msgid "Warnings have been disabled."
-msgstr ""
+msgstr "تم تعطيل التحذيرات."
 
 msgid ""
 "If you disabled the warnings because of excessive false positives, please "
 "consider sending a sample file to help@poedit.net to help improve them."
 msgstr ""
+"إذا عطلت التحذيرات بسبب الإيجابيات الخاطئة المفرطة ، فالرجاء التفكير في "
+"إرسال ملف عينة إلى help@poedit.net للمساعدة في تحسينها."
+
+msgid "Send Feedback"
+msgstr "أرسل رأيك"
+
+#. TRANSLATORS: This is a button to send email with feedback when clicked
+msgid "Send feedback"
+msgstr "ارسل رأيك"
 
 #, c-format
 msgid "Poedit automatically fixed invalid content in the file “%s”."
@@ -809,7 +832,7 @@ msgstr "الصّيغة %i"
 
 #, c-format
 msgid "Form %i (unused)"
-msgstr ""
+msgstr "النموذج%i (غير مستخدم)"
 
 msgid "Singular"
 msgstr "المفرد"
@@ -1098,10 +1121,10 @@ msgid "Import from TMX…"
 msgstr "استيراد من TMX…"
 
 msgid "Export To TMX…"
-msgstr ""
+msgstr "تصدير إلى TMX ..."
 
 msgid "Export to TMX…"
-msgstr ""
+msgstr "تصدير إلى TMX ..."
 
 #. TRANSLATORS: This is a button that deletes everything in the translation memory (i.e. clears/resets it).
 msgid "Reset"
@@ -1120,27 +1143,27 @@ msgid "Finalizing…"
 msgstr "جاري الإنهاء…"
 
 msgid "Select TMX files to import"
-msgstr ""
+msgstr "حدد ملفات TMX لاستيرادها"
 
 msgid "TMX Files"
 msgstr "ملفّات TMX"
 
 #, c-format
 msgid "Importing translation memory from “%s” failed."
-msgstr ""
+msgstr "فشل استيراد ذاكرة الترجمة من \"%s\"."
 
 msgid "Import error"
 msgstr "خطأ في الإستيراد"
 
 msgid "Exporting translations…"
-msgstr ""
+msgstr "تصدير الترجمات ..."
 
 #, c-format
 msgid "Exporting translation memory to “%s” failed."
-msgstr ""
+msgstr "فشل تصدير ذاكرة الترجمة إلى \"%s\"."
 
 msgid "Export error"
-msgstr ""
+msgstr "خطأ في التصدير"
 
 msgid "Reset translation memory"
 msgstr "صفّر ذاكرة الترجمة"
@@ -1181,7 +1204,7 @@ msgid "Edit…"
 msgstr "تحرير…"
 
 msgid "GNU gettext"
-msgstr "غنو غِت‌‌تكست"
+msgstr "GNU gettext"
 
 msgid ""
 "Supports all programming languages recognized by GNU gettext tools (PHP, C/C+"
@@ -1388,7 +1411,7 @@ msgid "Name of the project the translation is for"
 msgstr "اسم المشروع الذي تكون التّرجمات له"
 
 msgid "Team name and email address or URL"
-msgstr ""
+msgstr "اسم الفريق وعنوان البريد الإلكتروني أو عنوان URL"
 
 msgid "e.g. nplurals=2; plural=(n > 1);"
 msgstr "مثلًا nplurals=2; plural=(n > 1);‎"
@@ -1436,7 +1459,7 @@ msgstr "يجب ألّا تنتهي التّرجمة ب‍”%s“."
 
 #, c-format
 msgid "The translation ends with “%s”, but the source text ends with “%s”."
-msgstr ""
+msgstr "تنتهي الترجمة بـ \"%s\" ، لكن النص المصدر ينتهي بـ \"%s\"."
 
 msgid "Comment:"
 msgstr "التّعليق:"
@@ -1586,10 +1609,10 @@ msgid "&Preferences"
 msgstr "ت&فضيلات"
 
 msgid "Show string &ID"
-msgstr ""
+msgstr "إظهار السلسلة ومعرف ID&"
 
 msgid "Show String &ID"
-msgstr ""
+msgstr "إظهار السلسلة ومعرف ID&"
 
 msgid "Show warnings"
 msgstr "عرض التحذيرات"
@@ -1649,10 +1672,10 @@ msgid "C&atalog"
 msgstr "&كتالوج"
 
 msgid "&Update from source code"
-msgstr ""
+msgstr "تحديث من &مصادرِ"
 
 msgid "&Update from Source Code"
-msgstr ""
+msgstr "تحديث من &مصادرِ"
 
 msgid "Update from &POT file…"
 msgstr "تحديث من ملف &POT…"
@@ -1905,13 +1928,13 @@ msgid "Check for errors in the translation"
 msgstr "تحقّق الأخطاء في التّرجمة"
 
 msgid "Update from code"
-msgstr ""
+msgstr "تحديث من التعليمات البرمجية"
 
 msgid "Update from Code"
-msgstr ""
+msgstr "تحديث من التعليمات البرمجية"
 
-msgid "Update catalog - synchronize it with sources"
-msgstr "تحديث الكتالوج - زامِنه مع المصادر"
+msgid "Update from source code"
+msgstr "تحديث من شفرة المصدر"
 
 msgid "Sidebar"
 msgstr "الشّريط الجانبيّ"
@@ -1940,10 +1963,10 @@ msgid "Add Comment"
 msgstr "أضف تعليقًا"
 
 msgid "Delete From Translation Memory"
-msgstr ""
+msgstr "حذف من ذاكرة الترجمة"
 
 msgid "Delete from translation memory"
-msgstr ""
+msgstr "حذف من ذاكرة الترجمة"
 
 msgid "Translation suggestions:"
 msgstr "اقتراحات التّرجمة:"
@@ -1960,18 +1983,18 @@ msgid "This string was found in Poedit’s translation memory."
 msgstr "عُثر على السّلسلة في ذاكرة ترجمة «محرِّر Po»."
 
 msgid "The TMX file is malformed."
-msgstr ""
+msgstr "ملف TMX تالف."
 
 msgid "No translations were found in the TMX file."
-msgstr ""
+msgstr "لم يتم العثور على ترجمات في ملف TMX."
 
 #, c-format
 msgid "Translation memory database is corrupted: %s (%d)."
-msgstr ""
+msgstr "قاعدة بيانات ذاكرة الترجمة تالفة: %s (%d)."
 
 #, c-format
 msgid "Translation memory error: %s (%d)."
-msgstr ""
+msgstr "خطأ في ذاكرة الترجمة: %s (%d)."
 
 msgid "Cannot create temporary directory."
 msgstr "تعذّر إنشاء الدّليل المؤقّت."
@@ -2138,9 +2161,6 @@ msgstr "ا&حذف"
 
 msgid "&Quit"
 msgstr "أ&نهِ"
-
-msgid "File"
-msgstr "ملفّ"
 
 msgid "Help"
 msgstr "مساعدة"

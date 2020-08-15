@@ -2,19 +2,20 @@ msgid ""
 msgstr ""
 "Project-Id-Version: poedit\n"
 "Report-Msgid-Bugs-To: help@poedit.net\n"
-"POT-Creation-Date: 2018-10-07 13:14+0200\n"
-"PO-Revision-Date: 2019-01-14 16:31\n"
-"Last-Translator: vslavik <vaclav@slavik.io>\n"
+"POT-Creation-Date: 2020-07-18 14:48+0200\n"
+"PO-Revision-Date: 2020-07-18 12:47\n"
+"Last-Translator: \n"
 "Language-Team: Hungarian\n"
 "Language: hu_HU\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
-"X-Generator: crowdin.com\n"
 "X-Crowdin-Project: poedit\n"
+"X-Crowdin-Project-ID: 53425\n"
 "X-Crowdin-Language: hu\n"
 "X-Crowdin-File: /locales/poedit.pot\n"
+"X-Crowdin-File-ID: 3\n"
 
 msgid "Hide this notification message"
 msgstr "Ezen értesítő üzenet elrejtése"
@@ -71,12 +72,12 @@ msgstr "A(z) „%s” fájl formátuma nem támogatott."
 #, c-format
 msgid "%i line of file “%s” was not loaded correctly."
 msgid_plural "%i lines of file “%s” were not loaded correctly."
-msgstr[0] ""
-msgstr[1] ""
+msgstr[0] "A(z) „%2$s” fájl %1$i sora nem lett megfelelően betöltve."
+msgstr[1] "A(z) „%2$s” fájl %1$i sora nem lett megfelelően betöltve."
 
 #, c-format
 msgid "Line %d of file “%s” is corrupted (not valid %s data)."
-msgstr ""
+msgstr "%d sor a “%s” fájlban sérült (nem érvényes %s adat)."
 
 msgid ""
 "Broken catalog file: singular form msgstr used together with msgid_plural"
@@ -147,11 +148,11 @@ msgstr "Törött jelölés a fordítás szövegében."
 msgid "(Use default language)"
 msgstr "(Alapértelmezett nyelv használata)"
 
-msgid "Select your preferred language"
-msgstr "Válassza ki a kívánt nyelvet"
-
 msgid "Language selection"
 msgstr "Nyelvválasztás"
+
+msgid "Select your preferred language"
+msgstr "Válassza ki a kívánt nyelvet"
 
 msgid "You must restart Poedit for this change to take effect."
 msgstr "Újra kell indítania a Poeditet a módosítás életbe léptetéséhez."
@@ -172,11 +173,14 @@ msgstr "A szinkronizálás nem sikerült ezzel: %s."
 msgid "Syncing error"
 msgstr "Szinkronizálási hiba"
 
-msgid "Downloading translations is disabled in this project."
-msgstr "A fordítások letöltése ebben a projektben le van tiltva."
+msgid "JSON request error"
+msgstr ""
 
 msgid "Not authorized, please sign in again."
 msgstr "Nem engedélyezett, kérjük jelentkezzen be újra."
+
+msgid "Downloading translations is disabled in this project."
+msgstr "A fordítások letöltése ebben a projektben le van tiltva."
 
 msgid ""
 "Crowdin is an online localization management platform and collaborative "
@@ -204,9 +208,6 @@ msgstr "Várakozás a hitelesítésre…"
 msgid "Updating user information…"
 msgstr "Felhasználói adatok frissítése…"
 
-msgid "Signed in as:"
-msgstr "Bejelentkezve mint:"
-
 msgid "Learn More About Crowdin"
 msgstr "Tudjon meg többet a Crowdinról"
 
@@ -215,6 +216,9 @@ msgstr "Tudjon meg többet a Crowdinról"
 
 msgid "Sign in to Crowdin"
 msgstr "Bejelentkezés a Crowdinra"
+
+msgid "File"
+msgstr "Fájl"
 
 msgid "Open Crowdin translation"
 msgstr "Crowdin fordítás megnyitása"
@@ -225,19 +229,11 @@ msgstr "Projekt:"
 msgid "Language:"
 msgstr "Nyelv:"
 
-msgid "File:"
-msgstr "Fájl:"
+msgid "Signed in as:"
+msgstr "Bejelentkezve mint:"
 
 msgid "No translation projects listed in your Crowdin account."
 msgstr "Nem szerepel fordítási projekt az Ön Crowdin fiókjában."
-
-msgid "This project has no files that can be translated in Poedit."
-msgstr ""
-"Ebben a fordítási projektben nincs olyan fájl, amit a Poedit-tel fordítani "
-"lehetne."
-
-msgid "This file can only be edited in Crowdin’s web interface."
-msgstr "Ez a fájl csak a Crowdin webes felületén szerkeszthető."
 
 msgid "Downloading latest translations…"
 msgstr "A legújabb fordítások letöltése…"
@@ -299,7 +295,7 @@ msgstr "Katalógus megnyitása"
 msgid "File “%s” doesn’t exist."
 msgstr "A(z) „%s” fájl nem létezik."
 
-msgid "Poedit is an easy to use translations editor."
+msgid "Poedit is an easy to use translation editor."
 msgstr "A Poedit egy könnyen használható fordítás szerkesztő."
 
 msgid "Catalogs Manager"
@@ -405,16 +401,16 @@ msgstr "Összes előrehozása"
 msgid "PO Translation"
 msgstr "PO fordítás"
 
+msgid ""
+"The file may be either corrupted or in a format not recognized by Poedit."
+msgstr ""
+"A fájl lehet hogy sérült vagy olyan formátumú melyet a Poedit nem ismer fel."
+
 msgid "The file cannot be opened."
 msgstr "A fájlt nem lehet megnyitni."
 
 msgid "Invalid file"
 msgstr "Érvénytelen fájl"
-
-msgid ""
-"The file may be either corrupted or in a format not recognized by Poedit."
-msgstr ""
-"A fájl lehet hogy sérült vagy olyan formátumú melyet a Poedit nem ismer fel."
 
 msgid "You can’t drop more than one file on Poedit window."
 msgstr "A Poedit ablakára egyszerre több fájlt nem lehet ráhúzni."
@@ -493,6 +489,25 @@ msgstr ""
 "A fordításokat nem lehet frissíteni a forráskódból, mert a katalógus "
 "tulajdonságaiban megadott helyen nem található kód."
 
+msgid "Permission denied."
+msgstr "Engedély megtagadva."
+
+msgid ""
+"You don’t have permission to read source code files from the location "
+"specified in the catalog’s Properties."
+msgstr ""
+"Nincs engedélyed a forráskód fájlok olvasására a katalógus tulajdonságaiban "
+"a megadott helyről."
+
+#. TRANSLATORS: The System Preferences etc. references macOS system settings and should be translated EXACTLY as in the OS. If you don't use macOS and can't check, leave it untranslated.
+msgid ""
+"If you previously denied access to your files, you can allow it in System "
+"Preferences > Security & Privacy > Privacy > Files & Folders."
+msgstr ""
+"Ha korábban megtagadtad a fájlokhoz való hozzáférést, akkor engedélyezheted "
+"a Rendszerbeállítások > Biztonság és adatvédelem > Adatvédelem > Fájlok és "
+"mappák menüben."
+
 msgid "Entries in the catalog are probably incorrect."
 msgstr "A katalógusban lévő bejegyzések valószínűleg hibásak."
 
@@ -566,6 +581,13 @@ msgstr ""
 "Ha letiltotta a figyelmeztetéseket a sok hamis pozitív figyelmeztetés miatt, "
 "akkor fontolja meg, hogy mintafájlt küldjön a help@poedit.net címre, hogy "
 "javíthassuk ezeket."
+
+msgid "Send Feedback"
+msgstr "Visszajelzés küldése"
+
+#. TRANSLATORS: This is a button to send email with feedback when clicked
+msgid "Send feedback"
+msgstr "Visszajelzés küldése"
 
 #, c-format
 msgid "Poedit automatically fixed invalid content in the file “%s”."
@@ -852,7 +874,7 @@ msgstr "Forrásszöveg"
 
 #, c-format
 msgid "Translation — %s"
-msgstr "Fordítás – %s"
+msgstr "Fordítás — %s"
 
 msgid "ID"
 msgstr "Azonosító"
@@ -1919,8 +1941,8 @@ msgstr "Frissítés a kódból"
 msgid "Update from Code"
 msgstr "Frissítés a kódból"
 
-msgid "Update catalog - synchronize it with sources"
-msgstr "Katalógus frissítése - szinkronizálás a forrásokhoz"
+msgid "Update from source code"
+msgstr "Frissítés a forráskódból"
 
 msgid "Sidebar"
 msgstr "Oldalsáv"
@@ -2153,9 +2175,6 @@ msgstr "&Törlés"
 
 msgid "&Quit"
 msgstr "&Kilépés"
-
-msgid "File"
-msgstr "Fájl"
 
 msgid "Help"
 msgstr "Súgó"

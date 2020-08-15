@@ -2,19 +2,20 @@ msgid ""
 msgstr ""
 "Project-Id-Version: poedit\n"
 "Report-Msgid-Bugs-To: help@poedit.net\n"
-"POT-Creation-Date: 2018-10-07 13:14+0200\n"
-"PO-Revision-Date: 2018-10-07 10:40\n"
-"Last-Translator: vslavik <vaclav@slavik.io>\n"
+"POT-Creation-Date: 2020-07-18 14:48+0200\n"
+"PO-Revision-Date: 2020-07-18 12:46\n"
+"Last-Translator: \n"
 "Language-Team: Dutch\n"
 "Language: nl_NL\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
-"X-Generator: crowdin.com\n"
 "X-Crowdin-Project: poedit\n"
+"X-Crowdin-Project-ID: 53425\n"
 "X-Crowdin-Language: nl\n"
 "X-Crowdin-File: /locales/poedit.pot\n"
+"X-Crowdin-File-ID: 3\n"
 
 msgid "Hide this notification message"
 msgstr "Deze melding verbergen"
@@ -59,14 +60,14 @@ msgid "POT Translation Templates"
 msgstr "POT-vertaalsjablonen"
 
 msgid "XLIFF Translation Files"
-msgstr ""
+msgstr "XLIFF vertaalbestanden"
 
 msgid "All Translation Files"
 msgstr "Alle vertaalbestanden"
 
 #, c-format
 msgid "File “%s” is in unsupported format."
-msgstr ""
+msgstr "Bestand \"%s\" heeft een niet-ondersteunde indeling."
 
 #, c-format
 msgid "%i line of file “%s” was not loaded correctly."
@@ -136,24 +137,24 @@ msgstr "Fout bij het opslaan van de catalogus"
 
 #, c-format
 msgid "Error loading file “%s”: %s."
-msgstr ""
+msgstr "Fout bij laden van bestand '%s': %s."
 
 #, c-format
 msgid "unsupported XLIFF version (%s)"
-msgstr ""
+msgstr "niet-ondersteunde XLIFF versie (%s)"
 
 #. TRANSLATORS: Shown as error if a translation of XLIFF markup is not valid XML
 msgid "Broken markup in translation string."
-msgstr ""
+msgstr "Verbroken markup in vertaling van tekenreeks."
 
 msgid "(Use default language)"
 msgstr "(Gebruik de standaardtaal)"
 
-msgid "Select your preferred language"
-msgstr "Kies uw voorkeurstaal"
-
 msgid "Language selection"
 msgstr "Taalselectie"
+
+msgid "Select your preferred language"
+msgstr "Kies uw voorkeurstaal"
 
 msgid "You must restart Poedit for this change to take effect."
 msgstr "U moet Poedit opnieuw starten voordat deze verandering effect heeft."
@@ -174,11 +175,14 @@ msgstr "Synchroniseren met %s is mislukt."
 msgid "Syncing error"
 msgstr "Synchronisatiefout"
 
-msgid "Downloading translations is disabled in this project."
-msgstr "Het downloaden van vertalingen is uitgeschakeld in dit project."
+msgid "JSON request error"
+msgstr ""
 
 msgid "Not authorized, please sign in again."
 msgstr "Niet geautoriseerd; log opnieuw in."
+
+msgid "Downloading translations is disabled in this project."
+msgstr "Het downloaden van vertalingen is uitgeschakeld in dit project."
 
 msgid ""
 "Crowdin is an online localization management platform and collaborative "
@@ -206,9 +210,6 @@ msgstr "Wachten op autorisatie…"
 msgid "Updating user information…"
 msgstr "Gebruikersinformatie bijwerken…"
 
-msgid "Signed in as:"
-msgstr "Ingelogd als:"
-
 msgid "Learn More About Crowdin"
 msgstr "Meer te weten komen over Crowdin"
 
@@ -217,6 +218,9 @@ msgstr "Meer te weten komen over Crowdin"
 
 msgid "Sign in to Crowdin"
 msgstr "Inloggen bij Crowdin"
+
+msgid "File"
+msgstr "Bestand"
 
 msgid "Open Crowdin translation"
 msgstr "Crowdin-vertaling openen"
@@ -227,17 +231,11 @@ msgstr "Project:"
 msgid "Language:"
 msgstr "Taal:"
 
-msgid "File:"
-msgstr "Bestand:"
+msgid "Signed in as:"
+msgstr "Ingelogd als:"
 
 msgid "No translation projects listed in your Crowdin account."
 msgstr "Er zijn geen vertaalprojecten aanwezig in uw Crowdin-account."
-
-msgid "This project has no files that can be translated in Poedit."
-msgstr "Dit project bevat geen bestanden die vertaald kunnen worden in Poedit."
-
-msgid "This file can only be edited in Crowdin’s web interface."
-msgstr "Dit bestand kan alleen bewerkt worden in de Crowdin-webinterface."
 
 msgid "Downloading latest translations…"
 msgstr "De meest recente vertalingen downloaden…"
@@ -299,7 +297,7 @@ msgstr "Catalogus openen"
 msgid "File “%s” doesn’t exist."
 msgstr "Bestand \"%s\" bestaat niet."
 
-msgid "Poedit is an easy to use translations editor."
+msgid "Poedit is an easy to use translation editor."
 msgstr "Poedit is een eenvoudig te gebruiken vertalingsbewerker."
 
 msgid "Catalogs Manager"
@@ -405,24 +403,24 @@ msgstr "Alles op voorgrond"
 msgid "PO Translation"
 msgstr "PO-vertaling"
 
-msgid "The file cannot be opened."
-msgstr "Het bestand kan niet geopend worden."
-
-msgid "Invalid file"
-msgstr "Ongeldig bestand"
-
 msgid ""
 "The file may be either corrupted or in a format not recognized by Poedit."
 msgstr ""
 "Het bestand kan corrupt zijn of een opmaak hebben die niet herkend wordt "
 "door Poedit."
 
+msgid "The file cannot be opened."
+msgstr "Het bestand kan niet geopend worden."
+
+msgid "Invalid file"
+msgstr "Ongeldig bestand"
+
 msgid "You can’t drop more than one file on Poedit window."
 msgstr "U kunt niet meer dan één bestand in het Poedit-venster plaatsen."
 
 #, c-format
 msgid "File “%s” is not a translation file."
-msgstr ""
+msgstr "Bestand \"%s\" is niet een vertaalbestand."
 
 msgid "Poedit"
 msgstr "Poedit"
@@ -494,6 +492,24 @@ msgid ""
 msgstr ""
 "De vertalingen konden niet bijgewerkt worden vanuit de broncode, omdat er "
 "geen code gevonden is op de locatie, opgegeven in de cataloguseigenschappen."
+
+msgid "Permission denied."
+msgstr "Toegang geweigerd."
+
+msgid ""
+"You don’t have permission to read source code files from the location "
+"specified in the catalog’s Properties."
+msgstr ""
+"U heeft geen toestemming om broncodebestanden te lezen van de locatie "
+"opgegeven in de cataloguseigenschappen."
+
+#. TRANSLATORS: The System Preferences etc. references macOS system settings and should be translated EXACTLY as in the OS. If you don't use macOS and can't check, leave it untranslated.
+msgid ""
+"If you previously denied access to your files, you can allow it in System "
+"Preferences > Security & Privacy > Privacy > Files & Folders."
+msgstr ""
+"Als u eerder toegang tot uw bestanden hebt geweigerd, kunt u deze toestaan "
+"in Systeem Voorkeuren > Beveiliging & Privacy > Privacy > Bestanden & Mappen."
 
 msgid "Entries in the catalog are probably incorrect."
 msgstr "Invoer in de catalogus is waarschijnlijk onjuist."
@@ -573,6 +589,13 @@ msgstr ""
 "Indien je de waarschuwingen hebt uitgezet vanwege bovenmatig veel valse "
 "waarschuwingen, stuur dan alsjeblieft een proefbestand naar help@poedit.net "
 "om ons te helpen dit te verbeteren."
+
+msgid "Send Feedback"
+msgstr "Verstuur feedback"
+
+#. TRANSLATORS: This is a button to send email with feedback when clicked
+msgid "Send feedback"
+msgstr "Verstuur feedback"
 
 #, c-format
 msgid "Poedit automatically fixed invalid content in the file “%s”."
@@ -1924,13 +1947,13 @@ msgid "Check for errors in the translation"
 msgstr "De vertaling op fouten controleren"
 
 msgid "Update from code"
-msgstr "&Update van code"
+msgstr "Update van code"
 
 msgid "Update from Code"
-msgstr "&Update van Code"
+msgstr "Update van Code"
 
-msgid "Update catalog - synchronize it with sources"
-msgstr "Catalogus bijwerken - synchroniseren met de bronnen"
+msgid "Update from source code"
+msgstr "Bijwerken van broncode"
 
 msgid "Sidebar"
 msgstr "Zijbalk"
@@ -2165,9 +2188,6 @@ msgstr "&Verwijderen"
 
 msgid "&Quit"
 msgstr "&Afsluiten"
-
-msgid "File"
-msgstr "Bestand"
 
 msgid "Help"
 msgstr "Hulp"

@@ -18,16 +18,13 @@
 	url = git://github.com/madler/zlib.git
 [submodule "deps/letsmove"]
 	path = deps/letsmove
-	url = git://github.com/potionfactory/LetsMove.git
+	url = git://github.com/GroundControl-Solutions/LetsMove.git
 [submodule "deps/cld2"]
 	path = deps/cld2
 	url = https://github.com/CLD2Owners/cld2.git
 [submodule "deps/casablanca"]
 	path = deps/casablanca
 	url = https://github.com/Microsoft/cpprestsdk.git
-[submodule "deps/AFNetworking"]
-	path = deps/AFNetworking
-	url = https://github.com/vslavik/AFNetworking.git
 [submodule "deps/mctrl"]
 	path = deps/mctrl
 	url = https://github.com/mity/mctrl.git

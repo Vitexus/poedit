@@ -2,19 +2,20 @@ msgid ""
 msgstr ""
 "Project-Id-Version: poedit\n"
 "Report-Msgid-Bugs-To: help@poedit.net\n"
-"POT-Creation-Date: 2018-10-07 13:14+0200\n"
-"PO-Revision-Date: 2019-01-14 16:34\n"
-"Last-Translator: vslavik <vaclav@slavik.io>\n"
+"POT-Creation-Date: 2020-07-18 14:48+0200\n"
+"PO-Revision-Date: 2020-07-18 12:47\n"
+"Last-Translator: \n"
 "Language-Team: Occitan\n"
 "Language: oc_FR\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=(n > 1);\n"
-"X-Generator: crowdin.com\n"
 "X-Crowdin-Project: poedit\n"
+"X-Crowdin-Project-ID: 53425\n"
 "X-Crowdin-Language: oc\n"
 "X-Crowdin-File: /locales/poedit.pot\n"
+"X-Crowdin-File-ID: 3\n"
 
 msgid "Hide this notification message"
 msgstr "Amagar aqueste messatge de notificacion"
@@ -147,11 +148,11 @@ msgstr ""
 msgid "(Use default language)"
 msgstr "(Utilizar la lenga per defaut)"
 
-msgid "Select your preferred language"
-msgstr "Seleccionatz vòstra lenga de preferéncia"
-
 msgid "Language selection"
 msgstr "Seleccion de lenga"
+
+msgid "Select your preferred language"
+msgstr "Seleccionatz vòstra lenga de preferéncia"
 
 msgid "You must restart Poedit for this change to take effect."
 msgstr "Vos cal reaviar Poedit per qu'aqueste cambiament prenga efièit."
@@ -172,12 +173,15 @@ msgstr "La sincronizacion amb %s a fracassat."
 msgid "Syncing error"
 msgstr "Error de sincronizacion"
 
-msgid "Downloading translations is disabled in this project."
+msgid "JSON request error"
 msgstr ""
-"Lo telecargament de las traduccions es desactivat dins aqueste projècte."
 
 msgid "Not authorized, please sign in again."
 msgstr "Pas autorizat, connectatz-vos tornamai."
+
+msgid "Downloading translations is disabled in this project."
+msgstr ""
+"Lo telecargament de las traduccions es desactivat dins aqueste projècte."
 
 msgid ""
 "Crowdin is an online localization management platform and collaborative "
@@ -205,9 +209,6 @@ msgstr "En espèra d'autentificacion..."
 msgid "Updating user information…"
 msgstr "Mesa a jorn de las informacions de l'utilizaire..."
 
-msgid "Signed in as:"
-msgstr "Connectat en tant que :"
-
 msgid "Learn More About Crowdin"
 msgstr "Ne saber Mai sus Crowdin"
 
@@ -216,6 +217,9 @@ msgstr "Ne saber mai sus Crowdin"
 
 msgid "Sign in to Crowdin"
 msgstr "Connectatz-vos sus Crowdin"
+
+msgid "File"
+msgstr ""
 
 msgid "Open Crowdin translation"
 msgstr "Dobrir la traduccion Crowdin"
@@ -226,20 +230,11 @@ msgstr "Projècte :"
 msgid "Language:"
 msgstr "Lenga :"
 
-msgid "File:"
-msgstr "Fichièr :"
+msgid "Signed in as:"
+msgstr "Connectat en tant que :"
 
 msgid "No translation projects listed in your Crowdin account."
 msgstr "Cap de projècte de traduccion pas listat dins vòstre compte Crowdin."
-
-msgid "This project has no files that can be translated in Poedit."
-msgstr ""
-"Aqueste projècte a pas cap de fichièr que pòsca èsser traduit amb Poedit."
-
-msgid "This file can only be edited in Crowdin’s web interface."
-msgstr ""
-"Aqueste fichièr pòt pas èsser modificat qu'a partir de l'interfàcia web de "
-"Crowdin."
 
 msgid "Downloading latest translations…"
 msgstr "Telecargament de las darrièras traduccions..."
@@ -301,7 +296,7 @@ msgstr "Dobrir un catalòg"
 msgid "File “%s” doesn’t exist."
 msgstr ""
 
-msgid "Poedit is an easy to use translations editor."
+msgid "Poedit is an easy to use translation editor."
 msgstr "Poedit es un logicial de traduccion de bon utilizar."
 
 msgid "Catalogs Manager"
@@ -407,16 +402,16 @@ msgstr "Tot passar al primièr plan"
 msgid "PO Translation"
 msgstr "Traduccion PO"
 
+msgid ""
+"The file may be either corrupted or in a format not recognized by Poedit."
+msgstr ""
+"Benlèu que lo fichièr es corromput o dins un format pas reconegut per Poedit."
+
 msgid "The file cannot be opened."
 msgstr "Lo fichièr pòt pas èsser dobèrt."
 
 msgid "Invalid file"
 msgstr "Fichièr invalid"
-
-msgid ""
-"The file may be either corrupted or in a format not recognized by Poedit."
-msgstr ""
-"Benlèu que lo fichièr es corromput o dins un format pas reconegut per Poedit."
 
 msgid "You can’t drop more than one file on Poedit window."
 msgstr ""
@@ -499,6 +494,20 @@ msgstr ""
 "perque cap de còdi es pas estat trobat a l'emplaçament precisat dins las "
 "proprietats del catalòg."
 
+msgid "Permission denied."
+msgstr ""
+
+msgid ""
+"You don’t have permission to read source code files from the location "
+"specified in the catalog’s Properties."
+msgstr ""
+
+#. TRANSLATORS: The System Preferences etc. references macOS system settings and should be translated EXACTLY as in the OS. If you don't use macOS and can't check, leave it untranslated.
+msgid ""
+"If you previously denied access to your files, you can allow it in System "
+"Preferences > Security & Privacy > Privacy > Files & Folders."
+msgstr ""
+
 msgid "Entries in the catalog are probably incorrect."
 msgstr "Certanas entradas del catalòg son probablament incorrèctas."
 
@@ -573,6 +582,13 @@ msgstr ""
 msgid ""
 "If you disabled the warnings because of excessive false positives, please "
 "consider sending a sample file to help@poedit.net to help improve them."
+msgstr ""
+
+msgid "Send Feedback"
+msgstr ""
+
+#. TRANSLATORS: This is a button to send email with feedback when clicked
+msgid "Send feedback"
 msgstr ""
 
 #, c-format
@@ -1916,8 +1932,8 @@ msgstr ""
 msgid "Update from Code"
 msgstr ""
 
-msgid "Update catalog - synchronize it with sources"
-msgstr "Metre a jorn lo catalòg - Sincronizar amb las fonts"
+msgid "Update from source code"
+msgstr ""
 
 msgid "Sidebar"
 msgstr "Panèl lateral"
@@ -2146,9 +2162,6 @@ msgid "&Delete"
 msgstr "&Suprimir"
 
 msgid "&Quit"
-msgstr ""
-
-msgid "File"
 msgstr ""
 
 msgid "Help"

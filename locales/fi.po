@@ -2,19 +2,20 @@ msgid ""
 msgstr ""
 "Project-Id-Version: poedit\n"
 "Report-Msgid-Bugs-To: help@poedit.net\n"
-"POT-Creation-Date: 2018-10-07 13:14+0200\n"
-"PO-Revision-Date: 2018-10-07 10:39\n"
-"Last-Translator: vslavik <vaclav@slavik.io>\n"
+"POT-Creation-Date: 2020-07-18 14:48+0200\n"
+"PO-Revision-Date: 2020-07-18 12:46\n"
+"Last-Translator: \n"
 "Language-Team: Finnish\n"
 "Language: fi_FI\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
-"X-Generator: crowdin.com\n"
 "X-Crowdin-Project: poedit\n"
+"X-Crowdin-Project-ID: 53425\n"
 "X-Crowdin-Language: fi\n"
 "X-Crowdin-File: /locales/poedit.pot\n"
+"X-Crowdin-File-ID: 3\n"
 
 msgid "Hide this notification message"
 msgstr "Piilota tämä ilmoitus"
@@ -33,7 +34,7 @@ msgid "Updating catalog"
 msgstr "Päivitetään katalogia"
 
 msgid "Collecting source files…"
-msgstr ""
+msgstr "Kerätään lähdetiedostoja…"
 
 msgid "Extracting translatable strings…"
 msgstr "Poimitaan käännettävät merkkijonot…"
@@ -56,32 +57,32 @@ msgid "PO Translation Files"
 msgstr "PO-käännöstiedostot"
 
 msgid "POT Translation Templates"
-msgstr "POT-käännöspohjat"
+msgstr "POT-käännösmallit"
 
 msgid "XLIFF Translation Files"
-msgstr ""
+msgstr "XLIFF-käännöstiedostot"
 
 msgid "All Translation Files"
 msgstr "Kaikki käännöstiedostot"
 
 #, c-format
 msgid "File “%s” is in unsupported format."
-msgstr ""
+msgstr "Tiedosto ”%s” on muodossa, jota ei tueta."
 
 #, c-format
 msgid "%i line of file “%s” was not loaded correctly."
 msgid_plural "%i lines of file “%s” were not loaded correctly."
-msgstr[0] "%i riviä tiedostosta ”%s” ei voitu ladata oikein."
-msgstr[1] "%i riviä tiedostosta ”%s” ei voitu ladata oikein."
+msgstr[0] "%i riviä tiedostosta ”%s” ei ladattu oikein."
+msgstr[1] "%i riviä tiedostosta ”%s” ei latautunut oikein."
 
 #, c-format
 msgid "Line %d of file “%s” is corrupted (not valid %s data)."
-msgstr "Rivi %d tiedostossa ”%s” on korruptoitunut (ei kelvollista %s-dataa)."
+msgstr "Rivi %d tiedostossa ”%s” on vioittunut (%s-data ei ole kelvollista)."
 
 msgid ""
 "Broken catalog file: singular form msgstr used together with msgid_plural"
 msgstr ""
-"Rikkinäinen katalogitiedosto: yksikkomuotoista msgstr:ää käytetty yhdessä "
+"Vahingoittunut luettelotiedosto: yksikkömuotoista msgstr:ää käytetty yhdessä "
 "msgid_plural:in kanssa"
 
 msgid "Broken catalog file: plural form msgstr used without msgid_plural"
@@ -93,8 +94,8 @@ msgid ""
 "There were errors when loading the catalog. Some data may be missing or "
 "corrupted as the result."
 msgstr ""
-"Katalogia ladattaessa kohdattiin virheitä. Osa tiedoista saattaa sen "
-"seurauksena puuttua tai olla vioittunutta."
+"Luettelon lataamisessa tapahtui virheitä. Jotkin tiedot saattavat puuttua "
+"tai olla vioittuneita."
 
 #, c-format
 msgid "Couldn’t load file %s, it is probably corrupted."
@@ -105,8 +106,8 @@ msgid ""
 "File “%s” is read-only and cannot be saved.\n"
 "Please save it under different name."
 msgstr ""
-"Tiedosto ”%s” voidaan vain lukea, mutta ei tallentaa.\n"
-"Tallenna toisella nimellä."
+"Tiedostoa ”%s” voidaan vain lukea, mutta ei tallentaa.\n"
+"Tallenna se toisella nimellä."
 
 #, c-format
 msgid "Couldn’t save file %s."
@@ -134,24 +135,24 @@ msgstr "Virhe katalogia tallennettaessa"
 
 #, c-format
 msgid "Error loading file “%s”: %s."
-msgstr ""
+msgstr "Virhe tiedoston ”%s” lataamisessa: %s."
 
 #, c-format
 msgid "unsupported XLIFF version (%s)"
-msgstr ""
+msgstr "XLIFF-versio (%s) ei ole tuettu"
 
 #. TRANSLATORS: Shown as error if a translation of XLIFF markup is not valid XML
 msgid "Broken markup in translation string."
-msgstr ""
+msgstr "Käännösmerkkijonossa on merkkikatkos."
 
 msgid "(Use default language)"
 msgstr "(Käytä oletuskieltä)"
 
-msgid "Select your preferred language"
-msgstr "Valitse ensisijainen kieli"
-
 msgid "Language selection"
 msgstr "Kielen valinta"
+
+msgid "Select your preferred language"
+msgstr "Valitse ensisijainen kieli"
 
 msgid "You must restart Poedit for this change to take effect."
 msgstr "Poedit täytyy käynnistää uudestaan muutoksien käyttöön ottamiseksi."
@@ -172,11 +173,14 @@ msgstr "Synkronointi epäonnistui: %s."
 msgid "Syncing error"
 msgstr "Synkronointivirhe"
 
-msgid "Downloading translations is disabled in this project."
-msgstr "Käännösten lataus on poistettu käytöstä tässä projektissa."
+msgid "JSON request error"
+msgstr ""
 
 msgid "Not authorized, please sign in again."
 msgstr "Ei valtuutusta; kirjaudu uudelleen."
+
+msgid "Downloading translations is disabled in this project."
+msgstr "Käännösten lataus on poistettu käytöstä tässä projektissa."
 
 msgid ""
 "Crowdin is an online localization management platform and collaborative "
@@ -204,9 +208,6 @@ msgstr "Odotetaan todennusta…"
 msgid "Updating user information…"
 msgstr "Päivitetään käyttäjätietoja…"
 
-msgid "Signed in as:"
-msgstr "Kirjautuneena käyttäjänä:"
-
 msgid "Learn More About Crowdin"
 msgstr "Lisätietoja Crowdinista"
 
@@ -215,6 +216,9 @@ msgstr "Lisätietoja Crowdinista"
 
 msgid "Sign in to Crowdin"
 msgstr "Kirjaudu Crowdiniin"
+
+msgid "File"
+msgstr "Tiedosto"
 
 msgid "Open Crowdin translation"
 msgstr "Avaa Crowdin-käännös"
@@ -225,17 +229,11 @@ msgstr "Projekti:"
 msgid "Language:"
 msgstr "Kieli:"
 
-msgid "File:"
-msgstr "Tiedosto:"
+msgid "Signed in as:"
+msgstr "Kirjautuneena käyttäjänä:"
 
 msgid "No translation projects listed in your Crowdin account."
 msgstr "Crowdin-tiliisi ei liity käännösprojekteja."
-
-msgid "This project has no files that can be translated in Poedit."
-msgstr "Tässä projektissa ei ole Poeditillä käännettävissä olevia tiedostoja."
-
-msgid "This file can only be edited in Crowdin’s web interface."
-msgstr "Tätä tiedostoa voi muokata vain Crowdinin web-käyttöliittymässä."
 
 msgid "Downloading latest translations…"
 msgstr "Ladataan uusimmat käännökset…"
@@ -281,7 +279,7 @@ msgid "handle a poedit:// URI"
 msgstr "käsittele poedit://-osoite"
 
 msgid "go to item at given line number"
-msgstr ""
+msgstr "siirry annetulla rivillä olevaan kohtaan"
 
 msgid "Failed to communicate with Poedit process."
 msgstr "Kommunikointi Poedit-prosessin kanssa epäonnistui."
@@ -297,7 +295,7 @@ msgstr "Avaa katalogi"
 msgid "File “%s” doesn’t exist."
 msgstr "Tiedostoa ”%s” ei ole olemassa."
 
-msgid "Poedit is an easy to use translations editor."
+msgid "Poedit is an easy to use translation editor."
 msgstr "Poedit on helppokäyttöinen käännöseditori."
 
 msgid "Catalogs Manager"
@@ -403,22 +401,22 @@ msgstr "Tuo kaikki eteen"
 msgid "PO Translation"
 msgstr "PO-käännös"
 
+msgid ""
+"The file may be either corrupted or in a format not recognized by Poedit."
+msgstr "Tiedosto voi olla joko vioittunut tai muodossa, jota Poedit ei tunne."
+
 msgid "The file cannot be opened."
 msgstr "Tiedostoa ei voi avata."
 
 msgid "Invalid file"
 msgstr "Virheellinen tiedosto"
 
-msgid ""
-"The file may be either corrupted or in a format not recognized by Poedit."
-msgstr "Tiedosto voi olla joko vioittunut tai muodossa, jota Poedit ei tunne."
-
 msgid "You can’t drop more than one file on Poedit window."
 msgstr "Poedit-ikkunaan voi pudottaa vain yhden tiedoston."
 
 #, c-format
 msgid "File “%s” is not a translation file."
-msgstr ""
+msgstr "Tiedosto ”%s” ei ole käännöstiedosto."
 
 msgid "Poedit"
 msgstr "Poedit"
@@ -491,6 +489,25 @@ msgstr ""
 "Käännösten päivittäminen lähdekoodista ei onnistunut, koska katalogin "
 "ominaisuuksissa annetusta sijainnista ei löytynyt koodia."
 
+msgid "Permission denied."
+msgstr "Lupa evätty."
+
+msgid ""
+"You don’t have permission to read source code files from the location "
+"specified in the catalog’s Properties."
+msgstr ""
+"Sinulla ei ole tarvittavia oikeuksia lukea lähdekooditiedostoja katalogin "
+"asetuksissa määritellystä sijainnista."
+
+#. TRANSLATORS: The System Preferences etc. references macOS system settings and should be translated EXACTLY as in the OS. If you don't use macOS and can't check, leave it untranslated.
+msgid ""
+"If you previously denied access to your files, you can allow it in System "
+"Preferences > Security & Privacy > Privacy > Files & Folders."
+msgstr ""
+"Mikäli olet aikaisemmin estänyt pääsyn tiedostoihisi, voit sallia sen "
+"kohdasta Järjestelmäasetukset > Suojaus ja yksityisyys > Yksityisyys > "
+"Tiedostot ja kansiot."
+
 msgid "Entries in the catalog are probably incorrect."
 msgstr "Katalogin merkinnät ovat todennäköisesti virheelliset."
 
@@ -559,6 +576,16 @@ msgstr "Varoitukset on poistettu käytöstä."
 msgid ""
 "If you disabled the warnings because of excessive false positives, please "
 "consider sending a sample file to help@poedit.net to help improve them."
+msgstr ""
+"Jos olet poistanut varoitukset käytöstä liiallisten väärien positiivisten "
+"virheiden takia, harkitse mallitiedoston lähettämistä osoitteeseen "
+"help@poedit.net niiden parantamiseksi."
+
+msgid "Send Feedback"
+msgstr ""
+
+#. TRANSLATORS: This is a button to send email with feedback when clicked
+msgid "Send feedback"
 msgstr ""
 
 #, c-format
@@ -1088,10 +1115,10 @@ msgid "Database size on disk:"
 msgstr "Tietokannan koko levyllä:"
 
 msgid "Import Translation Files…"
-msgstr ""
+msgstr "Tuo käännöstiedostoja…"
 
 msgid "Import translation files…"
-msgstr ""
+msgstr "Tuo käännöstiedostoja…"
 
 msgid "Import From TMX…"
 msgstr "Tuo TMX-tiedostosta…"
@@ -1119,30 +1146,30 @@ msgid "Importing translations…"
 msgstr "Tuodaan käännöksiä…"
 
 msgid "Finalizing…"
-msgstr ""
+msgstr "Viimeistellään…"
 
 msgid "Select TMX files to import"
-msgstr ""
+msgstr "Valitse tuotavat TMX-tiedostot"
 
 msgid "TMX Files"
 msgstr "TMX-tiedostot"
 
 #, c-format
 msgid "Importing translation memory from “%s” failed."
-msgstr ""
+msgstr "Käännösmuistin tuonti polusta ”%s” epäonnistui."
 
 msgid "Import error"
-msgstr ""
+msgstr "Tuontivirhe"
 
 msgid "Exporting translations…"
-msgstr ""
+msgstr "Viedään käännöksiä…"
 
 #, c-format
 msgid "Exporting translation memory to “%s” failed."
-msgstr ""
+msgstr "Käännösmuistin vienti polkuun ”%s” epäonnistui."
 
 msgid "Export error"
-msgstr ""
+msgstr "Vientivirhe"
 
 msgid "Reset translation memory"
 msgstr "Tyhjennä käännösmuisti"
@@ -1184,7 +1211,7 @@ msgid "Edit…"
 msgstr "Muokkaa…"
 
 msgid "GNU gettext"
-msgstr ""
+msgstr "GNU gettext"
 
 msgid ""
 "Supports all programming languages recognized by GNU gettext tools (PHP, C/C+"
@@ -1288,6 +1315,8 @@ msgid ""
 "Only enable if you trust the quality of your TM. By default, all matches "
 "from the TM are marked as needing work and should be reviewed before use."
 msgstr ""
+"Ota käyttöön vain, jos luotat TM laatuun. Oletuksena kaikki TM-sopivuudet on "
+"merkitty työtä tarvitseviksi, ja ne tulisi tarkistaa ennen käyttöä."
 
 msgid ""
 "Pre-translation automatically finds exact or fuzzy matches for untranslated "
@@ -1353,10 +1382,10 @@ msgid "Add files…"
 msgstr "Lisää tiedostoja…"
 
 msgid "Add Wildcard…"
-msgstr ""
+msgstr "Lisää korvausmerkki…"
 
 msgid "Add wildcard…"
-msgstr ""
+msgstr "Lisää korvausmerkki…"
 
 msgid "Paths"
 msgstr "Polut"
@@ -1584,10 +1613,10 @@ msgid "&Preferences"
 msgstr "A&setukset"
 
 msgid "Show string &ID"
-msgstr ""
+msgstr "Näytä merkkijonon &tunniste"
 
 msgid "Show String &ID"
-msgstr ""
+msgstr "Näytä merkkijonon &tunniste"
 
 msgid "Show warnings"
 msgstr "Näytä varoitukset"
@@ -1856,7 +1885,7 @@ msgstr ""
 "käännettäviä merkkijonoja:"
 
 msgid "Also use default keywords for supported languages"
-msgstr ""
+msgstr "Käytä myös oletusavainsanoja tuetuille kielille"
 
 msgid "Learn About Gettext Keywords"
 msgstr "Lisätietoja Gettextin avainsanoista"
@@ -1903,13 +1932,13 @@ msgid "Check for errors in the translation"
 msgstr "Tarkista käännöksen virheet"
 
 msgid "Update from code"
-msgstr ""
+msgstr "Päivitä lähdekoodista"
 
 msgid "Update from Code"
-msgstr ""
+msgstr "Päivitä lähdekoodista"
 
-msgid "Update catalog - synchronize it with sources"
-msgstr "Päivityskatalogi - synkronoi se lähteen kanssa"
+msgid "Update from source code"
+msgstr "Päivitä lähdekoodista"
 
 msgid "Sidebar"
 msgstr "Sivupalkki"
@@ -1965,7 +1994,7 @@ msgstr "TMX-tiedostosta ei löytynyt käännöksiä."
 
 #, c-format
 msgid "Translation memory database is corrupted: %s (%d)."
-msgstr ""
+msgstr "Käännösmuistin tietokanta on turmeltunut: %s (%d)."
 
 #, c-format
 msgid "Translation memory error: %s (%d)."
@@ -2141,9 +2170,6 @@ msgstr "&Poista"
 
 msgid "&Quit"
 msgstr "&Lopeta"
-
-msgid "File"
-msgstr "Tiedosto"
 
 msgid "Help"
 msgstr "Ohje"

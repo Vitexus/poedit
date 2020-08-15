@@ -1,7 +1,7 @@
 /*
  *  This file is part of Poedit (https://poedit.net)
  *
- *  Copyright (C) 2000-2019 Vaclav Slavik
+ *  Copyright (C) 2000-2020 Vaclav Slavik
  *
  *  Permission is hereby granted, free of charge, to any person obtaining a
  *  copy of this software and associated documentation files (the "Software"),
@@ -326,7 +326,7 @@ wxString LegacyExtractor::Extract(TempDirectory& tmpdir,
         CurrentWorkingDirectoryChanger cwd(sourceSpec.BasePath);
         if (!ExecuteGettext(m_spec.BuildCommand(batchfiles, sourceSpec.Keywords, tempfile, sourceSpec.Charset)))
         {
-            return "";
+            throw ExtractionException(ExtractionError::Unspecified);
         }
 
         tempfiles.push_back(tempfile);

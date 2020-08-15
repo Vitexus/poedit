@@ -2,9 +2,9 @@ msgid ""
 msgstr ""
 "Project-Id-Version: poedit\n"
 "Report-Msgid-Bugs-To: help@poedit.net\n"
-"POT-Creation-Date: 2018-10-07 13:14+0200\n"
-"PO-Revision-Date: 2019-01-14 16:32\n"
-"Last-Translator: vslavik <vaclav@slavik.io>\n"
+"POT-Creation-Date: 2020-07-18 14:48+0200\n"
+"PO-Revision-Date: 2020-07-18 12:47\n"
+"Last-Translator: \n"
 "Language-Team: Lithuanian\n"
 "Language: lt_LT\n"
 "MIME-Version: 1.0\n"
@@ -12,10 +12,11 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=4; plural=(n%10==1 && (n%100>19 || n%100<11) ? 0 : (n"
 "%10>=2 && n%10<=9) && (n%100>19 || n%100<11) ? 1 : n%1!=0 ? 2: 3);\n"
-"X-Generator: crowdin.com\n"
 "X-Crowdin-Project: poedit\n"
+"X-Crowdin-Project-ID: 53425\n"
 "X-Crowdin-Language: lt\n"
 "X-Crowdin-File: /locales/poedit.pot\n"
+"X-Crowdin-File-ID: 3\n"
 
 msgid "Hide this notification message"
 msgstr "Slėpti šį pranešimą"
@@ -146,14 +147,14 @@ msgstr "Klaidingai suformatuota vertimo eilutė."
 msgid "(Use default language)"
 msgstr "(Naudoti numatytąją kalbą)"
 
-msgid "Select your preferred language"
-msgstr "Pasirinkite pagrindinę kalbą"
-
 msgid "Language selection"
 msgstr "Kalbos pasirinkimas"
 
+msgid "Select your preferred language"
+msgstr "Pasirinkite pagrindinę kalbą"
+
 msgid "You must restart Poedit for this change to take effect."
-msgstr "Šis pakeitimas įsigalios paleidus „Poedit“ iš naujo."
+msgstr "Šis pakeitimas įsigalios paleidus Poedit iš naujo."
 
 msgid "Syncing"
 msgstr "Sinchronizuojama"
@@ -171,19 +172,22 @@ msgstr "Sinchronizavimas su %s nepavyko."
 msgid "Syncing error"
 msgstr "Susinchronizuoti nepavyko"
 
-msgid "Downloading translations is disabled in this project."
-msgstr "Vertimų atsiuntimas šiame projekte yra išjungtas."
+msgid "JSON request error"
+msgstr ""
 
 msgid "Not authorized, please sign in again."
 msgstr "Nesankcionuota, prašome prisijungti dar kartą."
+
+msgid "Downloading translations is disabled in this project."
+msgstr "Vertimų atsiuntimas šiame projekte yra išjungtas."
 
 msgid ""
 "Crowdin is an online localization management platform and collaborative "
 "translation tool. Poedit can seamlessly sync PO files managed at Crowdin."
 msgstr ""
-"„Crowdin“ yra internetinė lokalizavimo valdymo platforma ir vertimų "
-"bendradarbiavimo priemonė. „Poedit“ gali sklandžiai sinchronizuoti PO "
-"failus, esančius „Crowdin“ sistemoje."
+"Crowdin yra internetinė lokalizavimo valdymo platforma ir vertimų "
+"bendradarbiavimo priemonė. Poedit gali sklandžiai sinchronizuoti PO failus "
+"esančius Crowdin sistemoje."
 
 msgid "Sign In"
 msgstr "Prisijungti"
@@ -203,9 +207,6 @@ msgstr "Laukiama tapatybės nustatymo…"
 msgid "Updating user information…"
 msgstr "Atnaujinama naudotojo informacija…"
 
-msgid "Signed in as:"
-msgstr "Prisijungęs kaip:"
-
 msgid "Learn More About Crowdin"
 msgstr "Sužinokite daugiau apie „Crowdin“"
 
@@ -214,6 +215,9 @@ msgstr "Sužinokite daugiau apie „Crowdin“"
 
 msgid "Sign in to Crowdin"
 msgstr "Prisijungti prie „Crowdin“"
+
+msgid "File"
+msgstr "Failas"
 
 msgid "Open Crowdin translation"
 msgstr "Atverti „Crowdin“ vertimą"
@@ -224,18 +228,11 @@ msgstr "Projektas:"
 msgid "Language:"
 msgstr "Kalba:"
 
-msgid "File:"
-msgstr "Failas:"
+msgid "Signed in as:"
+msgstr "Prisijungęs kaip:"
 
 msgid "No translation projects listed in your Crowdin account."
 msgstr "Jūsų „Crowdin“ paskyroje nėra vertimo projektų."
-
-msgid "This project has no files that can be translated in Poedit."
-msgstr ""
-"Projektas neturi jokių failų, kuriuos būtų galima išversti su „Poedit“."
-
-msgid "This file can only be edited in Crowdin’s web interface."
-msgstr "Šį failą galima redaguoti tik per „Crowdin“ tinklalapį."
 
 msgid "Downloading latest translations…"
 msgstr "Atsiunčiami naujausi vertimai…"
@@ -262,7 +259,7 @@ msgid "&Help"
 msgstr "&Žinynas"
 
 msgid "MO files can’t be directly edited in Poedit."
-msgstr "MO failai negali būti tiesiogiai redaguojami „Poedit“ programoje."
+msgstr "MO failai negali būti tiesiogiai redaguojami programoje Poedit."
 
 msgid "Error opening file"
 msgstr "Klaida atidarant failą"
@@ -284,7 +281,7 @@ msgid "go to item at given line number"
 msgstr "pereiti prie eilutės numeriu"
 
 msgid "Failed to communicate with Poedit process."
-msgstr "Nepavyko susisiekti su „Poedit“ procesu."
+msgstr "Nepavyko susisiekti su Poedit."
 
 #, c-format
 msgid "Unhandled exception occurred: %s"
@@ -297,8 +294,8 @@ msgstr "Atverti katalogą"
 msgid "File “%s” doesn’t exist."
 msgstr "Failas \"%s\" neegzistuoja."
 
-msgid "Poedit is an easy to use translations editor."
-msgstr "„Poedit“ yra lengvai naudojamas vertimų redaktorius."
+msgid "Poedit is an easy to use translation editor."
+msgstr "Poedit yra lengvai naudojamas vertimų redaktorius."
 
 msgid "Catalogs Manager"
 msgstr "Katalogų tvarkyklė"
@@ -403,19 +400,19 @@ msgstr "Viską rodyti priekyje"
 msgid "PO Translation"
 msgstr "PO vertimas"
 
+msgid ""
+"The file may be either corrupted or in a format not recognized by Poedit."
+msgstr ""
+"Failas gali būti sugadintas arba tokio formato kurio Poedit nesupranta."
+
 msgid "The file cannot be opened."
 msgstr "Atverti failo nepavyko."
 
 msgid "Invalid file"
 msgstr "Netinkamas failas"
 
-msgid ""
-"The file may be either corrupted or in a format not recognized by Poedit."
-msgstr ""
-"Failas gali būti sugadintas arba tokio formato, kurio „Poedit“ nesupranta."
-
 msgid "You can’t drop more than one file on Poedit window."
-msgstr "Negalite užvilkti daugiau nei vieno failo ant „Poedit“ lango."
+msgstr "Negalite užvilkti daugiau nei vieno failo ant Poedit lango."
 
 #, c-format
 msgid "File “%s” is not a translation file."
@@ -489,6 +486,20 @@ msgid ""
 msgstr ""
 "Vertimo negalima atnaujinti iš pradinių tekstų, nes katalogo parametruose "
 "nurodytoje vietoje nerasta jokių tekstų."
+
+msgid "Permission denied."
+msgstr "Leidimas atmestas."
+
+msgid ""
+"You don’t have permission to read source code files from the location "
+"specified in the catalog’s Properties."
+msgstr ""
+
+#. TRANSLATORS: The System Preferences etc. references macOS system settings and should be translated EXACTLY as in the OS. If you don't use macOS and can't check, leave it untranslated.
+msgid ""
+"If you previously denied access to your files, you can allow it in System "
+"Preferences > Security & Privacy > Privacy > Files & Folders."
+msgstr ""
 
 msgid "Entries in the catalog are probably incorrect."
 msgstr "Katalogo įrašai gali būti neteisingi."
@@ -569,9 +580,16 @@ msgstr ""
 "atsiųsti adresu help@poedit.net failą su pavyzdžiais, kad padėtume "
 "patobulinti šią funkciją."
 
+msgid "Send Feedback"
+msgstr ""
+
+#. TRANSLATORS: This is a button to send email with feedback when clicked
+msgid "Send feedback"
+msgstr ""
+
 #, c-format
 msgid "Poedit automatically fixed invalid content in the file “%s”."
-msgstr "„Poedit“ automatiškai ištaisė neteisingą turinį faile „%s“."
+msgstr "Poedit automatiškai ištaisė neteisingą turinį faile „%s“."
 
 msgid ""
 "The file contained duplicate items, which is not allowed in PO files and "
@@ -580,9 +598,9 @@ msgid ""
 "them if necessary."
 msgstr ""
 "Faile buvo pasikartojančių elementų, kas yra neleidžiama PO failuose ir "
-"kurie neleistų naudoti failo. „Poedit“ išsprendė problemą, bet jūs "
-"turėtumėte patikrinti vertimus pažymėtus žyma „Reikia peržiūrėti“ ir, jei "
-"reikia, juos pataisyti."
+"kurie neleistų naudoti failo. Poedit išsprendė problemą, bet jūs turėtumėte "
+"patikrinti vertimus pažymėtus žyma reikia peržiūrėti ir, jei reikia, juos "
+"pataisyti."
 
 msgid "Language of the translation isn’t set."
 msgstr "Nenustatyta vertimo kalba."
@@ -853,7 +871,7 @@ msgstr "Pradinis tekstas"
 
 #, c-format
 msgid "Translation — %s"
-msgstr "Vertimas - %s"
+msgstr "Vertimas — %s"
 
 msgid "ID"
 msgstr "ID"
@@ -870,7 +888,7 @@ msgid "Failed command: %s"
 msgstr "Nepavykus komanda: %s"
 
 msgid "Failed to merge gettext catalogs."
-msgstr "Nepavyko sujungti „gettext“ katalogų."
+msgstr "Nepavyko sujungti gettext katalogų."
 
 msgid "Source file"
 msgstr "Pradinis failas"
@@ -957,7 +975,7 @@ msgid "Language of the translation:"
 msgstr "Vertimo kalba:"
 
 msgid "Poedit - Catalogs manager"
-msgstr "„Poedit“ - katalogų tvarkyklė"
+msgstr "Poedit - katalogų tvarkyklė"
 
 msgid "Catalog"
 msgstr "Katalogas"
@@ -1016,7 +1034,7 @@ msgid ""
 "of GNU gettext files."
 msgstr ""
 "Jūsų el. pašto adresas ir vardas bus naudojami tik paskutinio vertėjo "
-"nurodymui „GNU gettext“ failų antraštėse."
+"nurodymui GNU gettext failų antraštėse."
 
 msgid "Editing"
 msgstr "Taisymas"
@@ -1085,7 +1103,7 @@ msgid ""
 "effective if it’s near-empty, but it will get better as you add more "
 "translations to it."
 msgstr ""
-"„Poedit“ gali bandyti užpildyti naujus įrašus tik iš ankstesnių šio failo "
+"Poedit gali bandyti užpildyti naujus įrašus tik iš ankstesnių šio failo "
 "vertimų arba iš visos jūsų vertimų atminties. VA naudojimas nebus labai "
 "efektyvus jei ji bus beveik tuščia, bet jis taps vis efektyvesnis kai tik "
 "pridėsite daugiau vertimų į ją."
@@ -1192,13 +1210,13 @@ msgid "Edit…"
 msgstr "Redaguoti…"
 
 msgid "GNU gettext"
-msgstr "„GNU gettext“"
+msgstr "GNU gettext"
 
 msgid ""
 "Supports all programming languages recognized by GNU gettext tools (PHP, C/C+"
 "+, C#, Perl, Python, Java, JavaScript and others)."
 msgstr ""
-"Palaiko visas programavimo kalbas, kurias atpažįsta „GNU gettext“ įrankiai "
+"Palaiko visas programavimo kalbas, kurias atpažįsta GNU gettext įrankiai "
 "(PHP, C/C++, C#, Perl, Python, Java, JavaScript ir kitas)."
 
 msgid "Delete extractor"
@@ -1332,9 +1350,9 @@ msgid ""
 "is only effective for semi-automatic translations after Poedit learns enough "
 "from files that you translated manually."
 msgstr ""
-"Vertimų atmintyje nėra eilučių panašių į šio failo turinį. Tai efektyvu tik "
-"pusiau automatiniam vertimui, kai „Poedit“ pakankamai išmoks iš jūsų "
-"rankiniu būdu verstų failų."
+"Vertimo atmintyje nėra eilučių panašių į šio failo turinį. Tai efektyvu tik "
+"pusiau automatiniam vertimui, kai Poedit pakankamai išmoks iš jūsų rankiniu "
+"būdu verstų failų."
 
 msgid ""
 "<big>Drag and Drop Folders Here</big>\n"
@@ -1391,7 +1409,7 @@ msgid "All comments"
 msgstr "Visų komentarų"
 
 msgid "Additional xgettext flags:"
-msgstr "Papildomos „xgettext“ žymos:"
+msgstr "Papildomos xgettext žymos:"
 
 msgid "Additional keywords"
 msgstr "Papildomi raktažodžiai"
@@ -1745,13 +1763,13 @@ msgid "&Online Help"
 msgstr "&Žinynas internete"
 
 msgid "&GNU gettext manual"
-msgstr "„&GNU gettext“ vadovas"
+msgstr "&GNU gettext vadovas"
 
 msgid "&GNU gettext Manual"
-msgstr "„&GNU gettext“ vadovas"
+msgstr "&GNU gettext vadovas"
 
 msgid "&About Poedit"
-msgstr "&Apie „Poedit“"
+msgstr "&Apie Poedit"
 
 msgid "&About"
 msgstr "&Apie"
@@ -1876,10 +1894,10 @@ msgid "Also use default keywords for supported languages"
 msgstr "Taip pat palaikomoms kalboms naudoti numatytuosius raktažodžius"
 
 msgid "Learn About Gettext Keywords"
-msgstr "Sužinokite daugiau apie „Gettext“ raktažodžius"
+msgstr "Sužinokite daugiau apie gettext raktažodžius"
 
 msgid "Learn about gettext keywords"
-msgstr "Sužinokite daugiau apie „gettext“ raktažodžius"
+msgstr "Sužinokite daugiau apie gettext raktažodžius"
 
 msgid "Update summary"
 msgstr "Atnaujinti santrauką"
@@ -1888,9 +1906,8 @@ msgid ""
 "These strings were found in the sources but were not in the catalog.\n"
 "Poedit will add them to the catalog now."
 msgstr ""
-"Šios eilutės buvo rastos pradiniuose tekstuose, tačiau neįtrauktos į "
-"katalogą.\n"
-"„Poedit“ dabar jas įtrauks į katalogą."
+"Šios eilutės buvo rastos išeities tekstuose, tačiau neįtrauktos į katalogą.\n"
+"Dabar Poedit jas įtrauks į katalogą."
 
 msgid "New strings"
 msgstr "Naujos eilutės"
@@ -1899,8 +1916,8 @@ msgid ""
 "These strings are no longer in the sources.\n"
 "Poedit will remove them from the catalog now."
 msgstr ""
-"Šių eilučių nebeliko pradiniuose tekstuose.\n"
-"„Poedit“ dabar jas pašalins iš katalogo."
+"Šių eilučių išeities tekstuose nebeliko.\n"
+"Dabar Poedit jas ištrins iš katalogo."
 
 msgid "Obsolete strings"
 msgstr "Seni žodžiai"
@@ -1926,8 +1943,8 @@ msgstr "Atnaujinti iš pradinių tekstų"
 msgid "Update from Code"
 msgstr "Atnaujinti iš pradinių tekstų"
 
-msgid "Update catalog - synchronize it with sources"
-msgstr "Atnaujinti katalogą - sinchronizuoti jį su pradiniais tekstais"
+msgid "Update from source code"
+msgstr "Atnaujinti iš pradinių tekstų"
 
 msgid "Sidebar"
 msgstr "Šoninė juosta"
@@ -1973,7 +1990,7 @@ msgid "No Matches Found"
 msgstr "Atitikmenų nerasta"
 
 msgid "This string was found in Poedit’s translation memory."
-msgstr "Ši eilutė buvo rasta „Poedit“ vertimų atmintyje."
+msgstr "Ši eilutė buvo rasta Poedit vertimų atmintyje."
 
 msgid "The TMX file is malformed."
 msgstr "TMX failas yra neteisingas."
@@ -1993,7 +2010,7 @@ msgid "Cannot create temporary directory."
 msgstr "Sukurti laikino aplanko nepavyko."
 
 msgid "Welcome to Poedit"
-msgstr "Jus sveikina „Poedit“"
+msgstr "Jus sveikina Poedit"
 
 #. TRANSLATORS: This is version information in about dialog, "%s" will be
 #. version number when used
@@ -2040,14 +2057,14 @@ msgid ""
 "Translators typically use PO template files (POTs) prepared for them by the "
 "developer."
 msgstr ""
-"„Gettext“ sistemoje įrašai vertimui nėra pridedami rankiniu būdu, bet "
+"Gettext sistemoje įrašai vertimui nėra pridedami rankiniu būdu, bet "
 "automatiškai išgaunami\n"
 "iš pradinio teksto. Tokiu būdu jie lieka naujausi ir tikslūs.\n"
 "Vertėjai paprastai naudoja PO šablono failus (POT), kuriuos sukuria programų "
 "autoriai."
 
 msgid "(Learn more about GNU gettext)"
-msgstr "(Sužinokite daugiau apie „GNU gettext“)"
+msgstr "(Sužinokite daugiau apie GNU gettext)"
 
 msgid "The simplest way to fill this catalog is to update it from a POT:"
 msgstr "Paprasčiausias būdas užpildyti šį katalogą yra atnaujinti jį iš POT:"
@@ -2157,9 +2174,6 @@ msgstr "&Ištrinti"
 
 msgid "&Quit"
 msgstr "&Baigti darbą"
-
-msgid "File"
-msgstr "Failas"
 
 msgid "Help"
 msgstr "Žinynas"

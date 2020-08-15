@@ -2,9 +2,9 @@ msgid ""
 msgstr ""
 "Project-Id-Version: poedit\n"
 "Report-Msgid-Bugs-To: help@poedit.net\n"
-"POT-Creation-Date: 2018-10-07 13:14+0200\n"
-"PO-Revision-Date: 2019-01-14 16:30\n"
-"Last-Translator: vslavik <vaclav@slavik.io>\n"
+"POT-Creation-Date: 2020-07-18 14:48+0200\n"
+"PO-Revision-Date: 2020-07-18 12:46\n"
+"Last-Translator: \n"
 "Language-Team: Belarusian\n"
 "Language: be_BY\n"
 "MIME-Version: 1.0\n"
@@ -13,10 +13,11 @@ msgstr ""
 "Plural-Forms: nplurals=4; plural=(n%10==1 && n%100!=11 ? 0 : n%10>=2 && n"
 "%10<=4 && (n%100<12 || n%100>14) ? 1 : n%10==0 || n%10>=5 && n%10<=9 || n"
 "%100>=11 && n%100<=14 ? 2 : 3);\n"
-"X-Generator: crowdin.com\n"
 "X-Crowdin-Project: poedit\n"
+"X-Crowdin-Project-ID: 53425\n"
 "X-Crowdin-Language: be\n"
 "X-Crowdin-File: /locales/poedit.pot\n"
+"X-Crowdin-File-ID: 3\n"
 
 msgid "Hide this notification message"
 msgstr "Не паказваць больш гэта апавяшчэнне"
@@ -150,11 +151,11 @@ msgstr "Пашкоджаная разметка ў радку перакладу
 msgid "(Use default language)"
 msgstr "(Карыстацца мовай па змаўчанні)"
 
-msgid "Select your preferred language"
-msgstr "Выберыце пажаданую мову"
-
 msgid "Language selection"
 msgstr "Выбар мовы"
+
+msgid "Select your preferred language"
+msgstr "Выберыце пажаданую мову"
 
 msgid "You must restart Poedit for this change to take effect."
 msgstr "Вы павінны перазапусціць Poedit, каб змены набылі моц."
@@ -175,11 +176,14 @@ msgstr "Не атрымалася сінхранізаваць з %s."
 msgid "Syncing error"
 msgstr "Памылка сінхранізацыі"
 
-msgid "Downloading translations is disabled in this project."
-msgstr "Спампоўванне перакладаў адключана ў гэтым праекце."
+msgid "JSON request error"
+msgstr ""
 
 msgid "Not authorized, please sign in again."
 msgstr "Не аўтарызаваны, увайдзіце яшчэ раз."
+
+msgid "Downloading translations is disabled in this project."
+msgstr "Спампоўванне перакладаў адключана ў гэтым праекце."
 
 msgid ""
 "Crowdin is an online localization management platform and collaborative "
@@ -206,9 +210,6 @@ msgstr "Чаканне аўтарызацыі…"
 msgid "Updating user information…"
 msgstr "Абнаўленне звестак пра карыстальніка…"
 
-msgid "Signed in as:"
-msgstr "Вы ўвайшлі як:"
-
 msgid "Learn More About Crowdin"
 msgstr "Даведацца больш пра Crowdin"
 
@@ -217,6 +218,9 @@ msgstr "Даведацца больш пра Crowdin"
 
 msgid "Sign in to Crowdin"
 msgstr "Увайсці ў Crowdin"
+
+msgid "File"
+msgstr "Файл"
 
 msgid "Open Crowdin translation"
 msgstr "Адкрыць пераклад Crowdin"
@@ -227,17 +231,11 @@ msgstr "Праект:"
 msgid "Language:"
 msgstr "Мова:"
 
-msgid "File:"
-msgstr "Файл:"
+msgid "Signed in as:"
+msgstr "Вы ўвайшлі як:"
 
 msgid "No translation projects listed in your Crowdin account."
 msgstr "У вашым уліковым запісе Crowdin няма праектаў для перакладу."
-
-msgid "This project has no files that can be translated in Poedit."
-msgstr "Гэты праект не змяшчае файлаў, якія могуць быць перакладзены ў Poedit."
-
-msgid "This file can only be edited in Crowdin’s web interface."
-msgstr "Гэты файл можа быць зменены толькі ў вэб-інтэрфейсе Crowdin."
 
 msgid "Downloading latest translations…"
 msgstr "Спампоўванне апошніх перакладаў…"
@@ -299,7 +297,7 @@ msgstr "Адкрыць каталог"
 msgid "File “%s” doesn’t exist."
 msgstr "Файл “%s” не існуе."
 
-msgid "Poedit is an easy to use translations editor."
+msgid "Poedit is an easy to use translation editor."
 msgstr "Poedit - гэта просты ў выкарыстанні рэдактар перакладаў."
 
 msgid "Catalogs Manager"
@@ -405,15 +403,15 @@ msgstr "Змясціць усё на пярэднім плане"
 msgid "PO Translation"
 msgstr "Файл перакладу PO"
 
+msgid ""
+"The file may be either corrupted or in a format not recognized by Poedit."
+msgstr "Магчыма файл пашкоджаны ці мае фармат, які не падтрымліваецца Poedit."
+
 msgid "The file cannot be opened."
 msgstr "Не атрымліваецца адкрыць файл."
 
 msgid "Invalid file"
 msgstr "Памылковы файл"
-
-msgid ""
-"The file may be either corrupted or in a format not recognized by Poedit."
-msgstr "Магчыма файл пашкоджаны ці мае фармат, які не падтрымліваецца Poedit."
 
 msgid "You can’t drop more than one file on Poedit window."
 msgstr "Нельга перацягваць некалькі файлаў у акно Poedit."
@@ -490,6 +488,24 @@ msgid ""
 msgstr ""
 "Пераклады не могуць быць абноўлены з зыходнага кода, таму што код не быў "
 "знойдзены ў папцы, азначанай ва ўласцівасцях каталога."
+
+msgid "Permission denied."
+msgstr "У дазволе адмоўлена."
+
+msgid ""
+"You don’t have permission to read source code files from the location "
+"specified in the catalog’s Properties."
+msgstr ""
+"Вы не маеце дазволаў для чытання файлаў зыходнага кода з размяшчэння "
+"пазначанага ва ўласцівасцях каталога."
+
+#. TRANSLATORS: The System Preferences etc. references macOS system settings and should be translated EXACTLY as in the OS. If you don't use macOS and can't check, leave it untranslated.
+msgid ""
+"If you previously denied access to your files, you can allow it in System "
+"Preferences > Security & Privacy > Privacy > Files & Folders."
+msgstr ""
+"Калі вы дагэтуль адмовілі ў доступе да вашых файлаў, вы можаце даць дазвол у "
+"Параметры > Прыватнасць і бяспека > Прыватнасць > Файлы і папкі."
 
 msgid "Entries in the catalog are probably incorrect."
 msgstr "Запісы ў каталога, напэўна, памылковыя."
@@ -571,6 +587,13 @@ msgid ""
 msgstr ""
 "Калі вы адключылі папярэджанні з-за ілжывых апавяшчэнняў, накіруйце нам узор "
 "файла на адрас help@poedit.net, каб мы маглі высветліць прычыну гэтага."
+
+msgid "Send Feedback"
+msgstr "Пакінуць водгук"
+
+#. TRANSLATORS: This is a button to send email with feedback when clicked
+msgid "Send feedback"
+msgstr "Пакінуць водгук"
 
 #, c-format
 msgid "Poedit automatically fixed invalid content in the file “%s”."
@@ -1455,7 +1478,7 @@ msgstr "Пераклад павінен сканчацца \"%s\"."
 
 #, c-format
 msgid "The translation should not end with “%s”."
-msgstr "Пераклад не павінен сканчацца \"%s\""
+msgstr "Пераклад не павінен заканчвацца на \"%s\"."
 
 #, c-format
 msgid "The translation ends with “%s”, but the source text ends with “%s”."
@@ -1935,8 +1958,8 @@ msgstr "Абнавіць з кода"
 msgid "Update from Code"
 msgstr "Абнавіць з кода"
 
-msgid "Update catalog - synchronize it with sources"
-msgstr "Абнавіць каталог - сінхранізаваць яго з зыходнымі файламі"
+msgid "Update from source code"
+msgstr "Абнавіць з зыходнага кода"
 
 msgid "Sidebar"
 msgstr "Бакавая панэль"
@@ -2168,9 +2191,6 @@ msgstr "&Выдаліць"
 
 msgid "&Quit"
 msgstr "&Выйсці"
-
-msgid "File"
-msgstr "Файл"
 
 msgid "Help"
 msgstr "Даведка"

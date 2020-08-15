@@ -2,19 +2,20 @@ msgid ""
 msgstr ""
 "Project-Id-Version: poedit\n"
 "Report-Msgid-Bugs-To: help@poedit.net\n"
-"POT-Creation-Date: 2018-10-07 13:14+0200\n"
-"PO-Revision-Date: 2019-01-14 16:33\n"
-"Last-Translator: vslavik <vaclav@slavik.io>\n"
+"POT-Creation-Date: 2020-07-18 14:48+0200\n"
+"PO-Revision-Date: 2020-07-18 12:47\n"
+"Last-Translator: \n"
 "Language-Team: Latvian\n"
 "Language: lv_LV\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=3; plural=(n==0 ? 0 : n%10==1 && n%100!=11 ? 1 : 2);\n"
-"X-Generator: crowdin.com\n"
 "X-Crowdin-Project: poedit\n"
+"X-Crowdin-Project-ID: 53425\n"
 "X-Crowdin-Language: lv\n"
 "X-Crowdin-File: /locales/poedit.pot\n"
+"X-Crowdin-File-ID: 3\n"
 
 msgid "Hide this notification message"
 msgstr "Nerādīt šo paziņojumu"
@@ -27,22 +28,22 @@ msgstr "Turpmāk nerādīt"
 
 #, c-format
 msgid "(New: %i, obsolete: %i)"
-msgstr ""
+msgstr "(Jauns: %i, novecojis: %i)"
 
 msgid "Updating catalog"
-msgstr ""
+msgstr "Atjaunina katalogu"
 
 msgid "Collecting source files…"
-msgstr ""
+msgstr "Vāc avota datnes…"
 
 msgid "Extracting translatable strings…"
-msgstr ""
+msgstr "Izvērš tulkojamos vārdus…"
 
 msgid "Failed to load extracted catalog."
 msgstr "Neizdevās ielādēt izvilkto katalogu."
 
 msgid "Merging differences…"
-msgstr ""
+msgstr "Apvieno atšķirības…"
 
 #, c-format
 msgid "“%s” is not a valid POT file."
@@ -59,25 +60,25 @@ msgid "POT Translation Templates"
 msgstr "POT tulkojumu faili"
 
 msgid "XLIFF Translation Files"
-msgstr ""
+msgstr "XLIFF tulkojumu datnes"
 
 msgid "All Translation Files"
 msgstr "Visi tulkojumu faili"
 
 #, c-format
 msgid "File “%s” is in unsupported format."
-msgstr ""
+msgstr "Datnes \"%s\" formāts netiek atbalstīts."
 
 #, c-format
 msgid "%i line of file “%s” was not loaded correctly."
 msgid_plural "%i lines of file “%s” were not loaded correctly."
-msgstr[0] ""
-msgstr[1] ""
-msgstr[2] ""
+msgstr[0] "%i rindiņas failā \"%s\" netika ielādētas pareizi."
+msgstr[1] "%i rindiņa failā \"%s\" netika ielādēta pareizi."
+msgstr[2] "%i rindiņas failā \"%s\" netika ielādētas pareizi."
 
 #, c-format
 msgid "Line %d of file “%s” is corrupted (not valid %s data)."
-msgstr ""
+msgstr "Rinda %d failā \"%s\" ir bojāta (nederīgi %s dati)."
 
 msgid ""
 "Broken catalog file: singular form msgstr used together with msgid_plural"
@@ -98,13 +99,15 @@ msgstr ""
 
 #, c-format
 msgid "Couldn’t load file %s, it is probably corrupted."
-msgstr ""
+msgstr "Nevar ielādēt failu %s, iespējams, ka tas ir bojāts."
 
 #, c-format
 msgid ""
 "File “%s” is read-only and cannot be saved.\n"
 "Please save it under different name."
 msgstr ""
+"Fails \"%s\" ir tikai lasāms un nevar tikt saglabāts.\n"
+"Lūdzu saglabājiet to ar citu nosaukumu."
 
 #, c-format
 msgid "Couldn’t save file %s."
@@ -121,13 +124,17 @@ msgid ""
 "\n"
 "It was saved in UTF-8 instead and the setting was modified accordingly."
 msgstr ""
+"Katalogu nevar saglabāt \"%s\" kodējumā, kā norādīts kataloga iestatījumos.\n"
+"\n"
+"Tas tā vietā tika saglabāts UTF-8 kodējumā un iestatījums tika attiecīgi "
+"izmainīts."
 
 msgid "Error saving catalog"
 msgstr "Kļūda saglabājot katalogu"
 
 #, c-format
 msgid "Error loading file “%s”: %s."
-msgstr ""
+msgstr "Kļūda ielādējot failu \"%s\":%s."
 
 #, c-format
 msgid "unsupported XLIFF version (%s)"
@@ -140,36 +147,39 @@ msgstr ""
 msgid "(Use default language)"
 msgstr "(Lietot noklusējuma valodu)"
 
-msgid "Select your preferred language"
-msgstr "Atlasīt vēlamo valodu"
-
 msgid "Language selection"
 msgstr "Valodas izvēle"
+
+msgid "Select your preferred language"
+msgstr "Atlasīt vēlamo valodu"
 
 msgid "You must restart Poedit for this change to take effect."
 msgstr "Restartēt Poedit, lai novērot šo izmaiņu."
 
 msgid "Syncing"
-msgstr ""
+msgstr "Notiek sinhronizēšana"
 
 #. TRANSLATORS: %s is a cloud destination, e.g. "Crowdin" or ftp.wordpress.com etc.
 #, c-format
 msgid "Syncing with %s…"
-msgstr ""
+msgstr "Notiek sinhronizēšana ar %s…"
 
 #. TRANSLATORS: %s is a cloud destination, e.g. "Crowdin" or ftp.wordpress.com etc.
 #, c-format
 msgid "Syncing with %s failed."
-msgstr ""
+msgstr "Sinhronizēšana ar %s neizdevās."
 
 msgid "Syncing error"
 msgstr "Sinhronizācijas kļūda"
 
-msgid "Downloading translations is disabled in this project."
-msgstr "Šajā projektā tulkojumu lejupielāde ir atspējota."
+msgid "JSON request error"
+msgstr ""
 
 msgid "Not authorized, please sign in again."
 msgstr "Noraidīts, lūdzu pierakstīties no jauna."
+
+msgid "Downloading translations is disabled in this project."
+msgstr "Šajā projektā tulkojumu lejupielāde ir atspējota."
 
 msgid ""
 "Crowdin is an online localization management platform and collaborative "
@@ -196,9 +206,6 @@ msgstr "Gaida autentifikāciju…"
 msgid "Updating user information…"
 msgstr "Atjauno lietotāja informāciju…"
 
-msgid "Signed in as:"
-msgstr "Pieslēdzies kā:"
-
 msgid "Learn More About Crowdin"
 msgstr "Uzzināt vairak par Crowdin"
 
@@ -207,6 +214,9 @@ msgstr "Uzzināt vairak par Crowdin"
 
 msgid "Sign in to Crowdin"
 msgstr "Pieslēgties Crowdin"
+
+msgid "File"
+msgstr "Fails"
 
 msgid "Open Crowdin translation"
 msgstr "Atvērt Crowdin tulkojumu"
@@ -217,17 +227,11 @@ msgstr "Projekts:"
 msgid "Language:"
 msgstr "Valoda:"
 
-msgid "File:"
-msgstr "Fails:"
+msgid "Signed in as:"
+msgstr "Pieslēdzies kā:"
 
 msgid "No translation projects listed in your Crowdin account."
 msgstr "Jūsu Crowdin kontā nav tulkošanas projektu saraksts."
-
-msgid "This project has no files that can be translated in Poedit."
-msgstr "Šim projektam nav failu, ko var tulkot ar Poedit."
-
-msgid "This file can only be edited in Crowdin’s web interface."
-msgstr "Šo failu var rediģēt tikai Crowdin web interfeisā."
 
 msgid "Downloading latest translations…"
 msgstr "Lejupielādēt jaunāko tulkojumu…"
@@ -267,7 +271,7 @@ msgstr ""
 "tiks atjaunināts arī MO fails."
 
 msgid "don’t delete temporary files (for debugging)"
-msgstr ""
+msgstr "neizdzēst pagaidu failus (atkļūdošanas nolūkos)"
 
 msgid "handle a poedit:// URI"
 msgstr "rīkoties ar poedit://URI"
@@ -289,7 +293,7 @@ msgstr "Atvērt katalogu"
 msgid "File “%s” doesn’t exist."
 msgstr "Fails “%s” nepastāv."
 
-msgid "Poedit is an easy to use translations editor."
+msgid "Poedit is an easy to use translation editor."
 msgstr "Poedit ir vienkārši izmantojams tulkojumu redaktors."
 
 msgid "Catalogs Manager"
@@ -395,15 +399,15 @@ msgstr ""
 msgid "PO Translation"
 msgstr ""
 
+msgid ""
+"The file may be either corrupted or in a format not recognized by Poedit."
+msgstr "Fails varētu būt bojāts vai Poedit neatpazīstamā formātā."
+
 msgid "The file cannot be opened."
 msgstr "Fails nav atverams."
 
 msgid "Invalid file"
 msgstr "Nederīgs fails"
-
-msgid ""
-"The file may be either corrupted or in a format not recognized by Poedit."
-msgstr "Fails varētu būt bojāts vai Poedit neatpazīstamā formātā."
 
 msgid "You can’t drop more than one file on Poedit window."
 msgstr ""
@@ -479,6 +483,20 @@ msgid ""
 "found in the location specified in the catalog’s Properties."
 msgstr ""
 
+msgid "Permission denied."
+msgstr ""
+
+msgid ""
+"You don’t have permission to read source code files from the location "
+"specified in the catalog’s Properties."
+msgstr ""
+
+#. TRANSLATORS: The System Preferences etc. references macOS system settings and should be translated EXACTLY as in the OS. If you don't use macOS and can't check, leave it untranslated.
+msgid ""
+"If you previously denied access to your files, you can allow it in System "
+"Preferences > Security & Privacy > Privacy > Files & Folders."
+msgstr ""
+
 msgid "Entries in the catalog are probably incorrect."
 msgstr "Ieraksti katalogā, iespējams, nav pareizi."
 
@@ -545,6 +563,13 @@ msgid ""
 "consider sending a sample file to help@poedit.net to help improve them."
 msgstr ""
 
+msgid "Send Feedback"
+msgstr ""
+
+#. TRANSLATORS: This is a button to send email with feedback when clicked
+msgid "Send feedback"
+msgstr ""
+
 #, c-format
 msgid "Poedit automatically fixed invalid content in the file “%s”."
 msgstr ""
@@ -572,7 +597,7 @@ msgid ""
 msgstr ""
 
 msgid "Language of the translation is the same as source language."
-msgstr ""
+msgstr "Tulkojuma valoda ir tāda pati kā avota valoda."
 
 msgid "Fix Language"
 msgstr "Labot valodu"
@@ -620,7 +645,7 @@ msgstr ""
 
 #, c-format
 msgid "Translated: %d of %d (%d %%)"
-msgstr ""
+msgstr "Iztulkoti: %d no %d (%d %%)"
 
 #, c-format
 msgid "Remaining: %d"
@@ -629,9 +654,9 @@ msgstr ""
 #, c-format
 msgid "%d error"
 msgid_plural "%d errors"
-msgstr[0] ""
-msgstr[1] ""
-msgstr[2] ""
+msgstr[0] "%d kļūdas"
+msgstr[1] "%d kļūdas"
+msgstr[2] "%d kļūdas"
 
 #, c-format
 msgid "%d entry"
@@ -1066,14 +1091,14 @@ msgid "Import from TMX…"
 msgstr "Importēt no TMX…"
 
 msgid "Export To TMX…"
-msgstr ""
+msgstr "Eksportēt uz TMX…"
 
 msgid "Export to TMX…"
-msgstr ""
+msgstr "Eksportēt uz TMX…"
 
 #. TRANSLATORS: This is a button that deletes everything in the translation memory (i.e. clears/resets it).
 msgid "Reset"
-msgstr ""
+msgstr "Atiestatīt"
 
 msgid "Select translation files to import"
 msgstr ""
@@ -1329,7 +1354,7 @@ msgid "Team name and email address or URL"
 msgstr ""
 
 msgid "e.g. nplurals=2; plural=(n > 1);"
-msgstr ""
+msgstr "piem. nplurals=2; plural=(n > 1);"
 
 msgid "UTF-8 (recommended)"
 msgstr "UTF-8 (ieteicamais)"
@@ -1674,7 +1699,7 @@ msgid "&GNU gettext Manual"
 msgstr ""
 
 msgid "&About Poedit"
-msgstr ""
+msgstr "P&ar Poedit"
 
 msgid "&About"
 msgstr "P&ar..."
@@ -1845,8 +1870,8 @@ msgstr ""
 msgid "Update from Code"
 msgstr ""
 
-msgid "Update catalog - synchronize it with sources"
-msgstr "Atjaunot katalogu - sinhronizēt to ar avotiem"
+msgid "Update from source code"
+msgstr ""
 
 msgid "Sidebar"
 msgstr "Sānjosla"
@@ -2068,9 +2093,6 @@ msgstr "&Dzēst"
 msgid "&Quit"
 msgstr ""
 
-msgid "File"
-msgstr "Fails"
-
 msgid "Help"
 msgstr "Palīdzība"
 
@@ -2078,13 +2100,13 @@ msgid "&New"
 msgstr ""
 
 msgid "&No"
-msgstr ""
+msgstr "&Nē"
 
 msgid "No"
 msgstr "Nē"
 
 msgid "&OK"
-msgstr ""
+msgstr "&Labi"
 
 msgid "Open…"
 msgstr "Atvērt…"
@@ -2126,7 +2148,7 @@ msgid "&Undo"
 msgstr ""
 
 msgid "&Yes"
-msgstr ""
+msgstr "&Jā"
 
 msgid "Yes"
 msgstr "Jā"

@@ -1,7 +1,7 @@
 /*
  *  This file is part of Poedit (https://poedit.net)
  *
- *  Copyright (C) 2016-2019 Vaclav Slavik
+ *  Copyright (C) 2016-2020 Vaclav Slavik
  *
  *  Permission is hereby granted, free of charge, to any person obtaining a
  *  copy of this software and associated documentation files (the "Software"),
@@ -32,6 +32,7 @@
 #include <wx/msw/uxtheme.h>
 #include <wx/nativewin.h>
 #include <wx/recguard.h>
+#include <wx/weakref.h>
 
 #include <mCtrl/menubar.h>
 
@@ -76,6 +77,11 @@ public:
             wxUxThemeHandle hTheme(this, L"ExplorerMenu::Toolbar");
             SetBackgroundColour(wxRGBToColour(::GetThemeSysColor(hTheme, COLOR_WINDOW)));
         }
+
+        // mCtrl menus get focus, which is not compatible with PoeditFrame::OnTextEditingCommandUpdate().
+        // Remember previous focus for it.
+        m_mctrlWin->Bind(wxEVT_SET_FOCUS,  [=](wxFocusEvent& e) { e.Skip(); m_previousFocus = e.GetWindow(); });
+        m_mctrlWin->Bind(wxEVT_KILL_FOCUS, [=](wxFocusEvent& e) { e.Skip(); m_previousFocus = nullptr; });
     }
 
     ~MenuBarWindow()
@@ -121,6 +127,11 @@ public:
         return sizeBest;
     }
 
+    wxWindow* AdjustEffectiveFocus(wxWindow* focus) const
+    {
+        return (focus == m_mctrlWin) ? m_previousFocus.get() : focus;
+    }
+
 private:
     class mCtrlWrapper : public wxNativeWindow
     {
@@ -156,6 +167,7 @@ private:
 
     mCtrlWrapper *m_mctrlWin;
     WXHWND m_mctrlHandle;
+    wxWeakRef<wxWindow> m_previousFocus;
 };
 
 
@@ -200,9 +212,17 @@ wxPoint wxFrameWithWindows10Menubar::GetClientAreaOrigin() const
     wxPoint pt = wxFrame::GetClientAreaOrigin();
     if (IsUsed())
     {
-        pt.y += wxMax(m_menuBar->GetSize().y, m_menuBar->GetBestSize().y) + MENUBAR_OFFSET;
+        pt.y += m_menuBar->GetBestSize().y + MENUBAR_OFFSET;
     }
     return pt;
+}
+
+wxWindow* wxFrameWithWindows10Menubar::FindFocusNoMenu()
+{
+    auto focus = wxWindow::FindFocus();
+    if (focus && IsUsed())
+        focus = m_menuBar->AdjustEffectiveFocus(focus);
+    return focus;
 }
 
 void wxFrameWithWindows10Menubar::PositionToolBar()

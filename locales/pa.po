@@ -2,28 +2,29 @@ msgid ""
 msgstr ""
 "Project-Id-Version: poedit\n"
 "Report-Msgid-Bugs-To: help@poedit.net\n"
-"POT-Creation-Date: 2018-10-07 13:14+0200\n"
-"PO-Revision-Date: 2018-10-07 10:40\n"
-"Last-Translator: vslavik <vaclav@slavik.io>\n"
+"POT-Creation-Date: 2020-07-18 14:48+0200\n"
+"PO-Revision-Date: 2020-07-18 12:47\n"
+"Last-Translator: \n"
 "Language-Team: Punjabi\n"
 "Language: pa_IN\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
-"X-Generator: crowdin.com\n"
 "X-Crowdin-Project: poedit\n"
+"X-Crowdin-Project-ID: 53425\n"
 "X-Crowdin-Language: pa-IN\n"
 "X-Crowdin-File: /locales/poedit.pot\n"
+"X-Crowdin-File-ID: 3\n"
 
 msgid "Hide this notification message"
 msgstr "ਇਹ ਸੂਚਨਾ ਸੁਨੇਹਾ ਓਹਲੇ ਕਰੋ"
 
 msgid "Don’t Show Again"
-msgstr ""
+msgstr "ਮੁੜ ਨਾ ਦਿਖਾਓ"
 
 msgid "Don’t show again"
-msgstr ""
+msgstr "ਮੁੜ ਨਾ ਦਿਖਾਓ"
 
 #, c-format
 msgid "(New: %i, obsolete: %i)"
@@ -102,7 +103,7 @@ msgstr ""
 
 #, c-format
 msgid "Couldn’t save file %s."
-msgstr ""
+msgstr "%s ਫਾਈਲ ਸੰਭਾਲੀ ਨਹੀਂ ਜਾ ਸਕੀ।"
 
 msgid ""
 "There was a problem formatting the file nicely (but it was saved all right)."
@@ -121,7 +122,7 @@ msgstr "ਕੈਟਾਲਾਗ ਸੰਭਾਲਣ ਦੌਰਾਨ ਗਲਤੀ"
 
 #, c-format
 msgid "Error loading file “%s”: %s."
-msgstr ""
+msgstr "%s” ਫ਼ਾਈਲ ਲੋਡ ਕਰਨ ਵਿੱਚ ਗਲਤੀ: %s।"
 
 #, c-format
 msgid "unsupported XLIFF version (%s)"
@@ -134,11 +135,11 @@ msgstr ""
 msgid "(Use default language)"
 msgstr "(ਮੂਲ ਭਾਸ਼ਾ ਵਰਤੋਂ)"
 
-msgid "Select your preferred language"
-msgstr "ਆਪਣੀ ਪਸੰਦ ਦੀ ਭਾਸ਼ਾ ਚੁਣੋ"
-
 msgid "Language selection"
 msgstr "ਭਾਸ਼ਾ ਚੋਣ"
+
+msgid "Select your preferred language"
+msgstr "ਆਪਣੀ ਪਸੰਦ ਦੀ ਭਾਸ਼ਾ ਚੁਣੋ"
 
 msgid "You must restart Poedit for this change to take effect."
 msgstr "ਤੁਹਾਨੂੰ ਤਬਦੀਲੀਆਂ ਲਾਗੂ ਕਰਨ ਲਈ ਪੋਆਡਿਟ ਮੁੜ ਚਾਲੂ ਕਰਨਾ ਪਵੇਗਾ।"
@@ -154,15 +155,18 @@ msgstr "…%s ਨਾਲ ਸਿੰਕ ਕੀਤਾ ਜਾ ਰਿਹਾ ਹੈ"
 #. TRANSLATORS: %s is a cloud destination, e.g. "Crowdin" or ftp.wordpress.com etc.
 #, c-format
 msgid "Syncing with %s failed."
-msgstr ""
+msgstr "%s ਨਾਲ ਸਿੰਕ ਕਰਨ ਲਈ ਅਸਫ਼ਲ ਹੈ।"
 
 msgid "Syncing error"
 msgstr "ਸਿੰਕ ਕਰਨ ਵਿੱਚ ਗਲਤੀ"
 
-msgid "Downloading translations is disabled in this project."
+msgid "JSON request error"
 msgstr ""
 
 msgid "Not authorized, please sign in again."
+msgstr ""
+
+msgid "Downloading translations is disabled in this project."
 msgstr ""
 
 msgid ""
@@ -188,9 +192,6 @@ msgstr "ਪਰਮਾਣਕਿਤਾ ਦੀ ਉਡੀਕ ਕੀਤੀ ਜਾ ਰ�
 msgid "Updating user information…"
 msgstr "ਵਰਤੋਂਕਾਰ ਜਾਣਕਾਰੀ ਨੂੰ ਅੱਪਡੇਟ ਕੀਤਾ ਜਾ ਰਿਹਾ ਹੈ…"
 
-msgid "Signed in as:"
-msgstr "ਇਸ ਵਜੋਂ ਸਾਈਨ ਇਨ ਕੀਤਾ:"
-
 msgid "Learn More About Crowdin"
 msgstr "Crowdin ਬਾਰੇ ਹੋਰ ਜਾਣੋ"
 
@@ -199,6 +200,9 @@ msgstr "Crowdin ਬਾਰੇ ਹੋਰ ਜਾਣੋ"
 
 msgid "Sign in to Crowdin"
 msgstr ""
+
+msgid "File"
+msgstr "ਫ਼ਾਇਲ"
 
 msgid "Open Crowdin translation"
 msgstr "Crowdin ਅਨੁਵਾਦ ਨੂੰ ਖੋਲ੍ਹੋ"
@@ -209,16 +213,10 @@ msgstr "ਪਰੋਜੈਕਟ:"
 msgid "Language:"
 msgstr "ਭਾਸ਼ਾ:"
 
-msgid "File:"
-msgstr "ਫ਼ਾਇਲ:"
+msgid "Signed in as:"
+msgstr "ਇਸ ਵਜੋਂ ਸਾਈਨ ਇਨ ਕੀਤਾ:"
 
 msgid "No translation projects listed in your Crowdin account."
-msgstr ""
-
-msgid "This project has no files that can be translated in Poedit."
-msgstr ""
-
-msgid "This file can only be edited in Crowdin’s web interface."
 msgstr ""
 
 msgid "Downloading latest translations…"
@@ -279,14 +277,14 @@ msgstr "ਕੈਟਾਲਾਗ ਖੋਲ੍ਹੋ"
 msgid "File “%s” doesn’t exist."
 msgstr ""
 
-msgid "Poedit is an easy to use translations editor."
+msgid "Poedit is an easy to use translation editor."
 msgstr "ਪੋਆਡਿਟ ਵਰਤਣ ਲਈ ਸੌਖਾ ਅਨੁਵਾਦ ਸੰਪਾਦਕ ਹੈ।"
 
 msgid "Catalogs Manager"
 msgstr "ਕੈਟਲਾਗ ਮੈਨੇਜਰ"
 
 msgid "Check for Updates…"
-msgstr ""
+msgstr "ਅੱਪਡੇਟ ਲਈ ਜਾਂਚ ਕਰੋ…"
 
 msgid "&Edit"
 msgstr "ਸੋਧ(&E)"
@@ -385,15 +383,15 @@ msgstr "ਸਭ ਤੋਂ ਅੱਗੇ ਲਿਆਓ"
 msgid "PO Translation"
 msgstr "PO ਅਨੁਵਾਦ"
 
+msgid ""
+"The file may be either corrupted or in a format not recognized by Poedit."
+msgstr ""
+
 msgid "The file cannot be opened."
 msgstr "ਫਾਈਲ ਨੂੰ ਖੋਲ੍ਹਿਆ ਨਹੀਂ ਜਾ ਸਕਦਾ ਹੈ।"
 
 msgid "Invalid file"
 msgstr "ਗਲਤ ਫਾਈਲ"
-
-msgid ""
-"The file may be either corrupted or in a format not recognized by Poedit."
-msgstr ""
 
 msgid "You can’t drop more than one file on Poedit window."
 msgstr ""
@@ -435,10 +433,10 @@ msgid "Save"
 msgstr "ਸੰਭਾਲੋ"
 
 msgid "Do&n’t save"
-msgstr ""
+msgstr "ਨਾ ਸੰਭਾਲੋ(&n)"
 
 msgid "Don’t Save"
-msgstr ""
+msgstr "ਨਾ ਸੰਭਾਲੋ"
 
 msgid "Save as…"
 msgstr ""
@@ -467,6 +465,20 @@ msgstr "ਅੱਪਡੇਟ ਕਰਨਾ ਫੇਲ੍ਹ ਹੈ।"
 msgid ""
 "Translations couldn’t be updated from the source code, because no code was "
 "found in the location specified in the catalog’s Properties."
+msgstr ""
+
+msgid "Permission denied."
+msgstr ""
+
+msgid ""
+"You don’t have permission to read source code files from the location "
+"specified in the catalog’s Properties."
+msgstr ""
+
+#. TRANSLATORS: The System Preferences etc. references macOS system settings and should be translated EXACTLY as in the OS. If you don't use macOS and can't check, leave it untranslated.
+msgid ""
+"If you previously denied access to your files, you can allow it in System "
+"Preferences > Security & Privacy > Privacy > Files & Folders."
 msgstr ""
 
 msgid "Entries in the catalog are probably incorrect."
@@ -529,6 +541,13 @@ msgstr ""
 msgid ""
 "If you disabled the warnings because of excessive false positives, please "
 "consider sending a sample file to help@poedit.net to help improve them."
+msgstr ""
+
+msgid "Send Feedback"
+msgstr ""
+
+#. TRANSLATORS: This is a button to send email with feedback when clicked
+msgid "Send feedback"
 msgstr ""
 
 #, c-format
@@ -622,7 +641,7 @@ msgstr[1] "%d ਗਲਤੀਆਂ"
 msgid "%d entry"
 msgid_plural "%d entries"
 msgstr[0] ""
-msgstr[1] ""
+msgstr[1] "%d ਐਂਟਰੀਆਂ"
 
 msgid " (unsaved)"
 msgstr " (ਨਾ-ਸੰਭਾਲਿਆ)"
@@ -1028,7 +1047,7 @@ msgid ""
 msgstr ""
 
 msgid "Stored translations:"
-msgstr ""
+msgstr "ਸੰਭਾਲੇ ਹੋਏ ਅਨੁਵਾਦ:"
 
 msgid "Database size on disk:"
 msgstr ""
@@ -1122,7 +1141,7 @@ msgid "Custom extractors:"
 msgstr ""
 
 msgid "Edit…"
-msgstr ""
+msgstr "ਸੋਧੋ…"
 
 msgid "GNU gettext"
 msgstr ""
@@ -1259,13 +1278,13 @@ msgid ""
 msgstr ""
 
 msgid "Add Folders…"
-msgstr ""
+msgstr "…ਫੋਲਡਰ ਜੋੜੋ"
 
 msgid "Add folders…"
-msgstr ""
+msgstr "…ਫੋਲਡਰ ਜੋੜੋ"
 
 msgid "Add Files…"
-msgstr ""
+msgstr "…ਫ਼ਾਈਲਾਂ ਜੋੜੋ"
 
 msgid "Add files…"
 msgstr ""
@@ -1400,7 +1419,7 @@ msgid "Add directory to the list"
 msgstr "ਡਾਇਰੈਕਟਰੀ ਲਿਸਟ ਵਿੱਚ ਸ਼ਾਮਲ"
 
 msgid "&New…"
-msgstr ""
+msgstr "ਨਵਾਂ(&N)…"
 
 msgid "New from &POT/PO file…"
 msgstr ""
@@ -1409,7 +1428,7 @@ msgid "New From &POT/PO File…"
 msgstr ""
 
 msgid "&Open…"
-msgstr ""
+msgstr "ਖੋਲ੍ਹੋ(&O)…"
 
 msgid "Open Recent"
 msgstr "ਤਾਜ਼ਾ ਖੋਲ੍ਹੇ"
@@ -1427,10 +1446,10 @@ msgid "&Save"
 msgstr "ਸੰਭਾਲੋ(&S)"
 
 msgid "Save &as…"
-msgstr ""
+msgstr "…ਵਜੋਂ ਸੰਭਾਲੋ(&a)"
 
 msgid "Save &As…"
-msgstr ""
+msgstr "…ਵਜੋਂ ਸੰਭਾਲੋ(&A)"
 
 msgid "Compile to MO…"
 msgstr ""
@@ -1442,7 +1461,7 @@ msgid "Check for updates…"
 msgstr ""
 
 msgid "&Preferences…"
-msgstr ""
+msgstr "ਮੇਰੀ ਪਸੰਦ(&P)…"
 
 msgid "Catalogs &manager"
 msgstr "ਕੈਟਾਲਾਗ ਮੈਨੇਜਰ(&m)"
@@ -1508,10 +1527,10 @@ msgid "Show String &ID"
 msgstr ""
 
 msgid "Show warnings"
-msgstr ""
+msgstr "ਚਿਤਾਵਨੀ ਦਿਖਾਓ"
 
 msgid "Show Warnings"
-msgstr ""
+msgstr "ਚਿਤਾਵਨੀ ਦਿਖਾਓ"
 
 msgid "Sort by &file order"
 msgstr ""
@@ -1595,7 +1614,7 @@ msgid "&Validate Translations"
 msgstr ""
 
 msgid "&Properties…"
-msgstr ""
+msgstr "ਵਿਸ਼ੇਸ਼ਤਾ(&P)…"
 
 msgid "&Done and next"
 msgstr "ਮੁਕੰਮਲ ਤੇ ਅੱਗੇ(&D)"
@@ -1820,8 +1839,8 @@ msgstr ""
 msgid "Update from Code"
 msgstr ""
 
-msgid "Update catalog - synchronize it with sources"
-msgstr "ਕੈਟਾਲਾਗ ਅੱਪਡੇਟ- ਇਸ ਨੂੰ ਸੋਰਤ ਨਾਲ ਸਮਕਾਲੀ ਕਰੋ"
+msgid "Update from source code"
+msgstr ""
 
 msgid "Sidebar"
 msgstr "ਬਾਹੀ"
@@ -1994,7 +2013,7 @@ msgstr "%s ਤੋਂ ਬਾਹਰ ਜਾਓ"
 
 #. TRANSLATORS: macOS item in app menu
 msgid "Preferences…"
-msgstr ""
+msgstr "ਮੇਰੀ ਪਸੰਦ…"
 
 msgid "Preferences..."
 msgstr "ਮੇਰੀ ਪਸੰਦ..."
@@ -2023,10 +2042,10 @@ msgid "&Cancel"
 msgstr "ਰੱਦ ਕਰੋ(&C)"
 
 msgid "&Clear"
-msgstr ""
+msgstr "ਸਾਫ਼ ਕਰੋ(&C)"
 
 msgid "Clear"
-msgstr ""
+msgstr "ਸਾਫ਼ ਕਰੋ"
 
 msgid "Copy"
 msgstr "ਕਾਪੀ ਕਰੋ"
@@ -2041,10 +2060,7 @@ msgid "&Delete"
 msgstr "ਹਟਾਓ(&D)"
 
 msgid "&Quit"
-msgstr ""
-
-msgid "File"
-msgstr "ਫ਼ਾਇਲ"
+msgstr "ਬਾਹਰ(&Q)"
 
 msgid "Help"
 msgstr "ਮਦਦ"
@@ -2053,7 +2069,7 @@ msgid "&New"
 msgstr "ਨਵਾਂ(&N)"
 
 msgid "&No"
-msgstr ""
+msgstr "ਨਹੀਂ(&N)"
 
 msgid "No"
 msgstr "ਨਹੀਂ"
@@ -2062,7 +2078,7 @@ msgid "&OK"
 msgstr "ਠੀਕ ਹੈ(&O)"
 
 msgid "Open…"
-msgstr ""
+msgstr "ਖੋਲ੍ਹੋ…"
 
 msgid "&Open..."
 msgstr "ਖੋਲ੍ਹੋ(&O)..."
@@ -2086,10 +2102,10 @@ msgid "Refresh"
 msgstr "ਤਾਜ਼ਾ ਕਰੋ"
 
 msgid "&Save as"
-msgstr ""
+msgstr "ਇਸ ਵਜੋਂ ਸੰਭਾਲੋ(&S)"
 
 msgid "Save as"
-msgstr ""
+msgstr "ਵਜੋਂ ਸੰਭਾਲੋ"
 
 msgid "Select &All"
 msgstr "ਸਭ ਚੁਣੋ(&A)"
@@ -2124,11 +2140,11 @@ msgstr "Down"
 
 #. TRANSLATORS: Keyboard shortcut for display in Windows menus
 msgid "Left"
-msgstr ""
+msgstr "ਖੱਬੇ"
 
 #. TRANSLATORS: Keyboard shortcut for display in Windows menus
 msgid "Right"
-msgstr ""
+msgstr "ਸੱਜੇ"
 
 #. TRANSLATORS: Keyboard shortcut, must correspond to translation of "Ctrl+"
 msgid "ctrl"

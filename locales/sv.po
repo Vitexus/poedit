@@ -2,19 +2,20 @@ msgid ""
 msgstr ""
 "Project-Id-Version: poedit\n"
 "Report-Msgid-Bugs-To: help@poedit.net\n"
-"POT-Creation-Date: 2018-10-07 13:14+0200\n"
-"PO-Revision-Date: 2019-01-14 16:32\n"
-"Last-Translator: vslavik <vaclav@slavik.io>\n"
+"POT-Creation-Date: 2020-07-18 14:48+0200\n"
+"PO-Revision-Date: 2020-07-18 12:48\n"
+"Last-Translator: \n"
 "Language-Team: Swedish\n"
 "Language: sv_SE\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
-"X-Generator: crowdin.com\n"
 "X-Crowdin-Project: poedit\n"
+"X-Crowdin-Project-ID: 53425\n"
 "X-Crowdin-Language: sv-SE\n"
 "X-Crowdin-File: /locales/poedit.pot\n"
+"X-Crowdin-File-ID: 3\n"
 
 msgid "Hide this notification message"
 msgstr "Dölj det här meddelandet"
@@ -145,11 +146,11 @@ msgstr "Trasig markering i översättningssträng."
 msgid "(Use default language)"
 msgstr "(Använd standardspråk)"
 
-msgid "Select your preferred language"
-msgstr "Välj önskat språk"
-
 msgid "Language selection"
 msgstr "Språkval"
+
+msgid "Select your preferred language"
+msgstr "Välj önskat språk"
 
 msgid "You must restart Poedit for this change to take effect."
 msgstr "Du måste starta om Poedit för att denna ändring ska träda i kraft."
@@ -170,11 +171,14 @@ msgstr "Synkronisering med %s misslyckades."
 msgid "Syncing error"
 msgstr "Synkroniseringsfel"
 
-msgid "Downloading translations is disabled in this project."
-msgstr "Nedladdning av översättningar är inaktiverade i detta projekt."
+msgid "JSON request error"
+msgstr ""
 
 msgid "Not authorized, please sign in again."
 msgstr "Inte behörig, vänligen logga in igen."
+
+msgid "Downloading translations is disabled in this project."
+msgstr "Nedladdning av översättningar är inaktiverade i detta projekt."
 
 msgid ""
 "Crowdin is an online localization management platform and collaborative "
@@ -202,17 +206,17 @@ msgstr "Väntar på verifiering…"
 msgid "Updating user information…"
 msgstr "Uppdaterar användarinformation…"
 
-msgid "Signed in as:"
-msgstr "Inloggad som:"
-
 msgid "Learn More About Crowdin"
-msgstr "Lär dig mer om Crowdin"
+msgstr "Läs mer om Crowdin"
 
 msgid "Learn more about Crowdin"
-msgstr "Lär dig mer om Crowdin"
+msgstr "Läs mer om Crowdin"
 
 msgid "Sign in to Crowdin"
 msgstr "Logga in på Crowdin"
+
+msgid "File"
+msgstr "Arkiv"
 
 msgid "Open Crowdin translation"
 msgstr "Öppna Crowdin-översättning"
@@ -223,17 +227,11 @@ msgstr "Projekt:"
 msgid "Language:"
 msgstr "Språk:"
 
-msgid "File:"
-msgstr "Fil:"
+msgid "Signed in as:"
+msgstr "Inloggad som:"
 
 msgid "No translation projects listed in your Crowdin account."
 msgstr "Inga översättningsprojekt finns på ditt Crowdin-konto."
-
-msgid "This project has no files that can be translated in Poedit."
-msgstr "Detta projekt har inga filer som kan översättas i Poedit."
-
-msgid "This file can only be edited in Crowdin’s web interface."
-msgstr "Denna fil kan endast redigeras i Crowdin:s webbgränssnitt."
 
 msgid "Downloading latest translations…"
 msgstr "Hämtar senaste översättning…"
@@ -295,7 +293,7 @@ msgstr "Öppna katalog"
 msgid "File “%s” doesn’t exist."
 msgstr "Filen \"%s\" finns inte."
 
-msgid "Poedit is an easy to use translations editor."
+msgid "Poedit is an easy to use translation editor."
 msgstr "Poedit är en lättanvänd översättningsredigerare."
 
 msgid "Catalogs Manager"
@@ -401,16 +399,16 @@ msgstr "Lägg alla överst"
 msgid "PO Translation"
 msgstr "PO-översättning"
 
+msgid ""
+"The file may be either corrupted or in a format not recognized by Poedit."
+msgstr ""
+"Filen kan vara skadad eller i ett format som inte känns igen av Poedit."
+
 msgid "The file cannot be opened."
 msgstr "Filen kan inte öppnas."
 
 msgid "Invalid file"
 msgstr "Ogiltig fil"
-
-msgid ""
-"The file may be either corrupted or in a format not recognized by Poedit."
-msgstr ""
-"Filen kan vara skadad eller i ett format som inte känns igen av Poedit."
 
 msgid "You can’t drop more than one file on Poedit window."
 msgstr "Du kan inte släppa mer än en fil i Poedit-fönstret."
@@ -490,6 +488,25 @@ msgstr ""
 "Översättningar kunde inte uppdateras från källkoden, eftersom ingen kod "
 "hittades på platsen som anges i katalogens egenskaper."
 
+msgid "Permission denied."
+msgstr "Åtkomst nekad."
+
+msgid ""
+"You don’t have permission to read source code files from the location "
+"specified in the catalog’s Properties."
+msgstr ""
+"Du har inte behörighet att läsa källkodfiler från den plats som "
+"specificerats i katalogens egenskaper."
+
+#. TRANSLATORS: The System Preferences etc. references macOS system settings and should be translated EXACTLY as in the OS. If you don't use macOS and can't check, leave it untranslated.
+msgid ""
+"If you previously denied access to your files, you can allow it in System "
+"Preferences > Security & Privacy > Privacy > Files & Folders."
+msgstr ""
+"Om du tidigare nekat åtkomst till dina filer kan du tillåta det i "
+"Systeminställningar > Säkerhet och integritet > Integritet > Filer och "
+"mappar."
+
 msgid "Entries in the catalog are probably incorrect."
 msgstr "Poster i katalogen är troligen fel."
 
@@ -534,7 +551,7 @@ msgid ""
 "The file was compiled into the MO format, but it will probably not work "
 "correctly."
 msgstr ""
-"Filen sammanställdes till MO-format, men den kommer förmodligen inte fungera "
+"Filen kompilerades till MO-format, men den kommer förmodligen inte fungera "
 "korrekt."
 
 msgid "The file cannot be compiled into the MO format and used."
@@ -564,6 +581,13 @@ msgid ""
 msgstr ""
 "Om du har inaktiverat varningarna på grund av överdrivna falska positiva, "
 "överväg att skicka en exempelfil till help@poedit.net för att förbättra dem."
+
+msgid "Send Feedback"
+msgstr "Skicka feedback"
+
+#. TRANSLATORS: This is a button to send email with feedback when clicked
+msgid "Send feedback"
+msgstr "Skicka feedback"
 
 #, c-format
 msgid "Poedit automatically fixed invalid content in the file “%s”."
@@ -834,12 +858,12 @@ msgstr "Övrigt"
 
 #, c-format
 msgid "%s Format"
-msgstr "%s format"
+msgstr "%s-format"
 
 #. TRANSLATORS: %s is replaced with language name, e.g. "PHP" or "C", so "PHP Format" etc."
 #, c-format
 msgid "%s format"
-msgstr "%s format"
+msgstr "%s-format"
 
 msgid "Source text"
 msgstr "Källtext"
@@ -863,7 +887,7 @@ msgid "Failed command: %s"
 msgstr "Kommando misslyckades: %s"
 
 msgid "Failed to merge gettext catalogs."
-msgstr "Det gick inte att sammanfoga gettext kataloger."
+msgstr "Det gick inte att sammanfoga gettext-kataloger."
 
 msgid "Source file"
 msgstr "Källfil"
@@ -1079,8 +1103,9 @@ msgid ""
 "translations to it."
 msgstr ""
 "Poedit kan försöka fylla i nya poster från endast tidigare översättningar i "
-"filen eller hela översättningsminnet. Med att använda TM är inte effektivt, "
-"men det kommer bli bättre medan du lägger till fler översättningar till det."
+"filen eller hela översättningsminnet. Att använda TM är inte effektivt om "
+"det är nästan tomt, men det kommer bli bättre allt eftersom du lägger till "
+"fler översättningar till det."
 
 msgid "Stored translations:"
 msgstr "Lagrade översättningar:"
@@ -1671,7 +1696,7 @@ msgid "&Purge deleted translations"
 msgstr "&Rensa borttagna översättningar"
 
 msgid "&Purge Deleted Translations"
-msgstr "&Rensa Borttagna Översättningar"
+msgstr "&Rensa borttagna översättningar"
 
 msgid "&Validate translations"
 msgstr "&Validera översättningar"
@@ -1913,8 +1938,8 @@ msgstr "Uppdatera från kod"
 msgid "Update from Code"
 msgstr "Uppdatera från kod"
 
-msgid "Update catalog - synchronize it with sources"
-msgstr "Uppdatera katalog - synkronisera den med källor"
+msgid "Update from source code"
+msgstr "Uppdatera från källkod"
 
 msgid "Sidebar"
 msgstr "Sidofält"
@@ -2147,9 +2172,6 @@ msgstr "&Ta bort"
 
 msgid "&Quit"
 msgstr "&Avsluta"
-
-msgid "File"
-msgstr "Arkiv"
 
 msgid "Help"
 msgstr "Hjälp"

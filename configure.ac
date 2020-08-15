@@ -2,7 +2,7 @@ dnl Process this file with autoconf to produce a configure script.
 
 AC_PREREQ(2.59)
 
-AC_INIT([poedit], [2.2.1], [help@poedit.net])
+AC_INIT([poedit], [2.4.1], [help@poedit.net])
 
 AC_CONFIG_AUX_DIR([admin])
 AC_CONFIG_MACRO_DIR([admin])
@@ -274,7 +274,7 @@ AS_IF([test "x$have_cld2" = "xyes"],
 
 
 
-if test "x$GXX" == "xyes"; then
+if test "x$GXX" = "xyes"; then
     AX_CXX_CHECK_FLAG([-Wall],[],[], [CXXFLAGS="$CXXFLAGS -Wall"])
     AX_CXX_CHECK_FLAG([-Wextra],[],[], [CXXFLAGS="$CXXFLAGS -Wextra"])
 fi

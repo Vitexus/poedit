@@ -1,7 +1,7 @@
 /*
  *  This file is part of Poedit (https://poedit.net)
  *
- *  Copyright (C) 2000-2019 Vaclav Slavik
+ *  Copyright (C) 2000-2020 Vaclav Slavik
  *
  *  Permission is hereby granted, free of charge, to any person obtaining a
  *  copy of this software and associated documentation files (the "Software"),
@@ -201,38 +201,58 @@ bool PerformUpdateFromSources(wxWindow *parent,
     progress.PulseGauge();
     progress.UpdateMessage(_(L"Collecting source files…"));
 
-    auto files = Extractor::CollectAllFiles(*spec);
-
-    progress.PulseGauge();
-    progress.UpdateMessage(_(L"Extracting translatable strings…"));
-
-    if (!files.empty())
+    try
     {
-        TempDirectory tmpdir;
-        auto potFile = Extractor::ExtractWithAll(tmpdir, *spec, files);
-        if (!potFile.empty())
+        auto files = Extractor::CollectAllFiles(*spec);
+
+        progress.PulseGauge();
+        progress.UpdateMessage(_(L"Extracting translatable strings…"));
+
+        if (!files.empty())
         {
-            pot = std::make_shared<POCatalog>(potFile, Catalog::CreationFlag_IgnoreHeader);
-            if (!pot->IsOk())
+            TempDirectory tmpdir;
+            auto potFile = Extractor::ExtractWithAll(tmpdir, *spec, files);
+            if (!potFile.empty())
             {
-                wxLogError(_("Failed to load extracted catalog."));
-                pot.reset();
+                pot = std::make_shared<POCatalog>(potFile, Catalog::CreationFlag_IgnoreHeader);
+                if (!pot->IsOk())
+                {
+                    wxLogError(_("Failed to load extracted catalog."));
+                    reason = UpdateResultReason::Unspecified;
+                    pot.reset();
+                }
             }
         }
-    }
-    else
-    {
-        reason = UpdateResultReason::NoSourcesFound;
-    }
+        else
+        {
+            reason = UpdateResultReason::NoSourcesFound;
+        }
 
-    if (progress.Cancelled())
+        if (progress.Cancelled())
+        {
+            reason = UpdateResultReason::CancelledByUser;
+            return false;
+        }
+
+        if (!pot)
+            return false;
+    }
+    catch (ExtractionException& e)
     {
-        reason = UpdateResultReason::CancelledByUser;
+        switch (e.error)
+        {
+            case ExtractionError::Unspecified:
+                reason = UpdateResultReason::Unspecified;
+                break;
+            case ExtractionError::NoSourcesFound:
+                reason = UpdateResultReason::NoSourcesFound;
+                break;
+            case ExtractionError::PermissionDenied:
+                reason = UpdateResultReason::PermissionDenied;
+                break;
+        }
         return false;
     }
-
-    if (!pot)
-        return false;
 
     progress.UpdateMessage(_(L"Merging differences…"));
 

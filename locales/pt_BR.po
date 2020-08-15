@@ -2,19 +2,20 @@ msgid ""
 msgstr ""
 "Project-Id-Version: poedit\n"
 "Report-Msgid-Bugs-To: help@poedit.net\n"
-"POT-Creation-Date: 2018-10-07 13:14+0200\n"
-"PO-Revision-Date: 2019-01-14 16:33\n"
-"Last-Translator: vslavik <vaclav@slavik.io>\n"
+"POT-Creation-Date: 2020-07-18 14:48+0200\n"
+"PO-Revision-Date: 2020-07-18 12:47\n"
+"Last-Translator: \n"
 "Language-Team: Portuguese, Brazilian\n"
 "Language: pt_BR\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
-"X-Generator: crowdin.com\n"
 "X-Crowdin-Project: poedit\n"
+"X-Crowdin-Project-ID: 53425\n"
 "X-Crowdin-Language: pt-BR\n"
 "X-Crowdin-File: /locales/poedit.pot\n"
+"X-Crowdin-File-ID: 3\n"
 
 msgid "Hide this notification message"
 msgstr "Esconder esta mensagem de notificação"
@@ -147,11 +148,11 @@ msgstr "Marcação danificada na tradução da sequência."
 msgid "(Use default language)"
 msgstr "(Usar idioma padrão)"
 
-msgid "Select your preferred language"
-msgstr "Selecione seu idioma preferido"
-
 msgid "Language selection"
 msgstr "Seleção de idioma"
+
+msgid "Select your preferred language"
+msgstr "Selecione seu idioma preferido"
 
 msgid "You must restart Poedit for this change to take effect."
 msgstr "Você deve reiniciar o Poedit para validar as alterações."
@@ -172,11 +173,14 @@ msgstr "A sincronização com %s falhou."
 msgid "Syncing error"
 msgstr "Erro de sincronização"
 
-msgid "Downloading translations is disabled in this project."
-msgstr "O download de traduções está desativado neste projeto."
+msgid "JSON request error"
+msgstr ""
 
 msgid "Not authorized, please sign in again."
 msgstr "Não autorizado. Inicie a sessão novamente."
+
+msgid "Downloading translations is disabled in this project."
+msgstr "O download de traduções está desativado neste projeto."
 
 msgid ""
 "Crowdin is an online localization management platform and collaborative "
@@ -204,9 +208,6 @@ msgstr "Aguardando autenticação…"
 msgid "Updating user information…"
 msgstr "Atualizando informações do usuário…"
 
-msgid "Signed in as:"
-msgstr "Logado como:"
-
 msgid "Learn More About Crowdin"
 msgstr "Saiba mais sobre o Crowdin"
 
@@ -215,6 +216,9 @@ msgstr "Saiba mais sobre o Crowdin"
 
 msgid "Sign in to Crowdin"
 msgstr "Ingressar ao Crowdin"
+
+msgid "File"
+msgstr "Arquivo"
 
 msgid "Open Crowdin translation"
 msgstr "Abrir tradução do Crowdin"
@@ -225,17 +229,11 @@ msgstr "Projeto:"
 msgid "Language:"
 msgstr "Idioma:"
 
-msgid "File:"
-msgstr "Arquivo:"
+msgid "Signed in as:"
+msgstr "Logado como:"
 
 msgid "No translation projects listed in your Crowdin account."
 msgstr "Não existem projetos de tradução associados à sua conta Crowdin."
-
-msgid "This project has no files that can be translated in Poedit."
-msgstr "Este projeto não tem arquivos que possam ser traduzidos no Poedit."
-
-msgid "This file can only be edited in Crowdin’s web interface."
-msgstr "Este arquivo só pode ser editado na interface web do Crowdin."
 
 msgid "Downloading latest translations…"
 msgstr "Baixando as traduções mais recentes…"
@@ -253,10 +251,10 @@ msgid "&Copy"
 msgstr "&Copiar"
 
 msgid "Learn more"
-msgstr "Mais informação"
+msgstr "Saiba mais"
 
 msgid "Learn More"
-msgstr "Mais informação"
+msgstr "Saiba Mais"
 
 msgid "&Help"
 msgstr "&Ajuda"
@@ -278,7 +276,7 @@ msgid "don’t delete temporary files (for debugging)"
 msgstr "não apagar arquivos temporários (para depuração)"
 
 msgid "handle a poedit:// URI"
-msgstr "Manipular com uma URI do poedit://"
+msgstr "manipular URI do poedit:// software"
 
 msgid "go to item at given line number"
 msgstr "vá para o item no número de linha fornecido"
@@ -297,7 +295,7 @@ msgstr "Abrir catálogo"
 msgid "File “%s” doesn’t exist."
 msgstr "O arquivo \"%s\" não existe."
 
-msgid "Poedit is an easy to use translations editor."
+msgid "Poedit is an easy to use translation editor."
 msgstr "O Poedit é um editor de traduções fácil de usar."
 
 msgid "Catalogs Manager"
@@ -322,7 +320,7 @@ msgid "Delete"
 msgstr "Apagar"
 
 msgid "Spelling and Grammar"
-msgstr "Ortografia e Gramática"
+msgstr "Ortografia e gramática"
 
 msgid "Show Spelling and Grammar"
 msgstr "Mostrar Ortografia e Gramática"
@@ -337,7 +335,7 @@ msgid "Check Grammar With Spelling"
 msgstr "Verificar Gramática com Ortografia"
 
 msgid "Correct Spelling Automatically"
-msgstr "Corrigir Ortografia Automaticamente"
+msgstr "Corrigir ortografia automaticamente"
 
 msgid "Substitutions"
 msgstr "Substituições"
@@ -349,7 +347,7 @@ msgid "Smart Copy/Paste"
 msgstr "Copiar/Colar Inteligente"
 
 msgid "Smart Quotes"
-msgstr "Aspas Inteligentes"
+msgstr "Aspas inteligentes"
 
 msgid "Smart Dashes"
 msgstr "Hífens Inteligentes"
@@ -358,7 +356,7 @@ msgid "Smart Links"
 msgstr "Links Inteligentes"
 
 msgid "Text Replacement"
-msgstr "Substituição de Texto"
+msgstr "Substituição de texto"
 
 msgid "Transformations"
 msgstr "Transformações"
@@ -403,16 +401,16 @@ msgstr "Trazer Tudo pra Frente"
 msgid "PO Translation"
 msgstr "Tradução PO"
 
+msgid ""
+"The file may be either corrupted or in a format not recognized by Poedit."
+msgstr ""
+"O arquivo pode estar corrompido ou em um formato não reconhecido pelo Poedit."
+
 msgid "The file cannot be opened."
 msgstr "O arquivo não pode ser aberto."
 
 msgid "Invalid file"
 msgstr "Arquivo inválido"
-
-msgid ""
-"The file may be either corrupted or in a format not recognized by Poedit."
-msgstr ""
-"O arquivo pode estar corrompido ou em um formato não reconhecido pelo Poedit."
 
 msgid "You can’t drop more than one file on Poedit window."
 msgstr "Você não pode soltar mais do que um arquivo na janela do Poedit."
@@ -491,6 +489,25 @@ msgid ""
 msgstr ""
 "As traduções não puderam ser atualizadas do código-fonte, porque nenhum "
 "código foi achado no local especificado nas Propriedades do catálogo."
+
+msgid "Permission denied."
+msgstr "Permissão negada."
+
+msgid ""
+"You don’t have permission to read source code files from the location "
+"specified in the catalog’s Properties."
+msgstr ""
+"Você não tem permissão para ler arquivos de código fonte de um local "
+"especificado nas propriedades do catálogo."
+
+#. TRANSLATORS: The System Preferences etc. references macOS system settings and should be translated EXACTLY as in the OS. If you don't use macOS and can't check, leave it untranslated.
+msgid ""
+"If you previously denied access to your files, you can allow it in System "
+"Preferences > Security & Privacy > Privacy > Files & Folders."
+msgstr ""
+"Se você negou anteriormente o acesso aos seus arquivos, poderá permitir "
+"acesso em Preferências do Sistema > Segurança e Privacidade > Privacidade > "
+"Arquivos e Pastas."
 
 msgid "Entries in the catalog are probably incorrect."
 msgstr "As entradas no catálogo provavelmente estão incorretas."
@@ -571,6 +588,13 @@ msgstr ""
 "positivos, considere enviar um arquivo de exemplo para help@poedit.net para "
 "ajudar a melhorá-los."
 
+msgid "Send Feedback"
+msgstr "Enviar Comentários"
+
+#. TRANSLATORS: This is a button to send email with feedback when clicked
+msgid "Send feedback"
+msgstr "Enviar comentários"
+
 #, c-format
 msgid "Poedit automatically fixed invalid content in the file “%s”."
 msgstr ""
@@ -584,8 +608,8 @@ msgid ""
 msgstr ""
 "O arquivo continha itens duplicados, o que não é permitido em arquivos PO e "
 "impediria a utilização do arquivo. O Poedit corrigiu o problema, mas você "
-"deve revisar as traduções de todos os itens marcados como incertos e corrigi-"
-"los se necessário."
+"deve revisar as traduções de todos os itens marcados como provisórios e "
+"corrigi-los se necessário."
 
 msgid "Language of the translation isn’t set."
 msgstr "O idioma da tradução não está definido."
@@ -785,7 +809,7 @@ msgid "Pre-translated"
 msgstr "Pré-traduzida"
 
 msgid "Needs Work"
-msgstr "Precisa de trabalho"
+msgstr "Provisória"
 
 #. TRANSLATORS: This indicates that the string's translation isn't final
 #. and has known problems.  For example, it might be machine translated or
@@ -796,7 +820,7 @@ msgstr "Precisa de trabalho"
 #. I am done with it (i.e. consider it good), while "needs work" implies I
 #. need to return to it and finish the translation.
 msgid "Needs work"
-msgstr "Imprecisa"
+msgstr "Provisória"
 
 msgid ""
 "POT files are only templates and don’t contain any translations themselves.\n"
@@ -1193,14 +1217,14 @@ msgid "Edit…"
 msgstr "Editar…"
 
 msgid "GNU gettext"
-msgstr "gettext do GNU"
+msgstr "GNU gettext"
 
 msgid ""
 "Supports all programming languages recognized by GNU gettext tools (PHP, C/C+"
 "+, C#, Perl, Python, Java, JavaScript and others)."
 msgstr ""
 "Suporta todas as linguagens de programação reconhecidas pelas ferramentas do "
-"gettext GNU (PHP, C/C++, c#, Perl, Python, Java, JavaScript e outros)."
+"GNU gettext (PHP, C/C++, c#, Perl, Python, Java, JavaScript e outros)."
 
 msgid "Delete extractor"
 msgstr "Apagar extrator"
@@ -1287,17 +1311,17 @@ msgid ""
 "work. Check this option to only include accurate matches."
 msgstr ""
 "Por padrão, os resultados imprecisos são preenchidos também e marcados como "
-"incertos. Marque esta opção para incluir apenas correspondências exatas."
+"provisórios. Marque esta opção para incluir apenas correspondências exatas."
 
 msgid "Don’t mark exact matches as needing work"
-msgstr "Não marcar ocorrências exatas como imprecisas"
+msgstr "Não marcar ocorrências exatas como provisórias"
 
 msgid ""
 "Only enable if you trust the quality of your TM. By default, all matches "
 "from the TM are marked as needing work and should be reviewed before use."
 msgstr ""
 "Apenas ative se você confia na qualidade da sua MT. Por padrão, todas as "
-"correspondências da MT são marcadas como imprecisas e devem ser revisadas."
+"correspondências da MT são marcadas como provisórias e devem ser revisadas."
 
 msgid ""
 "Pre-translation automatically finds exact or fuzzy matches for untranslated "
@@ -1317,7 +1341,7 @@ msgid ""
 "The translations were marked as needing work, because they may be "
 "inaccurate. You should review them for correctness."
 msgstr ""
-"As traduções foram marcadas como imprecisas, porque elas podem estar "
+"As traduções foram marcadas como provisórias porque elas podem estar "
 "incorretas. Você deve revisá-las para correção."
 
 msgid "No entries could be pre-translated."
@@ -1556,10 +1580,10 @@ msgid "Copy From Singular"
 msgstr "Copiar do singular"
 
 msgid "Translation needs &work"
-msgstr "Tradução &imprecisa"
+msgstr "Tradução pro&visória"
 
 msgid "Translation Needs &Work"
-msgstr "Tradução &imprecisa"
+msgstr "Tradução pro&visória"
 
 msgid "Edit &comment"
 msgstr "Editar &comentário"
@@ -1739,10 +1763,10 @@ msgid "&Online Help"
 msgstr "&Ajuda Online"
 
 msgid "&GNU gettext manual"
-msgstr "&Manual gettext do GNU"
+msgstr "Manual &GNU gettext"
 
 msgid "&GNU gettext Manual"
-msgstr "&Manual gettext do GNU"
+msgstr "Manual &GNU gettext"
 
 msgid "&About Poedit"
 msgstr "&Sobre o Poedit"
@@ -1871,7 +1895,7 @@ msgid "Also use default keywords for supported languages"
 msgstr "Usar também palavras-chave padrão para idiomas suportados"
 
 msgid "Learn About Gettext Keywords"
-msgstr "Saiba mais sobre palavras-chave Gettext"
+msgstr "Saiba mais sobre palavras-chave gettext"
 
 msgid "Learn about gettext keywords"
 msgstr "Saiba mais sobre palavras-chave gettext"
@@ -1920,8 +1944,8 @@ msgstr "Atualização do código"
 msgid "Update from Code"
 msgstr "Atualização do código"
 
-msgid "Update catalog - synchronize it with sources"
-msgstr "Atualizar catálogo - sincronizá-lo com as fontes"
+msgid "Update from source code"
+msgstr "Atualizar do código fonte"
 
 msgid "Sidebar"
 msgstr "Barra lateral"
@@ -2156,9 +2180,6 @@ msgstr "Apa&gar"
 
 msgid "&Quit"
 msgstr "&Encerrar"
-
-msgid "File"
-msgstr "Arquivo"
 
 msgid "Help"
 msgstr "Ajuda"

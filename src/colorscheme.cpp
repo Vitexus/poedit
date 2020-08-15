@@ -1,7 +1,7 @@
 /*
  *  This file is part of Poedit (https://poedit.net)
  *
- *  Copyright (C) 2016-2019 Vaclav Slavik
+ *  Copyright (C) 2016-2020 Vaclav Slavik
  *
  *  Permission is hereby granted, free of charge, to any person obtaining a
  *  copy of this software and associated documentation files (the "Software"),
@@ -25,6 +25,7 @@
 
 #include "colorscheme.h"
 
+#include <wx/artprov.h>
 #include <wx/settings.h>
 
 #ifdef __WXGTK__
@@ -82,6 +83,13 @@ wxColour ColorScheme::DoGet(Color color, Mode mode)
     {
         // Labels:
 
+        case Color::Label:
+            #ifdef __WXOSX__
+            return wxColour([NSColor labelColor]);
+            #else
+            return wxSystemSettings::GetColour(wxSYS_COLOUR_WINDOWTEXT);
+            #endif
+
         case Color::SecondaryLabel:
             #ifdef __WXOSX__
             return wxColour([NSColor secondaryLabelColor]);
@@ -103,6 +111,8 @@ wxColour ColorScheme::DoGet(Color color, Mode mode)
             return mode == Dark ? sRGB(253, 178, 72) : sRGB(230, 134, 0);
         case Color::ItemError:
             return sRGB(225, 77, 49);
+        case Color::ErrorText:
+            return *wxRED;
         case Color::ItemContextFg:
             return mode == Dark ? sRGB(180, 222, 254) : sRGB(70, 109, 137);
         case Color::ItemContextBg:
@@ -150,13 +160,15 @@ wxColour ColorScheme::DoGet(Color color, Mode mode)
             return mode == Dark ? *wxBLACK : "#cbcbcb";
         case Color::EditingSeparator:
             return mode == Dark ? sRGB(80, 80, 80) : sRGB(204, 204, 204);
-        case Color::EditingSubtleSeparator:
-            return mode == Dark ? sRGB(60, 60, 60) : sRGB(229, 229, 229);
+        case Color::SidebarBlockSeparator:
+            return mode == Dark ? sRGB(80, 80, 80, 0.8) : sRGB(204, 204, 204, 0.8);
+        case Color::EditingThickSeparator:
+            return mode == Dark ? sRGB(46, 47, 50) : sRGB(240, 240, 240);
 
         // Backgrounds:
 
         case Color::SidebarBackground:
-            return mode == Dark ? sRGB(43, 44, 47) : "#edf0f4";
+            return mode == Dark ? sRGB(45, 42, 41) : "#edf0f4";
 
         case Color::EditingBackground:
             #ifdef __WXOSX__
@@ -169,7 +181,11 @@ wxColour ColorScheme::DoGet(Color color, Mode mode)
         case Color::FuzzySwitch:
             return mode == Dark ? sRGB(253, 178, 72) : sRGB(244, 143, 0);
         case Color::FuzzySwitchInactive:
+            #ifdef __WXGTK__
             return mode == Dark ? sRGB(163, 163, 163) : sRGB(87, 87, 87);
+            #else
+            return DoGet(Color::SecondaryLabel, mode);
+            #endif
 
         // Syntax highlighting:
 
@@ -213,6 +229,29 @@ wxColour ColorScheme::DoGet(Color color, Mode mode)
     }
 
     return wxColour(); // Visual C++ being silly
+}
+
+
+void ColorScheme::InvalidateCachesIfNeeded()
+{
+    if (!s_appModeDetermined)
+        return; // nothing to do yet
+
+    // invalidate the mode and force re-checking:
+    auto prevMode = s_appMode;
+    s_appModeDetermined = false;
+    if (prevMode == GetAppMode())
+        return;  // mode didn't really check, nothing to invalidate
+
+#ifndef __WXOSX__
+    // Colors are cached for both variants, so don't need to be invalidated.
+    // s_appMode was refreshed above in any case.
+    // That leaves cached template icons in wxArtProvider on non-Mac platforms,
+    // which we can purge by adding a dummy provider:
+    auto dummy = new wxArtProvider();
+    wxArtProvider::Push(dummy);
+    wxArtProvider::Delete(dummy);
+#endif
 }
 
 

@@ -2,9 +2,9 @@ msgid ""
 msgstr ""
 "Project-Id-Version: poedit\n"
 "Report-Msgid-Bugs-To: help@poedit.net\n"
-"POT-Creation-Date: 2018-10-07 13:14+0200\n"
-"PO-Revision-Date: 2018-10-07 10:42\n"
-"Last-Translator: vslavik <vaclav@slavik.io>\n"
+"POT-Creation-Date: 2020-07-18 14:48+0200\n"
+"PO-Revision-Date: 2020-07-18 12:46\n"
+"Last-Translator: \n"
 "Language-Team: Bosnian\n"
 "Language: bs_BA\n"
 "MIME-Version: 1.0\n"
@@ -12,19 +12,20 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=3; plural=(n%10==1 && n%100!=11 ? 0 : n%10>=2 && n"
 "%10<=4 && (n%100<10 || n%100>=20) ? 1 : 2);\n"
-"X-Generator: crowdin.com\n"
 "X-Crowdin-Project: poedit\n"
+"X-Crowdin-Project-ID: 53425\n"
 "X-Crowdin-Language: bs\n"
 "X-Crowdin-File: /locales/poedit.pot\n"
+"X-Crowdin-File-ID: 3\n"
 
 msgid "Hide this notification message"
 msgstr "Sakrij ovu napomenu"
 
 msgid "Don’t Show Again"
-msgstr ""
+msgstr "Ne prikazuj ponovo"
 
 msgid "Don’t show again"
-msgstr ""
+msgstr "Ne prikazuj ponovo"
 
 #, c-format
 msgid "(New: %i, obsolete: %i)"
@@ -34,24 +35,24 @@ msgid "Updating catalog"
 msgstr "Ažuriram katalog"
 
 msgid "Collecting source files…"
-msgstr ""
+msgstr "Prikupljam izvorne fajlove…"
 
 msgid "Extracting translatable strings…"
-msgstr ""
+msgstr "Raspakujem stringove za prijevod…"
 
 msgid "Failed to load extracted catalog."
 msgstr "Nije moguće učitati raspakovani katalog."
 
 msgid "Merging differences…"
-msgstr ""
+msgstr "Sastavljanje razlika…"
 
 #, c-format
 msgid "“%s” is not a valid POT file."
-msgstr ""
+msgstr "\"%s\" nije ispravan POT fajl."
 
 #, c-format
 msgid "Malformed header: “%s”"
-msgstr ""
+msgstr "Neispravno zaglavlje: \"%s\""
 
 msgid "PO Translation Files"
 msgstr "PO fajlovi sa prijevodom"
@@ -60,25 +61,25 @@ msgid "POT Translation Templates"
 msgstr "POT predlošci prijevoda"
 
 msgid "XLIFF Translation Files"
-msgstr ""
+msgstr "XLIFF fajlovi s prijevodima"
 
 msgid "All Translation Files"
 msgstr "Sve datoteke s prijevodima"
 
 #, c-format
 msgid "File “%s” is in unsupported format."
-msgstr ""
+msgstr "Fajl \"%s\" nije podržan kao format."
 
 #, c-format
 msgid "%i line of file “%s” was not loaded correctly."
 msgid_plural "%i lines of file “%s” were not loaded correctly."
-msgstr[0] ""
-msgstr[1] ""
-msgstr[2] ""
+msgstr[0] "%i red fajla \"%s\" nije ispravno učitan."
+msgstr[1] "%i reda fajla \"%s\" nisu ispravno učitana."
+msgstr[2] "%i redova fajla \"%s\" nije ispravno učitano."
 
 #, c-format
 msgid "Line %d of file “%s” is corrupted (not valid %s data)."
-msgstr ""
+msgstr "Linija %d fajla \"%s\" nije ispravna (neispravni podaci %s)."
 
 msgid ""
 "Broken catalog file: singular form msgstr used together with msgid_plural"
@@ -144,11 +145,11 @@ msgstr ""
 msgid "(Use default language)"
 msgstr "(Koristi početni jezik)"
 
-msgid "Select your preferred language"
-msgstr "Odaberite vaš omiljeni jezik"
-
 msgid "Language selection"
 msgstr "Odabir jezika"
+
+msgid "Select your preferred language"
+msgstr "Odaberite vaš omiljeni jezik"
 
 msgid "You must restart Poedit for this change to take effect."
 msgstr "Morate ponovo pokrenuti Poedit da bi promjene počele djelovati."
@@ -169,11 +170,14 @@ msgstr ""
 msgid "Syncing error"
 msgstr ""
 
-msgid "Downloading translations is disabled in this project."
-msgstr "Preuzimanje prijevoda je onemogućeno u ovom projektu."
+msgid "JSON request error"
+msgstr ""
 
 msgid "Not authorized, please sign in again."
 msgstr "Nemate ovlaštenje, molimo vas da se ponovo prijavite."
+
+msgid "Downloading translations is disabled in this project."
+msgstr "Preuzimanje prijevoda je onemogućeno u ovom projektu."
 
 msgid ""
 "Crowdin is an online localization management platform and collaborative "
@@ -201,9 +205,6 @@ msgstr "Čekam na autentifikaciju..."
 msgid "Updating user information…"
 msgstr "Ažuriram korisničke informacije..."
 
-msgid "Signed in as:"
-msgstr "Prijavljeni ste kao:"
-
 msgid "Learn More About Crowdin"
 msgstr "Saznaj više o Crowdinu"
 
@@ -212,6 +213,9 @@ msgstr "Saznaj više o Crowdinu"
 
 msgid "Sign in to Crowdin"
 msgstr "Prijavi se u Crowdin"
+
+msgid "File"
+msgstr ""
 
 msgid "Open Crowdin translation"
 msgstr "Otvori Crowdin prijevod"
@@ -222,17 +226,11 @@ msgstr "Projekat:"
 msgid "Language:"
 msgstr "Jezik:"
 
-msgid "File:"
-msgstr "Datoteka:"
+msgid "Signed in as:"
+msgstr "Prijavljeni ste kao:"
 
 msgid "No translation projects listed in your Crowdin account."
 msgstr "Nema projekata u vašem Crowdin računu."
-
-msgid "This project has no files that can be translated in Poedit."
-msgstr "Ovaj projekat nema datoteka koje je moguće prevoditi u Poeditu."
-
-msgid "This file can only be edited in Crowdin’s web interface."
-msgstr "Ovu datoteku moguće je uređivati jedino pomoću Crowdin web interfejsa."
 
 msgid "Downloading latest translations…"
 msgstr "Preuzimam najnovije prijevode..."
@@ -294,7 +292,7 @@ msgstr "Otvori katalog"
 msgid "File “%s” doesn’t exist."
 msgstr ""
 
-msgid "Poedit is an easy to use translations editor."
+msgid "Poedit is an easy to use translation editor."
 msgstr "Poedit je jednostavni alat za prevođenje."
 
 msgid "Catalogs Manager"
@@ -400,15 +398,15 @@ msgstr "Dovedi u fokus"
 msgid "PO Translation"
 msgstr "PO prijevod"
 
+msgid ""
+"The file may be either corrupted or in a format not recognized by Poedit."
+msgstr "Datoteka je oštećena ili nije u formatu koji Poedit prepoznaje."
+
 msgid "The file cannot be opened."
 msgstr "Datoteku nije moguće otvoriti."
 
 msgid "Invalid file"
 msgstr "Neispravna datoteka"
-
-msgid ""
-"The file may be either corrupted or in a format not recognized by Poedit."
-msgstr "Datoteka je oštećena ili nije u formatu koji Poedit prepoznaje."
 
 msgid "You can’t drop more than one file on Poedit window."
 msgstr ""
@@ -451,22 +449,22 @@ msgid "Save"
 msgstr "Sačuvaj"
 
 msgid "Do&n’t save"
-msgstr ""
+msgstr "Ne s&nimaj"
 
 msgid "Don’t Save"
-msgstr ""
+msgstr "Ne s&nimaj"
 
 msgid "Save as…"
-msgstr ""
+msgstr "Sačuvaj kao…"
 
 msgid "Compile to…"
-msgstr ""
+msgstr "Kompajliraj za…"
 
 msgid "Compiled Translation Files"
 msgstr "Kompajlirani prijevodi datoteka"
 
 msgid "Export as…"
-msgstr ""
+msgstr "Izvezi kao…"
 
 msgid "HTML Files"
 msgstr "HTML fajlovi"
@@ -486,6 +484,20 @@ msgid ""
 msgstr ""
 "Prijevodi nisu mogli biti ažurirani iz izvornog koda zato što kod nije "
 "pronađen u specificiranoj lokaciji unutar svojstava kataloga."
+
+msgid "Permission denied."
+msgstr ""
+
+msgid ""
+"You don’t have permission to read source code files from the location "
+"specified in the catalog’s Properties."
+msgstr ""
+
+#. TRANSLATORS: The System Preferences etc. references macOS system settings and should be translated EXACTLY as in the OS. If you don't use macOS and can't check, leave it untranslated.
+msgid ""
+"If you previously denied access to your files, you can allow it in System "
+"Preferences > Security & Privacy > Privacy > Files & Folders."
+msgstr ""
 
 msgid "Entries in the catalog are probably incorrect."
 msgstr "Unosi u katalogu su najvjerovatnije netačni."
@@ -552,11 +564,18 @@ msgid "The translation is ready for use."
 msgstr "Prijevod je spreman za upotrebu."
 
 msgid "Warnings have been disabled."
-msgstr ""
+msgstr "Upozorenja su onemogućena."
 
 msgid ""
 "If you disabled the warnings because of excessive false positives, please "
 "consider sending a sample file to help@poedit.net to help improve them."
+msgstr ""
+
+msgid "Send Feedback"
+msgstr ""
+
+#. TRANSLATORS: This is a button to send email with feedback when clicked
+msgid "Send feedback"
 msgstr ""
 
 #, c-format
@@ -1480,7 +1499,7 @@ msgid "Open from Crowdin…"
 msgstr ""
 
 msgid "Open From Crowdin…"
-msgstr ""
+msgstr "Otvori iz Crowdina…"
 
 msgid "&Close"
 msgstr "&Zatvori"
@@ -1489,7 +1508,7 @@ msgid "&Save"
 msgstr "&Sačuvaj"
 
 msgid "Save &as…"
-msgstr ""
+msgstr "Sačuvaj &kao…"
 
 msgid "Save &As…"
 msgstr ""
@@ -1890,8 +1909,8 @@ msgstr ""
 msgid "Update from Code"
 msgstr ""
 
-msgid "Update catalog - synchronize it with sources"
-msgstr "Ažuriraj katalog - sinhronizacija sa izvorima"
+msgid "Update from source code"
+msgstr ""
 
 msgid "Sidebar"
 msgstr "Bočna traka"
@@ -2117,9 +2136,6 @@ msgid "&Delete"
 msgstr "&Obriši"
 
 msgid "&Quit"
-msgstr ""
-
-msgid "File"
 msgstr ""
 
 msgid "Help"

@@ -1,7 +1,7 @@
 /*
  *  This file is part of Poedit (https://poedit.net)
  *
- *  Copyright (C) 2014-2019 Vaclav Slavik
+ *  Copyright (C) 2014-2020 Vaclav Slavik
  *
  *  Permission is hereby granted, free of charge, to any person obtaining a
  *  copy of this software and associated documentation files (the "Software"),
@@ -60,10 +60,7 @@
 class SidebarSeparator : public wxWindow
 {
 public:
-    SidebarSeparator(wxWindow *parent)
-        : wxWindow(parent, wxID_ANY),
-          m_sides(ColorScheme::Get(Color::SidebarBackground)),
-          m_center(ColorScheme::Get(Color::EditingSubtleSeparator))
+    SidebarSeparator(wxWindow *parent) : wxWindow(parent, wxID_ANY)
     {
         Bind(wxEVT_PAINT, &SidebarSeparator::OnPaint, this);
     }
@@ -79,21 +76,11 @@ private:
     void OnPaint(wxPaintEvent&)
     {
         wxPaintDC dc(this);
-        auto w = dc.GetSize().x;
-        if (ColorScheme::GetWindowMode(this) == ColorScheme::Light)
-        {
-            dc.GradientFillLinear(wxRect(0,0,PX(20),PX(1)), m_sides, m_center);
-            dc.GradientFillLinear(wxRect(PX(20),0,w,PX(1)), m_center, m_sides);
-        }
-        else
-        {
-            dc.SetBrush(m_center);
-            dc.SetPen(m_center);
-            dc.DrawRectangle(PX(2), 0, w - PX(4), PX(1));
-        }
+        auto clr = ColorScheme::Get(Color::SidebarBlockSeparator);
+        dc.SetBrush(clr);
+        dc.SetPen(clr);
+        dc.DrawRectangle(PX(2), 0, dc.GetSize().x - PX(4), PX(1) + 1);
     }
-
-    wxColour m_sides, m_center;
 };
 
 
@@ -108,7 +95,7 @@ SidebarBlock::SidebarBlock(Sidebar *parent, const wxString& label, int flags)
         if (!(flags & NoUpperMargin))
         {
             m_sizer->Add(new SidebarSeparator(parent),
-                         wxSizerFlags().Expand().Border(wxBOTTOM|wxLEFT, PX(2)));
+                         wxSizerFlags().Expand().Border(wxBOTTOM|wxLEFT|wxRIGHT, PX(4)));
         }
         m_headerSizer = new wxBoxSizer(wxHORIZONTAL);
         m_headerSizer->Add(new HeadingLabel(parent, label), wxSizerFlags().Center());
@@ -278,10 +265,10 @@ public:
         m_sidebar = parent;
         m_parentBlock = block;
         m_isHighlighted = false;
-        m_icon = new wxStaticBitmap(this, wxID_ANY, wxArtProvider::GetBitmap("SuggestionTMTemplate"));
+        m_icon = new StaticBitmap(this, "SuggestionTMTemplate");
         m_text = new AutoWrappingText(this, "TEXT");
         m_info = new InfoStaticText(this);
-        m_moreActions = new ImageButton(this, wxArtProvider::GetBitmap("DownvoteTemplate"));
+        m_moreActions = new ImageButton(this, "DownvoteTemplate");
 
         m_isPerfect = isFirst
                       ? new wxStaticBitmap(this, wxID_ANY, wxArtProvider::GetBitmap("SuggestionPerfectMatch"))
@@ -294,7 +281,7 @@ public:
         top->Add(right, wxSizerFlags(1).Expand().PXBorder(wxLEFT));
         right->Add(m_text, wxSizerFlags().Expand().Border(wxTOP, PX(4)));
         auto infoSizer = new wxBoxSizer(wxHORIZONTAL);
-        infoSizer->Add(m_info);
+        infoSizer->Add(m_info, wxSizerFlags().Center());
         if (m_isPerfect)
             infoSizer->Add(m_isPerfect, wxSizerFlags().Center().Border(wxLEFT, PX(2)));
         right->Add(infoSizer, wxSizerFlags().Expand().Border(wxTOP|wxBOTTOM, PX(2)));
@@ -305,11 +292,19 @@ public:
 
         SetSizerAndFit(top);
 
-        // setup mouse hover highlighting:
-        m_bg = parent->GetBackgroundColour();
-        m_bgHighlight = ColorScheme::GetWindowMode(parent) == ColorScheme::Dark
-                        ? m_bg.ChangeLightness(110)
-                        : m_bg.ChangeLightness(95);
+        ColorScheme::SetupWindowColors(this, [=]
+        {
+            // setup mouse hover highlighting:
+            m_bg = parent->GetBackgroundColour();
+            m_bgHighlight = ColorScheme::GetWindowMode(parent) == ColorScheme::Dark
+                            ? m_bg.ChangeLightness(110)
+                            : m_bg.ChangeLightness(95);
+            SetBackgroundColour(m_isHighlighted ? m_bgHighlight : m_bg);
+            #ifndef __WXOSX__
+            for (auto c: GetChildren())
+                c->SetBackgroundColour(m_isHighlighted ? m_bgHighlight : m_bg);
+            #endif
+        });
 
         wxWindow* parts [] = { this, m_icon, m_text, m_info, m_moreActions };
         for (auto w : parts)
@@ -324,7 +319,7 @@ public:
         Bind(wxEVT_PAINT, &SuggestionWidget::OnPaint, this);
     }
 
-    void SetValue(int index, const Suggestion& s, Language lang, const wxBitmap& icon, const wxString& tooltip)
+    void SetValue(int index, const Suggestion& s, Language lang, const wxString& icon, const wxString& tooltip)
     {
         m_value = s;
 
@@ -347,7 +342,7 @@ public:
             m_info->SetLabel(percentStr);
         }
 
-        m_icon->SetBitmap(icon);
+        m_icon->SetBitmapName(icon);
 
         if (m_isPerfect)
             m_isPerfect->GetContainingSizer()->Show(m_isPerfect, percent == 100);
@@ -381,12 +376,15 @@ private:
     public:
         InfoStaticText(wxWindow *parent) : wxStaticText(parent, wxID_ANY, "100%")
         {
-            SetForegroundColour(ExplanationLabel::GetTextColor());
         #ifdef __WXMSW__
             SetFont(SmallerFont(GetFont()));
         #else
             SetWindowVariant(wxWINDOW_VARIANT_SMALL);
         #endif
+            ColorScheme::SetupWindowColors(this, [=]
+            {
+                SetForegroundColour(ExplanationLabel::GetTextColor());
+            });
         }
 
         void DoEnable(bool) override {} // wxOSX's disabling would break color
@@ -487,7 +485,7 @@ private:
     SuggestionsSidebarBlock *m_parentBlock;
     Suggestion m_value;
     bool m_isHighlighted;
-    wxStaticBitmap *m_icon;
+    StaticBitmap *m_icon;
     AutoWrappingText *m_text;
     wxStaticText *m_info;
     wxStaticBitmap *m_isPerfect;
@@ -500,6 +498,7 @@ SuggestionsSidebarBlock::SuggestionsSidebarBlock(Sidebar *parent, wxMenu *menu)
     : SidebarBlock(parent, _("Translation suggestions:"), NoUpperMargin),
       m_suggestionsMenu(menu),
       m_msgPresent(false),
+      m_suggestionsSeparator(nullptr),
       m_pendingQueries(0),
       m_latestQueryId(0),
       m_lastUpdateTime(0)
@@ -507,7 +506,7 @@ SuggestionsSidebarBlock::SuggestionsSidebarBlock(Sidebar *parent, wxMenu *menu)
     m_provider.reset(new SuggestionsProvider);
 
     m_msgSizer = new wxBoxSizer(wxHORIZONTAL);
-    m_msgIcon = new wxStaticBitmap(parent, wxID_ANY, wxNullBitmap);
+    m_msgIcon = new StaticBitmap(parent, wxString());
     m_msgText = new ExplanationLabel(parent, "");
     m_msgSizer->Add(m_msgIcon, wxSizerFlags().Center().PXBorderAll());
     m_msgSizer->Add(m_msgText, wxSizerFlags(1).Center().PXBorder(wxTOP|wxBOTTOM));
@@ -529,11 +528,14 @@ SuggestionsSidebarBlock::SuggestionsSidebarBlock(Sidebar *parent, wxMenu *menu)
                                      _("No Matches Found")
                                 #endif
                                      );
-    m_iGotNothing->SetForegroundColour(ExplanationLabel::GetTextColor().ChangeLightness(150));
     m_iGotNothing->SetWindowVariant(wxWINDOW_VARIANT_NORMAL);
 #ifdef __WXMSW__
     m_iGotNothing->SetFont(m_iGotNothing->GetFont().Larger());
 #endif
+    ColorScheme::SetupWindowColors(m_iGotNothing, [=]
+    {
+        m_iGotNothing->SetForegroundColour(ExplanationLabel::GetTextColor().ChangeLightness(150));
+    });
     m_innerSizer->Add(m_iGotNothing, wxSizerFlags().Center().Border(wxTOP|wxBOTTOM, PX(100)));
 
     BuildSuggestionsMenu();
@@ -551,9 +553,9 @@ SuggestionsSidebarBlock::~SuggestionsSidebarBlock()
         delete i;
 }
 
-wxBitmap SuggestionsSidebarBlock::GetIconForSuggestion(const Suggestion&) const
+wxString SuggestionsSidebarBlock::GetIconForSuggestion(const Suggestion&) const
 {
-    return wxArtProvider::GetBitmap("SuggestionTMTemplate");
+    return "SuggestionTMTemplate";
 }
 
 wxString SuggestionsSidebarBlock::GetTooltipForSuggestion(const Suggestion&) const
@@ -572,7 +574,7 @@ void SuggestionsSidebarBlock::ClearMessage()
 void SuggestionsSidebarBlock::SetMessage(const wxString& icon, const wxString& text)
 {
     m_msgPresent = true;
-    m_msgIcon->SetBitmap(wxArtProvider::GetBitmap(icon));
+    m_msgIcon->SetBitmapName(icon);
     m_msgText->SetAndWrapLabel(text);
     UpdateVisibility();
     m_parent->Layout();
@@ -613,11 +615,35 @@ void SuggestionsSidebarBlock::UpdateSuggestions(const SuggestionsList& hits)
     m_innerSizer->Layout();
 
     // update shown suggestions:
+
+    if (m_suggestionsSeparator)
+    {
+        m_suggestionsSeparator->Hide();
+        m_suggestionsSizer->Detach(m_suggestionsSeparator);
+    }
+
     auto lang = m_parent->GetCurrentLanguage();
+    int perfectMatches = 0;
     for (size_t i = 0; i < m_suggestions.size(); ++i)
     {
         auto s = m_suggestions[i];
         m_suggestionsWidgets[i]->SetValue((int)i, s, lang, GetIconForSuggestion(s), GetTooltipForSuggestion(s));
+
+        if (s.IsExactMatch())
+        {
+            perfectMatches++;
+        }
+        else
+        {
+            if (perfectMatches > 1)
+            {
+                if (!m_suggestionsSeparator)
+                    m_suggestionsSeparator = new SidebarSeparator(m_parent);
+                m_suggestionsSeparator->Show();
+                m_suggestionsSizer->Insert(i, m_suggestionsSeparator, wxSizerFlags().Expand().Border(wxBOTTOM, MSW_OR_OTHER(PX(2), PX(4))));
+            }
+            perfectMatches = 0;
+        }
     }
 
     m_innerSizer->Layout();
@@ -679,7 +705,7 @@ void SuggestionsSidebarBlock::UpdateSuggestionsMenu()
 
         auto label = wxControl::EscapeMnemonics(wxString::Format(formatMask, text, index+1));
         item->SetItemLabel(label);
-        item->SetBitmap(GetIconForSuggestion(s));
+        item->SetBitmap(wxArtProvider::GetBitmap(GetIconForSuggestion(s)));
 
         index++;
     }
@@ -845,7 +871,11 @@ Sidebar::Sidebar(wxWindow *parent, wxMenu *suggestionsMenu)
       m_catalog(nullptr),
       m_selectedItem(nullptr)
 {
-    SetBackgroundColour(ColorScheme::Get(Color::SidebarBackground));
+    ColorScheme::SetupWindowColors(this, [=]
+    {
+        SetBackgroundColour(ColorScheme::Get(Color::SidebarBackground));
+    });
+
 #ifdef __WXMSW__
     SetDoubleBuffered(true);
 #endif

@@ -2,19 +2,20 @@ msgid ""
 msgstr ""
 "Project-Id-Version: poedit\n"
 "Report-Msgid-Bugs-To: help@poedit.net\n"
-"POT-Creation-Date: 2018-10-07 13:14+0200\n"
-"PO-Revision-Date: 2018-10-07 10:41\n"
-"Last-Translator: vslavik <vaclav@slavik.io>\n"
+"POT-Creation-Date: 2020-07-18 14:48+0200\n"
+"PO-Revision-Date: 2020-07-18 12:47\n"
+"Last-Translator: \n"
 "Language-Team: Icelandic\n"
 "Language: is_IS\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
-"X-Generator: crowdin.com\n"
 "X-Crowdin-Project: poedit\n"
+"X-Crowdin-Project-ID: 53425\n"
 "X-Crowdin-Language: is\n"
 "X-Crowdin-File: /locales/poedit.pot\n"
+"X-Crowdin-File-ID: 3\n"
 
 msgid "Hide this notification message"
 msgstr "Fela þessi skilaboð"
@@ -130,7 +131,7 @@ msgstr "Villa við vistun á þýðingaskrá"
 
 #, c-format
 msgid "Error loading file “%s”: %s."
-msgstr "Villa við að hlaða inn skránni “%s”: %s."
+msgstr "Villa við að sækja skrána “%s”: %s."
 
 #, c-format
 msgid "unsupported XLIFF version (%s)"
@@ -143,11 +144,11 @@ msgstr "Skemmd skilgreining í þýðingarstreng."
 msgid "(Use default language)"
 msgstr "(Nota sjálfgefið tungumál)"
 
-msgid "Select your preferred language"
-msgstr "Veldu aðaltungumálið þitt"
-
 msgid "Language selection"
 msgstr "Velja tungumál"
+
+msgid "Select your preferred language"
+msgstr "Veldu aðaltungumálið þitt"
 
 msgid "You must restart Poedit for this change to take effect."
 msgstr "Þú þarft að endurræsa Poedit til að þessi breyting taki gildi."
@@ -168,11 +169,14 @@ msgstr "Samstilling við %s mistókst."
 msgid "Syncing error"
 msgstr "Villa í samstillingu"
 
-msgid "Downloading translations is disabled in this project."
-msgstr "Ekki er hægt að sækja þýðingar í þessu verki."
+msgid "JSON request error"
+msgstr ""
 
 msgid "Not authorized, please sign in again."
 msgstr "Ekki leyfilegt, skráðu þig aftur inn."
+
+msgid "Downloading translations is disabled in this project."
+msgstr "Ekki er hægt að sækja þýðingar í þessu verki."
 
 msgid ""
 "Crowdin is an online localization management platform and collaborative "
@@ -200,17 +204,17 @@ msgstr "Bíð eftir auðkenningu…"
 msgid "Updating user information…"
 msgstr "Uppfæri upplýsingar um notanda…"
 
-msgid "Signed in as:"
-msgstr "Skráður inn sem:"
-
 msgid "Learn More About Crowdin"
-msgstr "Vita meira um Crowdin"
+msgstr "Fræðast meira um Crowdin"
 
 msgid "Learn more about Crowdin"
-msgstr "Vita meira um Crowdin"
+msgstr "Fræðast meira um Crowdin"
 
 msgid "Sign in to Crowdin"
 msgstr "Skrá inn í Crowdin"
+
+msgid "File"
+msgstr "Skrá"
 
 msgid "Open Crowdin translation"
 msgstr "Opna Crowdin þýðingu"
@@ -221,20 +225,14 @@ msgstr "Verkefni:"
 msgid "Language:"
 msgstr "Tungumál:"
 
-msgid "File:"
-msgstr "Skrá:"
+msgid "Signed in as:"
+msgstr "Skráður inn sem:"
 
 msgid "No translation projects listed in your Crowdin account."
 msgstr "Engin þýðingarverkefni eru skráð á þínu Crowdin svæði."
 
-msgid "This project has no files that can be translated in Poedit."
-msgstr "Þetta verkefni er ekki með neinar skrár sem hægt er að þýða í Poedit."
-
-msgid "This file can only be edited in Crowdin’s web interface."
-msgstr "Þessari skrá er aðeins hægt að breyta á vefsvæði Crowdin."
-
 msgid "Downloading latest translations…"
-msgstr "Næ í nýjustu þýðingar…"
+msgstr "Sæki nýjustu þýðingar…"
 
 msgid "Syncing with Crowdin failed."
 msgstr "Samstilling við Crowdin mistókst."
@@ -252,7 +250,7 @@ msgid "Learn more"
 msgstr "Vita meira"
 
 msgid "Learn More"
-msgstr "Vita meira"
+msgstr "Læra meira"
 
 msgid "&Help"
 msgstr "&Hjálp"
@@ -293,7 +291,7 @@ msgstr "Opna þýðingaskrá"
 msgid "File “%s” doesn’t exist."
 msgstr "Skráin '%s' finnst ekki."
 
-msgid "Poedit is an easy to use translations editor."
+msgid "Poedit is an easy to use translation editor."
 msgstr "Poedit er auðveldur þýðingaritill."
 
 msgid "Catalogs Manager"
@@ -399,15 +397,15 @@ msgstr "Færa allt fremst"
 msgid "PO Translation"
 msgstr "PO þýðing"
 
+msgid ""
+"The file may be either corrupted or in a format not recognized by Poedit."
+msgstr "Skráin gæti verið skemmd eða á sniði sem Poedit þekkir ekki."
+
 msgid "The file cannot be opened."
 msgstr "Ekki hægt að opna þessa skrá."
 
 msgid "Invalid file"
 msgstr "Ógild skrá"
-
-msgid ""
-"The file may be either corrupted or in a format not recognized by Poedit."
-msgstr "Skráin gæti verið skemmd eða á sniði sem Poedit þekkir ekki."
 
 msgid "You can’t drop more than one file on Poedit window."
 msgstr "Þú getur ekki sleppt fleiri en einni skrá í Poedit glugga."
@@ -487,6 +485,25 @@ msgstr ""
 "Ekki var hægt að uppfæra þýðingar úr frumkóða, vegna þess að enginn kóði "
 "fannst á þeim stað sem tilgreindur er í eiginleikum þýðingaskrárinnar."
 
+msgid "Permission denied."
+msgstr "Aðgangi hafnað."
+
+msgid ""
+"You don’t have permission to read source code files from the location "
+"specified in the catalog’s Properties."
+msgstr ""
+"Þú hefur ekki heimild til að lesa grunnkóðaskrár af staðsetningunni sem "
+"tilgreind er í eigindum þýðingaskrárinnar."
+
+#. TRANSLATORS: The System Preferences etc. references macOS system settings and should be translated EXACTLY as in the OS. If you don't use macOS and can't check, leave it untranslated.
+msgid ""
+"If you previously denied access to your files, you can allow it in System "
+"Preferences > Security & Privacy > Privacy > Files & Folders."
+msgstr ""
+"Ef þú hefur áður bannað aðgang að skránum þínu, geturðu heimilað hann í "
+"'Kjörstillingar kerfis > Öryggi og gagnaleynd > Gagnaleynd > Skrár og "
+"möppur'."
+
 msgid "Entries in the catalog are probably incorrect."
 msgstr "Færslur í þýðingaskránni eru líklega rangar."
 
@@ -559,6 +576,13 @@ msgstr ""
 "Ef þú gerðir aðvaranir óvirkar vegna fjölda ábendinga um galla sem reynast "
 "síðan vera réttir, íhugaðu frekar að senda sýnishorn af slíkum skrám til "
 "help@poedit.net svo hægt sé að bæta ábendingarnar."
+
+msgid "Send Feedback"
+msgstr "Senda umsögn"
+
+#. TRANSLATORS: This is a button to send email with feedback when clicked
+msgid "Send feedback"
+msgstr "Senda umsögn"
 
 #, c-format
 msgid "Poedit automatically fixed invalid content in the file “%s”."
@@ -1817,7 +1841,7 @@ msgid "Use custom expression"
 msgstr "Nota sérsniðna segð"
 
 msgid "Learn about plural forms"
-msgstr "Vita meira um fleirtöluform"
+msgstr "Læra meira um fleirtöluform"
 
 msgid "Charset:"
 msgstr "Stafatafla:"
@@ -1863,10 +1887,10 @@ msgid "Also use default keywords for supported languages"
 msgstr "Einnig nota sjálfgefin stikkorð fyrir studd tungumál"
 
 msgid "Learn About Gettext Keywords"
-msgstr "Vita meira um gettext stikkorð"
+msgstr "Læra meira um gettext lykilorð"
 
 msgid "Learn about gettext keywords"
-msgstr "Vita meira um gettext stikkorð"
+msgstr "Læra meira um gettext lykilorð"
 
 msgid "Update summary"
 msgstr "Samantekt uppfærslu"
@@ -1912,8 +1936,8 @@ msgstr "Uppfæra úr kóða"
 msgid "Update from Code"
 msgstr "Uppfæra úr kóða"
 
-msgid "Update catalog - synchronize it with sources"
-msgstr "Uppfæra þýðingaskrár - samræma við upprunaskrár"
+msgid "Update from source code"
+msgstr "Uppfæra úr grunnkóða"
 
 msgid "Sidebar"
 msgstr "Hliðarspjald"
@@ -2146,9 +2170,6 @@ msgstr "&Eyða"
 
 msgid "&Quit"
 msgstr "&Hætta"
-
-msgid "File"
-msgstr "Skrá"
 
 msgid "Help"
 msgstr "Hjálp"

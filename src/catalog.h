@@ -1,7 +1,7 @@
 /*
  *  This file is part of Poedit (https://poedit.net)
  *
- *  Copyright (C) 1999-2019 Vaclav Slavik
+ *  Copyright (C) 1999-2020 Vaclav Slavik
  *
  *  Permission is hereby granted, free of charge, to any person obtaining a
  *  copy of this software and associated documentation files (the "Software"),
@@ -550,11 +550,7 @@ class Catalog
 
         /// Change the catalog's language and update headers accordingly
         virtual void SetLanguage(Language lang);
-
-        /// Is the PO file from Crowdin, i.e. sync-able?
-        bool IsFromCrowdin() const
-            { return m_header.HasHeader("X-Crowdin-Project") && m_header.HasHeader("X-Crowdin-File"); }
-
+            
         /// Returns true if the catalog contains obsolete entries (~.*)
         virtual bool HasDeletedItems() const = 0;
 
@@ -580,7 +576,7 @@ class Catalog
 
         /// Validates correctness of the translation by running msgfmt
         /// Returns number of errors (i.e. 0 if no errors).
-        virtual ValidationResults Validate() = 0;
+        virtual ValidationResults Validate(bool wasJustLoaded = false) = 0;
 
         void AttachCloudSync(std::shared_ptr<CloudSyncDestination> c) { m_cloudSync = c; }
         std::shared_ptr<CloudSyncDestination> GetCloudSync() const { return m_cloudSync; }

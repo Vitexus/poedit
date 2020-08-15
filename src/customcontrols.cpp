@@ -1,7 +1,7 @@
 /*
  *  This file is part of Poedit (https://poedit.net)
  *
- *  Copyright (C) 2015-2019 Vaclav Slavik
+ *  Copyright (C) 2015-2020 Vaclav Slavik
  *
  *  Permission is hereby granted, free of charge, to any person obtaining a
  *  copy of this software and associated documentation files (the "Software"),
@@ -31,7 +31,11 @@
 #include "utility.h"
 
 #include <wx/app.h>
+#include <wx/artprov.h>
 #include <wx/clipbrd.h>
+#include <wx/dcmemory.h>
+#include <wx/dcclient.h>
+#include <wx/graphics.h>
 #include <wx/menu.h>
 #include <wx/settings.h>
 #include <wx/sizer.h>
@@ -270,20 +274,13 @@ ExplanationLabel::ExplanationLabel(wxWindow *parent, const wxString& label)
     #endif
 #endif
 #ifndef __WXGTK__
-    SetForegroundColour(GetTextColor());
+    ColorScheme::SetupWindowColors(this, [=]
+    {
+        SetForegroundColour(GetTextColor());
+    });
 #endif
 }
 
-wxColour ExplanationLabel::GetTextColor()
-{
-#if defined(__WXOSX__)
-    return wxColour("#777777");
-#elif defined(__WXGTK__)
-    return wxSystemSettings::GetColour(wxSYS_COLOUR_WINDOWTEXT);
-#else
-    return wxSystemSettings::GetColour(wxSYS_COLOUR_GRAYTEXT);
-#endif
-}
 
 SecondaryLabel::SecondaryLabel(wxWindow *parent, const wxString& label)
     : wxStaticText(parent, wxID_ANY, label)
@@ -298,7 +295,10 @@ SecondaryLabel::SecondaryLabel(wxWindow *parent, const wxString& label)
     #endif
 #endif
 #ifndef __WXGTK__
-    SetForegroundColour(GetTextColor());
+    ColorScheme::SetupWindowColors(this, [=]
+    {
+        SetForegroundColour(GetTextColor());
+    });
 #endif
 }
 
@@ -436,7 +436,7 @@ void ActivityIndicator::StopWithError(const wxString& msg)
     m_running = false;
 
     m_spinner->Stop();
-    m_label->SetForegroundColour(*wxRED);
+    m_label->SetForegroundColour(ColorScheme::Get(Color::ErrorText));
     m_label->SetLabel(msg);
     m_label->SetToolTip(msg);
 
@@ -449,12 +449,145 @@ void ActivityIndicator::StopWithError(const wxString& msg)
 
 
 
-ImageButton::ImageButton(wxWindow *parent, const wxBitmap& bmp)
-    : wxBitmapButton(parent, wxID_ANY, bmp, wxDefaultPosition, wxDefaultSize, wxBORDER_NONE | wxBU_EXACTFIT)
+ImageButton::ImageButton(wxWindow *parent, const wxString& bitmapName)
+    : wxBitmapButton(parent, wxID_ANY,
+                     bitmapName.empty() ? wxNullBitmap : wxArtProvider::GetBitmap(bitmapName),
+                     wxDefaultPosition, wxDefaultSize, wxBORDER_NONE | wxBU_EXACTFIT),
+      m_bitmapName(bitmapName)
 {
 #ifdef __WXOSX__
     // don't light up the background when clicked:
     NSButton *view = (NSButton*)GetHandle();
     view.buttonType = NSMomentaryChangeButton;
+#else
+    // refresh template icons on theme change (macOS handles automatically):
+    if (bitmapName.EndsWith("Template"))
+    {
+        ColorScheme::SetupWindowColors(this, [=]
+        {
+            SetBitmap(wxArtProvider::GetBitmap(m_bitmapName));
+        });
+    }
 #endif
+}
+
+
+StaticBitmap::StaticBitmap(wxWindow *parent, const wxString& bitmapName)
+    : wxStaticBitmap(parent, wxID_ANY,
+                     bitmapName.empty() ? wxNullBitmap : wxArtProvider::GetBitmap(bitmapName)),
+      m_bitmapName(bitmapName)
+{
+#ifndef __WXOSX__
+    // refresh template icons on theme change (macOS handles automatically):
+    if (bitmapName.EndsWith("Template"))
+    {
+        ColorScheme::SetupWindowColors(this, [=]
+        {
+            SetBitmap(wxArtProvider::GetBitmap(m_bitmapName));
+        });
+    }
+#endif
+}
+
+void StaticBitmap::SetBitmapName(const wxString& bitmapName)
+{
+    m_bitmapName = bitmapName;
+    SetBitmap(wxArtProvider::GetBitmap(m_bitmapName));
+}
+
+
+AvatarIcon::AvatarIcon(wxWindow *parent, const wxSize& size) : wxWindow(parent, wxID_ANY, wxDefaultPosition, size)
+{
+    InitForSize();
+    ColorScheme::RefreshOnChange(this);
+
+    Bind(wxEVT_PAINT, &AvatarIcon::OnPaint, this);
+}
+
+void AvatarIcon::SetUserName(const wxString& name)
+{
+    m_placeholder.clear();
+    for (auto& s: wxSplit(name, ' '))
+    {
+        if (!s.empty())
+            m_placeholder += s[0];
+    }
+    Refresh();
+}
+
+void AvatarIcon::LoadIcon(const wxFileName& f)
+{
+#ifdef __WXOSX__
+    NSString *path = str::to_NS(f.GetFullPath());
+    NSImage *img = [[NSImage alloc] initWithContentsOfFile:path];
+    if (img != nil)
+        m_bitmap = wxBitmap(img);
+#else
+    wxLogNull null;
+    wxImage img(f.GetFullPath());
+    if (img.IsOk())
+        m_bitmap = wxBitmap(img);
+#endif
+
+    Refresh();
+}
+
+void AvatarIcon::InitForSize()
+{
+    auto size = GetSize();
+    wxBitmap bmp(size);
+    wxMemoryDC dc;
+    dc.SelectObject(bmp);
+    dc.SetBackground(*wxWHITE_BRUSH);
+    dc.Clear();
+    dc.SetBrush(*wxBLACK_BRUSH);
+    dc.SetPen(*wxBLACK_PEN);
+    wxRect r(wxPoint(0,0), size);
+    r.Deflate(PX(3));
+    dc.DrawEllipse(r);
+    dc.SelectObject(wxNullBitmap);
+    m_clipping = wxRegion(bmp, *wxWHITE);
+
+    wxFont font = wxSystemSettings::GetFont(wxSYS_DEFAULT_GUI_FONT);
+    font.SetWeight(wxFONTWEIGHT_BOLD);
+    font.SetPixelSize(wxSize(0, size.y / 4));
+    SetFont(font);
+}
+
+void AvatarIcon::OnPaint(wxPaintEvent&)
+{
+    auto r = GetClientRect();
+    r.Deflate(PX(2));
+
+    wxPaintDC dc(this);
+    std::unique_ptr<wxGraphicsContext> gc(wxGraphicsContext::Create(dc));
+    gc->SetAntialiasMode(wxANTIALIAS_DEFAULT);
+    gc->SetInterpolationQuality(wxINTERPOLATION_BEST);
+
+    gc->Clip(m_clipping);
+
+    if (m_bitmap.IsOk())
+    {
+        gc->DrawBitmap(m_bitmap, r.x, r.y, r.width, r.height);
+    }
+    else
+    {
+        gc->SetBrush(wxColour(128,128,128,50));
+        gc->SetPen(wxNullPen);
+        gc->SetFont(GetFont(), ColorScheme::Get(Color::SecondaryLabel));
+
+        gc->DrawEllipse(r.x, r.y, r.width, r.height);
+
+        wxDouble tw, th;
+        gc->GetTextExtent(m_placeholder, &tw, &th);
+        gc->DrawText(m_placeholder, r.x + (r.width - tw) / 2, r.y + (r.height - th) / 2);
+    }
+
+    gc->ResetClip();
+
+    // mark out jagged, pixelated clipping due to low-resolution wxRegion:
+    auto outline = GetBackgroundColour();
+    outline = outline.ChangeLightness(ColorScheme::GetAppMode() == ColorScheme::Light ? 98 : 110);
+    gc->SetPen(wxPen(outline, PX(2)));
+    gc->DrawEllipse(r.x + 0.5, r.y + 0.5, r.width, r.height);
 }

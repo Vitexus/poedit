@@ -1,7 +1,7 @@
 /*
  *  This file is part of Poedit (https://poedit.net)
  *
- *  Copyright (C) 2015-2019 Vaclav Slavik
+ *  Copyright (C) 2015-2020 Vaclav Slavik
  *
  *  Permission is hereby granted, free of charge, to any person obtaining a
  *  copy of this software and associated documentation files (the "Software"),
@@ -26,9 +26,10 @@
 #ifndef Poedit_crowdin_gui_h
 #define Poedit_crowdin_gui_h
 
+#include "catalog.h"
+
 #ifdef HAVE_HTTP_CLIENT
 
-#include "catalog.h"
 #include "cloud_sync.h"
 #include "customcontrols.h"
 
@@ -76,6 +77,7 @@ protected:
     wxBoxSizer *m_loginInfo;
     wxButton *m_signIn, *m_signOut;
     wxString m_userName, m_userLogin;
+    std::string m_userAvatar;
 };
 
 
@@ -83,7 +85,7 @@ class CrowdinSyncDestination : public CloudSyncDestination
 {
 public:
     wxString GetName() const override { return "Crowdin"; }
-
+    bool AuthIfNeeded(wxWindow* parent) override;
     dispatch::future<void> Upload(CatalogPtr file) override;
 };
 
@@ -95,6 +97,12 @@ public:
     LearnAboutCrowdinLink(wxWindow *parent, const wxString& text = "");
 };
 
+
+/// Can given file by synced to Crowdin, i.e. does it come from Crowdin and does it have required metadata?
+bool CanSyncWithCrowdin(CatalogPtr cat);
+
+/// Was the file opened directly from Crowdin and should be synced when the user saves it?
+bool ShouldSyncToCrowdinAutomatically(CatalogPtr cat);
 
 /**
     Let the user choose a Crowdin file, download it and open in Poedit.
@@ -114,6 +122,12 @@ void CrowdinOpenFile(wxWindow *parent, std::function<void(wxString)> onLoaded);
 void CrowdinSyncFile(wxWindow *parent, std::shared_ptr<Catalog> catalog,
                      std::function<void(std::shared_ptr<Catalog>)> onDone);
 
-#endif // HAVE_HTTP_CLIENT
+#else // !HAVE_HTTP_CLIENT
+
+// convenience stubs to avoid additional checks all over other code:
+inline bool CanSyncWithCrowdin(CatalogPtr) { return false; }
+inline bool ShouldSyncToCrowdinAutomatically(CatalogPtr) { return false; }
+
+#endif // !HAVE_HTTP_CLIENT
 
 #endif // Poedit_crowdin_gui_h

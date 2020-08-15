@@ -1,7 +1,7 @@
 /*
  *  This file is part of Poedit (https://poedit.net)
  *
- *  Copyright (C) 2001-2019 Vaclav Slavik
+ *  Copyright (C) 2001-2020 Vaclav Slavik
  *
  *  Permission is hereby granted, free of charge, to any person obtaining a
  *  copy of this software and associated documentation files (the "Software"),
@@ -48,6 +48,10 @@
 
 #ifdef __WXMSW__
 #include <wx/msw/uxtheme.h>
+#endif
+
+#if !wxCHECK_VERSION(3,1,1)
+    #define wxGETTEXT_IN_CONTEXT(ctxt, s) wxGetTranslation((s))
 #endif
 
 #include "catalog.h"
@@ -110,8 +114,9 @@ ManagerFrame::ManagerFrame() :
     m_listCat = XRCCTRL(*panel, "prj_files", wxListCtrl);
     m_splitter = XRCCTRL(*panel, "manager_splitter", wxSplitterWindow);
 
-    wxImageList *list = new wxImageList(PX(16), PX(16));
-    list->Add(wxArtProvider::GetBitmap("poedit-status-cat-no"));
+    auto bmp_no = wxArtProvider::GetBitmap("poedit-status-cat-no");
+    wxImageList *list = new wxImageList(bmp_no.GetScaledWidth(), bmp_no.GetScaledHeight());
+    list->Add(bmp_no);
     list->Add(wxArtProvider::GetBitmap("poedit-status-cat-mid"));
     list->Add(wxArtProvider::GetBitmap("poedit-status-cat-ok"));
     m_listCat->AssignImageList(list, wxIMAGE_LIST_SMALL);
@@ -271,7 +276,7 @@ void ManagerFrame::UpdateListCat(int id)
     m_listCat->InsertColumn(0, _("Catalog"));
     m_listCat->InsertColumn(1, _("Total"));
     m_listCat->InsertColumn(2, _("Untrans"));
-    m_listCat->InsertColumn(3, _("Needs Work"));
+    m_listCat->InsertColumn(3, wxGETTEXT_IN_CONTEXT("column/row header", "Needs Work"));
     m_listCat->InsertColumn(4, _("Errors"));
     m_listCat->InsertColumn(5, _("Last modified"));
 

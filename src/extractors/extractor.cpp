@@ -1,7 +1,7 @@
 /*
  *  This file is part of Poedit (https://poedit.net)
  *
- *  Copyright (C) 2000-2019 Vaclav Slavik
+ *  Copyright (C) 2000-2020 Vaclav Slavik
  *
  *  Permission is hereby granted, free of charge, to any person obtaining a
  *  copy of this software and associated documentation files (the "Software"),
@@ -78,6 +78,13 @@ private:
     std::vector<PathToMatch> paths;
 };
 
+inline void CheckReadPermissions(const wxString& basepath, const wxString& path)
+{
+    if (!wxIsReadable(basepath + path))
+    {
+        throw ExtractionException(ExtractionError::PermissionDenied);
+    }
+}
 
 inline bool IsVCSDir(const wxString& d)
 {
@@ -92,7 +99,10 @@ int FindInDir(const wxString& basepath, const wxString& dirname, const PathsToMa
         return 0;
 
     wxDir dir(basepath + dirname);
-    if (!dir.IsOpened()) 
+
+    CheckReadPermissions(basepath, dirname);
+
+    if (!dir.IsOpened())
         return 0;
 
     bool cont;
@@ -108,6 +118,7 @@ int FindInDir(const wxString& basepath, const wxString& dirname, const PathsToMa
         if (excludedPaths.MatchesFile(f))
             continue;
 
+        CheckReadPermissions(basepath, f);
         wxLogTrace("poedit.extractor", "  - %s", f);
         output.push_back(f);
         found++;
@@ -125,6 +136,7 @@ int FindInDir(const wxString& basepath, const wxString& dirname, const PathsToMa
         if (excludedPaths.MatchesFile(f))
             continue;
 
+        CheckReadPermissions(basepath, f);
         found += FindInDir(basepath, f, excludedPaths, output);
     }
 
@@ -154,12 +166,20 @@ Extractor::FilesList Extractor::CollectAllFiles(const SourceCodeSpec& sources)
                 wxLogTrace("poedit.extractor", "no files found in '%s'", path);
                 continue;
             }
+            CheckReadPermissions(basepath, path);
             wxLogTrace("poedit.extractor", "  - %s", path);
             output.push_back(path);
         }
-        else if (!FindInDir(basepath, path, excludedPaths, output))
+        else if (wxFileName::DirExists(basepath + path))
         {
-            wxLogTrace("poedit.extractor", "no files found in '%s'", path);
+            if (!FindInDir(basepath, path, excludedPaths, output))
+            {
+                wxLogTrace("poedit.extractor", "no files found in '%s'", path);
+            }
+        }
+        else
+        {
+            throw ExtractionException(ExtractionError::NoSourcesFound);
         }
     }
 
@@ -216,7 +236,7 @@ wxString Extractor::ExtractWithAll(TempDirectory& tmpdir,
 
     if (subPots.empty())
     {
-        return "";
+        throw ExtractionException(ExtractionError::NoSourcesFound);
     }
     else if (subPots.size() == 1)
     {
@@ -315,7 +335,7 @@ wxString Extractor::ConcatCatalogs(TempDirectory& tmpdir, const std::vector<wxSt
     {
         wxLogError(_("Failed command: %s"), cmd.c_str());
         wxLogError(_("Failed to merge gettext catalogs."));
-        return "";
+        throw ExtractionException(ExtractionError::Unspecified);
     }
 
     return outfile;

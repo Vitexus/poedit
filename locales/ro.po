@@ -2,9 +2,9 @@ msgid ""
 msgstr ""
 "Project-Id-Version: poedit\n"
 "Report-Msgid-Bugs-To: help@poedit.net\n"
-"POT-Creation-Date: 2018-10-07 13:14+0200\n"
-"PO-Revision-Date: 2019-01-14 16:30\n"
-"Last-Translator: vslavik <vaclav@slavik.io>\n"
+"POT-Creation-Date: 2020-07-18 14:48+0200\n"
+"PO-Revision-Date: 2020-07-18 12:47\n"
+"Last-Translator: \n"
 "Language-Team: Romanian\n"
 "Language: ro_RO\n"
 "MIME-Version: 1.0\n"
@@ -12,10 +12,11 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=3; plural=(n==1 ? 0 : (n==0 || (n%100>0 && n"
 "%100<20)) ? 1 : 2);\n"
-"X-Generator: crowdin.com\n"
 "X-Crowdin-Project: poedit\n"
+"X-Crowdin-Project-ID: 53425\n"
 "X-Crowdin-Language: ro\n"
 "X-Crowdin-File: /locales/poedit.pot\n"
+"X-Crowdin-File-ID: 3\n"
 
 msgid "Hide this notification message"
 msgstr "Ascunde acest mesaj de informare"
@@ -51,7 +52,7 @@ msgstr "„%s” nu este un fișier POT valid."
 
 #, c-format
 msgid "Malformed header: “%s”"
-msgstr "Antet malformat: „%s”"
+msgstr "Antetului incorect format: „%s”"
 
 msgid "PO Translation Files"
 msgstr "Fișiere de traducere PO"
@@ -67,13 +68,13 @@ msgstr "Toate fișierele pentru traducere"
 
 #, c-format
 msgid "File “%s” is in unsupported format."
-msgstr "Fișierul “%s” se încadrează într-un format nesuportat."
+msgstr "Fișierul „%s” se încadrează într-un format nesuportat."
 
 #, c-format
 msgid "%i line of file “%s” was not loaded correctly."
 msgid_plural "%i lines of file “%s” were not loaded correctly."
 msgstr[0] "%i linia de fișier „%s” nu a fost încărcată corect."
-msgstr[1] "%i liniile de fișier „%s” nu a fost încărcată corect."
+msgstr[1] "%i liniile de fișier „%s” nu au fost încărcate corect."
 msgstr[2] "%i liniile de fișier „%s” nu au fost încărcate corect."
 
 #, c-format
@@ -150,11 +151,11 @@ msgstr "Marcaj afectat în șirul de traducere."
 msgid "(Use default language)"
 msgstr "(Folosește limba implicită)"
 
-msgid "Select your preferred language"
-msgstr "Selectați limba preferată"
-
 msgid "Language selection"
 msgstr "Selectare limbă"
+
+msgid "Select your preferred language"
+msgstr "Selectați limba preferată"
 
 msgid "You must restart Poedit for this change to take effect."
 msgstr "Redeschideți Poedit pentru ca această schimbare să intre în vigoare."
@@ -175,11 +176,14 @@ msgstr "Sincronizarea cu %s a eșuat."
 msgid "Syncing error"
 msgstr "Eroare sincronizare"
 
-msgid "Downloading translations is disabled in this project."
-msgstr "Descărcare traduceri este dezactivată în acest proiect."
+msgid "JSON request error"
+msgstr ""
 
 msgid "Not authorized, please sign in again."
 msgstr "Neautorizat, vă rugăm să faceţi \"sign in\" din nou."
+
+msgid "Downloading translations is disabled in this project."
+msgstr "Descărcare traduceri este dezactivată în acest proiect."
 
 msgid ""
 "Crowdin is an online localization management platform and collaborative "
@@ -207,9 +211,6 @@ msgstr "Autentificare în așteptare…"
 msgid "Updating user information…"
 msgstr "Actualizarea informațiilor utilizatorului…"
 
-msgid "Signed in as:"
-msgstr "Autentificat ca:"
-
 msgid "Learn More About Crowdin"
 msgstr "Află mai multe despre Crowdin"
 
@@ -218,6 +219,9 @@ msgstr "Află mai multe despre Crowdin"
 
 msgid "Sign in to Crowdin"
 msgstr "Autentificare pe Crowdin"
+
+msgid "File"
+msgstr "Fișier"
 
 msgid "Open Crowdin translation"
 msgstr "Deschide traducere Crowdin"
@@ -228,17 +232,11 @@ msgstr "Proiect:"
 msgid "Language:"
 msgstr "Limba:"
 
-msgid "File:"
-msgstr "Fişier:"
+msgid "Signed in as:"
+msgstr "Autentificat ca:"
 
 msgid "No translation projects listed in your Crowdin account."
 msgstr "Nu sunt proiecte de traducere în contul tău Crowdin."
-
-msgid "This project has no files that can be translated in Poedit."
-msgstr "Acest proiect nu are fișiere care pot fi traduse în Poedit."
-
-msgid "This file can only be edited in Crowdin’s web interface."
-msgstr "Acest fișier poate fi editat doar în interfața web Crowdin."
 
 msgid "Downloading latest translations…"
 msgstr "Se descarcă ultimele traduceri…"
@@ -300,7 +298,7 @@ msgstr "Deschide catalog"
 msgid "File “%s” doesn’t exist."
 msgstr "Fișierul „%s” nu există."
 
-msgid "Poedit is an easy to use translations editor."
+msgid "Poedit is an easy to use translation editor."
 msgstr "Podit este un editor de traduceri ușor de folosit."
 
 msgid "Catalogs Manager"
@@ -406,16 +404,16 @@ msgstr "Aduce tot in fata"
 msgid "PO Translation"
 msgstr "Traducere PO"
 
+msgid ""
+"The file may be either corrupted or in a format not recognized by Poedit."
+msgstr ""
+"Fişierul poate sa fie corupt sau într-un format nerecunoscut de Poedit."
+
 msgid "The file cannot be opened."
 msgstr "Imposibil de deschis fișierul."
 
 msgid "Invalid file"
 msgstr "Fişier nevalid"
-
-msgid ""
-"The file may be either corrupted or in a format not recognized by Poedit."
-msgstr ""
-"Fişierul poate sa fie corupt sau într-un format nerecunoscut de Poedit."
 
 msgid "You can’t drop more than one file on Poedit window."
 msgstr "Nu puteți să lăsați mai mult de un fișier în fereastra Poedit."
@@ -495,6 +493,25 @@ msgstr ""
 "Versiunea nu a putut fi actualizata la codul sursă, deoarece codul nu a fost "
 "găsit în locaţia specificată în catalog pe proprietăţi."
 
+msgid "Permission denied."
+msgstr "Permisiune refuzată."
+
+msgid ""
+"You don’t have permission to read source code files from the location "
+"specified in the catalog’s Properties."
+msgstr ""
+"Nu aveți permisiunea de a citi fișierele codului sursă din locația "
+"specificată în proprietățile catalogului."
+
+#. TRANSLATORS: The System Preferences etc. references macOS system settings and should be translated EXACTLY as in the OS. If you don't use macOS and can't check, leave it untranslated.
+msgid ""
+"If you previously denied access to your files, you can allow it in System "
+"Preferences > Security & Privacy > Privacy > Files & Folders."
+msgstr ""
+"Dacă înainte nu aveați accesul la fișiere, acum îl puteți obține mergând în "
+"Preferințe Sistem > Securitate & Confidențialitate > Confidențialitate > "
+"Fișiere & Foldere."
+
 msgid "Entries in the catalog are probably incorrect."
 msgstr "Intrările din catalog sînt probabil incorecte."
 
@@ -573,6 +590,13 @@ msgstr ""
 "Dacă aţi dezactivat aceste notificari din cauza pozitive false excesive, vă "
 "rugăm să ia în considerare trimiterea un exemplu de fişier pentru a "
 "help@poedit.net pentru a ajuta la îmbunătăţirea ei."
+
+msgid "Send Feedback"
+msgstr "Trimiteți feedback"
+
+#. TRANSLATORS: This is a button to send email with feedback when clicked
+msgid "Send feedback"
+msgstr "Trimiteți feedback"
 
 #, c-format
 msgid "Poedit automatically fixed invalid content in the file “%s”."
@@ -807,11 +831,11 @@ msgid ""
 "POT files are only templates and don’t contain any translations themselves.\n"
 "To make a translation, create a new PO file based on the template."
 msgstr ""
-"Dosarele POT sunt doar template-uri și nu conțin traduceri. \n"
-"To fa o traducere, crează un fișier PO nou bazat pe șablon."
+"Fișierele POT sunt doar șabloane și nu conțin traduceri. \n"
+"Pentru a face o traducere, creați un fișier PO nou bazat pe acest șablon."
 
 msgid "Create New Translation"
-msgstr "Creați Traducere Nouă"
+msgstr "Creați traducere nouă"
 
 msgid "Create new translation"
 msgstr "Creați traducere nouă"
@@ -859,7 +883,7 @@ msgstr "Text sursă"
 
 #, c-format
 msgid "Translation — %s"
-msgstr "Traducere-%s"
+msgstr "Traducere — %s"
 
 msgid "ID"
 msgstr "ID"
@@ -908,10 +932,10 @@ msgid "Options"
 msgstr "Opţiuni"
 
 msgid "Ignore case"
-msgstr "Ignoră caseta"
+msgstr "Ignoră majusculele"
 
 msgid "Wrap around"
-msgstr "Căutare similară"
+msgstr "Continuă căutarea de la început"
 
 msgid "Whole words only"
 msgstr "Doar cuvinte întregi"
@@ -954,7 +978,7 @@ msgid "Cannot execute program: %s"
 msgstr "Nu se poate executa programul: %s"
 
 msgid "Language Code or Name (e.g. en_GB)"
-msgstr "Cod limbă sau nume (ex. en_GB)"
+msgstr "Cod limbă sau nume (ex. ro_RO)"
 
 msgid "Translation Language"
 msgstr "Limba Traducere"
@@ -1928,8 +1952,8 @@ msgstr "Actualizare din surse"
 msgid "Update from Code"
 msgstr "Actualizare din surse"
 
-msgid "Update catalog - synchronize it with sources"
-msgstr "Actualizare catalog - sincronizează-l cu sursele"
+msgid "Update from source code"
+msgstr "Actualizare din surse"
 
 msgid "Sidebar"
 msgstr "Bară laterală"
@@ -2058,7 +2082,7 @@ msgstr ""
 "un fișier POT:"
 
 msgid "Update from POT"
-msgstr "Actualizare din POT"
+msgstr "Actualizează din POT"
 
 msgid "Take translatable strings from an existing POT template."
 msgstr "Ia șirurile traductibile de pe un șablon POT existent."
@@ -2162,9 +2186,6 @@ msgstr "&Șterge"
 
 msgid "&Quit"
 msgstr "&Renunță"
-
-msgid "File"
-msgstr "Fișier"
 
 msgid "Help"
 msgstr "Ajutor"

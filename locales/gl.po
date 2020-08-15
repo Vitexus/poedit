@@ -2,19 +2,20 @@ msgid ""
 msgstr ""
 "Project-Id-Version: poedit\n"
 "Report-Msgid-Bugs-To: help@poedit.net\n"
-"POT-Creation-Date: 2018-10-07 13:14+0200\n"
-"PO-Revision-Date: 2018-10-07 10:41\n"
-"Last-Translator: vslavik <vaclav@slavik.io>\n"
+"POT-Creation-Date: 2020-07-18 14:48+0200\n"
+"PO-Revision-Date: 2020-07-18 12:46\n"
+"Last-Translator: \n"
 "Language-Team: Galician\n"
 "Language: gl_ES\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
-"X-Generator: crowdin.com\n"
 "X-Crowdin-Project: poedit\n"
+"X-Crowdin-Project-ID: 53425\n"
 "X-Crowdin-Language: gl\n"
 "X-Crowdin-File: /locales/poedit.pot\n"
+"X-Crowdin-File-ID: 3\n"
 
 msgid "Hide this notification message"
 msgstr "Ocultar esta mensaxe de notificación"
@@ -147,11 +148,11 @@ msgstr "A cadea a traducir ten unha marcación incorrecta."
 msgid "(Use default language)"
 msgstr "(Usar idioma predeterminado)"
 
-msgid "Select your preferred language"
-msgstr "Seleccione o seu idioma preferido"
-
 msgid "Language selection"
 msgstr "Selección de idioma"
+
+msgid "Select your preferred language"
+msgstr "Seleccione o seu idioma preferido"
 
 msgid "You must restart Poedit for this change to take effect."
 msgstr "Debe reiniciar Poedit para que este cambio teña efecto."
@@ -172,11 +173,14 @@ msgstr "Produciuse un fallo ao sincronizar con %s."
 msgid "Syncing error"
 msgstr "Erro ao sincronizar"
 
-msgid "Downloading translations is disabled in this project."
-msgstr "A descarga de traducións está deshabilitada neste proxecto."
+msgid "JSON request error"
+msgstr ""
 
 msgid "Not authorized, please sign in again."
 msgstr "Acción non autorizada; accede de novo."
+
+msgid "Downloading translations is disabled in this project."
+msgstr "A descarga de traducións está deshabilitada neste proxecto."
 
 msgid ""
 "Crowdin is an online localization management platform and collaborative "
@@ -204,9 +208,6 @@ msgstr "Agardando a autenticación…"
 msgid "Updating user information…"
 msgstr "Actualizando a información do usuario…"
 
-msgid "Signed in as:"
-msgstr "Sesión iniciada como:"
-
 msgid "Learn More About Crowdin"
 msgstr "Máis información sobre Crowdin"
 
@@ -215,6 +216,9 @@ msgstr "Máis información sobre Crowdin"
 
 msgid "Sign in to Crowdin"
 msgstr "Acceder a Crowdin"
+
+msgid "File"
+msgstr "Ficheiro"
 
 msgid "Open Crowdin translation"
 msgstr "Abrir tradución de Crowdin"
@@ -225,17 +229,11 @@ msgstr "Proxecto:"
 msgid "Language:"
 msgstr "Idioma:"
 
-msgid "File:"
-msgstr "Ficheiro:"
+msgid "Signed in as:"
+msgstr "Sesión iniciada como:"
 
 msgid "No translation projects listed in your Crowdin account."
 msgstr "Ningún proxecto de tradución listado na súa conta de Crowdin."
-
-msgid "This project has no files that can be translated in Poedit."
-msgstr "Este proxecto non ten ficheiros para traducir en Poedit."
-
-msgid "This file can only be edited in Crowdin’s web interface."
-msgstr "Este ficheiro só se pode editar desde a interface web de Crowdin."
 
 msgid "Downloading latest translations…"
 msgstr "Descargando as traducións máis recentes…"
@@ -297,7 +295,7 @@ msgstr "Abrir catálogo"
 msgid "File “%s” doesn’t exist."
 msgstr "O ficheiro «%s» non existe."
 
-msgid "Poedit is an easy to use translations editor."
+msgid "Poedit is an easy to use translation editor."
 msgstr "Poedit é un editor de traducións fácil de usar."
 
 msgid "Catalogs Manager"
@@ -403,16 +401,16 @@ msgstr "Traer todo á fronte"
 msgid "PO Translation"
 msgstr "Tradución PO"
 
+msgid ""
+"The file may be either corrupted or in a format not recognized by Poedit."
+msgstr ""
+"Pode ser que o ficheiro estea danado ou nun formato que Poedit non recoñece."
+
 msgid "The file cannot be opened."
 msgstr "Non se pode abrir o ficheiro."
 
 msgid "Invalid file"
 msgstr "Ficheiro non válido"
-
-msgid ""
-"The file may be either corrupted or in a format not recognized by Poedit."
-msgstr ""
-"Pode ser que o ficheiro estea danado ou nun formato que Poedit non recoñece."
 
 msgid "You can’t drop more than one file on Poedit window."
 msgstr "Non pode arrastrar máis dun ficheiro a unha xanela de Poedit."
@@ -493,6 +491,25 @@ msgstr ""
 "se atopou tal código na localización especificada nas propiedades do "
 "catálogo."
 
+msgid "Permission denied."
+msgstr "Permiso denegado."
+
+msgid ""
+"You don’t have permission to read source code files from the location "
+"specified in the catalog’s Properties."
+msgstr ""
+"Non ten permisos para ler o código fonte na localización indicada nas "
+"Propiedades do catálogo."
+
+#. TRANSLATORS: The System Preferences etc. references macOS system settings and should be translated EXACTLY as in the OS. If you don't use macOS and can't check, leave it untranslated.
+msgid ""
+"If you previously denied access to your files, you can allow it in System "
+"Preferences > Security & Privacy > Privacy > Files & Folders."
+msgstr ""
+"Se anteriormente denegou o acceso aos seus ficheiros, pode cambialo nas "
+"Preferencias do sistema > Seguranza e privacidade > Privacidade > Ficheiros "
+"e cartafoles."
+
 msgid "Entries in the catalog are probably incorrect."
 msgstr "Probabelmente as entradas do catálogo sexan incorrectas."
 
@@ -569,6 +586,13 @@ msgid ""
 msgstr ""
 "Se desactivou os avisos polo exceso de falsos positivos, considere enviarnos "
 "un ficheiro de mostra a help@poedit.net para axudar a melloralo."
+
+msgid "Send Feedback"
+msgstr "Enviar opinión"
+
+#. TRANSLATORS: This is a button to send email with feedback when clicked
+msgid "Send feedback"
+msgstr "Enviar opinión"
 
 #, c-format
 msgid "Poedit automatically fixed invalid content in the file “%s”."
@@ -1928,8 +1952,8 @@ msgstr "Actualizar desde o código"
 msgid "Update from Code"
 msgstr "Actualizar desde o código"
 
-msgid "Update catalog - synchronize it with sources"
-msgstr "Actualizar catálogo - sincronizalo coas súas fontes"
+msgid "Update from source code"
+msgstr "Actualizar desde o código fonte"
 
 msgid "Sidebar"
 msgstr "Barra lateral"
@@ -2159,9 +2183,6 @@ msgstr "&Eliminar"
 
 msgid "&Quit"
 msgstr "&Saír"
-
-msgid "File"
-msgstr "Ficheiro"
 
 msgid "Help"
 msgstr "Axuda"

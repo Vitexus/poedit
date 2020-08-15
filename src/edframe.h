@@ -1,7 +1,7 @@
 /*
  *  This file is part of Poedit (https://poedit.net)
  *
- *  Copyright (C) 1999-2019 Vaclav Slavik
+ *  Copyright (C) 1999-2020 Vaclav Slavik
  *
  *  Permission is hereby granted, free of charge, to any person obtaining a
  *  copy of this software and associated documentation files (the "Software"),
@@ -38,6 +38,7 @@ class WXDLLIMPEXP_FWD_CORE wxSplitterWindow;
 class WXDLLIMPEXP_FWD_CORE wxSplitterEvent;
 
 #include "catalog.h"
+#include "catalog_po.h"
 #include "gexecute.h"
 #include "edlistctrl.h"
 #include "edapp.h"
@@ -47,6 +48,7 @@ class WXDLLIMPEXP_FWD_CORE wxSplitterEvent;
   typedef wxFrameWithWindows10Menubar PoeditFrameBase;
 #else
   typedef wxFrame PoeditFrameBase;
+  #define FindFocusNoMenu() wxWindow::FindFocus()
 #endif
 
 class PoeditFrame;
@@ -227,7 +229,7 @@ class PoeditFrame : public PoeditFrameBase
         // navigation to another item in the list
         typedef bool (*NavigatePredicate)(const CatalogItemPtr& item);
         int NavigateGetNextItem(const int start, int step, NavigatePredicate predicate, bool wrap, CatalogItemPtr *out_item);
-        void Navigate(int step, NavigatePredicate predicate, bool wrap);
+        bool Navigate(int step, NavigatePredicate predicate, bool wrap);
         void OnDoneAndNext(wxCommandEvent&);
         void OnPrev(wxCommandEvent&);
         void OnNext(wxCommandEvent&);
@@ -243,7 +245,7 @@ public: // for PoeditApp
         void OnNew(wxCommandEvent& event);
         void NewFromScratch();
         void NewFromPOT();
-        void NewFromPOT(const wxString& pot_file, Language language = Language());
+        void NewFromPOT(POCatalogPtr pot, Language language = Language());
 
         void OnOpen(wxCommandEvent& event);
         void OnOpenFromCrowdin(wxCommandEvent& event);

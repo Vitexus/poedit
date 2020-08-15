@@ -2,19 +2,20 @@ msgid ""
 msgstr ""
 "Project-Id-Version: poedit\n"
 "Report-Msgid-Bugs-To: help@poedit.net\n"
-"POT-Creation-Date: 2018-10-07 13:14+0200\n"
-"PO-Revision-Date: 2019-01-14 16:33\n"
-"Last-Translator: vslavik <vaclav@slavik.io>\n"
+"POT-Creation-Date: 2020-07-18 14:48+0200\n"
+"PO-Revision-Date: 2020-07-18 12:46\n"
+"Last-Translator: \n"
 "Language-Team: Chinese Traditional\n"
 "Language: zh_TW\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=1; plural=0;\n"
-"X-Generator: crowdin.com\n"
 "X-Crowdin-Project: poedit\n"
+"X-Crowdin-Project-ID: 53425\n"
 "X-Crowdin-Language: zh-TW\n"
 "X-Crowdin-File: /locales/poedit.pot\n"
+"X-Crowdin-File-ID: 3\n"
 
 msgid "Hide this notification message"
 msgstr "隱藏這項通知訊息"
@@ -138,11 +139,11 @@ msgstr "翻譯字串中有損壞的標記。"
 msgid "(Use default language)"
 msgstr "(使用預設語言)"
 
-msgid "Select your preferred language"
-msgstr "選取您偏好的語言"
-
 msgid "Language selection"
 msgstr "語言選擇"
+
+msgid "Select your preferred language"
+msgstr "選取您偏好的語言"
 
 msgid "You must restart Poedit for this change to take effect."
 msgstr "您得要重新啟動 Poedit 這項更動才會生效。"
@@ -163,11 +164,14 @@ msgstr "和 %s 的同步失敗。"
 msgid "Syncing error"
 msgstr "同步發生錯誤"
 
-msgid "Downloading translations is disabled in this project."
-msgstr "此專案已停用翻譯下載。"
+msgid "JSON request error"
+msgstr ""
 
 msgid "Not authorized, please sign in again."
 msgstr "尚未獲得授權，請重新登入。"
+
+msgid "Downloading translations is disabled in this project."
+msgstr "此專案已停用翻譯下載。"
 
 msgid ""
 "Crowdin is an online localization management platform and collaborative "
@@ -194,9 +198,6 @@ msgstr "正在等候身分核對⋯"
 msgid "Updating user information…"
 msgstr "正在更新使用者資訊⋯"
 
-msgid "Signed in as:"
-msgstr "登入身分："
-
 msgid "Learn More About Crowdin"
 msgstr "深入瞭解 Crowdin"
 
@@ -205,6 +206,9 @@ msgstr "深入瞭解 Crowdin"
 
 msgid "Sign in to Crowdin"
 msgstr "登入 Crowdin"
+
+msgid "File"
+msgstr "檔案"
 
 msgid "Open Crowdin translation"
 msgstr "開啟 Crowdin 翻譯"
@@ -215,17 +219,11 @@ msgstr "專案："
 msgid "Language:"
 msgstr "語言："
 
-msgid "File:"
-msgstr "檔案："
+msgid "Signed in as:"
+msgstr "登入身分："
 
 msgid "No translation projects listed in your Crowdin account."
 msgstr "您的 Crowdin 帳號中尚無翻譯專案。"
-
-msgid "This project has no files that can be translated in Poedit."
-msgstr "這個專案沒有可在 Poedit 中翻譯的檔案。"
-
-msgid "This file can only be edited in Crowdin’s web interface."
-msgstr "這份檔案僅能在 Crowdin 的網頁介面中編輯。"
 
 msgid "Downloading latest translations…"
 msgstr "正在下載最新的翻譯⋯"
@@ -285,7 +283,7 @@ msgstr "開啟編目檔"
 msgid "File “%s” doesn’t exist."
 msgstr "檔案 %s 不存在。"
 
-msgid "Poedit is an easy to use translations editor."
+msgid "Poedit is an easy to use translation editor."
 msgstr "Poedit 是個易用的翻譯編輯器。"
 
 msgid "Catalogs Manager"
@@ -382,7 +380,7 @@ msgid "Minimize"
 msgstr "最小化"
 
 msgid "Zoom"
-msgstr "調整遠近"
+msgstr "縮放"
 
 msgid "Bring All to Front"
 msgstr "全部帶到最前方"
@@ -391,15 +389,15 @@ msgstr "全部帶到最前方"
 msgid "PO Translation"
 msgstr "PO 翻譯"
 
+msgid ""
+"The file may be either corrupted or in a format not recognized by Poedit."
+msgstr "檔案可能損毀，或是採用 Poedit 無法辨認的格式。"
+
 msgid "The file cannot be opened."
 msgstr "無法開啟檔案。"
 
 msgid "Invalid file"
 msgstr "檔案無效"
-
-msgid ""
-"The file may be either corrupted or in a format not recognized by Poedit."
-msgstr "檔案可能損毀，或是採用 Poedit 無法辨認的格式。"
 
 msgid "You can’t drop more than one file on Poedit window."
 msgstr "請不要拖放超過一個檔案至 Poedit 視窗中。"
@@ -477,6 +475,22 @@ msgstr ""
 "由於在「編目檔」的「屬性」中所指定的路徑找不到原始程式碼，所以無法從原始程式"
 "碼更新譯文。"
 
+msgid "Permission denied."
+msgstr "權限不足。"
+
+msgid ""
+"You don’t have permission to read source code files from the location "
+"specified in the catalog’s Properties."
+msgstr "您沒有權限讀取編目檔屬性指定的原始碼檔案位置。"
+
+#. TRANSLATORS: The System Preferences etc. references macOS system settings and should be translated EXACTLY as in the OS. If you don't use macOS and can't check, leave it untranslated.
+msgid ""
+"If you previously denied access to your files, you can allow it in System "
+"Preferences > Security & Privacy > Privacy > Files & Folders."
+msgstr ""
+"若您先前拒絕檔案存取，可以到系統偏好設定 > 安全性與隱私權 > 隱私權 > 檔案與資"
+"料夾放行。"
+
 msgid "Entries in the catalog are probably incorrect."
 msgstr "編目檔裡的條目可能有不正確。"
 
@@ -538,6 +552,13 @@ msgid ""
 msgstr ""
 "如果因為過多的誤判警告訊息導致導致必須予以停用警告訊息，建議將範例檔案傳送至 "
 "help@poedit.net 以協助我們加以改進。"
+
+msgid "Send Feedback"
+msgstr ""
+
+#. TRANSLATORS: This is a button to send email with feedback when clicked
+msgid "Send feedback"
+msgstr ""
 
 #, c-format
 msgid "Poedit automatically fixed invalid content in the file “%s”."
@@ -618,7 +639,7 @@ msgstr "載入訊息編目檔「%s」時發生錯誤。"
 
 #, c-format
 msgid "Translated: %d of %d (%d %%)"
-msgstr "已翻譯 %d 筆原文，總計 %d 筆 (完成進度為 %d%%)"
+msgstr "已翻譯 %d 筆，總計 %d 筆 (完成度為 %d%%)"
 
 #, c-format
 msgid "Remaining: %d"
@@ -1033,7 +1054,7 @@ msgstr "在檔案內部進行模糊比對"
 
 #. TRANSLATORS: Preceded by "When updating from sources"
 msgid "pre-translate from TM"
-msgstr "使用譯文記憶庫進行前置翻譯"
+msgstr "使用譯文記憶進行前置翻譯"
 
 msgid ""
 "Poedit can attempt to fill in new entries from only previous translations in "
@@ -1041,9 +1062,9 @@ msgid ""
 "effective if it’s near-empty, but it will get better as you add more "
 "translations to it."
 msgstr ""
-"Poedit 會嘗試將舊版檔案中的譯文或譯文記憶庫中的譯文代入新項目中。如果譯文記憶"
-"庫中累積的譯文量很少，這項功能的效果就不會很好，但是會隨著譯文量的增加逐漸改"
-"善效果。"
+"Poedit 會嘗試將舊版檔案中的譯文或譯文記憶中的譯文代入新項目中。如果譯文記憶中"
+"累積的譯文量很少，這項功能的效果就不會很好，但是會隨著譯文量的增加逐漸改善效"
+"果。"
 
 msgid "Stored translations:"
 msgstr "已儲存的譯文:"
@@ -1126,7 +1147,7 @@ msgstr "取消"
 #. Long text looks weird there, too short (like TM) too, but less so. "General" is about ideal
 #. length there.
 msgid "TM"
-msgstr "翻譯記憶"
+msgstr "譯文記憶"
 
 msgid ""
 "Source code extractors are used to find translatable strings in the source "
@@ -1235,17 +1256,17 @@ msgid ""
 "work. Check this option to only include accurate matches."
 msgstr ""
 "依照預設，執行代入譯文的程序時，同時也會代入不準確的譯文，但會將這些不準確的"
-"譯文標記為 [待校閱]。啟用這項設定後，只會代入完全相符的譯文。"
+"譯文標記為「待校閱」。啟用這項設定後，只會代入完全相符的譯文。"
 
 msgid "Don’t mark exact matches as needing work"
-msgstr "不要將完全相符的譯文標示為 [待校閱]"
+msgstr "不要將完全相符的譯文標示為「待校閱」"
 
 msgid ""
 "Only enable if you trust the quality of your TM. By default, all matches "
 "from the TM are marked as needing work and should be reviewed before use."
 msgstr ""
-"只有在信任譯文記憶庫的品質時才啟用這項設定。依照預設，與譯文記憶庫比對後，完"
-"全相符的項目代入的譯文都會標記為 [待校閱]，並請在採用前先行校閱。"
+"只有在信任譯文記憶的品質時才啟用這項設定。依照預設，與譯文記憶比對後，完全相"
+"符的項目代入的譯文都會標記為「待校閱」，並請在採用前先行校閱。"
 
 msgid ""
 "Pre-translation automatically finds exact or fuzzy matches for untranslated "
@@ -1261,8 +1282,7 @@ msgstr[0] "%d 筆原文已完成前置翻譯。"
 msgid ""
 "The translations were marked as needing work, because they may be "
 "inaccurate. You should review them for correctness."
-msgstr ""
-"這些譯文已標示為「需要處理」，可能翻譯尚未明確。您應該校閱它們是否正確。"
+msgstr "這些譯文已標示為「待校閱」，可能翻譯尚未明確。你應該校閱它們是否正確。"
 
 msgid "No entries could be pre-translated."
 msgstr "沒有任何原文可以完成前置翻譯。"
@@ -1272,8 +1292,8 @@ msgid ""
 "is only effective for semi-automatic translations after Poedit learns enough "
 "from files that you translated manually."
 msgstr ""
-"譯文記憶庫並未包含任何與這個檔案內容類似的字串。這項功能在 Poedit 儲存使用者"
-"夠多的手動翻譯結果後，對半自動翻譯才會產生效果。"
+"譯文記憶並未包含任何與這個檔案內容類似的字串。這項功能在 Poedit 儲存使用者夠"
+"多的手動翻譯結果後，對半自動翻譯才會產生效果。"
 
 msgid ""
 "<big>Drag and Drop Folders Here</big>\n"
@@ -1859,8 +1879,8 @@ msgstr "從原始程式碼進行更新"
 msgid "Update from Code"
 msgstr "從原始程式碼進行更新"
 
-msgid "Update catalog - synchronize it with sources"
-msgstr "更新編目檔 - 與原始程式碼同步"
+msgid "Update from source code"
+msgstr "從原始程式碼更新"
 
 msgid "Sidebar"
 msgstr "側邊欄"
@@ -2084,9 +2104,6 @@ msgstr "刪除(&D)"
 
 msgid "&Quit"
 msgstr "離開(&Q)"
-
-msgid "File"
-msgstr "檔案"
 
 msgid "Help"
 msgstr "說明"

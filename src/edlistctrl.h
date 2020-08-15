@@ -1,7 +1,7 @@
 /*
  *  This file is part of Poedit (https://poedit.net)
  *
- *  Copyright (C) 1999-2019 Vaclav Slavik
+ *  Copyright (C) 1999-2020 Vaclav Slavik
  *  Copyright (C) 2005 Olivier Sannier
  *
  *  Permission is hereby granted, free of charge, to any person obtaining a
@@ -239,8 +239,11 @@ class PoeditListCtrl : public wxDataViewCtrl
                 Col_Max // invalid
             };
 
-            Model(TextDirection appTextDir, ColorScheme::Mode visualMode);
+            Model(TextDirection appTextDir);
             virtual ~Model() {}
+
+            /// Configure items colors & fonts; must be called after ctor.
+            void SetVisualMode(ColorScheme::Mode visualMode);
 
             void SetCatalog(CatalogPtr catalog);
             void UpdateSort();
@@ -297,11 +300,6 @@ class PoeditListCtrl : public wxDataViewCtrl
             wxColour m_clrID, m_clrInvalid, m_clrFuzzy;
             wxString m_clrContextFg, m_clrContextBg;
             wxIcon m_iconComment, m_iconBookmark, m_iconError, m_iconWarning;
-
-        #if defined(__WXGTK__) && !wxCHECK_VERSION(3,0,3)
-            #define HAS_BROKEN_NULL_BITMAPS
-            wxIcon m_nullBitmap;
-        #endif
         };
 
 

@@ -1,7 +1,7 @@
 /*
  *  This file is part of Poedit (https://poedit.net)
  *
- *  Copyright (C) 1999-2019 Vaclav Slavik
+ *  Copyright (C) 1999-2020 Vaclav Slavik
  *
  *  Permission is hereby granted, free of charge, to any person obtaining a
  *  copy of this software and associated documentation files (the "Software"),
@@ -309,6 +309,17 @@ CustomizedTextCtrl::CustomizedTextCtrl(wxWindow *parent, wxWindowID winid, long 
 
 #ifdef __WXMSW__
 
+bool CustomizedTextCtrl::SetFont(const wxFont &font)
+{
+    if (!wxTextCtrl::SetFont(font))
+        return false;
+
+    auto style = GetDefaultStyle();
+    style.SetFont(font);
+    SetDefaultStyle(style);
+    return true;
+}
+
 WXDWORD CustomizedTextCtrl::MSWGetStyle(long style, WXDWORD *exstyle) const
 {
     auto msStyle = wxTextCtrl::MSWGetStyle(style, exstyle);
@@ -542,7 +553,12 @@ public:
 AnyTranslatableTextCtrl::AnyTranslatableTextCtrl(wxWindow *parent, wxWindowID winid, int style)
    : CustomizedTextCtrl(parent, winid, style)
 {
-    m_attrs.reset(new Attributes(this));
+    ColorScheme::SetupWindowColors(this, [=]
+    {
+        m_attrs.reset(new Attributes(this));
+        HighlightText();
+    });
+
     Bind(wxEVT_TEXT, [=](wxCommandEvent& e){
         e.Skip();
         HighlightText();
@@ -587,6 +603,15 @@ void AnyTranslatableTextCtrl::SetLanguage(const Language& lang)
     ::SendMessage((HWND)GetHWND(), EM_SETBIDIOPTIONS, 0, (LPARAM) &bidi);
 
     ::SendMessage((HWND)GetHWND(), EM_SETEDITSTYLE, lang.IsRTL() ? SES_BIDI : 0, SES_BIDI);
+
+    CHARFORMAT2 cf;
+    ::ZeroMemory(&cf, sizeof(cf));
+    cf.cbSize = sizeof(cf);
+    cf.dwMask = CFM_LCID;
+    cf.lcid = LocaleNameToLCID(str::to_wstring(m_language.LanguageTag()).c_str(), 0);
+    if (cf.lcid == 0)
+        cf.lcid = LOCALE_USER_DEFAULT;
+    ::SendMessage((HWND)GetHWND(), EM_SETCHARFORMAT, SCF_ALL, (LPARAM)&cf);
 
     UpdateRTLStyle();
 #endif

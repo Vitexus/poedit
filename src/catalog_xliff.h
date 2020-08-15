@@ -1,7 +1,7 @@
 /*
  *  This file is part of Poedit (https://poedit.net)
  *
- *  Copyright (C) 2018-2019 Vaclav Slavik
+ *  Copyright (C) 2018-2020 Vaclav Slavik
  *
  *  Permission is hereby granted, free of charge, to any person obtaining a
  *  copy of this software and associated documentation files (the "Software"),
@@ -31,6 +31,8 @@
 
 #include "pugixml.h"
 
+#include <vector>
+
 
 class XLIFFException : public Exception
 {
@@ -45,22 +47,42 @@ public:
 };
 
 
+// Metadata concerning XLIFF representation in Poedit, e.g. for placeholders
+struct XLIFFStringMetadata
+{
+    XLIFFStringMetadata() : isPlainText(true) {}
+    XLIFFStringMetadata(XLIFFStringMetadata&& other) = default;
+    XLIFFStringMetadata& operator=(XLIFFStringMetadata&&) = default;
+    XLIFFStringMetadata(const XLIFFStringMetadata&) = delete;
+    void operator=(const XLIFFStringMetadata&) = delete;
+
+    bool isPlainText;
+
+    struct Subst
+    {
+        std::string placeholder;
+        std::string markup;
+    };
+    std::vector<Subst> substitutions;
+};
+
+
 class XLIFFCatalogItem : public CatalogItem
 {
 public:
-    XLIFFCatalogItem(int id, pugi::xml_node node) : m_node(node), m_isPlainText(true)
+    XLIFFCatalogItem(int id, pugi::xml_node node) : m_node(node)
         { m_id = id; }
     XLIFFCatalogItem(const CatalogItem&) = delete;
 
 protected:
     pugi::xml_node m_node;
-    bool m_isPlainText;
+    XLIFFStringMetadata m_metadata;
 };
-
 
 
 class XLIFFCatalog : public Catalog
 {
+
 public:
     ~XLIFFCatalog() {}
 
@@ -77,7 +99,7 @@ public:
 
     std::string SaveToBuffer() override;
 
-    ValidationResults Validate() override;
+    ValidationResults Validate(bool wasJustLoaded) override;
 
     Language GetLanguage() const override { return m_language; }
     void SetLanguage(Language lang) override { m_language = lang; }
@@ -87,6 +109,7 @@ public:
     void RemoveDeletedItems() override {}
 
     pugi::xml_node GetXMLRoot() const { return m_doc.child("xliff"); }
+    std::string GetXPathValue(const char* xpath) const;
 
 protected:
     XLIFFCatalog(const wxString& filename, pugi::xml_document&& doc)
@@ -100,16 +123,20 @@ protected:
 };
 
 
-class XLIFF12Catalog : public XLIFFCatalog
+class XLIFF1Catalog : public XLIFFCatalog
 {
 public:
-    XLIFF12Catalog(const wxString& filename, pugi::xml_document&& doc)
-        : XLIFFCatalog(filename, std::move(doc)) {}
+    XLIFF1Catalog(const wxString& filename, pugi::xml_document&& doc, int subversion)
+        : XLIFFCatalog(filename, std::move(doc)),
+          m_subversion(subversion)
+    {}
 
     void SetLanguage(Language lang) override;
 
 protected:
     void Parse(pugi::xml_node root) override;
+
+    int m_subversion;
 };
 
 

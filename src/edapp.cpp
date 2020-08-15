@@ -1,7 +1,7 @@
 /*
  *  This file is part of Poedit (https://poedit.net)
  *
- *  Copyright (C) 1999-2019 Vaclav Slavik
+ *  Copyright (C) 1999-2020 Vaclav Slavik
  *
  *  Permission is hereby granted, free of charge, to any person obtaining a
  *  copy of this software and associated documentation files (the "Software"),
@@ -359,6 +359,15 @@ bool PoeditApp::OnInit()
     if (!wxApp::OnInit())
         return false;
 
+#ifdef __WXOSX__
+    // macOS 10.15 Vista throws a fit and bombards the user with scary UAC prompt
+    // if a subprocess, shell or gettext, is launched with CWD within a "protected"
+    // folder like Downloads or Desktop. Avoid by changing CWD to something harmless.
+    // Note that this has to be done after wxApp::OnInit() above, which parser the
+    // command line, including possible relative filenames.
+    wxSetWorkingDirectory(wxGetHomeDir());
+#endif
+
 #ifndef __WXOSX__
     m_remoteServer.reset(new RemoteServer(this));
 #endif
@@ -439,7 +448,7 @@ bool PoeditApp::OnInit()
 #endif
 
 #ifndef __WXOSX__
-    wxArtProvider::PushBack(new PoeditArtProvider);
+    wxArtProvider::Push(new PoeditArtProvider);
 #endif
 
     SetupLanguage();
@@ -749,7 +758,7 @@ bool PoeditApp::OnCmdLineParsed(wxCmdLineParser& parser)
                     if (fn.StartsWith("poedit://"))
                         client.HandleCustomURI(fn);
                     else
-                        client.OpenFile(parser.GetParam(i), (int)lineno);
+                        client.OpenFile(fn, (int)lineno);
                 }
             }
             return false; // terminate program
@@ -770,22 +779,25 @@ bool PoeditApp::OnCmdLineParsed(wxCmdLineParser& parser)
 
 #ifdef __WXOSX__
     wxArrayString filesToOpen;
-    for (size_t i = 0; i < parser.GetParamCount(); i++)
-        filesToOpen.Add(parser.GetParam(i));
-    if (!filesToOpen.empty())
-        OSXStoreOpenFiles(filesToOpen);
-#else
+    #define gs_filesToOpen filesToOpen
+#endif
     for (size_t i = 0; i < parser.GetParamCount(); i++)
     {
         auto fn = parser.GetParam(i);
         if (fn.StartsWith("poedit://"))
         {
-            puts("calling HandleCustomURI as file");
             CallAfter([=]{ HandleCustomURI(fn); });
         }
         else
-            gs_filesToOpen.push_back(fn);
+        {
+            wxFileName fnFull(fn);
+            fnFull.MakeAbsolute();
+            gs_filesToOpen.push_back(fnFull.GetFullPath());
+        }
     }
+#ifdef __WXOSX__
+    if (!filesToOpen.empty())
+        OSXStoreOpenFiles(filesToOpen);
 #endif
 
     return true;
@@ -957,9 +969,9 @@ void PoeditApp::OnAbout(wxCommandEvent&)
 #ifndef __WXOSX__
     about.SetName("Poedit");
     about.SetVersion(wxGetApp().GetAppVersion());
-    about.SetDescription(_("Poedit is an easy to use translations editor."));
+    about.SetDescription(_("Poedit is an easy to use translation editor."));
 #endif
-    about.SetCopyright(L"Copyright \u00a9 1999-2019 Václav Slavík");
+    about.SetCopyright(L"Copyright \u00a9 1999-2020 Václav Slavík");
 #ifdef __WXGTK__ // other ports would show non-native about dlg
     about.SetWebSite("https://poedit.net");
 #endif
@@ -1295,7 +1307,7 @@ void PoeditApp::AssociateFileTypeIfNeeded()
     // registry record in this case.
 
     wchar_t buf[1000];
-    DWORD bufSize = sizeof(buf);
+    DWORD bufSize = WXSIZEOF(buf);
     HRESULT hr = AssocQueryString(ASSOCF_INIT_IGNOREUNKNOWN,
                                   ASSOCSTR_EXECUTABLE,
                                   L".po", NULL,

@@ -2,19 +2,20 @@ msgid ""
 msgstr ""
 "Project-Id-Version: poedit\n"
 "Report-Msgid-Bugs-To: help@poedit.net\n"
-"POT-Creation-Date: 2018-10-07 13:14+0200\n"
-"PO-Revision-Date: 2018-10-07 10:41\n"
-"Last-Translator: vslavik <vaclav@slavik.io>\n"
+"POT-Creation-Date: 2020-07-18 14:48+0200\n"
+"PO-Revision-Date: 2020-07-18 12:48\n"
+"Last-Translator: \n"
 "Language-Team: Vietnamese\n"
 "Language: vi_VN\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=1; plural=0;\n"
-"X-Generator: crowdin.com\n"
 "X-Crowdin-Project: poedit\n"
+"X-Crowdin-Project-ID: 53425\n"
 "X-Crowdin-Language: vi\n"
 "X-Crowdin-File: /locales/poedit.pot\n"
+"X-Crowdin-File-ID: 3\n"
 
 msgid "Hide this notification message"
 msgstr "Ẩn thông báo này đi"
@@ -46,11 +47,11 @@ msgstr "Đang trộn các khác biệt…"
 
 #, c-format
 msgid "“%s” is not a valid POT file."
-msgstr "“%s” is not a valid POT file."
+msgstr "Tập tin '%s' không hợp định dạng POT."
 
 #, c-format
 msgid "Malformed header: “%s”"
-msgstr "Bị thay đổi tiêu đề: \"%s\""
+msgstr "Phần đầu dị hình: “%s”"
 
 msgid "PO Translation Files"
 msgstr "PO Dịch Tập Tin"
@@ -59,14 +60,14 @@ msgid "POT Translation Templates"
 msgstr "PO Dịch Mẫu"
 
 msgid "XLIFF Translation Files"
-msgstr ""
+msgstr "Các tập tin dịch XLIFF"
 
 msgid "All Translation Files"
 msgstr "Tất Cả Các Tập Tin Bản Dịch"
 
 #, c-format
 msgid "File “%s” is in unsupported format."
-msgstr ""
+msgstr "Tập tin \"%s\" có định dạng không được hỗ trợ."
 
 #, c-format
 msgid "%i line of file “%s” was not loaded correctly."
@@ -128,30 +129,30 @@ msgstr "Gặp lỗi khi lưu catalog"
 
 #, c-format
 msgid "Error loading file “%s”: %s."
-msgstr ""
+msgstr "Lỗi tải file \"%s\": %s."
 
 #, c-format
 msgid "unsupported XLIFF version (%s)"
-msgstr ""
+msgstr "phiên bản XLIFF không được hỗ trợ (%s)"
 
 #. TRANSLATORS: Shown as error if a translation of XLIFF markup is not valid XML
 msgid "Broken markup in translation string."
-msgstr ""
+msgstr "Đánh dấu bị gãy trong chuỗi dịch."
 
 msgid "(Use default language)"
 msgstr "(Dùng ngôn ngữ mặc định)"
 
-msgid "Select your preferred language"
-msgstr "Chọn ngôn ngữ ưa thích"
-
 msgid "Language selection"
 msgstr "Lựa chọn ngôn ngữ"
+
+msgid "Select your preferred language"
+msgstr "Chọn ngôn ngữ ưa thích"
 
 msgid "You must restart Poedit for this change to take effect."
 msgstr "Bạn phải khởi động lại Poedit để các thay đổi có tác dụng."
 
 msgid "Syncing"
-msgstr "Đồng bộ"
+msgstr "Đồng bộ"
 
 #. TRANSLATORS: %s is a cloud destination, e.g. "Crowdin" or ftp.wordpress.com etc.
 #, c-format
@@ -166,11 +167,14 @@ msgstr "Đồng bộ với %s bị lỗi."
 msgid "Syncing error"
 msgstr "Lỗi đồng bộ"
 
-msgid "Downloading translations is disabled in this project."
-msgstr "Tải về bản dịch bị vô hiệu hóa trong dự án này."
+msgid "JSON request error"
+msgstr ""
 
 msgid "Not authorized, please sign in again."
 msgstr "Không có thẩm quyền, xin vui lòng đăng nhập lại."
+
+msgid "Downloading translations is disabled in this project."
+msgstr "Tải về bản dịch bị vô hiệu hóa trong dự án này."
 
 msgid ""
 "Crowdin is an online localization management platform and collaborative "
@@ -197,9 +201,6 @@ msgstr "Đang chờ xác thực…"
 msgid "Updating user information…"
 msgstr "Đang cập nhật thông tin người dùng…"
 
-msgid "Signed in as:"
-msgstr "Đăng nhập như là:"
-
 msgid "Learn More About Crowdin"
 msgstr "Tìm Hiểu Thêm Về Crowdin"
 
@@ -208,6 +209,9 @@ msgstr "Tìm hiểu thêm về Crowdin"
 
 msgid "Sign in to Crowdin"
 msgstr "Đăng nhập vào Crowdin"
+
+msgid "File"
+msgstr "Tập tin"
 
 msgid "Open Crowdin translation"
 msgstr "Mở Crowdin dịch"
@@ -218,18 +222,12 @@ msgstr "Dự án:"
 msgid "Language:"
 msgstr "Ngôn ngữ:"
 
-msgid "File:"
-msgstr "Tập tin:"
+msgid "Signed in as:"
+msgstr "Đăng nhập như là:"
 
 msgid "No translation projects listed in your Crowdin account."
 msgstr ""
 "Không có dự án dịch thuật được liệt kê trong tài khoản Crowdin của bạn."
-
-msgid "This project has no files that can be translated in Poedit."
-msgstr "Dự án này đã không có tập tin nào có thể được dịch trong Poedit."
-
-msgid "This file can only be edited in Crowdin’s web interface."
-msgstr "Tập tin này chỉ có thể được chỉnh sửa trong giao diện web của Crowdin."
 
 msgid "Downloading latest translations…"
 msgstr "Đang tải xuống bản dịch mới nhất…"
@@ -291,7 +289,7 @@ msgstr "Mở catalog"
 msgid "File “%s” doesn’t exist."
 msgstr "Tập tin \"%s\" không tồn tại."
 
-msgid "Poedit is an easy to use translations editor."
+msgid "Poedit is an easy to use translation editor."
 msgstr "Poedit rất dễ dùng cho việc biên tập bản dịch."
 
 msgid "Catalogs Manager"
@@ -397,22 +395,22 @@ msgstr "Mang Tất Cả ra Trước"
 msgid "PO Translation"
 msgstr "PO Dịch"
 
+msgid ""
+"The file may be either corrupted or in a format not recognized by Poedit."
+msgstr "Tập tin có lẽ đã hư hỏng hoặc là Poedit không chấp nhận định dạng này."
+
 msgid "The file cannot be opened."
 msgstr "Không thể mở tập-tin."
 
 msgid "Invalid file"
 msgstr "Tập tin không hợp lệ"
 
-msgid ""
-"The file may be either corrupted or in a format not recognized by Poedit."
-msgstr "Tập tin có lẽ đã hư hỏng hoặc là Poedit không chấp nhận định dạng này."
-
 msgid "You can’t drop more than one file on Poedit window."
 msgstr "Bạn không thể kéo thả nhiều hơn một tập tin vào trong cửa sổ Poedit."
 
 #, c-format
 msgid "File “%s” is not a translation file."
-msgstr ""
+msgstr "Tập tin \"%s\" không phải là một tập tin dịch."
 
 msgid "Poedit"
 msgstr "Poedit"
@@ -484,6 +482,20 @@ msgstr ""
 "Bản dịch không thể được cập nhật từ mã nguồn, bởi vì không có mã nào được "
 "tìm thấy tại vị trí chỉ định trong Thuộc tính của danh mục."
 
+msgid "Permission denied."
+msgstr ""
+
+msgid ""
+"You don’t have permission to read source code files from the location "
+"specified in the catalog’s Properties."
+msgstr ""
+
+#. TRANSLATORS: The System Preferences etc. references macOS system settings and should be translated EXACTLY as in the OS. If you don't use macOS and can't check, leave it untranslated.
+msgid ""
+"If you previously denied access to your files, you can allow it in System "
+"Preferences > Security & Privacy > Privacy > Files & Folders."
+msgstr ""
+
 msgid "Entries in the catalog are probably incorrect."
 msgstr "Các mục từ trong catalog chắc chắn là không đúng."
 
@@ -545,7 +557,7 @@ msgid_plural ""
 msgstr[0] "Bản dịch đã sẵn sàng để sử dụng, nhưng %d mục không được dịch."
 
 msgid "The translation is ready for use."
-msgstr "Bản dịch đã sẵn sàng để dùng"
+msgstr "Bản dịch đã sẵn sàng để sử dụng."
 
 msgid "Warnings have been disabled."
 msgstr "Cảnh báo đã bị tắt."
@@ -556,6 +568,13 @@ msgid ""
 msgstr ""
 "Nếu bạn vô hiệu hóa các cảnh báo vì có quá nhiều xác thực sai, vui lòng xem "
 "xét gửi tệp mẫu tới help@poedit.net để giúp cải thiện chúng."
+
+msgid "Send Feedback"
+msgstr ""
+
+#. TRANSLATORS: This is a button to send email with feedback when clicked
+msgid "Send feedback"
+msgstr ""
 
 #, c-format
 msgid "Poedit automatically fixed invalid content in the file “%s”."
@@ -886,7 +905,7 @@ msgid "Options"
 msgstr "Tùy chọn"
 
 msgid "Ignore case"
-msgstr "Trường hợp bỏ qua"
+msgstr "Không phân biệt HOA/thường"
 
 msgid "Wrap around"
 msgstr "Ngắt khoảng"
@@ -1057,11 +1076,11 @@ msgstr "Khi cập nhật từ nguồn"
 
 #. TRANSLATORS: Preceded by "When updating from sources"
 msgid "fuzzy match within the file"
-msgstr "Làm mờ trùng bên trong tập tin"
+msgstr "kết hợp mờ trong tệp"
 
 #. TRANSLATORS: Preceded by "When updating from sources"
 msgid "pre-translate from TM"
-msgstr "Dịch trước từ TM"
+msgstr "dịch trước từ TM"
 
 msgid ""
 "Poedit can attempt to fill in new entries from only previous translations in "
@@ -1186,14 +1205,14 @@ msgstr ""
 "(PHP, C/c + +, C#, Perl, Python, Java, JavaScript và những ngôn ngữ khác)."
 
 msgid "Delete extractor"
-msgstr "Xóa trình giải nén"
+msgstr "Xóa trình trích xuất"
 
 #, c-format
 msgid "Are you sure you want to delete the “%s” extractor?"
-msgstr "Bạn có chắc muốn xóa trình giải nén \"%s\"?"
+msgstr "Bạn có chắc muốn xóa trình trích xuất \"%s\"?"
 
 msgid "Extractors"
-msgstr "Trình giải nén"
+msgstr "Trình trích xuất"
 
 msgid "Accounts"
 msgstr "Tài khoản"
@@ -1241,7 +1260,7 @@ msgid "Advanced"
 msgstr "Nâng cao"
 
 msgid "Pre-translating…"
-msgstr "Đang dịch trước..."
+msgstr "Đang dịch trước…"
 
 #, c-format
 msgid "Pre-translated %u string"
@@ -1750,10 +1769,10 @@ msgid ""
 "of keywords, %F to list of input files,\n"
 "%C to charset flag (see below)."
 msgstr ""
-"Đây là lệnh được dùng để khởi chạy trình giải nén.\n"
-"%o mở rộng tên của tập tin đầu ra, %K tới danh sách\n"
-"các từ khóa, %F tới danh sách tập tin đầu vào,\n"
-"%C tới cờ bộ mã ký tự (xem bên dưới)."
+"Đây là lệnh được dùng để khởi chạy Trình trích xuất.\n"
+"%o được khai triển thành tên của tập tin đầu ra, %K thành danh sách\n"
+"các từ khóa, %F thành danh sách tập tin đầu vào,\n"
+"%C thành cờ bộ mã ký tự (xem bên dưới)."
 
 msgid "An item in keywords list:"
 msgstr "Một mục tin trong danh sách các từ khóa:"
@@ -1901,8 +1920,8 @@ msgstr "Cập nhật từ mã"
 msgid "Update from Code"
 msgstr "Cập nhật từ mã"
 
-msgid "Update catalog - synchronize it with sources"
-msgstr "Cập nhật catalog - đồng bộ hóa nó với mã nguồn"
+msgid "Update from source code"
+msgstr "Cập nhật từ mã nguồn"
 
 msgid "Sidebar"
 msgstr "Thanh tiện ích"
@@ -2137,9 +2156,6 @@ msgstr "&Xóa"
 
 msgid "&Quit"
 msgstr "&Thoát"
-
-msgid "File"
-msgstr "Tập tin"
 
 msgid "Help"
 msgstr "Trợ giúp"
